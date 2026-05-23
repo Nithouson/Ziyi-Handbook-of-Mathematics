@@ -1,0 +1,213 @@
+\section{基本概念}
+
+\begin{dfn} \textbf{域} Field\\
+设$F$为非平凡的交换单位环, 且对任意$x\in F-\{0\}$, 存在乘法逆元$x^{-1}\in F$, 满足$xx^{-1}=1$, 则称$F$在加法和乘法下构成域. 
+\end{dfn}
+\par 设$F$是域, 则$F-\{0\}$在乘法下构成交换群. 设$x, y\in F$, 则$xy=0 \land x\neq 0\Rightarrow y=x^{-1}xy=0$, 因此$F$不存在非零的零因子, 故域是整环. 
+
+\begin{dfn} \textbf{域的特征} Characteristic\\
+设$F$是域, $F$作为加法群时, 若1的阶为有限, 称其为$F$的特征; 否则称$F$的特征为0. 记作$\operatorname{char} F$.
+\end{dfn}
+
+\begin{pro} \textbf{域的特征为0或素数}\\
+设$F$是域, 则$F$的特征或者为0, 或者为素数. 
+\end{pro}
+\begin{proof}
+设$F$的特征非零, 存在最小的正整数$m$, $m 1_F=0_F$. 显然$m\neq 1$. 反设$m=rs$, $r,s$为大于1的正整数, 则$(r1_F)(s1_F)=m 1_F=0_F$. 而$r1_F\neq 0$, $s1_F\neq 0$, 这与$F$无零因子矛盾. 
+\end{proof}
+
+\begin{dfn} \textbf{子域} Subfield\\
+设$F$是域, $K\subseteq F$非空, 若$K$在$F$上的加法和乘法下也构成域, 则称$K$是$F$的子域.
+\end{dfn}
+\par 设$K$是$F$的子域, 则$K$与$F$具有相同的加法单位元和乘法单位元. 前者是子群相应结果的推论. 对于后者, 取非零元素$x\in K$, 则$x1_K=x=x1_F$. 两边同乘$x$在$F$中的乘法逆元即得$1_K=1_F$. 
+
+\par 域$F$的非空子集$K$是子域当且仅当$1\in K$; $\forall x,y\in K: x-y\in K, xy\in K$; $\forall y\in K-\{0\}: y^{-1} \in K$.
+
+\begin{pro} \textbf{子域的交集是子域}\\
+设$F$是域, $\{K_i\}_{i\in I}$是$F$的子域, 其中$I$为指标集, 则$K=\bigcap_{i\in I} K_i$是$F$的子域. 
+\end{pro}
+
+\begin{pro} \textbf{生成子域}\\
+设$F$是域, $X \subseteq F$, 则
+\begin{displaymath}
+    L=\bigcap \{K\vert X\subseteq K \subseteq F, K\text{是}F\text{的子域}\}
+\end{displaymath}
+称为$X$生成的子域. 
+\end{pro}
+
+\par 设$E, F$是域, 单位环同态$\sigma: E\to F$称为域同态. 此时有$\forall x\in E-\{0\}: \sigma(x^{-1}) = (\sigma(x))^{-1}$. 当$\sigma$为双射, 称为域同构. 域同构关系是等价关系. 
+
+\section{域扩张}
+
+\par 域的单同态$\iota:K\to F$称为域扩张(field extension). 当$K$是$F$的子域, $\iota=\mathrm{id}$, 域扩张也记作$F/K$, 称$F$是$K$的扩域; 若$F$是$K\cap X$生成的子域, 域扩张也记作$F=K(X)$; 当$X=\{x_1,\dots,x_n\}$, 域扩张也记作$F=K(x_1,\dots,x_n)$. 
+
+\begin{dfn} \textbf{域扩张的同构}\\
+设$f: K\to L$, $g: K'\to L'$是域扩张, 若域同构$\lambda: K\to K'$, $\mu: L \to L'$使如下图表交换
+\[
+  \begin{tikzcd}
+    K \arrow{r}{f} \arrow[swap]{d}{\lambda} & L \arrow{d}{\mu} \\
+    K' \arrow{r}{g} & L'
+  \end{tikzcd}
+\]
+称$(\lambda, \mu)$为$f$到$g$的域扩张同构. 
+\end{dfn}
+特别地, 当$f=g=\mathrm{id}$, 图表交换的条件变为$\mu|_K = \lambda$. 
+
+\begin{pro}\textbf{扩域是子域上的线性空间}\\
+设$L/K$是域扩张, $u,v\in L$, $\lambda\in K$, 定义加法运算$(u,v)\mapsto u+v$, 数乘运算$(\lambda, u)\mapsto \lambda u$, 则$L$为$K$上的线性空间. 
+\end{pro}
+\begin{proof}
+由于$L$在加法下构成交换群, $L$满足乘法结合律、加法对乘法分配律，且$K$的乘法单位元即为$L$的乘法单位元, 可以验证$L$为$K$上的线性空间. 
+\end{proof}
+
+\begin{dfn}\textbf{域扩张的次数, 有限扩张} Degree, Finite Extension\\
+设$L/K$是域扩张, $L$作为$K$上线性空间的维数称为$L/K$的次数, 记作$[L:K]$. 当$L$为$K$上的有限维线性空间, 称$L/K$为有限扩张. 
+\end{dfn}
+
+同构的域扩张具有相同的次数. 
+
+设$L/K$是域扩张, 则$[L:K]=1 \iff L=K$. 
+
+\begin{dfn}\textbf{域扩张次数的性质} Tower Law\\
+设$K_0,K_1,\dots,K_n$是域, $K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, 则
+\begin{equation}
+    [K_n:K_0] = \prod_{i=1}^n [K_i:K_{i-1}]
+\end{equation}
+\end{dfn}
+\begin{proof}
+只需证$n=2$的情形, 即可由数学归纳法得证. 设$K_1$作为$K_0$上线性空间的一个基为$\{x_i \vert i\in I\}$, $K_2$作为$K_1$上线性空间的一个基为$\{y_j \vert j\in J\}$, 则$\{x_iy_j \vert (i,j)\in I\times J\}$是$K_2$作为$K_0$上线性空间的一个基. 
+\end{proof}
+
+\subsection{单扩张}
+
+\begin{dfn} \textbf{单扩张, 代数扩张, 超越扩张} Simple/Algebraic/Transcendental Extension\\
+设$L/K$是域扩张, 若存在$\alpha\in L$, $L=K(\alpha)$, 称$L/K$为单扩张. 若存在非零多项式$f\in K[x]$, $f(\alpha)=0$, 称$\alpha$是$K$上的代数元, 否则称$\alpha$是$K$上的超越元. 若任意$\alpha\in L$为$K$上的代数元, 称$L/K$为代数扩张;  否则称$L/K$为超越扩张. 
+\end{dfn}
+
+
+\begin{lem} \textbf{单扩张的结构}\\
+设$K(\alpha)/K$为单扩张, 则有
+\begin{equation}
+    K(\alpha)=\left\{\left.\frac{p(\alpha)}{q(\alpha)}\right\vert p,q\in K[x], q(\alpha)\neq 0\right\}
+\end{equation}
+\end{lem}
+
+
+\begin{dfn} \textbf{代数元的极小多项式} Minimal Polynomial\\
+设$L/K$是域扩张, $\alpha\in L$是$K$上的代数元, 称$K[x]$中以$\alpha$为零点的首一多项式中次数最小的多项式为$\alpha$在$K$上的极小多项式. 
+\end{dfn}
+极小多项式存在且唯一. 事实上, 若$f\neq g$均为极小多项式, $\deg f = \deg g$, 则$0<\deg (f-g) < \deg f$, $(f-g)(\alpha)=0$, $f-g$除以最高次项即得次数低于$f$的首一多项式, 与$f$为极小多项式矛盾. 
+
+\begin{pro} \textbf{极小多项式的性质}\\
+设$L/K$是域扩张, $\alpha\in L$是$K$上的代数元, $f$为$\alpha$在$K$上的极小多项式,
+\begin{enumerate}
+\item $f$是$K[x]$中的不可约元;
+\item 若$g\in K[x]$, $g(\alpha)=0$, 则$f\vert g$. 
+\end{enumerate}
+\end{pro}
+\begin{proof}
+(1) 若存在非常数的多项式$p,q\in K[x]$, $f=pq$, 不妨设$p,q$是首一的. 由$p(\alpha)q(\alpha)=0$, 不妨设$p(\alpha)=0$, 则$\deg p < \deg f$, 与$f$是极小多项式矛盾. (2) 由带余除法, 存在$q,r\in K[x]$, $g=qf+r$, $\deg r < \deg f$. 由$r(\alpha)=0$, 若$r\neq 0$, 与$f$是极小多项式矛盾.
+\end{proof}
+
+\begin{pro}\textbf{单代数扩张的分类}\\
+设$K$是域, $\alpha$是$K$上的代数元, $m$为$\alpha$在$K$上的极小多项式, 则代数扩张$K(\alpha)/K$同构于$K[x]/(m) /K$. 
+\end{pro}
+\begin{proof}
+$m$为$K[x]$上的不可约元, 由$K[x]$是主理想整环, $(m)$为$K[x]$的极大理想, $K[x]/(m)$是域. 定义$\phi: K[x]/(m) \to K(\alpha)$: $p+(m)\mapsto p(\alpha)$. 设$p,q\in K[x]$, 则$p+(m)=q+(m) \iff m | p-q \iff p(\alpha)=q(\alpha)$, 故$\phi$是良定义的, 且是单射. 由于$K[x]/(m)$是域, 若$q\in K[x]$, $q(\alpha)\neq 0$, 存在$p\in K[x]$, $m|1-pq$, $\frac{1}{q(\alpha)} = p(\alpha)$. 因此$K(\alpha)=\{p(\alpha) \vert p\in K[x]\}$, 这表明$\phi$是满射. 容易验证$\phi$是域同态, 因此是域同构. 又由于$\phi|_K=\mathrm{id}$, $\phi$给出域扩张同构.
+\end{proof}
+
+\begin{pro}\textbf{单超越扩张的分类}\\
+设$K$是域, $\alpha$是$K$上的超越元, 则超越扩张$K(\alpha)/K$同构于$K(x)/K$, 其中
+\begin{equation}
+    K(x)=\left\{ \left.\frac{p(x)}{q(x)} \right \vert p,q \in K[x], q\neq 0 \right\}
+\end{equation}
+是$K[x]$的分式域. 
+\end{pro}
+\begin{proof}
+定义$\phi: K(x)\to K(\alpha)$, 
+\begin{equation}
+\phi\left(\frac{p(x)}{q(x)}\right)=\frac{p(\alpha)}{q(\alpha)}
+\end{equation} 
+当$q\neq 0$时有$q(\alpha)\neq 0$. 设$p,p',q,q'\in K[x]$, $q,q'\neq 0$, 
+\begin{align*}
+&\phi\left(\frac{p(x)}{q(x)}\right)=\phi\left(\frac{p'(x)}{q'(x)}\right)
+\iff p(\alpha)q'(\alpha)-p'(\alpha)q(\alpha)=0\\
+& \iff p(x)q'(x)-p'(x)q(x)=0
+\iff \frac{p(x)}{q(x)}=\frac{p'(x)}{q'(x)}
+\end{align*}
+表明$\phi$是良定义的, 且是单射. 容易验证$\phi$是域同态, 且是满射, 因此是域同构. 又由于$\phi|_K=\mathrm{id}$, $\phi$给出域扩张同构.
+\end{proof}
+
+\begin{col}\textbf{单扩张的次数}\\
+设$K$是域, 
+\begin{enumerate}
+\item 若$\alpha$是$K$上的代数元, $m$为$\alpha$在$K$上的极小多项式, 则$[K(\alpha):K]=\deg m$.
+\item 若$\alpha$是$K$上的超越元, 则$[K(\alpha):K]$是无限的.
+\end{enumerate} 
+\end{col}
+\begin{proof}
+(1) 设$\deg m=k$. 对$f\in K[x]$, 由多项式的带余除法, 存在$g\in K[x]$, $f+(m)=g+(m)$, 且$\deg g<k$. 因此$f+(m)$可由$1+(m),x+(m),\dots,x^{k-1}+(m)$线性表出. 可以验证$1+(m),x+(m),\dots,x^{k-1}+(m)$线性无关, 因此为$K[x]/(m)$的一个基, $[K[x]/(m):K]=\deg m$. 而$K[x]/(m)/K$到$K(\alpha)/K$的域扩张同构给出$K[x]/(m)$到$K(\alpha)$作为$K$上线性空间的同构, 因此$[K(\alpha):K]=[K[x]/(m):K]=\deg m$.
+
+(2) 将$K(\alpha)$视为$K$上的线性空间, 则$\{\alpha^n\vert n\in \mathbb{N}\}$线性无关. 
+\end{proof}
+
+\subsection{有限扩张}
+
+\begin{pro}\textbf{有限扩张是代数扩张}\\
+设$L/K$是域扩张, $L/K$是有限扩张当且仅当存在正整数$n$, $L=K(\alpha_1, \dots, \alpha_n)$, 且$\forall i\in \{1,\dots,n\}: \alpha_i$为$K$上的代数元.
+\end{pro}
+\begin{proof}
+充分性: 设$\alpha_i$在$K$上的极小多项式为$p_i$, 则$[K(\alpha_1,\dots,\alpha_i): K(\alpha_1,\dots,\alpha_{i-1})]\le \deg p_i$. 由域扩张次数的性质即证. 必要性: $L$作为$K$上的线性空间, 设$\alpha_1,\dots,\alpha_n$为$L$的一个基, 则$L=K(\alpha_1,\dots,\alpha_n)$. 对每个$\alpha\in K$, $1,\alpha,\dots,\alpha^n$线性相关, 因此$\alpha$是代数元. 
+\end{proof}
+
+\section{域的例子}
+
+\section*{阅读材料}
+
+\section*{问题}
+\newcounter{probfld} 
+
+\stepcounter{probfld}
+\par \textbf{\theprobfld .} 设$F$是域, 非零元素$x\in F$, $n\in \mathbb{Z}$, 则$nx=0 \iff \operatorname{char} F | n$. 
+
+\stepcounter{probfld}
+\par \textbf{\theprobfld .} \cite{AlXX} 设$E, F$是域, $\phi: E\to F$是环同态. 证明: (i)$\phi$是单同态且$\phi(1)=1$; 或者(ii)$\phi$是零同态. 
+
+\stepcounter{probfld}
+\par \textbf{\theprobfld .} \cite{GTS} 设$L/K$是域扩张, $f$为$K[x]$中首一的不可约多项式, $\alpha \in L$是$f$的一个零点. 证明: $f$是$\alpha$在$K$上的极小多项式. 
+
+\stepcounter{probfld}
+\par \textbf{\theprobfld .} \cite{GTS} 设$K,L$是域, $\iota: K\to L$是域同构, $\alpha, \beta$分别是$K,L$上的代数元, 其极小多项式分别为$m_\alpha \in K[x]$, $m_\beta \in L[x]$; 记$\iota'$为$\iota$诱导的$K[x]$到$L[x]$的单位环同构, $\iota'(m_\alpha)=m_\beta$. 证明: 域扩张$K(\alpha)/K$同构于$L(\beta)/L$.  
+
+\stepcounter{probfld}
+\par \textbf{\theprobfld .} \cite{GTS} 设域扩张$L/K$满足$[L:K]$为素数. 证明: $L/K$是单扩张. 
+
+\stepcounter{probfld}
+\par \textbf{\theprobfld .} 设$p,q$是不同的素数, 证明: 域扩张$\mathbb{Q}(\sqrt{p})/\mathbb{Q}$与$\mathbb{Q}(\sqrt{q})/\mathbb{Q}$不同构. 
+
+
+
+\section*{解答}
+\newcounter{solfld} 
+
+\stepcounter{solfld}
+\par \textbf{\thesolfld .} 当$n=0$时两边均为真, 下设$n\neq 0$. 必要性: 由$nx=0$, $n1_F=(nx)x^{-1}=0$, 知$\operatorname{char}F$非零. 此时有$\operatorname{char}F \vert n$. 充分性: 设$\operatorname{char}F \vert n$, 则$n1_F=0$, $nx=n(1_Fx)=(n1_F)x=0$.
+
+\stepcounter{solfld}
+\par \textbf{\thesolfld .} 若$\mathrm{ker}\phi=\{0\}$, 则$\phi$是单同态, $\phi(1)=\phi(1\cdot 1)=\phi(1)\phi(1)$, 由$\phi(1)\neq 0$, $\phi(1)=1$. 若存在$x\in E$, $x\neq 0$,  $\phi(x)=0$, 则$x^{-1}\in E$, $\phi(1)=\phi(x)\phi(x^{-1})=0$, 从而$\forall y\in E: \phi(y)=\phi(y)\phi(1)=0$.
+
+\stepcounter{solfld}
+\par \textbf{\thesolfld .} \cite{GTS} 设$m$为$\alpha$在$K$上的极小多项式, 则$m\vert f$. 但$f$不可约, 且$f,m$均是首一的, 故$m=f$. 
+
+\stepcounter{solfld}
+\par \textbf{\thesolfld .} \cite{GTS} 由单代数扩张的分类, $K(\alpha)/K$同构于$K[x]/(m_\alpha)/K$, $L(\beta)/L$同构于$L[x]/(m_\beta)/L$. 定义$\eta: K[x]/(m_\alpha) \to L[x]/(m_\beta)$, $f+(m_\alpha)\mapsto \iota'(f)+(m_\beta)$, 则$\eta$是域同构, $(\iota, \eta)$是$K[x]/(m_\alpha)/K$到$L[x]/(m_\beta)/L$的域扩张同构. 
+
+\stepcounter{solfld}
+\par \textbf{\thesolfld .} $L/K$是有限扩张, 因此是代数扩张. 设$L=K(\alpha_1,\dots,\alpha_n)$, 则由域扩张次数的性质
+\begin{equation}
+    [L:K] = \prod_{j=1}^n [K(\alpha_1,\dots,\alpha_j):K(\alpha_1,\dots,\alpha_{j-1})]
+\end{equation}
+由$[L:K]$是素数$p$, 右侧乘积中只有一项为$p$, 其余各项均为1. 不妨设$[K(\alpha_1,\dots,\alpha_j):K(\alpha_1,\dots,\alpha_{j-1})]=p$, 则$L=K(\alpha_j)$. 
+
+\stepcounter{solfld}
+\par \textbf{\thesolfld .} 反设$\sigma: \mathbb{Q}(\sqrt{p})\to \mathbb{Q}(\sqrt{q})$是域同构, 且$\sigma|_{\mathbb{Q}} = \mathrm{id}$. 此时有$(\sigma(\sqrt{p}))^2 = \sigma(p)=p$, 故$x^2-p$在$\mathbb{Q}(\sqrt{q})$上有零点. 设$(a+b\sqrt{q})^2=p$, $a,b\in \mathbb{Q}$, 则$2ab\sqrt{q}=p-a^2-b^2q$. 若$a,b$非零, $\sqrt{q}\in \mathbb{Q}$; 若$b=0$, $p=a^2$; 若$a=0$, $b^2=\frac{p}{q}$, 均与$p,q$为不同素数矛盾. 

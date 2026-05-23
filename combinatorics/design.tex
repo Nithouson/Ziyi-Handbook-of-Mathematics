@@ -1,0 +1,180 @@
+
+
+
+\section{拉丁方}
+
+\begin{dfn}\textbf{拉丁方} Latin Square\\
+设整数$n\ge 2$, 若矩阵$A\in \mathbb{Z}^{n\times n}$中, 整数$1,2,\dots,n$在每行、每列恰好出现一次, 则称$A$为一个$n$阶拉丁方. 
+\end{dfn}
+\par 交换拉丁方的两行或两列仍然得到拉丁方. 
+
+\begin{dfn}\textbf{拉丁方的正交} Orthogonal Latin Squares\\
+设$A,B$为$n$阶拉丁方, 若
+\begin{equation}
+    \{(A[i,j],B[i,j])\vert 1\le i,j\le n\}=\{1,2,\dots,n\}^2
+\end{equation}
+称$A,B$相互正交. 
+\end{dfn}
+
+\section{幻方}
+
+\begin{dfn}\textbf{幻方} Magic Square\\
+设整数$n\ge 2$, 若矩阵$A\in \mathbb{Z}^{n\times n}$中元素构成的集合为$\{1,2,\dots,n^2\}$, 且存在正整数$s_n$, 满足
+\begin{align}
+    &\sum_{j=1}^n A[i,j] = s_n, \, \forall i=1,\dots,n\\
+    &\sum_{i=1}^n A[i,j] = s_n, \, \forall j=1,\dots,n\\
+    &\sum_{i=1}^n A[i,i] = \sum_{i=1}^n A[i,n+1-i]= s_n
+\end{align}
+则称$A$为一个$n$阶幻方. $s_n=\frac{n(n^2+1)}{2}$称为幻和. 
+\end{dfn}
+
+\par 奇数阶幻方可由de la Loubère算法(算法\ref{alg:de_la_Loubere})构造.  
+
+\begin{algorithm}[ht!]
+\SetKwInOut{KIN}{输入}
+\SetKwInOut{KOUT}{输出}
+\caption{生成奇数阶幻方的de la Loubère算法} 
+\label{alg:de_la_Loubere}
+\KIN{正整数$k$}
+\KOUT{$n=2k+1$阶幻方$A$}
+$A\leftarrow (a_{i,j}=0), 0\le i,j \le n-1$\;
+$r\leftarrow 0$\;
+$c\leftarrow k$\;
+\For{$x=1,2,\dots,n^2$}
+{
+    $a_{r,c}\leftarrow x$\;
+    $r'\leftarrow (r-1)\mod n$\;
+    $c'\leftarrow (c+1)\mod n$\;
+    \eIf{$(r=0 \land c=n-1)\lor a_{r',c'}\neq 0$}
+    {$r\leftarrow (r+1)\mod n$\;}
+    {$r\leftarrow r'$\;
+    $c\leftarrow c'$\;}
+}
+\Return $A$.
+\end{algorithm}
+
+
+\begin{dfn}\textbf{幻方体} Magic Cube\\
+设整数$n\ge 2$, 若三维张量$A\in \mathbb{Z}^{n\times n\times n}$中元素构成的集合为$\{1,2,\dots,n^3\}$, 且存在正整数$s_n$, 若向量列$\{(p_i,q_i,r_i)\}_{i=1}^n$成公差非零的等差序列, 其中$(p_i,q_i,r_i)\in \{1,\dots, n\}^3$, 则
+\begin{equation}
+    \sum_{i=1}^n A[p_i,q_i,r_i] = s_n
+\end{equation}
+则称$A$为一个$n$阶幻方体. $s_n=\frac{n(n^3+1)}{2}$称为幻和. 
+\end{dfn}
+
+
+\section*{问题}
+
+\newcounter{probdes} 
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} (\textbf{拉丁方的存在性}) 对任意$n\ge 2$, 构造一个$n$阶拉丁方. 
+
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} \cite{IC} (1) 构造一个3阶对称拉丁方, 其主对角元依次为$1,2,3$. (2) 当$n$为偶数, 证明不存在$n$阶对称拉丁方, 其主对角元依次为$1,2,\dots, n$.
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} (\textbf{正交拉丁方的最大个数}) 设$n\ge 2$, $n$阶拉丁方$A_1,\dots, A_m$两两正交, $m$的最大值记为$g(n)$. 证明: (1) $g(2)=1$, $g(3)\ge 2$; (2*) $g(n)=1 \iff n=2 \lor n=6$; (3*) $g(n)\le n-1$; (4*) 设$p$是素数, $k$是正整数, $g(p^k)=p^k-1$.
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} \cite{IC} 设$A=(a_{i,j})$是$n$阶幻方, 证明$B=(n^2+1-a_{i,j})$也是$n$阶幻方. 
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} (\textbf{3阶幻方的唯一性}) 若将旋转、翻转后的幻方视为相同, 证明3阶幻方存在唯一. 
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} (\textbf{偶数阶幻方的存在性}) (1)证明2阶幻方不存在; (2*)对偶数$n\ge 4$, $n$阶幻方均存在. 
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} (\textbf{幻方体的存在性}) (1)当$n\le 4$, 证明$n$阶幻方体不存在; (2*)求使$n$阶幻方体存在的最小的$n$. 
+
+\stepcounter{probdes}
+\par \textbf{\theprobdes .} \cite{MaP} 设$k$为正整数, $n>k$, 已知矩阵$A\in \mathbb{R}^{n\times n}$每行前$k$大元素之和均等于$r$, 每列前$k$大元素之和均等于$c$. 证明: (1) 当$k\le 2$, $r=c$. (2) 当$k=3$时, 不一定有$r=c$. 
+
+
+\section*{解答}
+
+\newcounter{soldes} 
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} 考虑如下构造,
+\begin{equation}
+\left[\begin{array}{cccccc}
+1&2&3&\cdots&n-1&n\\
+n&1&2&\cdots&n-2&n-1\\
+n-1&n&1&\cdots&n-3&n-2\\
+\cdots&\cdots&\cdots&\cdots&\cdots&\cdots\\
+3&4&5&\cdots&1&2\\
+2&3&4&\cdots&n&1
+\end{array}\right]
+\end{equation}
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} (1)
+\begin{equation}
+\left[\begin{array}{ccc}
+1&3&2\\
+3&2&1\\
+2&1&3
+\end{array}\right]
+\end{equation}
+(2) 考虑1出现的次数, 其在对角线上出现1次, 对角线之外出现偶数次, 总共出现奇数次, 与拉丁方的定义矛盾.
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} (1) \cite{IC} 2阶拉丁方只有两个:
+\begin{equation}
+\left[\begin{array}{cc}
+1&2\\
+2&1
+\end{array}\right], 
+\left[\begin{array}{cc}
+2&1\\
+1&2
+\end{array}\right]
+\end{equation}
+它们不正交. 可构造两个正交的3阶拉丁方:
+\begin{equation}
+\left[\begin{array}{ccc}
+1&2&3\\
+3&1&2\\
+2&3&1
+\end{array}\right], 
+\left[\begin{array}{ccc}
+1&2&3\\
+2&3&1\\
+3&1&2
+\end{array}\right]
+\end{equation}
+\emph{注}: 参见\cite{OEIS} A001438.
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} 对$B$的任一行、一列或一条对角线, 元素的求和为$n(n^2+1)-s_n=s_n$. 
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} 设$A$是3阶幻方, 幻和为15, 其两条对角线之和及中间行之和为45, 减去左右两列之和30, 得中间数之三倍为15, 故中间数必为5. 由于和为14的不同数字只有$\{5,9\}, \{6,8\}$两种情况, 1不能位于角格, 考虑旋转等价性, 不妨设$a_{12}=1$, $a_{11}=8$, 则其余数字可唯一确定, 得到唯一的3阶幻方:
+\begin{equation}
+\left[\begin{array}{ccc}
+8&1&6\\
+3&5&7\\
+4&9&2
+\end{array}\right]
+\end{equation}
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} (1) 当$n=2$, 幻和为5, 与1相邻的两个位置均应为4, 矛盾. 
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} (1) 当$n=2$, 幻和为9, 与1相邻的三个位置均应为8, 矛盾. 当$n=3$, 幻和为42. 对$k=1,2,3$, 考虑$A$的截面$a_{ij}=A[i,j,k]$, 有$3a_{22} = (a_{11}+a_{22}+a_{33})+(a_{13}+a_{22}+a_{31})+(a_{12}+a_{22}+a_{32})-(a_{11}+a_{12}+a_{13})-(a_{31}+a_{32}+a_{33})=42$, 故$a_{22}=14$. 这表明$A[2,2,k]=14, \forall k=1,2,3$, 矛盾. 当$n=4$, 幻和为130. 与$n=3$的情形类似, 考虑任一$4\times 4$的平面截面(含过面对角线的截面), 其两条对角线之和及第二行、第三行之和为520, 减去第一、第四两列之和260, 得中间四个数之和为130. 考虑中心$2\times 2\times 2$ 的子立方体, 其每个$2\times 2$平面截面(含过面对角线的截面)和为130, 从而其中每相邻两个数和都相等(为65); 任一个数相邻的三个数相等, 矛盾.
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} (1) \cite{MaP} $k=1$时, 只需考虑矩阵中的最大元, 其所在行、列的最大元相等. $k=2$时, 用反证法, 不妨设$r>c$. 对每行任取一个最大元, 其在矩阵中的位置构成集合$S$, 断言$S$中的$n$个位置所在的列各不相同. 若不然, 设$(i,l),(j,l)\in S$, 不妨$a_{il}\ge a_{jl}$, 则第$j$行前2大元素之和不大于$2a_{jl}$, 而第$l$列前2大元素之和不小于$a_{il}+a_{jl}$, 这推出$r\le c$, 与反证假设矛盾. 设第$i$行是最大元最小的一行, $(i,l)\in S$, $a_{im}$为第$i$行的次大元, 则存在$(j,m)\in S$, $r=a_{il}+a_{im}\le a_{jm}+a_{im} \le c$, 与反证假设矛盾. 命题得证. (2) 考虑如下反例:
+\begin{equation*}
+\left(\begin{array}{cccc}
+7 & 4 & 9 & 0 \\
+7 & 4 & 9 & 0 \\
+4 & 7 & 0 & 9 \\
+4 & 7 & 0 & 9 \\
+\end{array}\right)
+\end{equation*}
+$k=3$时有$r=20$, $c=18$. 通过添加全0的行和列, 这一反例对任意$n\ge 4$都适用。

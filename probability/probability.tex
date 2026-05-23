@@ -1,0 +1,47 @@
+
+
+\begin{dfn}\textbf{概率空间} Probability Space\\
+三元组$(\Omega, F, P)$称为概率空间, 其中:
+\begin{itemize}
+\item 全集$\Omega$是非空集合.
+\item $F\subseteq \mathcal{P} (\Omega)$满足: (1) $\Omega \in F$; (2) $A\in F \Rightarrow A' \in F$; (3) 若对任意正整数$i$, $A_i \in F$, 则$ \bigcup_{i=1}^\infty A_i \in F$. 
+\item 函数$P: F\to [0,1]$满足: (1) $P(\Omega)=1$; (2) 若$A_1,A_2,\dots,A_n,\dots \in F$两两不相交, 则
+\begin{equation}
+    P\left(\bigcup_{i=1}^\infty A_i \right)=\sum_{i=1}^\infty P(A_i)
+\end{equation}
+\end{itemize}
+称$\Omega$为样本空间; $F$为$\Omega$的事件域, $F$中的元素为事件; $P$为$F$上的概率测度. 
+\end{dfn}
+
+\begin{pro}\textbf{概率测度的性质}\\
+设$(\Omega, F, P)$为概率空间, $A\in F$,
+\begin{enumerate}
+\item $P(A')=1-P(A)$;
+\item $P(\varnothing)=0$.
+\end{enumerate}
+\end{pro}
+
+\section*{文献注记}
+
+\section*{问题}
+\newcounter{probprob} 
+\stepcounter{probprob}
+\par \textbf{\theprobprob .} (\textbf{奖券收集问题}) 设随机变量$\{X_n\}_{n\in \mathbb{N}}$相互独立, 均服从$\{1,2,\dots,k\}$上的均匀分布. 令
+\begin{align}
+    C_n &= \{X_1,\dots,X_n\} \\
+    T &= \inf \{n\in \mathbb{N}: |C_n| = k\}
+\end{align}
+证明: (1) $E T = kH_k$, 其中$H_k=\sum_{i=1}^k \frac{1}{i}$. (2) $P(T=n)=\frac{k!S(n-1,k-1)}{k^n}$, 其中$S(n-1,k-1)$是第二类Stirling数. 
+
+\section*{解答}
+\newcounter{solprob} 
+\stepcounter{solprob}
+\par \textbf{\thesolprob .} (1) \cite{MaP} 对$l=1,2,\dots,k$, 记$T_l = \inf \{n\in \mathbb{N}: |C_n| = l\} - \inf \{n\in \mathbb{N}: |C_n| = l-1\}$, 则$T_1=1$, $T=\sum_{l=1}^k T_l$. $T_l$服从成功概率为$\frac{k-l+1}{k}$的几何分布:
+\begin{equation}
+    P(T_l=i)=\left(1-\frac{l-1}{k}\right)^{i-1} \frac{k-l+1}{k}
+\end{equation}
+故有
+\begin{equation}
+    ET=\sum_{l=1}^k ET_l = \sum_{l=1}^k \frac{k}{k-l+1} = kH_k
+\end{equation}
+(2) 序列$(X_1,\dots,X_n)$有$k^n$种. 为满足$T=n$, $|C_{n-1}|=k-1$且$X_n = \{1,\dots,k\} - C_{n-1}$. $X_n$有$k$种取法, 对给定$X_n$, $(X_1,\dots,X_{n-1})$的取法等于$\{1,2,\dots,n-1\}$到$\{1,\dots,k\}-\{X_n\}$的满射数, 即为$(k-1)! S(n-1,k-1)$. 命题得证. 

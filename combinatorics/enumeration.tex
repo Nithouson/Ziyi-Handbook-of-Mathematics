@@ -1,0 +1,1146 @@
+
+\par 计数组合学(enumerative combinatorics)的基本问题是计算有限集合的元素个数（一种常见情形是以自然数为指标集的一族集合）. 计数的结果可以是：(1)显式的闭公式（不含求和号，仅含常见函数）；(2)递推式；(3)算法；(4)渐近估计$f(n)\sim g(n)$，即$\lim \limits_{n\to \infty} \frac{f(n)}{g(n)}=1$；(5)生成函数(generating function). 
+
+\section{二项式系数}
+
+\begin{dfn} \textbf{二项式系数}\\
+设$\lambda \in \mathbb{C}$，$k \in \mathbb{N}$，定义
+\begin{equation}
+    \binom{\lambda}{k}=\frac{\lambda(\lambda-1)\cdots (\lambda-k+1)}{k!}
+\end{equation}
+\end{dfn}
+特别地, 当$n\in \mathbb{N}$, 且$k
+\le n$, 有
+\begin{equation}
+    \binom{n}{k}=\frac{n!}{k!(n-k)!}
+\end{equation}
+当$k>n$, 有$\binom{n}{k}=0$. 有时也将$\lambda(\lambda-1)\cdots (\lambda-k+1)$记作$[\lambda]_k$, 从而$\binom{\lambda}{k}=[\lambda]_k/k!$. 
+
+\begin{pro} \textbf{二项式系数相关恒等式}\\
+设$\lambda \in \mathbb{C}$, $n, k\in \mathbb{N}$, $0\le k\le n$, 
+\begin{enumerate}
+\item $\displaystyle \binom{n}{k}=\binom{n}{n-k}$.
+\item $\displaystyle \binom{\lambda}{k}+\binom{\lambda}{k+1}=\binom{\lambda+1}{k+1}$.
+\item $\displaystyle \sum_{i=0}^{k} \binom{\lambda+i}{i}=\binom{\lambda+k+1}{k}$. 
+\item 当$k\ge 1$, $\displaystyle k\binom{\lambda}{k}=\lambda\binom{\lambda-1}{k-1}$. 
+
+\end{enumerate}
+\end{pro}
+\begin{proof} (1)显然. (2) 
+\begin{align}
+    \binom{\lambda}{k}+\binom{\lambda}{k+1}&=\frac{\lambda (\lambda-1)\cdots (\lambda-k+1)}{k!}+\frac{\lambda (\lambda-1)\cdots (\lambda-k)}{(k+1)!}\notag\\
+    &=(k+1+\lambda-k)\frac{\lambda (\lambda-1)\cdots (\lambda-k+1)}{(k+1)!}=\binom{\lambda+1}{k+1}
+\end{align}
+(3) 注意到$\binom{\lambda}{0}=\binom{\lambda+1}{0}=1$, 对等式左边重复使用(2)即证. (4) 当$k\ge 1$时,
+\begin{equation}
+k\binom{\lambda}{k} = \frac{\lambda (\lambda-1)\cdots (\lambda-k+1)}{(k-1)!} = \lambda\binom{\lambda-1}{k-1}
+\end{equation}
+\end{proof}
+
+\par (3)的一个特例是$\displaystyle \sum_{i=0}^{n-k} \binom{k+i}{k} = \binom{n+1}{k+1}$. 
+
+\begin{pro} \textbf{二项式系数的单峰性}\\
+设$n\in \mathbb{N}$, 则
+\begin{equation}
+    \max_{0\le k\le n} \binom{n}{k} = \binom{n}{\lfloor \frac{n}{2}\rfloor} = \binom{n}{\lceil \frac{n}{2}\rceil}
+\end{equation}
+且当$0\le k< \lfloor \frac{n}{2}\rfloor$时, $\displaystyle \binom{n}{k} < \binom{n}{k+1}$; 当$\lceil \frac{n}{2}\rceil \le k < n$时, $\displaystyle \binom{n}{k} > \binom{n}{k+1}$. 
+\end{pro}
+\begin{proof} 设$0\le k<n$, 
+\begin{equation}
+    \binom{n}{k}/\binom{n}{k+1} = \frac{k+1}{n-k}
+\end{equation}
+故$\displaystyle \binom{n}{k} < \binom{n}{k+1} \iff k<\frac{n-1}{2} \iff k< \left\lfloor \frac{n}{2}\right\rfloor$. 
+\end{proof}
+
+\begin{thm}\textbf{二项式定理} Binomial Theorem\\
+设$x,y\in \mathbb{C}$, $n\in \mathbb{N}$, 
+\begin{equation}
+    (x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k}y^k
+\end{equation}
+\label{thm:binomial}
+\end{thm}
+\begin{proof}
+对$n$用数学归纳法, $n=0$显然. 设命题对$n$成立, 则
+\begin{align*}
+    (x+y)^{n+1} &= (x+y)^n(x+y)\\
+    &= \sum_{k=0}^n \binom{n}{k} x^{n+1-k}y^k + \sum_{k=0}^{n} \binom{n}{k} x^{n-k}y^{k+1}\\
+    &= \sum_{k=0}^n \binom{n}{k} x^{n+1-k}y^k + \sum_{k=1}^{n+1} \binom{n}{k-1} x^{n+1-k}y^{k}\\
+    &= \sum_{k=0}^{n+1} \binom{n+1}{k}x^{n+1-k}y^k
+\end{align*}
+\end{proof}
+
+\begin{col}\textbf{二项式系数求和}\\
+设$n$为正整数, 
+\begin{align}
+    &\sum_{k=0}^n \binom{n}{k}=2^n\\
+    &\sum_{k=0}^n (-1)^k \binom{n}{k}=0
+\end{align}
+\end{col}
+\begin{proof}
+在定理\ref{thm:binomial}中分别令$x=y=1$; $x=1, y=-1$即得. 
+\end{proof}
+以上两式的组合含义为: 设$|X|=n$, $X$的子集个数$|\mathcal{P}(X)|=2^n$等于$0,1,\dots,n$元子集个数之和 (命题\ref{pro:setsize}, 推论\ref{col:setsize}); 奇数个元素的子集个数等于偶数个元素的子集个数(均为$2^{n-1}$). 
+
+\begin{pro}\textbf{Vandermonde卷积公式} Vandermonde convolution\\
+设$m_1,m_2,n$为正整数, 
+\begin{equation}
+    \sum_{k=0}^n \binom{m_1}{k} \binom{m_2}{n-k} = \binom{m_1+m_2}{n}
+\end{equation}
+\end{pro}
+\begin{proof}
+考虑$(1+x)^{m_1}(1+x)^{m_2}=(1+x)^{m_1+m_2}$中$x^n$项的系数. 
+\end{proof}
+
+\begin{dfn} \textbf{多项式系数}\index{多项式系数}\\
+设$n$为正整数，自然数$n_1,\dots,n_k$和为$n$，定义
+\begin{equation}
+    \binom{n}{n_1\;\cdots\;n_k}=\frac{n!}{n_1!\cdots n_k!}
+\end{equation}
+\end{dfn}
+
+\begin{thm}\textbf{多项式定理} Multinomial Theorem\\
+设$x_1,\dots,x_k \in \mathbb{C}$, $n\in \mathbb{N}$, 
+\begin{equation}
+    (x_1+\dots+x_k)^n = \sum_{\substack{(n_1,\dots,n_k)\\n_1+\dots +n_k=n}} \binom{n}{n_1\;\cdots\;n_k} x_1^{n_1}\cdots x_k^{n_k}
+\end{equation}
+\label{thm:multinomial}
+\end{thm}
+\begin{proof}
+考虑$x_1^{n_1}\cdots x_k^{n_k}$项, 设从第$j$个因式$(x_1+\dots+x_k)$中选取的项为$x_{r_j}$, $j=1,\dots,k$, 则$(r_1,\dots,r_n)$是$n_1$个$x_1$, $n_2$个$x_2$, $\dots$, $n_k$个$x_k$的一个可重复排列. 由命题\ref{pro:repeat_permutation}, 这样的可重复排列的个数为$\binom{n}{n_1\;\cdots\;n_k}$. 
+\end{proof}
+
+\section{生成函数}
+
+\begin{dfn} \textbf{一般、指数生成函数}\index{一般生成函数}\index{指数生成函数}\\
+设$f: \mathbb{N} \to \mathbb{C}$， $f$的一般生成函数为形式幂级数
+\begin{equation*}
+    \sum_{n=0}^\infty f(n)x^n
+\end{equation*}
+$f$的指数生成函数为形式幂级数
+\begin{equation*}
+    \sum_{n=0}^\infty \frac{f(n)}{n!}x^n
+\end{equation*}
+\end{dfn}
+
+\par 生成函数可按照$\mathbb{C}[[x]]$中的运算进行加法、乘法运算；当常数项非0时，可以进行求逆运算。
+
+\begin{dfn} 
+\textbf{形式幂级数的收敛}\\
+设$\{F_i(x)\}_{i=1}^\infty$是$ \mathbb{C}[[x]]$中的形式幂级数序列， 若存在$F(x)=\sum_{n\ge0} a_nx^n \in \mathbb{C}[[x]]$，对任意整数$n \ge 0$，存在正整数$\delta_n$，当$i>\delta_n$时$F_i(x)$中$x^n$的系数都为$a_n$，则称$F_i(x)$收敛于$F(x)$，记作$F_i(x) \to F(x)$。
+\end{dfn}
+
+\begin{pro}
+\textbf{形式幂级数收敛的等价定义}\\
+形式幂级数序列$F_i(x)$收敛等价于
+\begin{equation}
+    \lim \limits_{i\to \infty} \deg(F_{i+1}(x)-F_{i}(x))=\infty
+\end{equation}
+\end{pro}
+
+\begin{dfn} 
+\textbf{形式幂级数无穷级数的值}\\
+若$\sum_{i=0}^j F_i(x)\to F(x)$，称无穷级数$\sum_{i=0}^\infty F_i(x)$的值为$F(x)$。
+\end{dfn}
+
+\begin{col}
+\textbf{形式幂级数无穷级数收敛的充要条件}\\
+无穷级数$\sum_{i=0}^\infty F_i(x)$收敛当且仅当
+\begin{equation}
+    \lim \limits_{i\to \infty} \deg F_{i}(x)=\infty
+\end{equation}
+\label{ser_cov}
+\end{col}
+
+\begin{dfn} 
+\textbf{形式幂级数无穷乘积的值}\\
+若$F_i(0)=1$对任何$i\ge 1$成立，$\prod_{i=1}^j F_i(x)\to F(x)$，称无穷乘积$\prod_{i=1}^\infty F_i(x)$的值为$F(x)$。
+\end{dfn}
+
+\begin{col}
+\textbf{形式幂级数无穷乘积收敛的充要条件}\\
+若$G_i(0)=0$对任何$i\ge 1$成立，无穷乘积$\prod_{i=1}^\infty (1+G_i(x))$收敛当且仅当
+\begin{equation}
+    \lim \limits_{i\to \infty} \deg G_{i}(x)=\infty
+\end{equation}
+\end{col}
+\begin{proof}
+只需注意到
+\begin{align*}
+    \deg \left(\prod_{i=1}^{j+1}(1+G_i(x))-\prod_{i=1}^{j}(1+G_i(x))\right)&=\deg\left(G_{j+1}(x)\prod_{i=1}^{j}(1+G_i(x))\right)\\
+    &=\deg G_{j+1}(x)
+\end{align*}
+\end{proof}
+
+\par 对于收敛的级数和无穷乘积，给定$n$，$x^n$的系数可通过有限步运算得到。
+
+\begin{dfn} 
+\textbf{形式幂级数的复合}\\
+若形式幂级数$F(x)=\sum_{n\ge 0} a_nx^n$，$G(0)=0$；则复合幂级数$F(G(x))$定义为$\sum_{n\ge 0} a_nG(x)^n$.
+\end{dfn}
+根据推论\ref{ser_cov}，上述定义的复合幂级数收敛。
+
+\begin{dfn} 
+\textbf{形式幂级数的形式微分}\\
+形式幂级数$F(x)=\sum_{n\ge 0} a_nx^n$的形式微分定义为
+\begin{equation}
+    F'(x)=\sum_{n\ge 1} na_nx^{n-1}=\sum_{n\ge 0} (n+1)a_{n+1}x^n
+\end{equation}
+\end{dfn}
+
+\begin{pro}
+\textbf{形式幂级数的形式微分公式}\\
+函数和、积、复合的微分公式对形式幂级数仍成立。
+\begin{align}
+    (F+G)' &= F'+G'\\
+    (FG)' &= F'G +FG'\\
+    (F^n)' &= nF^{n-1}F'\\
+    F(G(x))'&= G'(x)F'(G(x))
+\end{align}
+\end{pro}
+
+\section{计数序列}
+\begin{dfn} \textbf{Catalan数}\\
+Catalan数$C_n$满足$C_0=1$; 对$n\ge 1$, 
+\begin{equation}
+    C_n = \sum_{k=0}^{n-1} C_kC_{n-1-k}
+\end{equation}
+\end{dfn}
+
+\begin{pro}\textbf{Catalan数的通项公式}\\
+\begin{equation}
+    C_n = \frac{1}{n+1}\binom{2n}{n}
+\end{equation}
+\end{pro}
+\begin{proof}
+记$C_{n}$的一般生成函数为$g(x)$, 则有
+\begin{equation}
+    xg(x)^2 = x\left(\sum_{n=1}^\infty C_{n-1}x^n\right)^2 = \sum_{n=0}^\infty \left(\sum_{k=0}^{n} C_kC_{n-k}\right) x^{n+1}=g(x)-1
+\end{equation}
+因此$g(x)=\frac{1\pm \sqrt{1-4x}}{2x}$. 又由于$\lim\limits_{x\to 0} g(x) = 1$, 根号前只能取负号. 幂级数展开得
+\begin{align*}
+g(x)&=\frac{1}{2x}(1-\sqrt{1-4x})= \frac{1}{2x}\sum_{n=1}^\infty \frac{2}{n}\binom{2n-2}{n-1}x^n\\
+&= \sum_{n=1}^\infty \frac{1}{n}\binom{2n-2}{n-1}x^{n-1} = \sum_{n=0}^\infty \frac{1}{n+1}\binom{2n}{n}x^{n}
+\end{align*}
+\end{proof}
+
+Catalan数的前几项是$C_0=C_1=1$, $C_2=2$, $C_3=5$, $C_4=14$, $\cdot$.  
+
+\begin{dfn} \textbf{第一类Stirling数}\\
+第一类Stirling数$s(n,k)$满足$s(0,0)=1$; $k\ge 1$时$s(0,k)=0$; $n\ge 1$时$s(n,0)=0$. 当$n,k\ge 1$, 
+\begin{equation}
+    s(n,k)=(n-1)s(n-1,k)+s(n-1,k-1)
+\end{equation}
+\end{dfn}
+当$n\ge 1$时, 对$n$归纳可证明$s(n,n)=1$, $k>n$时$s(n,k)=0$; $s(n,1)=(n-1)!$; $s(n,n-1)=\frac{n(n-1)}{2}$.
+
+\begin{dfn} \textbf{第二类Stirling数}\\
+第二类Stirling数$S(n,k)$满足$S(0,0)=1$; $k\ge 1$时$S(0,k)=0$; $n\ge 1$时$S(n,0)=0$. 当$n,k\ge 1$, 
+\begin{equation}
+    S(n,k)=kS(n-1,k)+S(n-1,k-1)
+\end{equation}
+\end{dfn}
+当$n\ge 1$时, 对$n$归纳可证明 $S(n,n)=1$, $k>n$时$S(n,k)=0$; $S(n,1)=1$; $S(n,2)=2^{n-1}-1$; $S(n,n-1)=\binom{n}{2}$.
+
+\begin{pro}\textbf{第二类Stirling数的通项公式}\\
+\begin{equation}
+    S(n,k)=\frac{1}{k!} \sum_{t=0}^k (-1)^t \binom{k}{t} (k-t)^n
+\end{equation}
+\end{pro}
+
+\begin{proof}
+设$X$, $Y$是有限集, $|X|=n$, $Y=\{y_1,\dots.y_k\}$, 对映射$f:X\to Y$中的满射进行计数. 定义条件$P_i(f): y_i \notin f(X)$, $i=1,\dots,k$, 则由容斥原理, 不满足任一$P_i$的映射数为
+\begin{equation*}
+    \sum_{t=0}^k (-1)^t \binom{k}{t} (k-t)^n
+\end{equation*}
+由命题\ref{pro:12fold-1} 即得证.  
+\end{proof}
+
+\begin{dfn} \textbf{Bell数}\\
+Bell数$B_n$满足
+\begin{equation}
+    B_n=\sum_{k=0}^n S(n,k)
+\end{equation}
+其中$S(n,k)$是第二类Stirling数. 
+\end{dfn}
+Bell数的前几项是$B_0=1$, $B_1=1$, $B_2=2$, $B_3=5$, $B_4=15$, $\cdots$. 
+
+
+\begin{dfn} \textbf{Bernoulli数}\\
+Bernoulli数$B_n$满足$B_0=1$, 
+\begin{equation}
+    B_n =-\sum_{k=0}^{n-1}\binom{n}{k}\frac{B_k}{n-k+1}
+\end{equation}
+\end{dfn}
+\par Bernoulli数的前几项是$B_0=1$, $B_1=-\frac{1}{2}$, $B_2=\frac{1}{6}$, $B_3=0$, $B_4=-\frac{1}{30}$, $\cdots$. 
+
+\section{计数方法}
+
+\subsection{基本计数公式}
+
+\begin{pro} \textbf{鸽巢原理} Pigeonhole Principle \\
+设非空有限集$|X|=n$, $|Y|=m$, 函数$f:X\to Y$, 则存在$y\in Y$, $|f^{-1}(y)|\ge \lceil\frac{n}{m}\rceil$. 
+\end{pro}
+\begin{proof}
+反设$\forall y\in Y$, $|f^{-1}(y)| < \frac{n}{m}$. 由$\bigcup_{y\in Y}f^{-1}(y)=f^{-1}(Y)=X$, 
+\begin{equation}
+    n = \left| \bigcup_{y\in Y}f^{-1}(y) \right|=\sum_{y\in Y}|f^{-1}(y)|<m\cdot \frac{n}{m}=n
+\end{equation}
+矛盾. 
+\end{proof}
+
+\begin{pro} \textbf{容斥原理} Inclusion-Exclusion Principle \\
+设$S$为有限集, $P_i(x)$是条件, $i=1,\dots,m$, 记$A_i = \{x\in S\vert P_i(x)\}$, 则
+\begin{align}
+    |A_1' \cap \dots \cap A_m'|
+    &=|S|-\sum_i |A_i|+\sum_{i,j} |A_i\cap A_j| -\dots+(-1)^m |A_1\cap\dots \cap A_m|\\
+    &= |S|+\sum_{k=1}^m (-1)^k \sum_{i_1,\dots,i_k} |A_{i_1}\cap \dots \cap A_{i_k}|
+\end{align}
+\end{pro}
+式中$i_1,\dots,i_k$取遍所有$\{1,\dots,m\}$的$k$元子集. 
+\begin{proof}
+设$x\in S$, 若$x$不满足任一$P_i(x)$, 则等式两边都计数1次. 若$x$恰好满足$k$个条件, $1\le k\le m$, 则左边不计数, 右边计数的次数为
+\begin{equation}
+    \binom{k}{0} - \binom{k}{1} + \binom{k}{2} - \dots + (-1)^k \binom{k}{k} = 0
+\end{equation}
+故等式成立. 
+\end{proof}
+
+\begin{pro}\textbf{有限集上函数的计数}\\
+设$N$, $M$是有限集, $|N|=n$, $|M|=m$, 考虑函数$f:N\to M$的计数:
+\begin{enumerate}
+\item 函数个数为$m^n$;
+\item 当$n\le m$, 单射的个数为$[m]_n$; 当$n>m$, 单射不存在. 
+\item 满射的个数为$m!S(n,m)$.
+\end{enumerate}
+其中$S(n,m)$为第二类Stirling数. 
+\label{pro:12fold-1}
+\end{pro}
+\begin{proof}
+(1)由命题\ref{pro:setsize}给出. (2)由鸽巢原理, 单射存在时有$n\le m$. 设$N=\{a_1,\dots,a_n\}$, 则$f(a_1)$有$m$种取法; 给定$f(a_1),\dots, f(a_{k-1})$, $f(a_k)$有$m-k+1$种取法, 故对$n$归纳即得单射个数为$m(m-1)\dots(m-n+1)=[m]_n$. (3) 由命题\ref{pro:12fold-3}, 将$N$划分为$m$个非空集合的方法数为$S(n,m)$. 记$M=\{y_1,\dots,y_m\}$, 满射$f$对应$m$元组$(f^{-1}(y_1),\dots,f^{-1}(y_m))$, 而$\{f^{-1}(y_i)\vert i=1,\dots,m\}$构成$N$的集合划分. 因此, $N$的每种$m$个集合的划分可导出$m!$个满射, 故满射的总数为$m!S(n,m)$. 
+\end{proof}
+
+\begin{pro}\textbf{有限集上函数的计数: 自变量不可分辨}\\
+设$N$, $M$是有限集, $|N|=n$, $|M|=m$. 定义$M^N$上的等价关系: $f\sim g$当且仅当存在双射$u: N\to N$, 满足$g = f \circ u$. 考虑函数$f:N\to M$的等价类的计数:
+\begin{enumerate}
+\item 等价类个数为$\binom{n+m-1}{m-1}$;
+\item 单射的等价类个数为$\binom{m}{n}$. 
+\item 满射的等价类个数为$\binom{n-1}{m-1}$.
+\end{enumerate}
+\label{pro:12fold-2}
+\end{pro}
+\begin{proof}
+首先证明$f\sim g \iff \forall y\in M: |f^{-1}(y)|=|g^{-1}(y)|$. 这表明当$f\sim g$, $f$是单射当且仅当$g$是单射, $f$是满射当且仅当$g$是满射, 从而单射(满射)是等价类的性质. 为证必要性, 设$g=f\circ u$, 则$|g^{-1}(y)|=|u^{-1}(f^{-1}(y))|=|f^{-1}(y)|$. 为证充分性, 设$|f^{-1}(y)|=|g^{-1}(y)|$对任意$y\in M$成立, 则存在双射$u_y: g^{-1}(y)\to f^{-1}(y)$, 令$u=\bigcup_{y\in M} u_y$, 由$\bigcup_{y\in M} g^{-1}(y)=\bigcup_{y\in M} f^{-1}(y)=N$, $u: X\to X$是满射, 从而是双射. 对$x\in N$, 设$g(x)=y$, 则$u(x)=u_y(x)\in f^{-1}(y)$, $f(u(x))=y$. 
+
+\par (2) 当$f$为单射, 命题\ref{pro:12fold-1} 已证明$n\le m$. 此时$\forall y\in M: |f^{-1}(y)|=1\lor |f^{-1}(y)|=0$; 从而$|f(N)|=|\{y\in M:  |f^{-1}(y)|=1\}|=n$. 设$\mathcal{S}$为$M$的$n$元子集的集合, 则$f\mapsto f(N)$给出单射等价类的集合到$\mathcal{S}$的双射. 记$M$的$n$元排列的集合为$\mathcal{P}$, 对$S\in \mathcal{S}$, $S$的全排列的集合为$P(S)$, 则$\{P(S)\vert S\in \mathcal{S}\}$是$\mathcal{P}$的一个划分. 由$|P(S)|=n!, \forall S\in \mathcal{S}$, $|\mathcal{P}|=n!|\mathcal{S}|$. 因此
+\begin{equation}
+    |\mathcal{S}|=\frac{m!}{(m-n)!n!}=\binom{m}{n}. 
+\end{equation}
+
+\par (1) 记$M=\{y_1,\dots,y_m\}$, $X=\{(c_1,\dots,c_m)\vert  c_1+\dots+c_m=n \land \forall 1\le i\le m: c_i\in \mathbb{N}\}$, 则$c_k=|f^{-1}(y_k)|$, $k=1,\dots,m$给出商集$M^N/\sim$到$X$的双射, 故$|M^N/\sim|$等于方程$c_1+c_2+\cdots+c_m=n$的非负整数解个数. 记$\mathcal{T}$为$\{1,2,\dots,n+m-1\}$的$m-1$元子集的集合, 对$T\in \mathcal{T}$, 设$T=\{i_1,\dots, i_{m-1}\}$, $i_1<\cdots<i_{m-1}$, 则$T\mapsto (i_1-1, i_2-i_1-1,\dots, i_{m-1}-i_{m-2}-1, n+m-1-i_{m-1})$给出$\mathcal{T}$到$c_1+c_2+\cdots+c_m=n$非负整数解的双射. 事实上, $(c_1,\dots,c_m)\mapsto \{c_1+1, c_1+c_2+2, \dots, c_1+\dots+c_{m-1}+m-1\}$是其逆映射. 因此$|M^N/\sim|=\binom{n+m-1}{m-1}$. 
+
+\par (3) 当$f$为满射, $\forall y\in M: |f^{-1}(y)|\ge 1$. 根据(2)的论证, 满射等价类数为方程$c_1+c_2+\cdots+c_m=n$的正整数解个数. 令$d_i=c_i-1$, $i=1,\dots,m$, 则$d_1+\cdots+d_m=n-m$, 这给出$c_1+c_2+\cdots+c_m=n$的正整数解到$d_1+\cdots+d_m=n-m$非负整数解间的双射. 由(2)的结论, 满射等价类数为$\binom{n-m+m-1}{m-1}=\binom{n-1}{m-1}$. 
+\end{proof}
+
+\begin{pro}
+\textbf{带限制的整数有序分拆数}\\
+设$n$为自然数, 对$1\le i\le k$集合$S_i\subseteq \mathbb{N}$. 设$x_i\in S_i$, 方程
+\begin{equation}
+    x_1+x_2+\cdots+x_k=n
+\end{equation}
+的非负整数解个数记作$g(n)$, 则$g(n)$的一般生成函数为
+\begin{equation}
+    \prod_{i=1}^k \left(\sum_{j\in S_i} x^j\right)
+\end{equation}
+\end{pro}
+
+特别地, 当$S_i=\mathbb{N}$, $1\le i\le k$, 上式变为
+\begin{equation}
+    \frac{1}{(1-x)^k}=\sum_{n=0}^\infty \binom{n+k-1}{n} x^n
+\end{equation}
+当$S_i=\mathbb{Z}_+$, $1\le i\le k$, 上式变为
+\begin{equation}
+    \frac{x^k}{(1-x)^k}=\sum_{n=k}^\infty \binom{n-1}{k-1} x^n
+\end{equation}
+
+\begin{pro}\textbf{有限集上函数的计数: 因变量不可分辨}\\
+设$N$, $M$是有限集, $|N|=n$, $|M|=m$. 定义$M^N$上的等价关系: $f\sim g$当且仅当存在双射$v: M\to M$, 满足$g = v \circ f$. 考虑函数$f:N\to M$的等价类的计数:
+\begin{enumerate}
+\item 等价类个数为$\sum_{i=0}^m S(n,i)=B_n$;
+\item 单射的等价类个数为$I[n\le m]$;
+\item 满射的等价类个数为$S(n,m)$.
+\end{enumerate}
+其中$S(n,m)$为第二类Stirling数, $B_n$为Bell数. 
+\label{pro:12fold-3}
+\end{pro}
+\begin{proof} 由命题\ref{pro:comp_bij}, 当$f\sim g$, $f$是单射当且仅当$g$是单射, $f$是满射当且仅当$g$是满射, 从而单射(满射)是等价类的性质. 
+\par 为证(3), 断言满射的等价类个数等于将$N$划分为$m$个集合的集合划分个数. 事实上, 满射$f:N\to M$确定了$N$上的等价关系$R_f$: 对$x_1,x_2\in N$, $x_1R_fx_2\iff f(x_1)=f(x_2)$, 商集$N/R_f=\{f^{-1}(y)\vert y\in M\}$是$N$的集合划分, 且$|N/R_f|=m$. 若$f \sim g$, 则$R_f=R_g$, $N/R_f = N/R_g$; 事实上, 设$g=v\circ f$, 则$f = v^{-1}\circ g$, 故$f(x_1)=f(x_2) \iff g(x_1)=g(x_2)$. 因此$f\mapsto N/R_f$是满射等价类集合到划分集合的映射. 容易验证该映射是满射. 又由$R_f=R_g\Rightarrow f\sim g$, 知该映射是单射, 故断言成立. 回到原题, 记所求满射等价类(即集合划分)个数为$S^*(n,m)$. 当$n=m$, 集合划分唯一, 故$S^*(n,n)=1$. 当$n\ge 1$时, 显然有$S^*(n,0)=0$. 当$n<m$时, 亦有$S^*(n,m)=0$. 对$n\ge m\ge 1$, 有如下递推公式:
+\begin{equation*}
+    S^*(n,m) = mS^*(n-1,m)+S^*(n-1,m-1)
+\end{equation*}
+事实上, 设$|N|=n$, 任取$x\in N$, 考虑$N$的集合划分$\mathcal{C}$, $|\mathcal{C}|=m$. 若$\{x\}\in \mathcal{C}$, 则$\mathcal{C} - \{\{x\}\}$为$N-\{x\}$的$m-1$个集合的划分; 否则, 对$N - \{x\}$的任一$m$个集合的划分, 可将$x$加入任一集合得到$N$的$m$个集合的划分. 综上, $S^*(n,m)$即为第二类Stirling数$S(n,m)$. 
+\par (1)是(3)的直接推论. 对于(2), 由鸽巢原理知$n>m$时单射不存在; 当$n\le m$, 任两个单射通过$M$中元素的重排等价. 
+\end{proof}
+
+\begin{pro}\textbf{有限集上函数的计数: 自变量、因变量不可分辨}\\
+设$N$, $M$是有限集, $|N|=n$, $|M|=m$. 定义$M^N$上的等价关系: $f\sim g$当且仅当存在双射$u:N\to N$和双射$v: M\to M$, 满足$g = v \circ f \circ u$. 考虑函数$f:N\to M$的等价类的计数:
+\begin{enumerate}
+\item 等价类个数为$\sum_{i=0}^m p(n,i)$;
+\item 单射的等价类个数为$I[n\le m]$;
+\item 满射的等价类个数为$p(n,m)$.
+\end{enumerate}
+其中$p(n,m)$为分拆数. 
+\label{pro:12fold-4}
+\end{pro} 
+\begin{proof}
+    当$f\sim g$, $f$是单射当且仅当$g$是单射, $f$是满射当且仅当$g$是满射
+\end{proof}
+
+\par 命题\ref{pro:12fold-1}, \ref{pro:12fold-2}, \ref{pro:12fold-3}, \ref{pro:12fold-4}给出的12种计数情形合称为“十二模式”.
+
+\subsection{Möbius反演}
+
+\begin{dfn} \textbf{偏序集上二元函数的卷积}\\
+设$X$是局部有限偏序集, $\mathcal{F}(X)=\{f: X\times X\to \mathbb{R}\vert (\lnot x\le y) \Rightarrow f(x,y)=0\}$. 定义$\mathcal{F}(X)$上的二元卷积运算如下: 设$f,g\in \mathcal{F}(X)$, 当$x\le y$, 
+\begin{equation}
+    (f * g) (x,y) = \sum_{z: x\le z\le y} f(x,z)g(z,y)
+\end{equation}
+\end{dfn}
+
+\begin{pro} \textbf{偏序集上二元函数卷积的性质}\\
+设$X$是局部有限偏序集, $\mathcal{F}(X)=\{f: X\times X\to \mathbb{R}\vert (\lnot x\le y) \Rightarrow f(x,y)=0\}$, 则$\mathcal{F}(X)$上的卷积运算: 
+\begin{enumerate}
+    \item 满足结合律;
+    \item 存在单位元;
+    \item 对$f\in \mathcal{F}(X)$, 若$\forall x\in X: f(x,x)\neq 0$, 则$f$有逆元. 
+\end{enumerate}
+\end{pro}
+\begin{proof}
+(1) 设$f,g,h\in \mathcal{F}(X)$, $x\le y$, 
+\begin{align*}
+    (f*g)*h(x,y)&=\sum_{x\le z\le y} (f*g)(x,z) h(z,y)
+    = \sum_{x\le z\le y} \sum_{x\le w\le z}f(x,w) g(w,z) h(z,y)\\
+    &= \sum_{x\le w\le y} f(x,w) \sum_{w\le z\le y} g(w,z) h(z,y) = \sum_{x\le w\le y} f(x,w) (g*h)(w,y) \\
+    &= f*(g*h)(x,y)
+\end{align*}
+\par (2) 考虑 Kronecker函数 $\delta (x,y)=I[x=y]$, 则$\forall f\in \mathcal{F}(X)$, $f * \delta = \delta*f = f$. 
+\par (3) 对$[x,y]$的元素个数归纳定义$f$的左逆$g$. 当$x=y$时, 令 
+\begin{equation}
+    g(x,x)=\frac{1}{f(x,x)}
+\end{equation}
+对$x<y$, 假设对$\forall x \le z < y$, $g(x,z)$有定义, 令 
+\begin{equation}
+    g(x,y)=-\frac{1}{f(y,y)}\sum_{x\le z<y} g(x,z)f(z,y)
+\end{equation}
+则$g*f=\delta$. 同理$f$有右逆$h$. 又由卷积的结合律, $g = g*(f*h)=(g*f)*h=h$. 故$g$是$f$的逆. 
+\end{proof}
+
+
+\begin{thm} \textbf{Möbius反演公式}\\
+设$X$是局部有限偏序集, 且$X$存在最小元. 设$\zeta(x,y)=I[x\le y]$, $\zeta$的卷积逆元$\mu$称为Möbius函数. 设$f:X\to \mathbb{R}$, $g:X\to \mathbb{R}$满足
+\begin{equation}
+    g(x) = \sum_{z:z\le x} f(z)
+\end{equation}
+则有
+\begin{equation}
+    f(x) = \sum_{z:z\le x} g(z)\mu(z,x)
+\end{equation}
+\end{thm}
+\begin{proof}
+\begin{align*}
+    \sum_{z:z\le x} g(z)\mu(z,x) = \sum_{z:z\le x} \sum_{y:y\le z} f(y)\mu(z,x)
+    = \sum_{y:y\le x} f(y) \sum_{z:y\le z\le x} \zeta(y,z)\mu(z,x)=f(x)
+\end{align*}
+\end{proof}
+
+\subsection{Pólya计数}
+
+\section{排列}
+
+\begin{dfn} \textbf{排列} Permutation\\
+设$X$是集合, $k\in \mathbb{N}$, 若$k$元组$(x_1,\dots,x_k)$满足 $\forall 1\le i \le k: x_i\in X$, 且$\forall 1\le i,j \le k: x_i\neq x_j$, 称为$X$的一个$k$元排列. 特别地, 当$k=|X|$, 称为$X$的一个全排列. 
+\end{dfn}
+
+\begin{col} \textbf{有限集的排列数}\\
+设$X$是有限集, $|X|=n$, 自然数$k\le n$, 则$X$的$k$元排列数为$\frac{n!}{(n-k)!}$. 特别地, 当$k=n$, $X$的全排列数为$n!$. 
+\end{col}
+\begin{proof}
+$X$的$k$元排列的集合与单射$f:\{1,2,\dots, k\}\to X$的集合存在双射: $(x_1,\dots,x_k)\mapsto \{(i,x_i)\vert 1\le i\le k\}$. 事实上, $f\mapsto (f(1),\dots, f(k))$是其逆映射. 
+\end{proof}
+
+\par 有限集的全部全排列可用递归方法生成. 以$\{1,2,\dots,n\}$为例, 对$\{1,2,\dots,n-1\}$的每个全排列, 将$n$插入$n$个可能的位置, 得到$(n-1)! n = n!$个全排列. 算法\ref{alg:permutation}给出了一种遍历所有全排列而不借助递归的方法。其中, $\mathrm{left}[i]=1$表示$i$将要向左移动, 否则为向右移动; 一个元素能够向左(向右)移动当且仅当其左侧(右侧)有一个更小的元素. 每步移动能够移动的最大元素, 并把所有更大元素的移动方向反转. 
+
+\begin{algorithm}[ht!]
+\SetKwInOut{KIN}{输入}
+\SetKwInOut{KOUT}{输出}
+\caption{生成$\{1,2,\dots,n\}$的所有全排列} 
+\label{alg:permutation}
+\KIN{正整数$n$}
+\KOUT{$\{1,2,\dots,n\}$的全排列集合$P$}
+$a \leftarrow (1,2,\dots,n)$\;
+$P \leftarrow \{a\}$\;
+$\mathrm{left}[i] \leftarrow 1, i=1,\dots,n$\;
+\For{$t=2,\dots,n!$}
+{   
+    $\mathrm{move}[i] \leftarrow (\mathrm{left}[a[i]] \land i>1 \land a[i-1]<a[i]) \lor (\lnot \mathrm{left}[a[i]] \land i<n \land a[i+1]<a[i]), i=1,\dots,n$\;
+    $k \leftarrow \operatorname{\arg\max}_{i: \mathrm{move}[i]=1} a[i]$\;
+    $\mathrm{left}[i] \leftarrow \lnot \mathrm{left}[i], i=a[k]+1,\dots,n$\;
+    \eIf{$\mathrm{left}[k]$}
+    {交换$a[k], a[k-1]$\;}
+    {交换$a[k], a[k+1]$\;}
+    $P \leftarrow P \cup \{a\}$\;
+}
+\Return $P$.
+\end{algorithm}
+
+\begin{dfn}\textbf{排列的逆序数} Inversions\\
+设$a=(a_1,\dots,a_n)$为$\{1,2,\dots,n\}$的一个排列, 则$a$的逆序数$\sigma(a)$定义为
+\begin{equation}
+   \tau(a)= | \{(i,j) : 1\le i<j\le n,  a_i > a_j\} | 
+\end{equation}
+$(\tau_1,\dots, \tau_n)$称为$a$的逆序列, 其中
+\begin{equation}
+   \tau_k= | \{(i,j) : 1\le i < j \le n,  a_i > a_j = k\} |, 1\le k\le n 
+\end{equation}
+为$a$中出现在$k$之前且大于$k$的元素个数. 
+\end{dfn}
+
+\begin{pro}\textbf{逆序列与排列一一对应}\\
+设整数序列$(\tau_1,\dots, \tau_n)$满足$0\le \tau_k \le n-k$, 则存在唯一的$\{1,2,\dots,n\}$的排列, 其逆序列为$(\tau_1,\dots, \tau_n)$. 
+\end{pro}
+\begin{proof}
+满足条件的逆序列恰有$n!$个, 故只需证明存在性, 则唯一性亦成立. 为得到逆序列为$(\tau_1,\dots, \tau_n)$的排列$(a_1,\dots,a_n)$, 令第$\tau_1+1$个位置($a_{\tau_1+1}$)为1; 假定$1,2,\dots,k-1$的位置已确定, 剩余$n-k+1$个空位; 将$k$放在从前往后第$\tau_k+1$个空位, 则出现在$k$之前且大于$k$的元素恰有$\tau_k$个. 
+\end{proof}
+
+\begin{dfn} \textbf{环排列} Circular Permutation\\
+设$X$是集合, $k\in \mathbb{N}$, 在$X$的$k$元排列的集合上定义等价关系: $(a_1,\dots,a_k)\sim (b_1,\dots,b_k)$当且仅当存在$0\le l < k$, $(b_1,\dots, b_k)=(a_{1+l}, \dots, a_{k+l})$, 其中记$a_i=a_{k+i}$, $1\le i\le k$, 则每个等价类称为$X$的一个$k$元环排列. 
+\end{dfn}
+
+\begin{col} \textbf{有限集的环排列数}\\
+设$X$是有限集, $|X|=n$, 自然数$k\le n$, 则$X$的$k$元环排列数为$\frac{n!}{k(n-k)!}$. 特别地, 当$k=n$, 环排列数为$(n-1)!$. 
+\end{col}
+\begin{proof}
+由于排列中的元素互不相同, 每个等价类恰包含$k$个排列. 
+\end{proof}
+
+\begin{pro} \textbf{错位排列数}\\
+设$a=(a_1,\dots,a_n)$为$(1,2,\dots,n)$的一个排列, 且$\forall 1\le i\le n$, $a_i\neq i$, 称$a$为一个错位排列. $(1,2,\dots,n)$的错位排列数为
+\begin{equation}
+    D_n = n! \sum_{k=0}^n \frac{(-1)^k }{k!}
+\end{equation}
+\end{pro}
+\begin{proof}
+设性质$P_i(a)$为$a_i=i$, 对$k=1,\dots,n$, 同时满足任意$k$个性质的排列数为$(n-k)!$. 由容斥原理,
+\begin{equation}
+    D_n = n! + \sum_{k=1}^n (-1)^k \binom{n}{k} (n-k)! = n! \sum_{k=0}^n \frac{(-1)^k }{k!}
+\end{equation}
+\end{proof}
+
+\begin{pro} \textbf{可重复排列数}\\
+设$k$元有限集$X=\{x_1,\cdots,x_k\}$, $a_1,\dots, a_k$为正整数, $n=\sum_{i=1}^k a_i$. $n$元组$T$称为$a_1$个$x_1$, $a_2$个$x_2$, $\dots$, $a_k$个$x_k$的可重复排列, 如果$\forall 1\le i \le k: x_i$在$T$中恰好出现$a_i$次. 这样的$n$元组的个数为
+\begin{equation}
+    \binom{n}{a_1\;\cdots\;a_k}=\frac{n!}{a_1!\cdots a_k!}
+\end{equation}
+\label{pro:repeat_permutation}
+\end{pro}
+\begin{proof}
+$x_1$的位置对应$\{1,2,\dots,n\}$的$a_1$元子集; 给定$x_1$的位置后, $x_2$的位置对应剩余$n-a_1$个位置的$a_2$元子集. 以此类推, 所求可重复排列的个数为
+\begin{equation}
+    \binom{n}{a_1}\binom{n-a_1}{a_2}\cdots \binom{n-a_1-\cdots-a_{k-1}}{a_k} = \frac{n!}{a_1!\cdots a_k!}
+\end{equation}
+\end{proof}
+
+\begin{pro} \textbf{带限制的可重复排列数}\\
+设$k$元有限集$X=\{x_1,\cdots,x_k\}$, 集合$S_1,\dots, S_k\subseteq \mathbb{N}$. 考虑$X$中元素构成的$n$元组, $\forall 1\le i \le k$, $x_i$出现的次数$a_i\in S_i$, 这样的$n$元组的个数记为$g(n)$. $g(n)$的指数型生成函数为
+\begin{equation}
+    \prod_{i=1}^k \left(\sum_{j\in S_i} \frac{x^j}{j!}\right)
+\end{equation}
+\end{pro}
+\begin{proof}
+式中$x^n$项为
+\begin{equation*}
+\left(\sum_{\substack{a_1,\dots,a_k\\a_i\in S_i, \forall i}} \frac{n!}{a_1!\dots a_k!} \right)\frac{x^n}{n!}
+\end{equation*}
+由命题\ref{pro:repeat_permutation}即证. 
+\end{proof}
+
+\section{有限集的组合}
+
+\par 有限集的全部子集可用递归方法生成. 以$\{0,1,\dots,n-1\}$为例, 设$\mathcal{P}_{n}=\mathcal{P}(\{0,1,\dots,n-1\})$, 则$\mathcal{P}_{n} = \mathcal{P}_{n-1} \cup \{A\cup \{n-1\}: A\in \mathcal{P}_{n-1}\}$.
+
+\par 遍历有限集所有子集而不借助递归的方法可通过遍历$\{0,1\}$的$n$元组实现. 事实上, 考虑$\{0,1\}$的$n$元组$b=(b_{n-1}, \dots, b_1, b_0)$ (或称长度为$n$的0-1字符串, 简记为$b_{n-1}\dots b_1 b_0$), 则$b\mapsto \{i: b_i=1\}$是长度为$n$的0-1字符串构成的集合到$\mathcal{P}_n$的双射. 一种方式是考虑$0,1,\dots,2^n-1$的二进制表示, 这种方式给出长度为$n$的0-1字符串的字典序. 另一种方式是二进制反射Gray码.
+
+\begin{dfn}\textbf{二进制反射Gray码} Reflected Binary Code\\
+$n$阶二进制反射Gray码递归定义如下: 1阶反射Gray码是$0,1$. $n$阶反射Gray码的前$2^{n-1}$个字符串首位为0, 其余$n-1$位为$n-1$阶反射Gray码的正序; 后$2^{n-1}$个字符串首位为1, 其余$n-1$位为$n-1$阶反射Gray码的倒序. 
+\end{dfn}
+容易验证$n$阶反射Gray码是长度为$n$的0-1字符串的一个排列, 且相邻两个字符串(包括最后一个与第一个)仅有1位不同. 算法\ref{alg:gray}给出了一种不借助递归生成反射Gray码的方法。
+
+\begin{algorithm}[ht!]
+\SetKwInOut{KIN}{输入}
+\SetKwInOut{KOUT}{输出}
+\caption{生成$n$阶二进制反射Gray码} 
+\label{alg:gray}
+\KIN{正整数$n$}
+\KOUT{$n$阶二进制反射Gray码$G_n$}
+$b \leftarrow 00\cdots 0$ ($n$个0)\;
+$G_n$为仅包含$b$的有序列表\;
+\While{$b \neq 10\cdots 0$ $(n-1$个$0)$}
+{
+    计算$b$中1的个数$e$\;
+    \eIf{$e$为偶数}
+    {$b_0\leftarrow 1-b_0$\;}
+    {$j \leftarrow \min \{0\le i \le n-1: b_i=1\}$\;
+    $b_{j+1}\leftarrow 1-b_{j+1}$\;
+    }
+    在$G_n$的末尾加入$b$\;
+}
+\Return $G_n$.
+\end{algorithm}
+对$n$归纳可证明上述算法的正确性. 事实上, 生成$G_n$的前$2^{n-1}$个字符串等效于生成$G_{n-1}$; 第$2^{n-1}+1$个字符串恰为$110\cdots 0$ ($n-2$个0); 若在$G_{n-1}$中$b_{n-2}\dots b_1b_0$为$a_{n-2}\dots a_1a_0$的后一位, 则在$G_{n}$中$1b_{n-2}\dots b_1b_0$恰为$1a_{n-2}\dots a_1a_0$的前一位. 
+
+\par 有限集给定元素个数的子集数量可由命题\ref{pro:12fold-2} 推出. 
+
+\begin{col}
+\textbf{有限集$k$元子集的个数}\\
+设$X$为有限集, $|X|=n$, $k \in \mathbb{N}$, 则$X$的$k$元子集个数为$\binom{n}{k}$.
+\label{col:setsize}
+\end{col}
+
+\par 设$1\le k \le n$, $n$元集合的全部$k$元子集可按照字符串的字典序生成. 以$\{1,2,\dots,n\}$为例, 以下将$\{a_1,\dots,a_k\}$简记为$a_1\cdots a_k$, 其中$a_1<\dots<a_k$. 第一个子集为$12\dots k$, 最后一个子集为$(n-k+1)(n-k+2)\cdots n$. 设$a_1\cdots a_k \neq (n-k+1)(n-k+2)\cdots n$, 取最大的$1\le j\le k$使得$a_j < n-(k-j)$, 则下一个子集为$a_1\cdots a_{j-1}(a_j+1)(a_j+2)\cdots(a_j+k-j+1)$. 
+
+\begin{thm} \textbf{Sperner定理} Sperner's theorem\\
+设$X$为有限集, $|X|=n$, 考虑$\mathcal{P}(X)$在集合包含关系下构成的偏序集, $S\subseteq \mathcal{P}(X)$是一个反链, 则$$|S| \le \binom{n}{\lfloor \frac{n}{2}\rfloor}$$
+等号成立当且仅当$S=\{A\subseteq X\vert |A|=\lfloor \frac{n}{2}\rfloor\}$, 或$S=\{A\subseteq X\vert |A|=\lceil \frac{n}{2}\rceil\}$.
+\label{thm:Sperner}
+\end{thm}
+\begin{proof}
+对给定的$S$, 考虑如下有序对$(A,a)$的计数$c_S$, 其中$A\in S$, $a=(a_1,\dots, a_n)$为$X$的一个全排列, 且存在$0\le k\le n$, $A=\{a_1,\dots, a_k\}$. 一方面, 对给定的$a$, 至多存在一个这样的有序对$(A,a)$, 否则与$S$是反链矛盾, 故$c_S\le n!$. 另一方面, 设$S$中$k$元子集个数为$r_k$, 则
+\begin{equation}
+    c_S=\sum_{k=0}^n r_k k!(n-k)!
+\end{equation}
+故有
+\begin{equation}
+    \frac{|S|}{\binom{n}{\lfloor\frac{n}{2}\rfloor}} = \frac{\sum_{k=0}^n r_k}{\binom{n}{\lfloor\frac{n}{2}\rfloor}}\le \sum_{k=0}^n \frac{r_k}{\binom{n}{k}}\le 1
+\end{equation}
+下证取等条件. 当$n=2m$为偶数时, 等号成立推出$S$中仅含$m$元子集. 当$n=2m+1$为奇数时, $S$中子集元素个数为$m$或$m+1$. 下证$S$中子集元素个数或者同为$m$, 或者同为$m+1$. 设$U,V\subseteq X$, $|U|=|V|=m+1$, 若$U\in S$, $V\notin S$, 不妨设$U=\{x_1,\dots, x_{m+1}\}$, $V=\{x_t, \dots, x_{m+t}\}$, 其中$2\le t\le m+1$. 取最小的$2\le r\le t$, 使得$U'=\{x_{r-1}, \dots, x_{m+r-1}\}\in S$, $V'=\{x_r, \dots, x_{m+r}\}\notin S$. 由$S$为反链, $U'\cap V'=\{x_r, \dots, x_{m+r-1}\}\notin S$. 但由于$X$的每个全排列都贡献一个有序对, 由$U'\cap V'\subseteq V'\subseteq X$, $|U'\cap V'|=m$, $|V'|=m+1$, 故$U'\cap V'\in S \lor V'\in S$, 矛盾. 
+\end{proof}
+
+\begin{thm} \textbf{Mirsky定理} Mirsky's theorem\\
+设$X$为有限偏序集, $X$的链的最大元素个数为$h$, 则$X$可以划分为$h$个反链, 但不能划分为少于$h$个反链. $h$称为$X$的高度. 
+\end{thm}
+\begin{proof}
+$X$不能划分为少于$h$个反链是显然的. 对$h$归纳证明$X$可划分为$h$个反链. $h=1$时元素两两不可比, $X$本身是反链. 设命题对$h$成立, 考虑$h+1$的情形. 取$X$的极小元构成的集合$M$, 则$X-M$的高度为$h$. 事实上, 取$X$的一个最长链$C$, 则$C$的最小元$a$在$M$中; $C-\{a\}\subseteq X-M$是长为$h$的链. 若$X-M$有多于$h$个元素的链$C'$, 设$C'$的最小元为$a'$, $\exists b\in M: b\le a'$, $C'\cup \{b\}$是$X$中多于$h+1$个元素的链, 矛盾. 由归纳假设, $X-M$可划分为$h$个反链, 又由于$M$是反链, 结论得证. 
+\end{proof}
+
+\begin{thm} \textbf{Dilworth定理} Dilworth's theorem\\
+设$X$为有限偏序集, $X$的反链的最大元素个数为$w$, 则$X$可以划分为$w$个链, 但不能划分为少于$w$个链. $w$称为$X$的宽度. 
+\end{thm}
+\begin{proof}
+$X$不能划分为少于$w$个链是显然的. 对$|X|$归纳证明$X$可划分为$w$个链. $|X|=1$的情形显然. 设命题对$|X|<n$成立, 考虑$|X|=n$的情形, 分两种情况讨论:
+\par (a) 存在一个反链$A$, $|A|=w$, 且$A$不是$X$的所有极大元的集合, 也不是$X$的所有极小元的集合. 令$A^+=\{x\in X\vert \exists a\in A: a\le x\}$, $A^-=\{x\in X\vert \exists a\in A: x\le a\}$. 取$X$的极小元$b\notin A$, 则$b\notin A^+$, 故$|A^+| < |X|$; 取$X$的极大元$c\notin A$, 则$c\notin A^-$, 故$|A^-|< |X|$. 由$A$是反链, $A^+\cap A^- = A$; 又由$A$是元素个数最大的反链, $A^+\cup A^- = X$. 由$A\subseteq A^+$, $A\subseteq A^-$, $A^+$, $A^-$的宽度也为$w$. 由归纳假设, $A^-$可划分为链$E_1,\dots, E_w$, $A^+$可划分为链$F_1,\dots, F_w$. $\forall a\in A$, 存在$1\le i \le w$, $a\in E_i$, 则$E_i\cap A=\{a\}$, 且$a$是$E_i$的最大元. 同理, 每个$F_i$恰包含$A$中的一个元素, 且为其最小元. 不妨设$E_i$的最大元与$F_i$的最小元相同, $1\le i\le w$, 则$\{E_i\cup F_i\}_{i=1}^{w}$是$X$的链划分. 
+\par (b) 对$X$的反链$A$, 若$|A|=w$, 则$A$或者是$X$的极大元的集合, 或者是$X$的极小元的集合. 若存在$a$同时是$X$的极大元和极小元, 则$X-\{a\}$的宽度为$w-1$, 由归纳假设, $X-\{a\}$可划分为$w-1$个链, 加上$\{a\}$即得所求链划分. 若不然, 任取$X$的极小元$a$, 则$E_a=\{x\in X\vert a<x\}$非空, 取$E_a$的一个极大元$b$, 则$b$也为$X$的极大元. $X-\{a,b\}$的宽度为$w-1$, 由归纳假设, $X-\{a,b\}$可划分为$w-1$个链, 加上$\{a,b\}$即得所求链划分.
+\end{proof}
+
+\section{正整数的分拆}
+
+\begin{dfn} \textbf{分拆, 分拆数} Partiton, Partition Numbers\\
+设$n,k\in\mathbb{N}$, 若正整数$x_1\ge \dots\ge  x_k$满足
+\begin{equation}
+    x_1+x_2+\cdots+x_k = n
+\end{equation}
+称$(x_1,\dots,x_k)$为$n$的一个分拆, 其计数称为$p(n,k)$. $p_n=\sum_{k=0}^n p(n,k)$称为整数的分拆数. 
+\end{dfn}
+容易看出$p(0,0)=1$; 当$n\ge 1$时 $p(n,0)=0$; 当$k>n$时, $p(n,k)=0$.
+
+$p_n$等于关于$r_1,\dots,r_n$的方程
+\begin{equation}
+    r_1+2r_2+\cdots+nr_n = n
+    \label{eq:integer_partition}
+\end{equation}
+的非负整数解个数. 事实上, $r_i=|\{j\vert x_j=i\}, i=1,\dots,n$ 给出$n$的分拆到方程非负整数解的映射, 其逆映射如下: 令$k=\sum_{i=1}^n r_i$, $x_1,\dots, x_{k}$依次取$r_n$个$n$, $r_{n-1}$个$n-1$, ..., $r_1$个1. 
+
+\par 以左对齐的方式, 从上到下依次绘制$x_n$行$n$个圆点, $x_{n-1}$行$n-1$个圆点, ..., $x_1$行$1$个圆点, 这种图示称为分拆的Ferrers图. 
+
+\begin{dfn} \textbf{对偶分拆} Conjugate Partition\\
+设$\lambda=(x_1,\dots,x_k)$为$n$的一个分拆, $l=x_1$, 则其对偶分拆$\lambda^*=(t_1,\dots,t_l)$, 
+\begin{equation}
+    t_i = |\{j\vert x_j\ge i\}|, i=1,\dots,l
+\end{equation}
+若$\lambda^*=\lambda$, 称$\lambda$为自对偶分拆. 
+\end{dfn}
+容易验证对偶分拆是$n$的一个分拆. 对偶分拆的Ferrers图可由原分拆的Ferrers图以左上-右下对角线为轴反射得到. 自对偶分拆的Ferrers图关于左上-右下对角线轴对称. 
+
+
+\section*{文献注记}
+计数组合学占据了组合学入门课程的主要部分, 教材包括\cite{IC}, \cite{CGT}. Richard P. Stanley的两卷本著作\cite{EC1}是计数组合学的经典参考书. \cite{CFS}讨论了有限集的组合理论. 
+
+
+\section*{问题}
+\newcounter{probenum} 
+
+\par \textbf{A组}
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$n$为正整数, 证明: (1)
+\begin{align}
+    &\sum_{k=0}^n k\binom{n}{k}=n2^{n-1}\\
+    &\sum_{k=0}^n k^2 \binom{n}{k}=n(n+1)2^{n-2}
+\end{align}
+(2)\cite{IC} 当$n\ge 2$, 
+\begin{align}
+    \sum_{k=0}^n (-1)^k k\binom{n}{k}=0
+\end{align}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明:
+\begin{align}
+    &\sum_{k=0}^n \frac{1}{k+1}\binom{n}{k}=\frac{2^{n+1}-1}{n+1}\\
+    &\sum_{k=0}^n \frac{(-1)^k}{k+1}\binom{n}{k}=\frac{1}{n+1}
+\end{align}
+
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$n\in \mathbb{N}$, 证明: (1)  
+\begin{equation}
+    \sum_{k=0}^n \binom{n}{k}^2 =\binom{2n}{n}
+\end{equation}
+(2) \cite{IC} 当$n=2m$, 
+\begin{equation}
+\sum^{n}_{k=0}(-1)^{k}\binom{n}{k}^2=(-1)^m\binom{2m}{m}
+\end{equation}
+当$n$为奇数, 上述求和为0. 
+\par (3) \cite{IC} 当$n\ge 1$, 
+\begin{equation}
+\sum_{k=0}^{n} k\binom{n}{k}^2=n\binom{2n-1}{n-1}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 当$n\ge 1$, 证明
+\begin{equation}
+    \sum_{k=0}^{\lfloor \frac{n}{2}\rfloor} \binom{n-k}{k} = f_{n+1}
+\end{equation}
+其中$\{f_n\}$是Fibonacci数列. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$\lambda \in\mathbb{C},k,m\in\mathbb{N}$, $m\ge k$ 证明
+\begin{displaymath}
+\binom{\lambda}{m}\binom{m}{k}=\binom{\lambda}{k}\binom{\lambda-k}{m-k}.
+\end{displaymath}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$n$为正整数, 正整数$n_1,\dots,n_k$满足$n_1+\dots+n_k=n$, 则
+\begin{equation}
+    \small{
+    \binom{n}{n_1\;n_2\;\cdots\;n_k} = \binom{n-1}{n_1-1\;n_2\;\cdots\;n_k} + \binom{n-1}{n_1\;n_2-1\;\cdots\;n_k} + \dots + \binom{n-1}{n_1\;n_2\;\cdots\;n_k-1}}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$k\in \mathbb{N}$, 证明二项式系数$\binom{n}{k}$的一般生成函数
+\begin{equation}
+    \sum_{n=0}^\infty \binom{n}{k} x^n = \frac{x^k}{(1-x)^{k+1}}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 证明: Catalan数$\{C_n\}$满足递推公式
+\begin{equation}
+    C_n = \frac{4n-2}{n+1}C_{n-1}, n\ge 1
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$a=(a_1,\dots,a_{2n})$是$n$个1, $n$个-1的全排列, 且满足对任意$1\le k\le 2n$, 
+\begin{equation}
+    \sum_{i=1}^{k} a_i \ge 0
+\end{equation}
+证明满足条件的$a$的个数为Catalan数$C_n$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 证明: 将$n$元集合划分为$k$个非空子集, 并将每个子集环排列的方法数为第一类Stirling数$s(n,k)$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} (\textbf{Stirling数与多项式空间的基}) 考虑$\mathbb{R}[x]$中不超过$n$次多项式构成的线性空间, $1,x,x^2,\dots,x^n$及$[x]_0, [x]_1,\dots, [x]_n$分别为线性空间的基. 对$p=0,1,\dots,n$, 证明:
+\begin{align}
+    x^p &= \sum_{k=0}^p S(p,k) [x]_k\\
+    [x]_p &= \sum_{k=0}^p (-1)^{p-k} s(p,k) x^k
+\end{align}
+其中$s(p,k)$是第一类Stirling数, $S(p,k)$是第二类Stirling数, 从而Stirling数给出了两个基相互线性表出的系数. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明Bell数$B_n$满足
+\begin{equation}
+    B_n = \sum_{k=0}^{n-1} \binom{n-1}{k} B_{k}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$k$为正整数, $B_n$是Bernoulli数. 证明
+(1) $B_{2k+1}=0$. (2*) $B_{4k-2}\ge 0$, $B_{4k}\le 0$.
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \textbf{(Erdös-Szekeres定理)} 设$m,n$为正整数, $\{a_i\}, i=0,1,\dots, mn$是实数序列. 
+\par (1)证明$\{a_i\}$存在$m+1$项的单调递增子列, 或存在$n+1$项的单调递减子列. 
+\par (2)证明结论对$mn$项的序列不成立. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \textbf{(广义容斥原理)} (1)设$S_n=\{1,2,\dots,n\}$, 考虑$\mathcal{P}(S_n)$在集合包含关系下构成的偏序集, 设$f: \mathcal{P}(S_n)\to \mathbb{R}$, $g: \mathcal{P}(S_n)\to \mathbb{R}$, 满足
+\begin{equation}
+    g(A)=\sum_{B\subseteq A} f(B),\, A\subseteq S_n
+\end{equation}
+证明: 
+\begin{equation}
+    f(A)=\sum_{B\subseteq A} (-1)^{|A|-|B|}g(B), \, A\subseteq S_n
+\end{equation}
+(2) 证明(1)蕴含容斥原理. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \textbf{(偏序集直积的Möbius函数)} 设$(X_i, \le_i)$, $1\le i\le n$是$n$个局部有限偏序集, $X_i$的Möbius函数为$\mu_i(x,y)$, 证明这$n$个偏序集直积的Möbius函数
+\begin{equation}
+    \mu((x_1,\dots,x_n), (y_1,\dots,y_n))=\prod_{1\le i\le n} \mu_i(x_i, y_i)
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$a=(a_1, a_2,\cdots,a_n)$是$\{1,2,\cdots,n\}$ 的排列. 证明: 通过交换相邻两项将其变为$(1,2,\cdots,n)$所需的最少操作次数为$a$的逆序数$\tau(a)$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$g_n(k)$为$\{1,2,\cdots,n\}$的逆序数为$k$的排列数, 证明$g_n(k)$的一般生成函数为
+\begin{equation}
+    \sum_{k=0}^{\frac{n(n-1)}{2}} g_n(k)x^k = \frac{\prod_{j=1}^n (1-x^j)}{(1-x)^n}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \textbf{(可重复环排列)} 设$X$是有限集, $|X|=k$, 考虑$X$中元素的$n$元组$(a_1,\dots,a_n)$, $a_i\in X, i=1,\dots,n$, 在$n$元组的集合上定义等价关系: $(a_1,\dots,a_n)\sim (b_1,\dots,b_n)$当且仅当存在$0\le l < n$, $(b_1,\dots, b_n)=(a_{1+l}, \dots, a_{n+l})$, 其中记$a_i=a_{n+i}$, $1\le i\le n$, 则每个等价类称为$X$的一个$n$元可重复环排列. 证明: $X$的$n$元可重复环排列数为
+\begin{equation}
+    \frac{1}{n}\sum_{d|n} \phi\left(\frac{n}{d}\right) k^d
+\end{equation}
+其中$\phi$为正整数的Euler函数. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n$是正整数, 证明错位排列数$D_n$是$\frac{n!}{e}$最接近的整数. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$D_n$为$(1,2,\dots,n)$的错位排列数, 记$D_0=1$. 证明: (1)当$n\ge 2$, 
+\begin{equation}
+    D_n=(n-1)(D_{n-1}+D_{n-2})
+\end{equation}
+(2) 当$n\ge 1$, 
+\begin{equation}
+    D_n=n D_{n-1} +(-1)^n
+\end{equation}
+\par (3) \begin{equation}
+    n! = \sum_{k=0}^n \binom{n}{k} D_{n-k}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} (1) 设$b=b_{n-1}\dots b_1b_0$为长度为$n$的0-1字符串. 证明: $b$在$n$阶反射Gray码中的位序(从0开始)为$\sum_{l=0}^{n-1} c_l 2^l$, 其中$c_l = (b_{n-1}+\dots +b_l) \mod 2$. (2)设$k = \sum_{l=0}^{n-1} c_l 2^l$, 则$n$阶反射Gray码中的第$k$位(从0开始)为$b_{n-1}\dots b_1b_0$, 其中$b_{n-1}=c_{n-1}$; $b_k = (c_k+c_{k+1}) \mod 2$, $0\le k<n-1$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$a_1\cdots a_k$为$\{1,2,\dots,n\}$的$k$元子集, 证明: $a_1\cdots a_k$在$\{1,2,\dots,n\}$全部$k$元子集中的字典序位序（从1开始）为
+\begin{equation}
+    \binom{n}{k} - \binom{n-a_1}{k} - \binom{n-a_2}{k-1} - \cdots - \binom{n-a_{k-1}}{2} - \binom{n-a_k}{1}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \textbf{(有限集幂集的对称链划分)} 设$S_n=\{1,2,\dots,n\}$, $\mathcal{P}(S_n)$在集合包含关系下构成偏序集. 证明: (1) 存在$\mathcal{P}(S_n)$的链划分, 对每个链$A_1\subset A_2 \subset \dots A_k$, 满足$|A_1|+|A_k|=n$, 且$\forall 1\le i\le k-1: |A_{i+1}|-|A_{i}|=1$. (2) 对于满足(1)中条件的链划分, 当$1\le k\le n$, 长度为$k$的链的个数为
+\begin{displaymath}
+    \binom{n}{\lfloor \frac{n-k+1}{2}\rfloor} - \binom{n}{\lceil \frac{n-k-1}{2}\rceil}
+\end{displaymath}
+长度为$n+1$的链个数为1. 
+
+\par \textbf{B组}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$\{a_i\}_{i=1}^n$为严格单调递增的整数序列, 正整数$c<2n-(a_n-a_1)-1$, 证明存在$1\le i<j \le n$, $a_j-a_i=c$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$S=\{1,2,\dots,n\}$, $A\subseteq S$, 满足$\forall a,b\in A: a\nmid b$. 证明$\max |A|=\lceil \frac{n}{2}\rceil$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} 设$S\subseteq \{1,2,\dots, n\}$, 对$S$的任意非空集合$A\neq B$, $A,B$的元素之和不同. 记$k_n=\max |S|$. 证明: (1) $k_n\ge \lfloor \log_2 n \rfloor+1$; (2) $\frac{2^{k_n}-1}{k_n}+\frac{k_n-1}{2}\le n$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$S=\{1,2,3,\cdots,n\}$, 证明任两个元素之差至少为$l+1$的$S$的$k$元子集个数为$\binom{n-lk+l}{k}$.
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{SMI} 设$a_n$为$\{1,3,4\}$的元素之和为$n$的可重复排列数, 证明$a_{2n}$为正整数的平方. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设正整数$n\ge 2$, $S_n=\{1,2,\dots,n\}$, 记$S$的全排列中不含子串$12$, $23$, ..., $(n-1)n$的排列个数为$Q_n$. 证明: $Q_n= D_n + D_{n-1}$, 其中$D_n$为$(1,2,\dots,n)$的错位排列数. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{MaP} 设平面直角坐标系上的格点集合$P_n=\{(i,j)\vert 0\le i,j\le n-1\}$被$l_n$条不与坐标轴平行的直线覆盖, 证明$l_n$的最小值为$2n-2$.  
+
+\section*{解答}
+\newcounter{solenum} 
+
+\par \textbf{A组}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1)\cite{IC} 由二项式定理, 
+\begin{equation}
+    (1+x)^n = \sum_{k=0}^n \binom{n}{k} x^k 
+\end{equation}
+对$x$求导得
+\begin{equation}
+    n(1+x)^{n-1} = \sum_{k=0}^n k\binom{n}{k} x^{k-1} 
+\end{equation}
+令$x=1$即得第一式. 两边同乘$x$, 得
+\begin{equation}
+    nx(1+x)^{n-1} = \sum_{k=0}^n k\binom{n}{k} x^{k} 
+\end{equation}
+当$n\ge 2$, 对$x$求导得
+\begin{equation}
+    n((1+x)^{n-1}+(n-1)x(1+x)^{n-2}) = \sum_{k=0}^n k^2\binom{n}{k} x^{k-1} 
+\end{equation}
+令$x=1$即得第二式. $n=1$时第二式亦成立. 
+\par (2)当$n\ge 2$, 
+\begin{equation}
+    \sum_{k=0}^n (-1)^k k\binom{n}{k} = n\sum_{k=0}^{n-1} (-1)^{k+1} \binom{n-1}{k}=0
+\end{equation}
+当$n=1$, 所求和式为$-1$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 第一式: 
+\begin{equation}
+\sum_{k=0}^n \frac{1}{k+1}\binom{n}{k}
+=\frac{1}{n+1}\sum^{n}_{k=0}\binom{n+1}{k+1}=\frac{1}{n+1}\left(\sum^{n+1}_{k=0}\binom{n+1}{k}-1\right)=\frac{2^{n+1}-1}{n+1}
+\end{equation}
+第二式:
+\begin{equation}
+\sum_{k=0}^n \frac{(-1)^k}{k+1}\binom{n}{k}
+=\frac{1}{n+1}\sum^{n+1}_{k=1}(-1)^{k-1}\binom{n+1}{k}=\frac{1}{n+1}
+\end{equation}
+
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .}  (1)是Vandermonde卷积公式的推论. (2) \cite{IC} 当$n=2m+1,m\in\mathbb{N}$, 由$\binom{n}{k}=\binom{n}{n-k}$知求和为0. 当$n=2m$, 考虑$(1-x^2)^n=(1+x)^n(1-x)^n$
+中$x^n=x^{2m}$的系数, 得
+\begin{equation}
+(-1)^m\binom{2m}{m}=\sum_{k=0}^n\binom{n}{n-k}(-1)^{k}\binom{n}{k}=
+\sum_{k=0}^n(-1)^{k}\binom{n}{k}^2. 
+\end{equation}
+(3) 注意到
+\begin{equation}
+\sum_{k=1}^n k\binom{n}{k}^2=n\sum_{k=1}^n\binom{n-1}{k-1}\binom{n}{n-k}=n\sum_{k=0}^{n-1}\binom{n-1}{k}\binom{n}{n-1-k}
+\end{equation}
+由Vandermonde卷积公式即证.
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 记\begin{equation*}
+    g(n)=\sum_{k=0}^{\lfloor\frac{n}{2}\rfloor} \binom{n-k}{k}=\sum_{k=0}^{n} \binom{n-k}{k}
+\end{equation*}
+则$g(1)=1$, $g(2)=2$. 设$n\ge 3$, 则
+\begin{align*}
+    g(n-1)+g(n-2) &= \binom{n-1}{0} +\sum_{k=0}^{n-2} \left(\binom{n-2-k}{k+1} + \binom{n-2-k}{k}\right)\\
+    &= \binom{n}{0} + \sum_{k=0}^{n-2} \binom{n-1-k}{k+1} = g(n)
+\end{align*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .}  $k=0$或$m=k$时显然成立, 下设$m>k\ge 1$, 
+\begin{align*}
+\binom{\lambda}{m}\binom{m}{k}
+&=\frac{\lambda(\lambda-1)\cdots(\lambda-m+1)}{k!(m-k)!}\notag\\
+&=\frac{\lambda(\lambda-1)\cdots(\lambda-k+1)}{k!}\frac{(\lambda-k)(\lambda-k-1)\cdots(\lambda-m+1)}{(m-k)!}\notag\\
+&=\binom{\lambda}{k}\binom{\lambda-k}{m-k}
+\end{align*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 证明略. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 由于
+\begin{equation*}
+    \frac{1}{(1-x)^{k}} =\sum_{n=0}^\infty \binom{n+k-1}{k-1} x^{n}
+\end{equation*}
+故
+\begin{equation*}
+    \frac{x^k}{(1-x)^{k+1}} =\sum_{n=0}^\infty \binom{n+k}{k} x^{n+k} = \sum_{n=k}^\infty \binom{n}{k} x^n
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 当$n\ge 1$, 
+\begin{equation*}
+    \frac{C_n}{C_{n-1}} = \frac{n (2n)!(n-1)!(n-1)!}{(n+1)n!n!(2n-2)!} = \frac{ 4n-2}{n+1}
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} $n$个1, $n$个-1的全排列总数为$\binom{2n}{n}$. 设$A_n$为不满足题中条件的全排列集合, $B_n$为$n+1$个1, $n-1$个$-1$的全排列集合. 定义$A_n$到$B_n$的映射$f$如下: 对$a\in A_n$, 令$m = \min \{1\le k\le 2n \vert \sum_{i=1}^k a_i<0\}$, 则必有$a_m=-1$, $\sum_{i=1}^{m-1} a_i=0$, 故$m$是奇数, 且$a_1,\dots,a_m$中$-1$比1恰好多一个. 令$f(a)=(-a_1,\dots, -a_m, a_{m+1},\dots, a_{2n})$, 则$f(a)\in B_n$. 对$b=(b_1,\dots,b_{2n})\in B_n$, 取$m=\min \{1\le k\le 2n \vert \sum_{i=1}^k a_i>0\}$, 则$b\mapsto (-b_1,\dots, -b_m, b_{m+1},\dots, b_{2n})$是$f$的逆映射. 因此$|A_n|=|B_n|=\binom{2n}{n+1}$; 满足题中条件的全排列数为$\binom{2n}{n}-\binom{2n}{n+1} = \frac{1}{n+1}\binom{2n}{n}=C_n$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 称将有限集划分为$k$个子集并将每个子集环排列的一种方式称为$k$-环排列划分. 设$n$元子集的$k$-环排列划分数为$s^*(n,k)$, 容易验证$s^*(0,0)=1$; $k\ge 1$时$s^*(0,k)=0$; $n\ge 1$时$s^*(n,0)=0$. 设$n,k\ge 1$, 有
+\begin{equation*}
+    s^*(n,k)=(n-1)s^*(n-1,k)+s^*(n-1,k-1)
+\end{equation*}
+事实上, 设$|X|=n$, 任取$x\in X$, 考虑$x$所在的环排列. 若$x$所在的子集仅包含自身, 则去掉该环排列得到$X-\{x\}$的$k-1$-环排列划分; 否则, 对$X-\{x\}$的任一$k$-环排列划分, 恰有$n-1$种方式加入$x$得到$X$的$k$-环排列划分（设$p\ge 1$, $p$元环排列恰有$p$种加入的方式）. 故$s^*(n,k)=s(n,k)$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 对$p$用归纳法, 容易验证$p=0$时成立, 下设$p\ge 1$. 设第一式对$p-1$成立, 考虑$p$的情形:
+\begin{align*}
+    x^p &= x \sum_{k=0}^{p-1} S(p-1,k) [x]_k \\ 
+    &= \sum_{k=0}^{p-1} kS(p-1,k) [x]_k + \sum_{k=0}^{p-1} S(p-1,k) [x]_{k+1} \\ 
+    & = \sum_{k=1}^{p-1} kS(p-1,k) [x]_k + \sum_{k=1}^{p} S(p-1,k-1) [x]_{k} \\ 
+    & = S(p-1,p-1)[x]_p + \sum_{k=1}^{p-1} (kS(p-1,k)+S(p-1,k-1)) [x]_k\\
+    & = \sum_{k=0}^p S(p,k) [x]_k
+\end{align*}
+最后一个等式用到$S(p,0)=0$, $S(p,p)=S(p-1,p-1)=1$.
+\par 设第二式对$p-1$成立, 考虑$p$的情形:
+\begin{align*}
+    [x]_p &= (x-p+1) \sum_{k=0}^{p-1} (-1)^{p-1-k} s(p-1,k) x^k\\ 
+    &= \sum_{k=0}^{p-1} (-1)^{p-1-k} s(p-1,k) x^{k+1} - \sum_{k=0}^{p-1} (-1)^{p-1-k} (p-1) s(p-1,k) x^k\\
+    &= \sum_{k=1}^p (-1)^{p-k} s(p-1,k-1) x^{k} + \sum_{k=0}^{p-1} (-1)^{p-k} (p-1) s(p-1,k) x^k\\
+    &= \sum_{k=1}^{p-1} (-1)^{p-k} ((p-1)s(p-1,k)+s(p-1,k-1)) x^{k} + s(p-1,p-1)x^p\\
+    &= \sum_{k=0}^p (-1)^{p-k} s(p,k) x^{k}
+\end{align*}
+最后一个等式用到$s(p,0)=0$, $s(p,p)=s(p-1,p-1)$.
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 由命题\ref{pro:12fold-3}的证明过程知, $B_n$为$n$元集合$X$的划分个数. 取$x\in X$, 考虑集合划分中$x$所在的子集$P$, 设$|P|=k+1$, $k=0,1,\dots,n-1$, 则$X-P$的划分个数为$B_{n-k-1}$. 因此
+\begin{equation*}
+    B_n = \sum_{k=0}^{n-1} \binom{n-1}{k} B_{n-k-1} = \sum_{k=0}^{n-1} \binom{n-1}{k} B_{k}
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .}
+(1) \cite{SMI} 由Faulhaber公式, 对任意的自然数$p$, 
+\begin{equation}
+    (n+1)^p=S_p(n+1)-S_p(n)=\sum_{j=0}^p \frac{(-1)^j}{p+1} \binom{p+1}{j}B_j ((n+1)^{p+1-j}-n^{p+1-j})
+\end{equation}
+对$0\le r\le p$, 比较$n^{p-r}$的系数得 
+\begin{equation}
+    \binom{p}{p-r}=\sum_{j=0}^{r} \frac{(-1)^j}{p+1} \binom{p+1}{j}B_j \binom{p+1-j}{p-r}
+\end{equation}
+亦即
+\begin{equation}
+r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
+\end{equation}
+又由于
+\begin{equation}
+\sum_{j=0}^{r} \binom{r+1}{j}B_j=(r+1)\sum_{j=0}^{r} \binom{r}{j}\frac{B_j}{r-j+1}=0
+\end{equation}
+两式相减, 得
+\begin{equation}
+    -\frac{r+1}{2}=\sum_{k=1}^{\lfloor \frac{r}{2}\rfloor} \binom{r+1}{2k-1} B_{2k-1}
+\end{equation}
+由于$B_1=-\frac{1}{2}$, 依次取$r=4,6,\cdots$即得$B_3=B_5=\cdots=0$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1) 证一: 对$i=0,1,\dots, mn$, 令$f(i)$为以$a_i$为首项的单调递增子序列的最大项数. 若存在$f(i)\ge m+1$, 结论已成立. 否则$\forall i: 1\le f(i)\le m$. 由鸽笼原理, 存在$j\in \{1,\dots,m\}$, $|f^{-1}(j)|\ge n+1$, $f^{-1}(j)$中的元素按原序列顺序构成单调递减子序列. 事实上, 设$a_p,a_q\in f^{-1}(j)$, $p<q$. 若$a_p<a_q$, 则$f(p)\ge f(q)+1$, 与$f(p)=f(q)=j$矛盾. 
+\par 证二: 由Mirsky定理, 元素个数为$mn+1$的偏序集或者包含长为$m+1$的链, 或者包含长为$n+1$的反链. 在$\{0,1,\dots,mn+1\}$上定义偏序$R$: $p,q\in R\iff p\le q \land a_p\le a_q$, 则链对应单调递增子序列, 反链对应单调递减子序列. 
+\par (2) 构造反例如下: 对$i=0,1,\dots, mn-1$, 取$i=rn+s$, $0\le s < n$, 令$a_i=(r+1)n-s$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} (1)由Möbius反演公式, 只需证Möbius函数$\mu(A,B)=(-1)^{|B|-|A|}$. 对$n=|B|-|A|$归纳. 当$n=0$时, $A=B$, $\mu(A,A)=1$. 设命题对小于$n$的情形成立, 考虑$n$的情形, 
+\begin{equation}
+    \mu(A,B)=-\sum_{A\subseteq C\subset B} \mu(A,C)=-\sum_{k=0}^{n-1} \binom{n}{k} (-1)^{k}=(-1)^n
+\end{equation}
+\par (2) 设$U$为有限集, $P_i(x)$是条件, $i=1,\dots,n$, 记$V_i=\{x\in U\vert P_i(x)\}$. 对$A\subseteq S_n$, 令$f(A)=|\bigcap_{i\in S_n-A} V_i - \bigcup_{i\in A} V_i|$, 则$g(A)=|\bigcap_{i\in S_n-A} V_i|$. 由(1)得
+\begin{equation*}
+    |V_1'\cap \dots \cap V_n'| = f(S_n) = \sum_{A\subseteq S_n} (-1)^{n-|A|} g(A)
+    = \sum_{B\subseteq S_n} (-1)^{|B|} \left|\bigcap_{i\in B} V_i\right|
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 若存在$1\le i\le n$, $x_i>y_i$, 则等式两边均为0. 下设$\forall i: x_i\le y_i$, 并对满足$(x_1,\dots,x_n)< (z_1,\dots,z_n)<(y_1,\dots,y_n)$的$n$元组$(z_1,\dots,z_n)$的个数归纳. 当$\forall i: x_i=y_i$时, 等式两边均为1. 考虑\begin{align*}
+    \mu((x_1,\dots,x_n), (y_1,\dots,y_n)) &= -\sum_{(x_1,\dots,x_n)<(z_1,\dots,z_n)\le (y_1,\dots,y_n)} \mu((z_1,\dots,z_n), (y_1,\dots,y_n))\\
+    &=-\sum_{(x_1,\dots,x_n)<(z_1,\dots,z_n)\le (y_1,\dots,y_n)} \prod_{i=1}^n \mu_i(z_i,y_i)\\
+    &=-\prod_{i=1}^n \sum_{x_i\le z_i\le y_i} \mu_i(z_i,y_i) + \prod_{i=1}^n \mu_i(x_i,y_i)\\
+    &= \prod_{i=1}^n \mu_i(x_i,y_i)
+\end{align*}
+
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 将$a$的相邻两项$i, j$ 交换时, 若$i<j$, 逆序列中只有$\tau_i$增加$1$; 若$i>j$, 逆序列中只有$\tau_j$减少$1$, 故每次交换相邻两项恰使排列的逆序数改变$1$, 从而至少要$\tau(a)$次交换. 另一方面, 可将1连续向前移动至第1位($\tau_1$次操作), 将2连续向前移动至第2位($\tau_2$次操作), 以此类推, 可经过$\tau(a)$次交换得到$(1,2,\dots,n)$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 由逆序列与排列的对应关系, $g_n(k)$即为方程
+\begin{equation*}
+    \tau_1 + \dots + \tau_n = k
+\end{equation*}
+的非负整数解个数, 满足$0\le \tau_j\le n-j$. 因此一般生成函数
+\begin{equation*}
+    \prod_{j=1}^n (1+x+\dots+x^{n-j}) = \prod_{l=1}^n \frac{1-x^l}{1-x}=\frac{\prod_{l=1}^n (1-x^l)}{(1-x)^n}
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 对可重复排列$(a_1,\dots,a_n)$, 定义其周期$m$为最小的正整数$r$, 满足$(a_{1+r},\dots,a_{n+r})=(a_{1},\dots,a_{n})$, 则$m|n$. 容易验证等价的可重复排列有相等的周期, 因此周期也是可重复环排列的性质. 记所求可重复环排列数为$G(n,k)$, 周期为$n$的$n$元可重复排列数为$F(n,k)$, 则有
+\begin{equation}
+    G(n,k)=\sum_{m|n} \frac{F(m,k)}{m}
+\end{equation}
+又由于
+\begin{equation}
+    k^n = \sum_{m|n} F(m,k)
+\end{equation}
+由正整数集上的Möbius反演公式,
+\begin{equation}
+    F(n,k) = \sum_{m|n} \mu\left(\frac{n}{m}\right) k^m
+\end{equation}
+由此有
+\begin{align*}
+    G(n,k) &= \sum_{m|n} \frac{1}{m} \sum_{d|m} \mu\left(\frac{m}{d}\right) k^d=\sum_{d|n} k^d \sum_{m:d|m|n} \frac{1}{m} \mu\left(\frac{m}{d}\right)\\
+    &=\sum_{d|n} k^d \sum_{c|\frac{n}{d}} \frac{1}{cd} \mu(c) =\frac{1}{n}\sum_{d|n} \phi\left(\frac{n}{d}\right)k^d
+\end{align*}
+其中最后一式用到等式$\phi(n)=\sum_{d|n}\mu(d)\frac{n}{d}$ (命题\ref{pro:euler_phi}). 
+
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 由交错级数判别法的证明, 
+\begin{equation}
+    \left|D_n - \frac{n!}{e}\right|=\left|  \sum_{l=1}^\infty (-1)^{l} \frac{n!}{(n+l)!}\right| < \frac{1}{n+1} 
+\end{equation}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1) \cite{IC} 对$2\le k\le n$, 给定$a_1=k$, 若$a_k=1$, $(a_2,\dots,a_{k-1},a_{k+1}, \dots, a_n)$为$(2,\dots,k-1,k+1,\dots, n)$的一个错位排列, 共$D_{n-2}$个; 若$a_k\neq 1$, $(a_2,\dots,a_n)$为$(2,\dots,k-1,1,k+1,\dots, n)$的一个错位排列, 共$D_{n-1}$个. (2) \cite{IC} 由(1)得$D_n-nD_{n-1}=-(D_{n-1}-(n-1)D_{n-2})=\dots=(-1)^{n-1}(D_1-D_0)=(-1)^n$. (3) 设$a=(a_1,\dots,a_n)$为$S=\{1,2,\cdots,n\}$的一个全排列, 定义映射$a\mapsto \{1\le i\le n: a_i=i\}$. 对$X\subseteq S$, 若$|X|=k$, 则$|f^{-1}(S)|=D_{n-k}$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1)对$n$归纳, $n=1$是显然的. 假设结论对$n-1$成立. 若$b_{n-1}=0$, 则$b$的位序即$b_{n-2}\dots b_1b_0$在$n-1$阶反射Gray码中的位序, 由归纳假设结论成立; 否则$b_{n-1}=1$, 记$c_l'=(b_{n-2}+\dots+b_l) \mod 2$, $0\le l\le n-2$, $c_{n-1}'=0$, 则$b_{n-2}\dots b_1b_0$在$n-1$阶反射Gray码中的位序为$\sum_{l=0}^{n-2} c_l' 2^l$, 故$b_{n-1}\dots b_1b_0$在$n$阶反射Gray码中的位序为
+\begin{equation}
+    2^n - 1 - \sum_{l=0}^{n-2} c_l' 2^l = \sum_{l=0}^{n-1} (1-c_l') 2^l = \sum_{l=0}^{n-1} c_l 2^l
+\end{equation} 
+(2)由于$n$阶反射Gray码是长度为$n$的0-1字符串的一个排列, (1)中的映射$b_{n-1}\dots b_1b_0\mapsto \sum_{l=0}^{n-1} c_l 2^l$是双射. 可以验证题设恰为其逆映射. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 计算排在$a_1\cdots a_k$后面的子集个数, 其中首位大于$a_1$的子集有$\binom{n-a_1}{k}$个; 首位相等, 第二位大于$a_2$的子集有$\binom{n-a_2}{k-1}$个; $\cdots\cdots$ 前$k-1$位相等, 第$k$位大于$a_k$的子集有$\binom{n-a_k}{1}$个. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1) \cite{IC} 对$n$归纳构造. $n=1$时, $\varnothing \subset \{1\}$是满足要求的一个链. 设所求的链划分对$n-1$存在, 对其中的每一个链$A_1\subset A_2 \subset \dots \subset A_k$, 构造一个新的链$A_1\subset A_2 \subset \dots \subset A_k \subset A_k\cup \{n\}$; 若$k\neq 1$, 额外构造一个新的链$A_1\cup \{n\} \subset A_2 \subset \dots \subset A_{k-1}\cup \{n\}$. 可以验证这些链构成$S_n$的划分, 且每个链最小元、最大元元素之和为$n$, 相邻元素大小相差1. 故所求的链划分对$n$存在. 
+\par \emph{注:} 上述链划分中的每个链恰好包含一个$\lfloor\frac{n}{2}\rfloor$元子集, 故链的个数为$\binom{n}{\lfloor\frac{n}{2}\rfloor}$. 根据Dilworth定理, 本题给出了Sperner定理(前半部分)的另一种证明. 
+\par (2) 设长度为$k$的链$A_1\subset A_2\subset \dots \subset A_k$, 记$|A_1|=a$, 则$|A_k|=n-a$, $k=n-2a+1$, 亦即$a=\frac{n-k+1}{2}$. 因此$n,k$不同奇偶. 进一步地, 当$a\ge 1$, $k\le n-1$, 链$\mathcal{C}$长度等于$k$当且仅当$\mathcal{C}$包含一个$a$元子集, 且不包含$a-1$元子集. 因此长度为$k$的链个数为
+\begin{displaymath}
+    \binom{n}{a} - \binom{n}{a-1}=\binom{n}{\frac{n-k+1}{2}} - \binom{n}{\frac{n-k-1}{2}}
+\end{displaymath}
+当$a=0$, 长为$k=n+1$的链个数为$\binom{n}{0}=1$.
+
+
+\par \textbf{B组}
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 考虑$2n$个正整数$\{a_i\}_{i=1}^n \cup \{a_i+c\}_{i=1}^n$, 其取值范围为$a_1,\dots,a_n+c$共$a_n-a_1+c+1$个整数. 由于$2n>a_n-a_1+c+1$, 由鸽巢原理存在两个整数相等. 由于$\{a_i\}_{i=1}^n$与$\{a_i+c\}_{i=1}^n$均严格单调递增, 存在$1\le i,j\le n$, $a_j=a_i+c$, 此时有$j>i$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 令$k=\lceil \frac{n}{2}\rceil$. 一方面$k$元子集$A=\{n-k+1,\dots,n\}$满足要求. 另一方面, 对$k$个奇数$t=1,\dots, 2k-1$, 记$P_t=\{2^s t \le n\vert s\in \mathbb{N}\}$, 则$\{P_t\}$构成$S$的集合划分. 若$|A|\ge k+1$, 由鸽巢原理存在$A$的两个元素属于同一$P_t$, 从而存在整除关系. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1)$S=\{1,2,\dots, 2^{\lfloor \log_2 n \rfloor}\}$满足要求. (2)反证法, $S$的$2^{k}-1$个非空子集元素之和取值在$\{1,\dots,kn-\frac{k(k-1)}{2}\}$中, 若$2^{k}-1 > kn-\frac{k(k-1)}{2}$, 由鸽巢原理, 存在两个非空子集元素之和相等. 故$\frac{2^{k}-1}{k}+\frac{k-1}{2}\le n$. 注意到不等式左边对$k$单调递增, 故该式给出了$k_n$的一个上界. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 记$A$中元素从小到大依次为$a_1,a_2,\cdots,a_k$, 令$b_1=a_1, b_2=a_2-a_1, b_3=a_3-a_2, \cdots, b_k=a_k-a_{k-1}, b_{k+1}=n+1-a_k$, 则$b_1+b_2+\cdots+b_k+b_{k+1}=n+1$, 其中$b_1\ge 1$; $b_i\ge l+1, 2\le i\le k$; $b_{k+1}\ge 1$. 用变量替换法可知, 解的数目为$\binom{n-lk+l}{k}$.
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 令$a_0=1$, 有$a_1=a_2=1$, $a_3=2$; 当$n\ge 4$, 有$a_n=a_{n-1}+a_{n-3}+a_{n-4}$. $\{a_n\}$是常系数线性递推数列, 可求得其通项公式为
+\begin{equation}
+    a_n = \frac{3+\sqrt{5}}{10}\left(\frac{1+\sqrt{5}}{2}\right)^n + \frac{3-\sqrt{5}}{10}\left(\frac{1-\sqrt{5}}{2}\right)^n + \frac{2-i}{10} i^n + \frac{2+i}{10} (-i)^n
+\end{equation}
+因此有
+\begin{align}
+    a_{2n} &= \frac{1}{5}\left(\left(\frac{3+\sqrt{5}}{2}\right)^{n+1} + \left(\frac{3-\sqrt{5}}{2}\right)^{n+1} + 2(-1)^n\right) \notag \\
+    &= \left(\frac{1}{\sqrt{5}} \left(\frac{1+\sqrt{5}}{2}\right)^{n+1} - \frac{1}{\sqrt{5}}\left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right)^2 = f_{n+1}^2
+\end{align}
+其中$f_n$是Fibonacci数列的第$n$项. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 设性质$P_i$为包含子串$i(i+1)$, $1\le i\le n-1$, 则同时满足任意$k$个性质的排列数为$(n-k)!$. 事实上, 对每个性质$P_i$, 可将包含$i$, $i+1$的符号连接为一个新的符号. 由容斥原理,
+\begin{align*}
+    Q_n &= n! + \sum_{k=1}^{n-1} (-1)^k \binom{n-1}{k} (n-k)! 
+    = (n-1)! \sum_{k=0}^{n-1} (-1)^k  \frac{n-k}{k!}\\
+    &= n! \sum_{k=0}^{n-1}\frac{(-1)^k}{k!} + (n-1)! \sum_{k=1}^{n-1}\frac{(-1)^{k-1}}{(k-1)!}
+    = (D_n - (-1)^n) + (D_{n-1} - (-1)^{n-1})\\
+    &= D_n + D_{n-1}
+\end{align*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{MaP} 考虑边缘格点$E_n\{(i,j)\vert i=0 \lor i=n-1 \lor j=0 \lor j=n-1\}$, 则$|E_n|=4n-4$, 而不平行于坐标轴的直线至多通过$E_n$中的2个点, 故$l_n\ge 2n-2$. 另一方面, 直线$y=x$及$x+y=k, 1\le k\le 2n-3$满足要求. 

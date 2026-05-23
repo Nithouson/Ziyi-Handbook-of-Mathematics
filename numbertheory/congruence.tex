@@ -1,0 +1,90 @@
+\section{整除}
+
+\begin{pro} \textbf{带余除法}\\
+设$n,q \in \mathbb{Z}$, $q>0$, 则存在唯一的整数对$(m,r)$, $0\le r<q$, 满足$n=mq+r$. 
+\label{pro:div_rem}
+\end{pro}
+\begin{proof}
+存在性: 先设$n\ge 0$, 对$n$用数学归纳法. 当$n=0$, $0=0q+0$. 设$n=mq+r$, $0\le r<q$. 对$n+1$的情形, 若$r<q-1$, 则$n+1=mq+(r+1)$. 否则$r=q-1$, 有$n+1=mq+(q-1)+1=(m+1)q+0$. 
+\par 再考虑$n<0$的情形, 设$-n=mq+r$, $0\le r<q$. 若$r=0$, 则$n=-mq+0$; 否则$1\le r<q$, $n=-mq-r=-(m+1)q+q-r$, 满足$0<q-r<q$. 
+\par 唯一性: 设$n=mq+r=m'q+r'$, $0\le r,r'<q$. 断言$m=m'$, 此时有$r=r'$. 若不然, 不妨设$m'>m$, 此时$r-r'=(m'-m)q\ge q$, 但$r-r'\le r<q$, 矛盾. 
+\end{proof}
+
+\begin{dfn} \textbf{奇数, 偶数} Odd/Even Numbers\\
+设$n\in \mathbb{Z}$, 若存在$k\in \mathbb{Z}$, $n=2k+1$, 称$n$是奇数; 若存在$k\in \mathbb{Z}$, $n=2k$, 称$n$是偶数. 
+\end{dfn}
+由带余除法, 任一整数或者是奇数, 或者是偶数, 且不能同时是奇数和偶数. 
+
+\begin{pro} \textbf{正整数集上的Möbius反演}\\
+考虑$\mathbb{Z}_+$在整除关系下构成的偏序集. 设$f: \mathbb{Z}_+ \to \mathbb{R}$, $g: \mathbb{Z}_+ \to \mathbb{R}$, 满足
+\begin{equation}
+    g(n)=\sum_{d|n} f(d)
+\end{equation}
+则有
+\begin{equation}
+    f(n)=\sum_{d|n} \mu\left(\frac{n}{d}\right)g(d)
+\end{equation}
+其中$\mu(1)=1$; 当$n\ge 2$, 若$n$是$m$个互不相同素数之积, $\mu(n)=(-1)^m$, 否则$\mu(n)=0$. 
+\end{pro}
+\begin{proof}
+考虑$(\mathbb{Z}_+, |)$上的Möbius函数$\mu(d,n)$, 先证一个引理: $\forall d,n\in \mathbb{Z}_+, d | n \Rightarrow \mu(d,n)=\mu(1,\frac{n}{d})$. 对$n$归纳, $n=1$时显然. 设命题对小于$n$的情形成立, 则
+\begin{equation}
+    \mu(d,n)=-\sum_{\substack{s:d|s|n\\s<n}} \mu(d,s) = -\sum_{\substack{s:d|s|n\\s<n}} \mu(1,\frac{s}{d}) = -\sum_{c:c|\frac{n}{d}, c<\frac{n}{d}} \mu(1,c) = \mu(1,\frac{n}{d})
+\end{equation}
+以下记$\mu(n)=\mu(1,n)$. 易知$\mu(1)=1$, 对素数$p$, $\mu(p)=-1$, 当$k\ge 2$, $\mu(p^k)=0$. 设$n$有素因数分解$\prod_{i=1}^m p_i^{k_i}$, 断言\begin{equation}
+    \mu_{n}=\prod_{i=1}^m \mu(p_i^{k_i})
+\end{equation}
+事实上, 考虑$D(n)=\{r\in \mathbb{Z}_+\vert r|n\}$在整除关系下构成的偏序集, 其相似于偏序集的直和$D(p_1^{k_1})\times \dots \times D(p_m^{k_m})$. 由于偏序集直和的Möbius函数等于各偏序集Möbius函数的乘积, 断言成立. 由偏序集的Möbius反演公式, 命题得证.
+\end{proof}
+
+\begin{pro} \textbf{Euler $\phi$ 函数}\\
+设$n$是正整数, 其素因数分解为$n=\prod_{i=1}^m p_i^{k_i}$. 定义Euler函数
+\begin{equation}
+    \phi(n)=| \{a\in \mathbb{Z}_+\vert a\le n \land (a,n)=1\}|
+\end{equation}
+则有
+\begin{equation}
+    \phi(n)=n\prod_{i=1}^m \left(1-\frac{1}{p_i} \right)
+\end{equation}
+\label{pro:euler_phi}
+\end{pro}
+\begin{proof}
+记$C_d(n)=\{a\in \mathbb{Z}_+\vert a\le n \land (a,n)=d\}$, 则$\{C_d(n)\vert d|n\}$是$\{1,2,\dots,n\}$的集合分划. 对$d|n$, $a\mapsto \frac{a}{d}$是$C_d(n)$到$C_1(\frac{n}{d})$的双射, 故$|C_d(n)|=\phi(\frac{n}{d})$. 因此有
+\begin{equation}
+    n = \sum_{d|n} \phi\left(\frac{n}{d}\right) = \sum_{d|n} \phi(d)
+\end{equation}
+由Möbius反演得
+\begin{align*}
+    \phi(n) &= \sum_{d|n} \mu(d) \frac{n}{d} = n - \sum_{i}  \frac{n}{p_i} +  \sum_{i,j}  \frac{n}{p_ip_j} - \dots + (-1)^m \frac{n}{p_1\dots p_m}\\
+    &=n\prod_{i=1}^m \left(1-\frac{1}{p_i} \right)
+\end{align*}
+\end{proof}
+
+\section{剩余类}
+
+\begin{thm} \textbf{Wilson定理}\\
+设$p$是素数, 
+\begin{equation}
+    (p-1)!\equiv -1 \mod p
+\end{equation}
+\end{thm}
+\begin{proof}
+
+\end{proof}
+
+
+\section{二次剩余}
+
+\section*{问题}
+\par \textbf{A组}
+\newcounter{probcong} 
+
+\stepcounter{probcong}
+\par \textbf{\theprobcong .} (\textbf{Fermat数}) 设$k$为正整数, $n=2^k+1$. 证明: $\exists l\in \mathbb{N}:k=2^l$是$n$为素数的必要非充分条件. 
+
+\section*{解答}
+\newcounter{solcong} 
+
+\stepcounter{solcong}
+\par \textbf{\thesolcong .} 必要性: 由于$x^{2n+1}+y^{2n+1}=(x+y)(x^{2n}-x^{2n-1}y+x^{2n-2}y^2-\dots-xy^{2n-1} +y^{2n})$, 若存在奇素数$p$, $k=pq$, 则$2^q+1\vert 2^k+1$. 非充分性: $2^{2^5}=4294967297=641\times 6700417$.
+\par \emph{注:} 形如$n=2^{2^l}+1$的数称为Fermat数. $0\le l\le 4$时Fermat数是素数, 但对$l\ge 5$尚未发现一个素数. 参见\cite{OEIS} A000215. 

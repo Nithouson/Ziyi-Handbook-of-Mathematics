@@ -1,0 +1,121 @@
+
+\par 不定方程（又称丢番图方程，Diophantine equation）理论研究多项式方程的整数解或有理数解。针对特定（形式）的不定方程，核心的研究问题是：方程是否有整数（有理数）解？是否有无穷多整数（有理数）解？
+
+\section{二元二次不定方程}
+
+\begin{thm} \textbf{Fermat两平方和定理}\\
+设$p$是素数, 则关于$x,y$的方程$x^2+y^2=p$有整数解当且仅当$p=2$或$p\equiv 1\mod 4$. 
+\end{thm}
+\begin{proof}
+\par 由模4的二次剩余是0,1知$p\equiv 3\mod 4$时方程无解. $p=2$时显然有$2=1^2+1^2$. 下证$p=4k+1$时方程有正整数解. 
+%\par 由Wilson定理, $-1\equiv (4k)!\equiv \prod_{i=1}^{2k} i(-i) \equiv ((2k)!)^2 \mod p$, 故存在$x=(2k)!$, $y=1$, $m\in\mathbb{Z}_+$, 满足$x^2+y^2=mp$. 设$m$是最小的正整数, 使得关于$x,y$的方程$x^2+y^2=mp$有正整数解, 断言$m=1$. 若不然, 设$x^2+y^2=mp$, 取$-\frac{m}{2}\le a,b<\frac{m}{2}$, 使$a\equiv x \mod m$, $b\equiv y \mod m$, 则$a^2+b^2\equiv 0 \mod m$. 设$a^2+b^2=rm$, 则$r$为正整数(若不然, $r=0$推出$m|x$, $m|y$, 进而$m|p$, 由$m\neq 1$, $m=p$, 此时$x=0$或$y=0$, 矛盾), 且$r< \frac{m}{2}$. 
+\end{proof}
+
+\section{二元三次不定方程}
+
+\begin{dfn} \textbf{Mordell方程}\\
+设$c \in \mathbb{Z}$，关于$x,y \in \mathbb{Q}$的方程
+\begin{equation}
+    y^2-x^3=c
+\end{equation}
+称为Mordell方程\index{Mordell方程}（或Bachet方程）。
+\end{dfn}
+
+\section{其它重要方程}
+
+\begin{pro} \textbf{勾股方程}\\
+关于$x,y,z$的方程$x^2+y^2=z^2$称为勾股方程, 其全部正整数解由
+\begin{equation}
+(x,y,z)=(k(m^2-n^2), 2kmn, k(m^2+n^2))
+\end{equation}
+或
+\begin{equation}
+(x,y,z)=(2kmn, k(m^2-n^2), k(m^2+n^2))
+\end{equation}
+给出, 其中$k,m,n$为正整数, $m>n$, $(m,n)=1$且奇偶性不同. 
+\end{pro}
+\begin{proof}
+只需考虑$(x,y,z)=1$的情形. 此时显然$x,y$不能同为偶数. 若$x,y$同为奇数, $x^2+y^2\equiv 2 \mod 4$不是二次剩余, 矛盾. 故$x,y$只能一奇一偶，不妨$y$为偶数. 
+
+令$t=\frac{y}{x+z}$, 则$t\in \mathbb{Q}$, $0<t<1$, 
+\begin{equation*}
+    (x+z)^2 t^2=y^2=z^2-x^2
+\end{equation*}
+由$x+z>0$, 解得$x=\frac{1-t^2}{1+t^2}z$, $y=\frac{2t}{1+t^2}z$. 令$t=\frac{n}{m}$, 其中$m,n$为正整数, $(m,n)=1$, $m>n$, 则$\frac{x}{z}=\frac{m^2-n^2}{m^2+n^2}$, $\frac{y}{z}=\frac{2mn}{m^2+n^2}$. 由$(x,y,z)=1$, 
+\begin{equation*}
+    \frac{x}{m^2-n^2} = \frac{y}{2mn} = \frac{z}{m^2+n^2} = \frac{1}{q}
+\end{equation*}
+其中$q=(m^2-n^2, 2mn, m^2+n^2)$. 设$q$包含素因子$p$, 则$p|2n^2$; 若$p|n$, 亦有$p|m$, 与$(m,n)=1$矛盾, 故$p=2$. 分两种情况: 
+(i) 若$m,n$奇偶性不同, $m^2-n^2$为奇数, $q=1$, 此即题中所求. (ii) 若$m,n$同为奇数, $q=2$, 此时$y$为奇数, 与假设矛盾. 
+%令$m'=\frac{m+n}{2}$, $n'=\frac{m-n}{2}$, 则$(x,y,z)=(2m'n', m'^2-n'^2, m'^2+n'^2)$, 此时$m',n'$为正整数且$m'>n'$, $(m',n')=1$, 
+\end{proof}
+
+\par Fermat大定理指出, 对于正整数$n\ge 3$, 方程$x^n+y^n=z^n$没有正整数解. 
+
+\section*{文献注记}
+
+\section*{问题}
+\par \textbf{A组}
+\newcounter{probdio} 
+\stepcounter{probdio}
+\par \textbf{\theprobdio .} \cite{MiP} 设$d\in \mathbb{Q}_+$，证明存在边长均为有理数且面积为$d$的直角三角形当且仅当
+\begin{equation}
+    y^2=x^3-d^2x
+\end{equation}
+有$y\neq 0$的有理数解. 
+
+\stepcounter{probdio}
+\par \textbf{\theprobdio .} \cite{RPEC}
+设$(x_0,y_0)\in \mathbb{Q}$是Mordell方程$y^2-x^3=c$的一个解，且$y_0\neq 0$. 
+\par (1) 证明
+\begin{equation}
+    \left(\frac{x_0^4-8 c x_0}{4 y_0^2}, \frac{-x_0^6-20 c x_0^3+8 c^2}{8 y_0^3}\right)
+\end{equation}
+是曲线$y^2-x^3=c$在$(x_0,y_0)$处的切线与曲线的一个交点，这给出原方程的一个解. 上式称为\textbf{Bachet复制公式}.
+\par (2*) 若$x_0y_0\neq 0$, $c\notin \{1, -432\}$，该Mordell方程有无穷多个有理数解.
+
+\stepcounter{probdio}
+\par \textbf{\theprobdio .} 证明关于$x,y,z$的不定方程$x^4+y^4=z^2$没有正整数解. 
+
+\par \textbf{B组}
+
+\stepcounter{probdio}
+\par \textbf{\theprobdio .} \cite{SMI} 设$p,q\in \mathbb{N}$, 且$p>q$, 证明关于$x,y$的不定方程
+\begin{equation}
+    (x-y)^2=pxy-q
+\end{equation}
+没有正整数解. 
+
+\section*{解答}
+\newcounter{soldio} 
+\stepcounter{soldio}
+\par \textbf{\thesoldio .} \cite{MiP} 设直角三角形的三条边$a,b,c\in \mathbb{Q}_+$，$c$为斜边，则$d^2=\frac{1}{4}a^2(c^2-a^2)$. 取$x=-\frac{1}{2}a(c-a)$, $y=\frac{1}{2}a^2(c-a)$，则$(x,y)$是原方程的解。另一方面，若$(x,y)$是原方程的解且$y\neq 0$，则亦有$x\neq 0$，三边长为
+\begin{displaymath}
+\left\vert \frac{x^2-d^2}{y}\right\vert, \left\vert \frac{2xd}{y}\right\vert, \left\vert \frac{x^2+d^2}{y}\right\vert
+\end{displaymath}
+的直角三角形面积为$d$.
+\par \emph{注：本题给出了椭圆曲线有理点理论的一个应用例子。}
+
+\stepcounter{soldio}
+\par \textbf{\thesoldio .} 
+(1)该椭圆曲线在$(x_0,y_0)$处的切线斜率为$\frac{3x_0^2}{2y_0}$. 将切线方程与椭圆曲线方程联立，得到关于$x$的三次方程
+\begin{equation}
+    \left(3x_0^2(x-x_0)+2y_0^2\right)^2=4y_0^2(x^3+y_0^2-x_0^3)
+\end{equation}
+除$x=x_0$外, 方程的另一个解是
+\begin{equation}
+    x=\frac{x_0(9x_0^3-8y_0^2)}{4y_0^2}
+\end{equation}
+利用$y_0^2=x_0^3+c$代换即得证. 
+
+\stepcounter{soldio}
+\par \textbf{\thesoldio .} 反设方程有正整数解$(x,y,z)$使$z$最小, 则$(x^2,y^2,z)$是勾股方程的正整数解, 此时必有$(x^2,y^2,z)=1$, 由勾股方程的通解不妨设$x^2=m^2-n^2$, $y^2=2mn$, $z=m^2+n^2$, 其中$m,n\in \mathbb{Z}_+$, $m,n$互素且奇偶性不同. 对于$x^2+n^2=m^2$, 由于$x$是奇数, 有$x=u^2-v^2$, $n=2uv$, $m=u^2+v^2$, 其中$u,v\in \mathbb{Z}_+$, $u,v$互素且奇偶性不同. 由$y^2=2mn$及$(m,n)=1$, 存在$s,t\in \mathbb{Z}_+$, $m=s^2$, $n=2t^2$; 故$t^2=uv$. 又由$(u,v)=1$, 存在$p,q\in \mathbb{Z}_+$, $u=p^2$, $v=q^2$, 从而$p^4+q^4=s^2$, $(p,q,s)$是原方程的正整数解. 但$s\le m<z$, 与$z$的最小性矛盾. 
+\par \emph{注}: 这一证明由Fermat给出, 解决了Fermat大定理$n=4$的情形.
+
+\par \textbf{B组}
+\stepcounter{soldio}
+\par \textbf{\thesoldio .} \cite{SMI} 用反证法, 设存在一组正整数解$(x,y)$使得$x+y$最小. 由$pxy\ge p>q$知$x\neq y$, 由$x,y$的对称性不妨设$x>y$. 将原方程写为关于$x$的二次方程$x^2-(p+2)yx+y^2+q=0$, 则有
+\begin{equation}
+    x_\pm = y+\frac{py}{2} \pm \frac{ \sqrt{p^2y^2+4py^2-4q}}{2}
+\end{equation}
+由于$4py^2\ge 4p>4q$, $x_-<y$, 因此$x=x_+$. 又由$x_-=\frac{y^2+q}{x}>0$, $x_-=(p+2)y-x\in \mathbb{Z}$, 知$x_-$为正整数, 这推出$(y,x_-)$也为原方程的一组正整数解, 且$x_-+y<2y<x+y$, 矛盾. 

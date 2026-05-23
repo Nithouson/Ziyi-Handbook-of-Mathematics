@@ -1,0 +1,401 @@
+
+\section{整数}
+
+\begin{dfn}\textbf{整数} Integers\\
+考虑$\mathbb{N}\times \mathbb{N}$上的等价关系$\sim$: $(a,b)\sim(c,d)\iff a+d=b+c$. 对任意$(a,b)\in \mathbb{N}\times \mathbb{N}$, $(a,b)$所在的等价类称为一个整数, 记作$a—b$; 所有等价类构成的集合称为整数集, 记作$\mathbb{Z}$. 
+\end{dfn}
+上述关系的自反性、对称性显然; 若$a+d=b+c$, $c+f=d+e$, 则两式相加并消去$c+d$即得$a+f=b+e$, 因此传递性成立. 
+
+\begin{dfn}\textbf{整数的加法和乘法} Addition, Multiplication\\
+设$a,b,c,d \in \mathbb{N}$, 定义$a—b, c—d$的和、乘积如下:
+\begin{align}
+    &(a—b)+(c—d)=(a+c)—(b+d)\\
+    &(a—b)\times (c—d)=(ac+bd)—(ad+bc)
+\end{align}
+\end{dfn}
+\par 可以验证整数的加法和乘法是良定义的, 即若$(a,b)\sim (a',b')$, 则$(a—b)+(c—d)=(a'—b')+(c—d)$, $(a—b)\times (c—d)=(a'—b')\times (c—d)$. 类似结论对运算的第二项同样成立. 
+
+\begin{dfn}\textbf{整数的取负和减法} Negation, Subtraction\\
+设$a,b\in \mathbb{N}$, 定义$a—b$的相反数$-(a—b)=b—a$. 设$x,y\in \mathbb{Z}$, 定义$x,y$的差$x-y=x+(-y)$. 
+\end{dfn}
+
+\begin{pro}\textbf{整数的三歧性} Trichotomy of Integers\\
+设$x\in \mathbb{Z}$, 以下三种情形恰有一个成立:
+\begin{enumerate}
+    \item $x=0—0$;
+    \item 存在非零自然数$n$, $x=n—0$, 此时称$x$为正整数;
+    \item 存在非零自然数$n$, $x=0—n$, 此时称$x$为负整数.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+\par 设$x=a—b$, 由自然数序关系的三歧性, 下列三者之一成立: (i) $a>b$, 则存在非零自然数$c$, $a=b+c$, 因此$x=a—b=c—0$; (ii) $a<b$, 则存在非零自然数$c$, $b=a+c$, 因此$x=a—b=0—c$; (iii) $a=b$, 则$x=a—b=0—0$. 
+\par 若(1)与(2)或(3)同时成立, $0—0=n—0$或$0—0=0—n$, 则$n=0$, 矛盾; 若(2)(3)同时成立, 存在非零自然数$m,n$, $m—0=0—n$, $m+n=0$, 矛盾.
+\end{proof}
+
+
+\begin{pro} \textbf{整数集是整环}\\
+整数集$\mathbb{Z}$在加法、乘法运算下构成整环. 
+\end{pro}
+\begin{proof}
+容易验证整数加法满足交换律、结合律, $0$是加法单位元, $\forall x\in \mathbb{Z}$, $-x$是加法逆元, 因此$\mathbb{Z}$在加法下构成交换群. 容易验证整数乘法满足交换律, $1$是乘法单位元. 设$x=a—b,y=c—d,z=e—f\in \mathbb{Z}$, 验证结合律如下: $(xy)z=((ac+bd)—(ad+bc))(e—f)=(ace+bde+adf+bcf)—(acf+bdf+ade+bce)$; $x(yz)=(a—b)((ce+df)—(cf+de))=(ace+adf+bcf+bde)—(acf+ade+bce+bdf)$. 验证乘法对加法的分配律如下: $x(y+z)=(a-b)((c+e)—(d+f))=(ac+ae+bd+bf)—(ad+af+bc+be)=((ac+bd)—(ad+bc))+((ae+bf)—(af+be))=(a—b)(c—d)+(a—b)(e—f)=xy+xz$. 因此$\mathbb{Z}$在加法和乘法下构成交换环. 
+\par 显然$0\neq 1$, $\mathbb{Z}$不是平凡环. 只需证$\mathbb{Z}$无零因子. 设$x=a—b,y=c—d\in \mathbb{Z}$, $xy=0$且$x\neq 0$, 分两种情形: (i)若$x$是正整数, 此时$a\neq 0$, $b=0$, $0=xy=ac—ad$, 知$ac=ad$, $c=d$; (ii)若$x$是负整数, 此时$a=0$, $b\neq 0$, $0=xy=bd—bc$, 知$bd=bc$, $c=d$. 两种情形均有$y=0$. 
+\end{proof}
+
+\par 映射$\phi: \mathbb{N}\to \mathbb{Z}$, $n\mapsto n—0$是单射, 且满足$\phi(m+n)=\phi(m)+\phi(n)$, $\phi(mn)=\phi(m)\phi(n)$. $\phi$称为自然数集到整数集的同态. 在这一意义上, 可将自然数$n$与整数$n—0$等同, 从而$\mathbb{N}$成为$\mathbb{Z}$的子集. 对自然数$a,b$, 有$\phi(a)-\phi(b)=(a—0)+(0—b)=a—b$. 因此$a—b$可记为$a-b$. 
+
+\begin{dfn}\textbf{整数的序} Order of Integers\\
+定义$\mathbb{Z}$上的大于等于关系$\ge$ 如下: 对$x,y \in \mathbb{Z}$, $x\ge y \iff \exists n\in \mathbb{N}: x=y+n$. 
+\end{dfn}
+\par 这一定义是自然数序关系加法定义(命题\ref{pro:natural_order_add})的直接推广. 同样可定义大于关系: $x>y \iff x\ge y \land x\neq y$; 以及小于等于关系(大于等于关系的逆)、小于关系(大于关系的逆). 可以验证, $x>y$当且仅当存在非零自然数$n$, 使得$x=y+n$. 
+\par 可以验证整数的序关系满足三歧性; $\ge$是偏序关系. 设$x\in \mathbb{Z}$, $x$是正整数当且仅当$x>0$; $x$是负整数当且仅当$x<0$. 
+
+\begin{pro}\textbf{整数运算的保序性}\\
+设$x,y,z \in \mathbb{Z}$,
+\begin{enumerate}
+    \item 若$x>y$, 则$x+z>y+z$.
+    \item 若$x>y$, 则$-x<-y$. 
+    \item 若$x>y$且$z>0$, 则$xz>yz$. 
+\end{enumerate}
+\end{pro}
+\begin{proof}
+只证(3), 设$x=y+n$, $n>0$, 则$xz = yz + nz$. 由$n,z\in\mathbb{N}$知$nz\in\mathbb{N}$, 又由$n,z>0$知$nz\neq 0$, 故$nz>0$. 
+\end{proof}
+
+\section{有理数}
+
+\begin{dfn}\textbf{有理数} Rational\\
+整数环$\mathbb{Z}$的分式域称为有理数域, 记作$\mathbb{Q}$. 有理数域中的元素$r=\frac{p}{q}$, $p,q\in \mathbb{Z}$, $q\neq 0$, 称为有理数或分数, $p,q$分别称为分子和分母.  
+\end{dfn}
+
+\begin{dfn}\textbf{有理数的除法} Division\\
+设$x,y\in \mathbb{Q}$, $y\neq 0$, 定义$x,y$的商$\frac{x}{y}=xy^{-1}$. 
+\end{dfn}
+
+\par 容易验证, 这里的除号与分式域定义中的“形式除号”是一致的: 对$a,b\in \mathbb{Z}$, $ab^{-1}=\frac{a}{1} \frac{1}{b}=\frac{a}{b}$.
+
+\par 由$\mathbb{Q}-\{0\}$构成乘法群, 可定义非零有理数的整数次幂. 此外定义$0^0=1$; 对正整数$n$有$0^n=0$; 0的负整数次幂没有定义. 
+
+\begin{pro}\textbf{有理数的三歧性} Trichotomy of Rationals\\
+设$x\in \mathbb{Q}$, 以下三种情形恰有一个成立:
+\begin{enumerate}
+    \item $x=0$;
+    \item 存在正整数$a,b$, $x=\frac{a}{b}$, 此时称$x$为正有理数;
+    \item 存在正整数$a,b$, $x=\frac{-a}{b}$, 此时称$x$为负有理数.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+设$x=\frac{a}{b}$, 其中$a,b\in\mathbb{Z}$, $b\neq 0$. 若$b$为负整数, 则$-b$为正整数, 且$x=\frac{-a}{-b}$, 故不妨设$b$为正整数. 此时由$a$的三歧性, 知三种情形至少一种成立. 若(1)与(2)或(3)同时成立, $\frac{0}{1}=\frac{a}{b}$或$\frac{0}{1}=\frac{-a}{b}$, 知$a=0$, 矛盾. 若(2)(3)同时成立, 存在正整数$a,b,c,d$, 满足$\frac{a}{b}=\frac{-c}{d}$, 即$ad+bc=0$, 与$a,b,c,d$均非零矛盾. 
+\end{proof}
+\par 两个正有理数的和、乘积仍是正有理数. 
+
+\begin{dfn}\textbf{有理数的序} Order of Rationals\\
+定义$\mathbb{Q}$上的大于关系$>$ 如下: 对$x,y \in \mathbb{Q}$, $x>y \iff x-y$是正有理数. 
+\end{dfn}
+\par 同样可定义大于等于关系: $x\ge y \iff x\ge y \lor x=y$; 以及小于等于关系(大于等于关系的逆)、小于关系(大于关系的逆). 容易看出, 有理数$x$是正有理数当且仅当$x>0$; $x$是负有理数当且仅当$x<0$. 可以验证有理数的序关系满足三歧性, $\ge$是全序关系. 
+
+\begin{pro}\textbf{有理数运算的保序性}\\
+设$x,y,z \in \mathbb{Q}$, $n\in \mathbb{Z}$,
+\begin{enumerate}
+\item 若$x>y$, 则$x+z>y+z$.
+\item 若$x>y$且$z>0$, 则$xz>yz$.
+\item 若$x>y\ge 0$且$n>0$, 则$x^n>y^n$. 
+\end{enumerate}
+\end{pro}
+类似可证若$x\ge y$, $z\ge 0$, 则$xz\ge yz$. 
+
+
+\begin{dfn} \textbf{绝对值} Absolute Value\\
+设$x\in \mathbb{Q}$, $x$的绝对值定义为
+\begin{equation}
+|x|=\begin{cases}
+x, x\ge 0\\
+-x, x<0
+\end{cases}
+\end{equation}
+\end{dfn}
+
+\begin{pro} \textbf{绝对值的性质}\\
+设$x,y\in \mathbb{Q}$, $n\in \mathbb{Z}$,
+\begin{enumerate}
+\item 非负性: $|x|\ge 0$, 等号成立当且仅当$x=0$.
+\item $-|x|\le x \le |x|$.
+\item 可乘性: $|xy|=|x||y|$, 特别地, $|-x|=|x|$.
+\item 三角不等式: $|x+y|\le |x|+|y|$.
+\item 当$x\neq 0$, $|x^n|=|x|^n$.
+\end{enumerate}
+\label{pro:abs_rational}
+\end{pro}
+\begin{proof}
+前三个命题分非负数、负数分情况讨论即得. (4) 若$x+y\ge 0$, 由$x\le |x|$, $y\le |y|$, $|x+y|=x+y\le |x|+|y|$; 若$x+y<0$, 则由$-x\le |-x|=|x|$, $-y\le |-y|=|y|$, $|x+y|=-x-y\le |x|+|y|$. (5) 对$n$归纳可证$n\in \mathbb{N}$的情形; 当幂次为负整数时, $1=|x^{-n}x^n|=|x^{-n}||x|^n$, 故$|x^{-n}|=|x|^{-n}$.
+\end{proof}
+
+\begin{col} \textbf{距离} Distance\\
+定义$\mathbb{Q}\times\mathbb{Q}$上的函数$d$: $d(x,y)=|x-y|$, 则$d$是$\mathbb{Q}$上的距离. 
+\end{col}
+\begin{proof}
+距离的非负性、三角不等式、对称性分别由绝对值的非负性、三角不等式及$|-x|=|x|$推出.
+\end{proof}
+
+\section{实数}
+
+\par 考虑$\mathbb{Q}$在距离$d(x,y)=|x-y|$下形成的度量空间, 本节基于$\mathbb{Q}$上的Cauchy列构造实数. 除基于Cauchy列的方法外, 另有两种方式可以由有理数构造实数: (1) Dedekind分割. 这种方式更便于导出序的性质, 但导出运算的性质相对不便. (2) 无限不循环小数. 尽管初等数学采用这种直观的方法, 但需要处理诸如$0.999\dots=1.000\dots$的问题, 实际上更为复杂. 
+
+
+\begin{dfn} \textbf{实数} Real Numbers\\
+考虑$\mathbb{Q}$上的Cauchy列构成的集合, 定义其上的等价关系$\sim$: $\{a_n\}\sim \{b_n\} \iff \lim\limits_{n\to \infty} |a_n-b_n|=0$. $\{a_n\}$所在的等价类称为一个实数, 记作$\operatorname{LIM} a_n$; 所有等价类构成的集合称为实数集, 记作$\mathbb{R}$. 
+\end{dfn}
+上述关系的自反性、对称性显然. 设$\{a_n\}\sim \{b_n\}, \{b_n\}\sim \{c_n\}$, 传递性由$|a_n-c_n|\le |a_n-b_n|+|b_n-c_n|$得出. 
+
+\subsection{运算和序}
+
+\begin{pro} \textbf{Cauchy列有界} \\
+设有理数序列$\{a_n\}$是Cauchy列, 则$\{a_n\}$有界.
+\end{pro}
+\begin{proof}
+由$\{a_n\}$是Cauchy列, 存在自然数$N$, $\forall  n\ge N: |a_n-a_N|<1$. 令$T=\max\limits_{0\le i< N} |a_i|$, 则$\forall n\in \mathbb{N}: |a_n|\le \max \{T, |a_N|+1\}$. 
+\end{proof}
+
+\begin{pro} \textbf{Cauchy列的和、乘积是Cauchy列} \\
+设有理数序列$\{a_n\},\{b_n\}$是Cauchy列, 则$\{a_n+b_n\}, \{a_nb_n\}$是Cauchy列.
+\end{pro}
+\begin{proof}
+先证$\{a_n+b_n\}$是Cauchy列. 对任意$\varepsilon>0$, 存在$N_1, N_2\in \mathbb{N}$, $\forall m,n\ge N_1: |a_m-a_n|<\frac{\varepsilon}{2}$; $\forall m,n\ge N_2: |b_m-b_n|<\frac{\varepsilon}{2}$. 取$N=\max \{N_1,N_2\}$, 则$\forall m,n\ge N$, 
+\begin{equation}
+    |a_m+b_m-a_n-b_n|\le |a_m-a_n|+|b_m-b_n|<\varepsilon
+\end{equation}
+命题得证. 
+\par 再证$\{a_nb_n\}$是Cauchy列. 由于Cauchy列有界, 存在$M_1, M_2>0$, $\forall n\in \mathbb{N}: |a_n|\le M_1$, $|b_n|\le M_2$. 对任意$\varepsilon>0$, 存在$N_1, N_2\in \mathbb{N}$, $\forall m,n\ge N_1: |a_m-a_n|<\frac{\varepsilon}{2M_2}$; $\forall m,n\ge N_2: |b_m-b_n|<\frac{\varepsilon}{2M_1}$. 取$N=\max \{N_1,N_2\}$, 则$\forall m,n\ge N$,
+\begin{equation}
+    |a_mb_m-a_nb_n|=|a_m(b_m-b_n)+(a_m-a_n)b_n|\le |a_m||b_m-b_n|+|a_m-a_n||b_n| < \varepsilon
+\end{equation}
+命题得证. 
+\end{proof}
+同样的证明可以得出, 上述两个命题对实数序列$\{a_n\}, \{b_n\}$仍然成立. 
+
+\begin{dfn} \textbf{实数的加法和乘法} Addition, Multiplication\\
+设$\{a_n\},\{b_n\}$是$\mathbb{Q}$上的Cauchy列, 定义$\operatorname{LIM} a_n$, $\operatorname{LIM} b_n$的和、乘积如下:
+\begin{align}
+&\operatorname{LIM} a_n + \operatorname{LIM} b_n=\operatorname{LIM} (a_n+b_n)\\
+&\operatorname{LIM} a_n \times \mathrm{LIM} b_n=\operatorname{LIM} a_nb_n
+\end{align}
+\end{dfn}
+可以验证实数的加法和乘法是良定义的, 即若$\operatorname{LIM} a_n = \operatorname{LIM} a'_n$, 则$\operatorname{LIM} (a_n+b_n) = \operatorname{LIM} (a'_n+b_n) $; 由Cauchy列的有界性, $\operatorname{LIM} a_nb_n = \operatorname{LIM} a'_nb_n$. 类似结论对运算的第二项同样成立.
+
+\begin{lem} \textbf{非零实数可定义倒数}\\
+设$x\in \mathbb{R}$, $x\neq 0$, 则存在$\mathbb{Q}$上的Cauchy列$\{a_n\}$, 满足$\exists c\in \mathbb{Q}_+ \forall n\in \mathbb{N}: |a_n|\ge c$, 且$\operatorname{LIM} a_n =x$.  
+\end{lem}
+\begin{proof}
+设$x=\operatorname{LIM} b_n$, 其中$\{b_n\}$是$\mathbb{Q}$上的Cauchy列. 由$x\neq 0$, $\exists \varepsilon>0 \forall N \in \mathbb{N}\exists n_0\ge N: |b_{n_0}|\ge \varepsilon$. 由$\{b_n\}$是Cauchy列, $\exists N_1 \in \mathbb{N}\forall m,n\ge N_1: |b_m-b_n|<\frac{\varepsilon}{2}$. 此时存在$n_1\ge N_1$, $|b_{n_1}|\ge \varepsilon$, 则$\forall n\ge N_1$, 有$|b_n|\ge |b_{n_1}|-|b_{n_1}-b_n| > \frac{\varepsilon}{2}$. 令$c=\frac{\varepsilon}{2}$, 
+\begin{equation}
+    a_n=\begin{cases}
+        \frac{\varepsilon}{2}, 0\le n< N_1\\
+        b_n, n\ge N_1
+    \end{cases}
+\end{equation}
+即满足条件. 
+\end{proof}
+
+\begin{pro}\textbf{实数集是域}\\
+实数集$\mathbb{R}$在加法、乘法运算下构成域. 
+\end{pro}
+\begin{proof}
+容易验证加法交换律、结合律, $\operatorname{LIM}0$是加法单位元; 当$\{a_n\}$为$\mathbb{Q}$上的Cauchy列, $\{-a_n\}$也为$\mathbb{Q}$上的Cauchy列, 且$\operatorname{LIM}-a_n$是$\operatorname{LIM}a_n$的加法逆元. 因此$\mathbb{R}$在加法下构成交换群. 容易验证乘法满足交换律、结合律, $\operatorname{LIM}1$是乘法单位元, 且$\operatorname{LIM}1\neq \operatorname{LIM}0$, 且乘法对加法的分配律成立, 只需证非零实数存在乘法逆元.
+\par 设$x\in \mathbb{R}$, $x\neq 0$, 则存在$\mathbb{Q}$上的Cauchy列$\{a_n\}$, $ x=\operatorname{LIM} a_n$, 且存在$c>0$, $\forall n\in \mathbb{N}: |a_n|\ge c$. 对任意$\varepsilon>0$, 存在自然数$N$, $\forall m,n\ge N$, 有$|a_m-a_n|<c^2\varepsilon$, 从而
+\begin{equation}
+    \left|\frac{1}{a_m}-\frac{1}{a_n}\right| = \frac{|a_n-a_m|}{|a_ma_n|} < \frac{c^2\varepsilon}{c^2} = \varepsilon
+\end{equation}
+因此$\{a_n^{-1}\}$是Cauchy列. 定义$x^{-1}=\operatorname{LIM} a_n^{-1}$, 则$xx^{-1}=1$. 
+\end{proof}
+\par 如上定义的$x^{-1}$称为$x$的倒数, 群中逆元的唯一性保证了倒数不依赖$\{a_n\}$的选取. 
+
+\par 定义映射$\sigma: \mathbb{Q} \to \mathbb{R}$, $q\mapsto \operatorname{LIM}q$. 容易验证$\sigma$是单射; 且是$\mathbb{Q} \to \mathbb{R}$的单位环同态, 从而$\sigma(\mathbb{Q})$是$\mathbb{R}$的子域. 因此可将$\mathbb{Q}$视为$\mathbb{R}$的子域. 若$x\in \mathbb{R}-\mathbb{Q}$, 称$x$为无理数(irrational number). 
+
+\begin{pro}\textbf{实数的三歧性} Trichotomy of Reals\\
+设$x\in \mathbb{R}$, 以下三种情形恰有一个成立:
+\begin{enumerate}
+    \item $x=0$;
+    \item 存在正有理数$c$和$\mathbb{Q}$上的Cauchy列$\{a_n\}$, 满足$\forall n\in \mathbb{N}: a_n\ge c$, $x=\operatorname{LIM} a_n$, 此时称$x$为正实数;
+    \item 存在正有理数$c'$和$\mathbb{Q}$上的Cauchy列$\{b_n\}$, 满足$\forall n\in \mathbb{N}: b_n\le -c'$, $x=\operatorname{LIM} b_n$, 此时称$x$为负实数.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+设$x\neq 0$, 则存在$\mathbb{Q}$上的Cauchy列$\{a_n\}$, 对某个正有理数$c$, 有$|a_n|\ge c$恒成立. 由Cauchy列的定义, 存在$N\in \mathbb{N}$, 当$m,n\ge N$, $|a_m-a_n|<\frac{c}{2}$. 若$a_N\ge c$, 则对任意$n\ge N$, $a_n = a_N +(a_n-a_N) > c - \frac{c}{2}=\frac{c}{2}$. 令
+\begin{equation}
+    a_n'=\begin{cases}
+        \frac{c}{2}, 0\le n< N\\
+        a_n, n\ge N
+    \end{cases}
+\end{equation}
+则$\{a_n'\}$仍是Cauchy列, $\operatorname{LIM}a_n'=\operatorname{LIM}a_n=x$, 且所有项大于等于$\frac{c}{2}$, 即$x$是正实数. 若$a_N\le -c$, 类似可证$x$是负实数. 
+\par 设$\operatorname{LIM}a_n = 0$, 则$|a_n|$没有正的下界, 故$0$不是正实数或负实数; 若$\mathbb{Q}$上的Cauchy列$\{a_n\}$, $\{b_n\}$满足$a_n>c$, $b_n<-c'$对任意自然数$n$成立, 则$|a_n-b_n|\ge c+c'>0$, 故$\operatorname{LIM} a_n \neq \operatorname{LIM} b_n$, 即正实数不能同时为负实数. 
+\end{proof}
+\par 两个正实数的和、乘积仍是正实数. 
+\par 基于实数的三歧性, 有理数绝对值的定义可以直接推广到实数, 且可以验证命题\ref{pro:abs_rational} 中绝对值的性质对实数仍然成立, 因此$d:\mathbb{R}\times \mathbb{R}\to \mathbb{R}$, $(x,y)\mapsto |x-y|$也是$\mathbb{R}$上的距离. 
+
+\begin{dfn}\textbf{实数的序} Order of Reals\\
+定义$\mathbb{R}$上的大于关系$>$ 如下: 对$x,y \in \mathbb{R}$, $x>y \iff x-y$是正实数. 
+\end{dfn}
+\par 同样可定义大于等于关系: $x\ge y \iff x\ge y \lor x=y$; 以及小于等于关系(大于等于关系的逆)、小于关系(大于关系的逆). 容易看出, 实数$x$是正实数当且仅当$x>0$; $x$是负实数当且仅当$x<0$. 实数的序关系同样满足三歧性, $\ge$是全序关系. 
+
+\par 为了一些结果陈述方便, 引入正无穷$+\infty$和负无穷$-\infty$, 满足$+\infty, -\infty \notin \mathbb{R}$, $+\infty \neq -\infty$. $\mathbb{R}$上的取反运算和序关系可扩展到$\mathbb{R}\cup \{\infty, -\infty\}$: 令$-(+\infty)=-\infty$; $-(-\infty)=\infty$. 设$x,y \in \mathbb{R}\cup \{\infty, -\infty\}$, 则$x\le y$当且仅当: (i) $x,y\in \mathbb{R}, x\le y$; 或(ii) $x=-\infty$; 或(iii) $y=+\infty$. 扩展后序关系仍满足三歧性, $\le$仍是全序关系. 
+
+\begin{pro}\textbf{实数运算的保序性}\\
+设$x,y,z \in \mathbb{R}$, $n$为正整数,  
+\begin{enumerate}
+\item 若$x>y$, 则$x+z>y+z$.
+\item 若$x>y$且$z>0$, 则$xz>yz$. 
+\item 若$x>y>0$, 则$x^n>y^n$, $x^{-n}<y^{-n}$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+(1)(2)证明略. (3)对$n$归纳可得$x^n>y^n$. 若$x^{-n}\ge y^{-n}$, 则$1=x^nx^{-n}\ge x^ny^{-n}>y^ny^{-n}=1$, 矛盾. 
+\end{proof}
+
+\begin{lem}\textbf{形式极限的保序性}\\
+设$x\in \mathbb{R}$, $\{a_n\}, \{b_n\}$是$\mathbb{Q}$上的Cauchy列,
+\begin{enumerate}
+\item 若$\forall n: a_n\ge b_n$, 则$\operatorname{LIM} a_n \ge \operatorname{LIM} b_n$.
+\item 若$\forall n: a_n\ge x$, 则$\operatorname{LIM} a_n \ge x$. 
+\end{enumerate}
+\label{lem:formal_limit_preserves_order}
+\end{lem}
+\begin{proof}
+\par (1) 令$c_n=a_n-b_n$, 则$\{c_n\}$也为$\mathbb{Q}$上的Cauchy列. 若$\operatorname{LIM} c_n < 0$, 存在正有理数$q$和$\mathbb{Q}$上的Cauchy列$\{d_n\}$, $\forall n:d_n\le -c$且$\operatorname{LIM} c_n= \operatorname{LIM} d_n$, 这与$\forall n: |c_n-d_n|\ge q$矛盾. 因此$\operatorname{LIM} a_n -\operatorname{LIM} b_n = \operatorname{LIM} c_n \ge 0$, 命题得证. 
+\par (2) 反设$\operatorname{LIM} a_n<x$, 则存在$q\in \mathbb{Q}$, $\operatorname{LIM} a_n<q<x$, 由
+$\forall n: a_n\ge q$, $\operatorname{LIM} a_n\ge q$, 矛盾.
+\end{proof}
+若上述命题的条件改为存在正整数$N$, 当$n\ge N$时成立, 则结论仍然成立. 
+\par 设$x$是正实数, 由形式极限的保序性则存在正有理数$q$, 满足$x\ge q$; 由Cauchy列的有界性和有理数上取整的存在性, 存在$N\in \mathbb{N}$, $x\le N$. 
+
+\begin{pro} \textbf{实数的取整}\\
+设$x\in \mathbb{R}$,
+\begin{enumerate}
+\item 存在唯一的$n\in\mathbb{Z}$, $n\le x < n+1$, 称$n$为$x$的下取整, 记作$n=\lfloor x\rfloor$. 
+\item 存在唯一的$m\in\mathbb{Z}$, $m-1< x \le m$, 称$m$为$x$的上取整, 记作$m=\lceil x\rceil$. 
+\end{enumerate}
+\end{pro}
+\begin{proof}(1) 存在性: 先证$x\in \mathbb{Q}$的情形. 设$x=\frac{p}{q}$, $p,q\in \mathbb{Z}$, $q>0$, 则$n\le x < n+1 \iff qn\le p < q(n+1)$. 令$r=p-qn$, 有$0\le r< q$. 由整数的带余除法(命题\ref{pro:div_rem}), 满足条件的$n$存在. 一般地, 设实数$x=\operatorname{LIM}a_n$, 其中$\{a_n\}$是$\mathbb{Q}$上的Cauchy列, 则存在自然数$N$, $\forall n\ge N$, $|a_n-a_N|< \frac{1}{2}$, 即$a_N-\frac{1}{2}<a_n<a_N+\frac{1}{2}$. 由$\operatorname{LIM}$的保序性, $a_N-\frac{1}{2}<x<a_N+\frac{1}{2}$, 从而$\lfloor a_N \rfloor -1 < x < \lfloor a_N \rfloor+ 2$. 因此$\lfloor a_N \rfloor -1, \lfloor a_N \rfloor, \lfloor a_N \rfloor+1$中必有一个整数满足要求. 
+\par 唯一性: 若整数$n,n'$同时满足要求, 不妨设$n<n'$, 则$n\le n'-1$, $x<n+1\le n'$, 与$x\ge n'$矛盾. 
+\par (2) 若$x$不是整数, 则$m-1<x<m$, 由下取整的唯一性知$m=\lfloor x \rfloor+1$, 这一取法显然满足条件. 若$x$是整数, $m=x$即满足条件. 若$m\neq x$, 则$x<m$蕴含$x\le m-1$, 矛盾.  
+\end{proof}
+
+\begin{pro} \textbf{有理数在实数中的稠密性} \\
+设$x,y\in \mathbb{R}$, $x<y$, 则存在$z\in\mathbb{Q}$, $x<z<y$. 
+\end{pro}
+\begin{proof}
+取充分大的正整数$N$, 使得$\frac{2}{y-x}<N$, 即$Ny-2>Nx$. 令$L = \lfloor Ny \rfloor-1$, 则$Ny-2<L$. 因此$Nx<L<\lfloor Ny \rfloor\le Ny$, $x<\frac{L}{N}<y$. 
+\end{proof}
+
+\begin{pro} \textbf{形式极限与极限的一致性} \\
+设$\{a_n\}$是$\mathbb{Q}$上的Cauchy列, 则$\{a_n\}$在$\mathbb{R}$上收敛, 且
+\begin{equation}
+    \lim\limits_{n\to\infty} a_n = \operatorname{LIM} a_n
+\end{equation}
+\end{pro}
+\begin{proof}
+记$L=\operatorname{LIM} a_n$, 若命题不成立, 则存在$\varepsilon>0$, $\forall N \exists n\ge N: |a_n-L|\ge \varepsilon$. 由$\{a_n\}$是Cauchy列, $\exists M \forall m,n \ge M: |a_n-a_m|< \frac{\varepsilon}{2}$. 取$m\ge M$使得$|a_m-L|\ge \varepsilon$. 若$a_m\ge L+\varepsilon$, 则$\forall n\ge M: a_n \ge a_m - |a_n-a_m| > L + \frac{\varepsilon}{2}$; 若$a_m\le L-\varepsilon$, 则$\forall n\ge M: a_n < L - \frac{\varepsilon}{2}$. 无论何种情形, 均与引理\ref{lem:formal_limit_preserves_order}矛盾. 
+\end{proof}
+
+\subsection{连续性}
+
+\begin{thm}\textbf{确界存在定理}\\
+设非空集合$E\subseteq \mathbb{R}$, 若$E$的上界存在, 则$E$的上确界$\sup E$存在. 
+\end{thm}
+\begin{proof}
+设$M$是$E$的一个上界, $x_0\in E$. 对任意正整数$n$, 由实数的Archimedean性质, 存在整数$K$满足$\frac{K}{n}\ge M$; 也存在整数$L$满足$\frac{L}{n}> -x_0$, 因此$\frac{-L}{n}<x_0$. 因此$\frac{K}{n}$是$E$的上界, 而$\frac{-L}{n}$不是$E$的上界, 此时显然有$-L<K$. 断言存在唯一的整数$m>-L$, 满足$\frac{m}{n}$是$E$的上界, 而$\frac{m-1}{n}$不是$E$的上界, 记作$m_n$. 事实上, 唯一性显然; 存在性用反证法, 假设$m$不存在, 由归纳法得$\forall t\in \mathbb{N}: \frac{-L+t}{n}$不是$E$的上界, 与$\frac{K}{n}$是$E$的上界矛盾. 
+\par 设$N$为正整数, 对任意$n,n'\ge N$, 有$\frac{m_n}{n}>\frac{m_{n'}-1}{n'}$, $\frac{m_n'}{n'}>\frac{m_n-1}{n}$, 从而
+\begin{equation}
+    \left|\frac{m_n}{n}-\frac{m_{n'}}{n'}\right|<\frac{1}{N}
+\end{equation}
+因此$\{\frac{m_n}{n}\}$是$\mathbb{Q}$上的Cauchy列, 令$S=\operatorname{LIM} \frac{m_n}{n}$, 由$\operatorname{LIM} \frac{1}{n}=0$, 亦有$S=\operatorname{LIM} \frac{m_n-1}{n}$. 对任意$x\in E$, 由$\forall n: x\le \frac{m_n}{n}$, 知$x\le S$; 对$E$的任意上界$y$, 由$\forall n: y\ge \frac{m_n-1}{n}$, 知$y\ge S$, 故$S$为$E$的上确界. 
+\end{proof}
+类似地, 若非空集合$E\subseteq \mathbb{R}$有下界, 则有下确界$\inf E$. 若$E$无上界, 记$\sup E = \infty$; 若$E$无下界, 记$\inf E = -\infty$. $\infty,-\infty$是不等于任意实数的两个不同元素, $\mathbb{R}$上的全序关系$\le$可扩展到$\mathbb{R}\cup\{\infty, -\infty\}$: 定义$\infty$为最大元, $-\infty$为最小元. 
+
+\begin{thm}\textbf{单调收敛原理}\\
+设实数列$\{a_n\}$单调递增且有上界, 则$\lim\limits_{n\to \infty} a_n = \sup \{a_n\vert n\in \mathbb{N}\}$. 
+\end{thm}
+\begin{proof}
+由确界存在定理, 存在实数$M=\sup \{a_n\vert n\in \mathbb{N}\}$. $\forall \varepsilon>0$, $\exists N: a_N > M-\varepsilon$. 由$\{a_n\}$单调递增, $\forall n\ge N: M \ge a_n\ge a_N > M-\varepsilon$, $|a_n-M|< \varepsilon$, 得证. 
+\end{proof}
+类似地, 单调递减且有下界的实数列收敛, 极限等于其下确界. 
+
+\section{复数}
+
+\begin{dfn}  \textbf{复数} Complex numbers\\
+将任意$(a,b)\in \mathbb{R}\times \mathbb{R}$记作$a+b\mathrm{i}$, 并在$\mathbb{R}\times \mathbb{R}$上定义加法和乘法如下:
+\begin{align}
+    &(a+b\mathrm{i})+(c+d\mathrm{i})=(a+c)+(b+d)\mathrm{i}\\
+    &(a+b\mathrm{i}) (c+d\mathrm{i}) = (ac-bd)+(ad+bc)\mathrm{i}
+\end{align}
+则$\mathbb{R}\times \mathbb{R}$构成域, 称为复数域$\mathbb{C}$. $\mathbb{C}$的元素$a+b\mathrm{i}, a,b\in \mathbb{R}$称为复数; 其中$a$称为实部, $b\mathrm{i}$称为虚部. 
+\end{dfn}
+
+\begin{proof}
+容易验证复数的加法满足交换律、结合律, $0+0\mathrm{i}$是加法单位元, $-a+(-b)\mathrm{i}$是$a+b\mathrm{i}$的加法逆元, 因此复数在加法下构成交换群. 容易验证复数乘法满足交换律、对加法的分配律; $1+0\mathrm{i}$是乘法单位元. 验证乘法结合律如下:
+\begin{align*}
+    &((a+b\mathrm{i})(c+d\mathrm{i}))(e+f\mathrm{i})
+    = ((ac-bd)+(ad+bc)\mathrm{i})(e+f\mathrm{i})\\
+    =& (ace-bde-adf-bcf)+(ade+bce+acf-bdf)\mathrm{i}\\
+    =& (a+b\mathrm{i})(ce-df+(cf+de)\mathrm{i})
+    = (a+b\mathrm{i})((c+d\mathrm{i})(e+f\mathrm{i}))
+\end{align*}
+因此复数在加法、乘法下构成交换单位环. 设$a+b\mathrm{i}\neq 0+0\mathrm{i}$, 则$a^2+b^2>0$, 可以验证
+\begin{equation}
+    (a+b\mathrm{i})^{-1} = \frac{a}{a^2+b^2} + \frac{-b}{a^2+b^2}\mathrm{i}
+\end{equation}
+故复数在加法、乘法下构成域. 
+\end{proof}
+映射$\sigma: \mathbb{R} \to \mathbb{C}$: $x\mapsto x+0\mathrm{i}$是单射, 且是$\mathbb{R} \to \mathbb{C}$的单位环同态, 从而$\sigma(\mathbb{R})$是$\mathbb{C}$的子域. 因此可将$\mathbb{R}$视为$\mathbb{C}$的子域. 以下将复数$x+0\mathrm{i}$简记为$x$; $0+y\mathrm{i}$简记为$y\mathrm{i}$; $x+(-y)\mathrm{i}$简记为$x-y\mathrm{i}$. 
+
+由于$\mathrm{i}\cdot \mathrm{i}=-1$, 有时也将$\mathrm{i}$记为$\sqrt{-1}$. 
+
+
+\section*{阅读材料}
+
+\par \cite{AnT1}讲述了从自然数到实数逐步构建数系的过程. 
+
+\par \cite{ISC}提供了由实数的十进制小数表示查找符号表达式的工具. 
+
+\section*{问题}
+\newcounter{probnum} 
+
+\stepcounter{probnum}
+\par \textbf{\theprobnum .} \cite{AnT1} 设实数序列$\{a_n\},\{b_n\}$满足$\lim\limits_{n\to \infty} |a_n-b_n|=0$. 证明: $\{a_n\}$是Cauchy列当且仅当$\{b_n\}$是Cauchy列. 
+
+\stepcounter{probnum}
+\par \textbf{\theprobnum .} (\textbf{Archimedean性质}) 设$x\in \mathbb{R}$, $\varepsilon$为正实数, 存在正整数$M$, $M\varepsilon>x$.
+
+\stepcounter{probnum}
+\par \textbf{\theprobnum .} \cite{AnT1} 设非空集合$E\subseteq \mathbb{R}$有上界, 令$-E=\{-x\vert x\in E\}$, 则$\inf -E=-\sup E$.
+
+\stepcounter{probnum}
+\par \textbf{\theprobnum .} \cite{AnT1} 设$x,y\in \mathbb{R}$, $x<y$, 则存在$z\in \mathbb{R}-\mathbb{Q}$, $x<z<y$. 
+
+\stepcounter{probnum}
+\par \textbf{\theprobnum .} 证明: 复数的取共轭运算$x+y\mathrm{i}\mapsto x-y\mathrm{i}$是复数域$\mathbb{C}$的自同构. 
+
+\section*{解答}
+\newcounter{solnum}
+
+\stepcounter{solnum}
+\par \textbf{\thesolnum .} 设$\{a_n\}$是Cauchy列, 往证$\{b_n\}$是Cauchy列. 对任意$\varepsilon>0$, 存在正整数$N_1$, $\forall m, n\ge N_1: |a_m-a_n|<\frac{\varepsilon}{3}$; 存在正整数$N_2$, $\forall n\ge N_2: |a_n-b_n|<\frac{\varepsilon}{3}$. 取$N=\max\{N_1, N_2\}$, $\forall m,n \ge N$,
+\begin{equation}
+    |b_m-b_n| \le |b_m-a_m|+|a_m-a_n|+|a_n-b_n|<\varepsilon
+\end{equation}
+命题得证. 
+
+\stepcounter{solnum}
+\par \textbf{\thesolnum .} 若$x\le 0$, $M=1$即成立. 若$x>0$, 令$M=\lceil \frac{x}{\varepsilon} \rceil + 1$, 则$M\varepsilon \ge x + \varepsilon > x$.
+
+\stepcounter{solnum}
+\par \textbf{\thesolnum .} 由确界存在定理, $\sup E$存在. 记$M=\sup E$, 则$\forall x\in E: x\le M$, 从而$-x \ge -M$, $-M$是$-E$的下界. 若$y$为$-E$的下界, 则$-y$为$E$的上界, 由$-y\ge M$知$y \le -M$. 
+
+\stepcounter{solnum}
+\par \textbf{\thesolnum .} 由有理数在实数中的稠密性, 存在$q\in \mathbb{Q}$, $x+\sqrt{2}<q<y+\sqrt{2}$, 从而$x<q-\sqrt{2}<y$, 且$q-\sqrt{2}$为无理数. 
+
+\stepcounter{solnum}
+\par \textbf{\thesolnum .} $\sigma(a+b\mathrm{i}+c+d\mathrm{i})=a+c-(b+d)\mathrm{i} = \sigma (a+b\mathrm{i})+\sigma(c+d\mathrm{i})$. 
+\begin{equation*}
+\sigma(a+b\mathrm{i})\sigma(c+d\mathrm{i}) = (a-b\mathrm{i})(c-d\mathrm{i})=(ac-bd)-(ad+bc)\mathrm{i} = \sigma((a+b\mathrm{i})(c+d\mathrm{i}))
+\end{equation*}
+又有$\sigma(1)=1$. 故取共轭是单位环同态, 容易验证是双射, 从而是同构. 

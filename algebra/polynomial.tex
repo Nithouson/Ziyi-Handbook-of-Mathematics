@@ -1,0 +1,331 @@
+
+\section{多项式环}
+\begin{dfn} \textbf{多项式} Polynomial\\
+设$R$是交换环, 若$R$中元素构成的序列$\{a_k\}_{k\in \mathbb{N}}$满足$\{k\in \mathbb{N}\vert a_k\neq 0\}$是有限集, 称$\{a_k\}$为$R$上的多项式, 记作
+\begin{equation}
+    \sum_{k=0}^\infty a_k x^k
+\end{equation}
+其中$x$称为不定元; $a_k$称为$k$次项系数. $R$上多项式的集合记为$R[x]$. 在$R[x]$上定义加法和乘法如下:
+\begin{align}
+    \left(\sum_{k=0}^\infty a_k x^k\right) + \left(\sum_{k=0}^\infty b_k x^k\right) = \sum_{k=0}^\infty (a_k+b_k) x^k\\
+    \left(\sum_{k=0}^\infty a_k x^k\right)  \left(\sum_{k=0}^\infty b_k x^k\right) = \sum_{k=0}^\infty \left(\sum_{i=0}^k a_ib_{k-i}\right) x^k
+\end{align}
+\end{dfn}
+所有系数均为0的多项式称为零多项式. 
+
+对$f\in R[x]$, $f$同时定义了$R$上的函数$f(x)=\sum_k a_kx^k$. 
+
+\begin{dfn} \textbf{多项式的次数} Degree\\
+设$f(x)=\sum_{k} a_kx^k$为交换环$R$上的非零多项式, 则$f$的次数
+\begin{equation}
+    \deg f = \max \{k\in \mathbb{N}\vert a_k \neq 0\} 
+\end{equation}
+零多项式的次数为$-\infty$. 
+\end{dfn}
+
+设$f$为交换单位环上的非零多项式, $n=\deg f$. 若$f$的$n$次项系数为1, 称$f$是首一的(monic). 
+
+\begin{pro}\textbf{多项式和、积的次数}\\
+设$R$是交换环, 非零多项式$f,g \in R[x]$, 
+\begin{enumerate}
+\item $\deg (f+g) \le \max \{\deg f, \deg g\}$;
+\item $\deg fg \le \deg f+\deg g$; 当$R$是整环, 等号必然成立. 
+\end{enumerate}
+\label{pro:poly_deg}
+\end{pro} 
+
+\begin{proof}
+(1) 若$f+g=0$, 显然成立. 否则若$n=\deg(f+g)>\max \{\deg f, \deg g\}$, 则$f+g$的$n$次项系数非0, 与$f,g$的$n$次项系数均为0矛盾. (2) 若$fg=0$, 显然成立. 否则设$m=\deg f$, $n=\deg g$, $f(x)=\sum_{k=0}^m a_k x^k$, $g(x)=\sum_{k=0}^n b_k x^k$, 则$fg$的$m+n$次项系数为$a_mb_n$, 更高次项系数均为0. 当$R$是整环, 由$a_m\neq 0$, $b_n\neq 0$知$a_mb_n\neq 0$, 从而$\deg fg = m+n$. 
+\end{proof}
+
+\begin{pro} \textbf{多项式构成交换环}\\
+设$R$是交换环,
+\begin{enumerate}
+\item $R[x]$在多项式加法、乘法下构成交换环. 
+\item 当$R$是单位环, $R[x]$也为单位环.
+\item 当$R$是整环, $R[x]$也为整环.
+\end{enumerate}
+\end{pro}
+
+\begin{proof}
+(1)由命题(\ref{pro:poly_deg})知$R[x]$对加法、乘法封闭. 容易验证加法满足交换律、结合律, 零多项式是加法单位元, $f=\sum_k a_k x^k$的加法逆元是$-f=\sum_k (-a_k) x^k$. 容易验证乘法交换律, 乘法对加法的分配律. 令$f(x)=\sum_i a_i x^i$, $g(x)=\sum_i b_i x^i$, $h(x)=\sum_i c_i x^i$, 验证乘法结合律如下:
+\begin{align*}
+    (f(x)g(x))h(x)=&\left(\sum_{k=0}^\infty \left(\sum_{i=0}^k a_ib_{k-i}\right) x^k \right) \left (\sum_{l=0}^\infty c_l x^l \right)
+    = \sum_{l=0}^\infty \left(\sum_{k=0}^l \left(\sum_{i=0}^k a_ib_{k-i}\right) c_{l-k} \right) x^l \\
+    =& \sum_{l=0}^\infty \left(\sum_{i=0}^l a_i \left(\sum_{k=0}^{l-i} b_{k} c_{l-i-k}\right) \right) x^l
+    =\left (\sum_{i=0}^\infty a_i x^i \right) \left(\sum_{l=0}^\infty \left(\sum_{k=0}^l b_kc_{l-k}\right) x^l \right) \\
+    =&f(x)(g(x)h(x))
+\end{align*}
+故$R[x]$构成交换环. (2) 当$R$有乘法单位元1, 1也是$R[x]$的乘法单位元. (3) 当$R$是整环, $f,g\neq 0$时$\deg f \ge 0$, $\deg g \ge 0$, 故$\deg fg = \deg f + \deg g \ge 0$, $fg\neq 0$. 
+\end{proof}
+环$R$到$R[x]$的恒等映射是单同态(若$R$是单位环, 则也为单位环同态). 因此$R$是$R[x]$的子环. 可以验证$R$的单位群$R^\times$也是$R[x]$的单位群.
+
+\begin{pro} \textbf{多项式的带余除法} Remainder Theorem\\
+设$R$是交换单位环, $f,g \in R[x]$, $g\neq 0$. 若(1) $g$是首一的; 或(2) $R$是域, 则存在唯一的多项式$q,r \in R[x]$, $f=qg+r$, 且$\deg r < \deg g$.  
+\end{pro}
+\begin{proof}
+\par 存在性: 若$\deg g>\deg f$, 取$q=0$, $r=f$即可, 故不妨设$\deg g\le \deg f$. 先考虑条件(2). 对$n=\deg f$归纳. 若$f=0$, 取$q=r=0$. 当$n=0$, $\deg g=0$, $f,g\in K$, 取$q=g^{-1}f$, $r=0$. 假设命题对小于$n$的情形成立, 考虑$\deg f=n$的情形. 设$f(x)=\sum_{k=0}^n a_k x^k$, $g(x)=\sum_{k=0}^m b_k x^k$, $m\le n$. 令$q_1(x) = a_nb_m^{-1} x^{n-m}$, $f_1=f-q_1g$, 则$\deg f_1 < n$. 由归纳假设, 存在$q_2,r\in K[x]$, $f_1=q_2g+r$, $\deg r<\deg g$. 令$q=q_1+q_2$, 则$f=qg+r$. 
+\par 注意到上述证明只涉及对$g$的首项系数取逆, 而1自然是可逆的, 故在条件(1)下也成立. 
+
+\par 唯一性: 设$f=q_1g+r_1=q_2g+r_2$, $\deg r_1, \deg r_2 < \deg g$, 则$(q_1-q_2)g=r_2-r_1$. 若$q_1\neq q_2$, 则$\deg (q_1-q_2)g \ge \deg g > \max \{\deg r_1, \deg r_2\} \ge \deg (r_2-r_1)$, 矛盾. 故$q_1=q_2$, $r_1=r_2$.
+\end{proof}
+
+\begin{col} \textbf{多项式零点的等价条件}\\
+设$R$是交换单位环, $f\in R[x]$, $n=\deg f \ge 1$, $a\in R$, 则$f(a)=0 \iff (x-a) | f(x)$. 
+\end{col}
+\begin{proof}
+充分性显然. 下证必要性: 由带余除法, 存在$q\in R[x]$, $r\in R$, 
+\begin{equation}
+    f(x)=(x-a)q(x)+r
+\end{equation}
+代入$x=a$得$r=0$, 得证. 
+\end{proof}
+
+\begin{dfn}\textbf{多项式零点的重数}\\
+设$R$是交换单位环, $f\in R[x]$, $n=\deg f \ge 1$, $a\in R$. 若对正整数$m$, $(x-a)^m|f(x)$, $(x-a)^{m+1}\nmid f(x)$, 称$a$是$f$的$m$重零点. 
+\end{dfn}
+
+\begin{pro}\textbf{多项式零点重数之和}\\
+设$R$是整环, $f\in R[x]$, $n=\deg f \ge 1$, 则$f$至多有$n$个零点, 零点的重数之和不超过$n$. 
+\end{pro}
+
+\subsection{唯一因子分解整环上的多项式环}
+
+\begin{dfn} \textbf{本原多项式} Primitive Polynomial\\
+设$R$是唯一因子分解整环, $f(x)=\sum_{k=0}^n a_k x^k$是$R$上的非零多项式, 若1是$a_0, a_1, \dots, a_n$的最大公因子, 称$f$为$R$上的一个本原多项式. 
+\end{dfn}
+
+\begin{pro} \textbf{本原多项式的Gauss引理}\\
+设$R$是唯一因子分解整环, 非零多项式$f, g\in R[x]$, 若$f, g$均为本原多项式, 则$f\cdot g$也为本原多项式. 
+\end{pro}
+
+\begin{proof}
+%反证法. 记$f(x)=\sum_{k=0}^m a_kx^k$, $g(x)=\sum_{k=0}^n b_kx^k$, $(f\cdot g)(x)=\sum_{k=0}^{m+n} c_kx^k$. 设$f\cdot g$不是本原多项式, 则存在$a\notin R^\times$为$c_0,\dots, c_{m+n}$的公因子. 
+\end{proof}
+
+\begin{pro} \textbf{UFD上的多项式环是UFD}\\
+设$R$是唯一因子分解整环, 则$R[x]$在多项式加法、乘法下构成唯一因子分解整环. 
+\end{pro}
+\begin{proof}
+
+\end{proof}
+
+
+\begin{pro} \textbf{不可约多项式的Gauss引理}\\
+设$R$是唯一因子分解整环, $F$是其分式域; $f\in R[x]$, $\deg f\ge 1$. 若$f$为$R[x]$中的不可约元, 则$f$也为$F[x]$中的不可约元. 
+\end{pro}
+\begin{proof}
+%反证法, 假设存在非常数的多项式$g,h \in F[x]$, $f=gh$. 
+\end{proof}
+
+\begin{thm} \textbf{Eisenstein判别法}\\
+设$R$是唯一因子分解整环, $F$是其分式域, $R$上的多项式$f(x)=\sum_{k=0}^n a_k x^k$, $a_n\neq 0$, $n\ge 1$. 若存在$R$中的不可约元$p$, 满足
+\begin{itemize}
+    \item $\forall i=0,1,\dots, n-1: p\vert a_i$;
+    \item $p\nmid a_n$;
+    \item $p^2 \nmid a_0$.
+\end{itemize}
+则$f$为$F[x]$中的不可约元. 
+\end{thm}
+\begin{proof}
+
+\end{proof}
+
+\subsection{域上的多项式环}
+
+\begin{col} \textbf{域上的多项式环是Euclid整环}\\
+设$K$是域, 则$K[x]$在多项式加法、乘法下构成Euclid整环. 
+\end{col}
+\begin{proof}
+由域上多项式的带余除法, 取Euclid函数为多项式的次数即证. 
+\end{proof}
+
+\begin{pro} \textbf{部分分式分解} Partial fraction decomposition\\
+设$K$是域, 非零多项式$f,g \in K[x]$, $g=\prod_{i=1}^k p_i^{e_i}$, 其中$p_1,\dots,p_k\in K[x]$是互不相同的不可约多项式, 则存在$b, a_{ij} \in K[x]$, $\deg a_{ij}<\deg p_i$, $i=1,\dots,k$, $j=1,\dots, e_i$,
+\begin{equation}
+    \frac{f}{g} = b + \sum_{i=1}^k \sum_{j=1}^{e_i} \frac{a_{ij}}{p_i^j}
+\end{equation}
+\end{pro}
+\begin{proof}
+
+\end{proof}
+
+\section{复系数多项式}
+
+\begin{thm}  \textbf{代数基本定理} Fundamental Theorem of Algebra\\
+设$f\in \mathbb{C}[x]$满足$\deg f \ge 1$, 则存在$z\in \mathbb{C}$, $f(z)=0$.
+\end{thm}
+
+\begin{pro}\textbf{复系数多项式的分解}\\
+设$f\in \mathbb{C}[x]$, $n=\deg f \ge 0$, 则存在$c, \alpha_1, \dots, \alpha_n\in \mathbb{C}$, $c\neq 0$, 
+\begin{equation}
+    f(x) = c\prod_{i=1}^n (x-\alpha_i)
+\end{equation}
+此时$\{\alpha_1,\dots,\alpha_n\}$恰好是$f$在$\mathbb{C}$上的零点集合. 
+\end{pro}
+\begin{proof}
+对$n$归纳. $n=0$时显然成立. 考虑$n\ge 1$的情形, 假设命题对$n-1$成立. 由代数基本定理存在复数$\alpha$是$f$的零点, 故存在非零多项式$g\in \mathbb{C}[x]$, $f(x)=(x-\alpha)g(x)$. 但$n=\deg f = 1 + \deg g$, 知$\deg g=n-1$, 由归纳假设命题成立. 
+
+式中的$\alpha_i$, $1\le i\le n$显然是$f$的零点, 且对$z\notin \{\alpha_1,\dots,\alpha_n\}$, 有$f(z)\neq 0$. 
+\end{proof}
+将相同的因子合并, 可得到
+\begin{equation}
+    f(x) = c\prod_{i=1}^l (x-\beta_i)^{m_i}
+\end{equation}
+其中$\beta_1,\dots, \beta_l$互不相同, 正整数$m_i$是$\beta_i$零点重数, $i=1,\dots,l$. 
+
+\subsection{解多项式方程}
+
+\par 设$f \in \mathbb{C}[x]$是$n$次多项式, 考虑关于$x$的方程$f(x)=0$. 由于两边同时除以(非零的)首项系数不改变方程的解集, 不妨设$f$是首一的. 
+
+\begin{pro}  \textbf{二次方程的根式解}\\
+设$a,b\in \mathbb{C}$, 方程$x^2+ax+b=0$的解为
+\begin{equation}
+    x = \frac{-a\pm \sqrt{a^2-4b}}{2}
+\end{equation}
+\end{pro}
+\begin{proof}
+原方程配方得$(x+\frac{a}{2})^2 = -b+\frac{a^2}{4}$, 开平方即得. 
+\end{proof}
+当$a,b\in \mathbb{R}$, 若$a^2-4b\ge 0$, 方程有实数解; 否则只有复数解$x=\frac{-a\pm \mathrm{i}\sqrt{4b-a^2}}{2}$. 
+
+\par 对$n$次方程, 设$x^{n-1}$项的系数为$a$, 令$x= y-\frac{a}{n}$即得关于$y$的$n$次方程, 且$y^{n-1}$项的系数为$0$.
+
+\begin{pro}  \textbf{三次方程的根式解} Cardano's formula\\
+设$a,b\in \mathbb{C}$, 方程$x^3+ax+b=0$的解为
+\begin{equation}
+    x = \sqrt[3]{-\frac{b}{2} + \sqrt{\frac{b^2}{4}+\frac{a^3}{27}}} + \sqrt[3]{-\frac{b}{2} - \sqrt{\frac{b^2}{4}+\frac{a^3}{27}}}
+\end{equation}
+\end{pro}
+\begin{proof}
+设$x=\sqrt[3]{u}+\sqrt[3]{v}$, 则方程变为
+\begin{equation}
+    u + v + (3\sqrt[3]{u}\sqrt[3]{v}+a)(\sqrt[3]{u}+\sqrt[3]{v})+b = 0
+\end{equation}
+上述方程成立的充分条件是
+\begin{equation}
+    \begin{cases}
+    u + v = -b \\
+    \sqrt[3]{u}\sqrt[3]{v} = -\frac{a}{3}
+    \end{cases}
+\end{equation}
+第二式立方得$uv = -\frac{a^3}{27}$; 用$v=-b-u$消去$v$得关于$u$的二次方程. 由$u,v$的对称性, 不妨取
+\begin{equation}
+    u = -\frac{b}{2} + \sqrt{\frac{b^2}{4}+\frac{a^3}{27}},\quad v = -\frac{b}{2} - \sqrt{\frac{b^2}{4}+\frac{a^3}{27}}
+\end{equation}
+\end{proof}
+注意到$\sqrt[3]{u}$, $\sqrt[3]{v}$在$\mathbb{C}$上各有三个值, 只有其取值组合满足$3\sqrt[3]{u}\sqrt[3]{v}+a=0$, Cardano公式才给出原方程的解. 而$-\frac{a^3}{27}$的三个立方根彼此相差$\omega = e^{\frac{2\pi\mathrm{i}}{3}}$; 固定$\sqrt[3]{u}$的取值$\alpha$, 必存在$\sqrt[3]{v}$的取值$\beta$, 满足$3\alpha\beta+a=0$. 此时$x=\alpha+\beta$, $x=\omega\alpha+\omega^2\beta$, $x=\omega^2\alpha+\omega\beta$是原方程的解. 
+
+
+
+\section{形式幂级数环}
+
+\begin{dfn} \textbf{形式幂级数的次数}\\
+设非零的形式幂级数$F(x)=\sum_{n=0}^\infty a_nx^n \in R[[x]]$， $F(x)$的次数$\deg F(x)$为使$a_n\neq 0$的最小整数$n$.
+\end{dfn}
+
+\begin{pro} \textbf{形式幂级数乘积的次数}\\
+设$R$是整环，$F(x),G(x)$为$R[[x]]$中非零的形式幂级数，
+\begin{equation}
+    \deg F(x)G(x)=\deg F(x)+\deg G(x)
+\end{equation}
+\end{pro}
+
+
+\section*{阅读材料}
+
+\section*{问题}
+\newcounter{probpoly} 
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} (\textbf{环同态诱导的多项式环同态}) 设$L,K$是交换环, $\sigma: L\to K$是环同态. 定义映射$\sigma':L[x]\to K[x]$:
+\begin{equation}
+    \sigma'\left(\sum_{k=0}^n a_k x^k\right) = \sum_{k=0}^n \sigma(a_k) x^k, a_0,\dots,a_n \in L
+\end{equation}
+证明: (1) $\sigma'$是$L[x]$到$K[x]$的环同态. (2) 当$L,K$为单位环, $\sigma$为单位环同态, $\sigma'$也为单位环同态. (3) 当$\sigma$为单同态, $\sigma'$也为单同态. (4) 当$\sigma$为满同态, $\sigma'$也为满同态. 
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} (\textbf{模$p$不可约判别法})设$f(x)=\sum_{k=0}^n a_kx^k$是$\mathbb{Z}$上的本原多项式, $p$为素数, $p\nmid a_n$, 定义多项式$f_p(x)=\sum_{k=0}^n (a_k \mod p) x^k$. 证明: 若$f_p$在$(\mathbb{Z}/p\mathbb{Z})[x]$中不可约, 则$f$在$\mathbb{Z}[x]$中不可约. 
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} 举例说明: 设$R$是交换单位环, $R$上的正次数多项式可以有无限多个零点. 
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} (\textbf{多项式的形式导数}) 设$R$是交换环, $f\in R[x]$, $f(x)=\sum_{k=0}^n a_kx^k$, 定义$f$的形式导数$f'\in R[x]$: 
+\begin{equation}
+    f'(x)=\sum_{k=1}^{n} ka_kx^{k-1} = \sum_{k=0}^{n-1} (k+1)a_{k+1}x^{k}
+\end{equation}
+证明: 对$f,g\in R[x]$, $(f+g)'=f'+g'$; $(fg)'=f'g+fg'$.
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} \cite{GTS} 设$K$是特征为0的域, $F$是$K$的扩域, $f$为$K[x]$上的不可约多项式, 则$f$在$F$中没有重数大于等于2的零点. 
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} (\textbf{代数基本定理的实分析证明}) 设$f\in \mathbb{C}[x]$, $n=\deg f\ge 1$, 
+\par (1) 证明 d'Alembert 引理: 对任意$z_0 \in \mathbb{C}$, 若$f(z_0)\neq 0$, 则对任意$\epsilon > 0$, 存在$z \in \mathbb{C}$, 满足$|z-z_0|<\epsilon$, $|f(z)|<|f(z_0)|$. (2) 利用(1)证明代数基本定理. 
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} (\textbf{解四次方程}) 解四次方程可通过解特定的三次方程实现, 这样的三次方程称为对应四次方程的预解式(resolvent cubic). 
+\par (1) 设$a,b,c \in \mathbb{C}$, 考虑方程$x^4+ax^2+bx+c=0$. 若$b=0$, 方程可视为关于$x^2$的二次方程, 故不妨设$b\neq 0$. 将方程配方为
+\begin{equation}
+    \left(x^2 + \frac{a}{2} + u\right)^2 = \left(\sqrt{2u}x-\frac{b}{2\sqrt{2u}}\right)^2
+\label{eq:quartic_sq}
+\end{equation}
+开方即得关于$x$的二次方程. 证明使上式成立的$u$满足三次方程
+\begin{equation}
+    8u^3+8au^2+(2a^2-8c)u-b^2=0
+\end{equation}
+
+\stepcounter{probpoly}
+\par \textbf{\theprobpoly .} \cite{GTS} 设$p$是素数, 证明多项式$f(x)=1+x+x^2+\cdots+x^{p-1}$在$\mathbb{Q}[x]$上不可约. 
+
+
+\section*{解答}
+\newcounter{solpoly} 
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} 只证(3). 设$f,g\in L[x]$, 由$\sigma$为单同态, $\ker \sigma = \{0\}$, $\deg \sigma'(f) = \deg f$. 故若$\sigma'(f)=\sigma'(g)$, 则$\deg f = \deg g$, 进一步由$\sigma$为单同态得$f,g$对应次数项系数相等, $f=g$. 
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} 模$p$运算是$\mathbb{Z}$到商环$\mathbb{Z}/p\mathbb{Z}$的典范同态, $f \mapsto f_p$是其诱导的多项式环同态. 设$g,h \in \mathbb{Z}[x]$, $f=gh$, 则$f_p=g_ph_p$. 由$f_p$不可约, $g_p$或$h_p$为可逆元. 不妨设为$g_p$, 则$g_p\in \mathbb{Z}/p\mathbb{Z}$. 由$p$不整除$f$的最高次项, $p$也不整除$g$的最高次项, $\deg g=\deg g_p=0$. 又由$f$是本原多项式, $g=\pm 1$. 因此$f$不可约. 
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} 设$R$为可数无限多个$\mathbb{Z}/2\mathbb{Z}$的直积, 则$R$的每个元素是多项式$x^2-x$的零点. 
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} 加法的部分显然. 设$f(x)=\sum_{k=0}^n a_kx^k$, $g(x)=\sum_{k=0}^m b_kx^k$, 则
+\begin{align*}
+f'g+fg' &= \left(\sum_{k=1}^{n-1} (k+1)a_{k+1}x^k\right)\left(\sum_{k=0}^m b_kx^k\right)+\left(\sum_{k=0}^n a_kx^k\right)\left(\sum_{k=1}^{m-1} (k+1)b_{k+1}x^k\right)\\
+&= \sum_{k=0}^{m+n-1} \left(\sum_{i=0}^k (i+1)a_{i+1}b_{k-i} + \sum_{i=0}^k (i+1)b_{i+1}a_{k-i}\right) x^k \\ 
+&= \sum_{k=0}^{m+n-1} \left(\sum_{i=1}^{k+1} i a_{i}b_{k+1-i} + \sum_{i=0}^k (k-i+1)b_{k-i+1}a_i\right) x^k\\
+&= \sum_{k=0}^{m+n-1} \left((k+1)\sum_{i=0}^{k+1} a_ib_{k+1-i} \right)x^k = (fg)'
+\end{align*}
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} 设$\deg f=n$, $r\in F$, $F$上有$(x-r)^2\vert f(x)$. 考虑$f$的形式导数$f'\in K[x]$, 由$\operatorname{char}K=0$, $\deg f'=n-1$, 且$F$上有$(x-r)\vert f'(x)$. 注意到在$K[x]$上和$F[x]$上Euclid算法给出的最大公因子$g=\gcd(f,f')$是一致的. 由$(x-r)\vert g(x)$, $1\le \deg g\le n-1$, 这与$f$在$K[x]$上不可约矛盾. 
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} \cite{PFTB}  (1)记$f(z)=\sum_{k=0}^n c_k z^k$, 不妨设$z_0=0$, $c_0=f(z_0)=1$. 由$n\ge 1$, 可取$m=\min\{k\ge 1\vert c_k\neq 0\}$,此时有
+\begin{equation*}
+    f(z)=1+c_mz^m + z^{m+1} (c_{m+1}+\dots+c_nz^{n-m-1})
+\end{equation*}
+记$r(z)= z^{m+1} (c_{m+1}+\dots+c_nz^{n-m-1})$, 令$\rho_1=|c_m|^{-\frac{1}{m}}$, $\rho_2= \frac{|c_m|}{|c_{m+1}|+\cdots+|c_n|}$, $\rho=\frac{1}{2}\min\{\rho_1, \rho_2,1,\epsilon\}$, 则$\forall 0 < |z| \le \rho$, 
+\begin{equation*}
+    |r(z)|<|c_mz^m|<1
+\end{equation*}
+令$\zeta$为$z^m = -\frac{\bar{c}_m}{|c_m|}$的一个根, $b=\rho\zeta$, 则$c_m b^m = -|c_m|\rho^m$, 
+\begin{equation*}
+|f(b)|\le |1+c_mb^m|+|r(b)|=1-|c_m|\rho^m + |r(b)| < 1 = f(0)
+\end{equation*}
+(2) 当$|z|\to \infty$, $f(z)z^{-n} \to c_n$, 故$|f(z)|\to \infty$. 存在$R>0$, $\forall |z|=R$, $|f(z)|>|f(0)|$. $|f(z)|$是有界闭集$\{z||z|\le R\}$上的连续函数, 故存在最小值点$z_0$, 且$|z_0|<R$. 若$|f(z_0)|>0$, 则与d'Alembert引理矛盾. 故$f(z_0)=0$. 
+
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} (1) 略. 
+
+\stepcounter{solpoly}
+\par \textbf{\thesolpoly .} \cite{GTS} 令$x=t+1$, 则
+\begin{equation}
+    f(x)=\frac{x^p-1}{x-1}=\frac{(t+1)^p-1}{t} = \sum_{k=1}^p \binom{p}{k} t^{k-1} = t^{p-1} + \sum_{k=1}^{p-2} \binom{p}{k+1} t^{k} + p
+\end{equation}
+由Eisenstein判别法即证. 

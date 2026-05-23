@@ -1,0 +1,251 @@
+
+\section{基本概念}
+
+\begin{dfn} \textbf{环, 交换环, 单位环} Ring, Commutative Ring, Unitary Ring \\
+设集合$R$上定义了两个二元运算: 加法$(x,y)\mapsto x+y$和乘法$(x,y)\mapsto xy$, $R$在加法运算下构成交换群, 加法单位元记作0, $x$的加法逆元记作$-x$; 且满足
+\begin{enumerate}
+    \item 乘法结合律: $(xy)z=x(yz), \forall x,y,z \in R$;
+    \item 乘法对加法的分配律: $x(y+z)=xy+xz, (x+y)z=xz+yz, \forall x,y,z\in R$.
+\end{enumerate}
+称$R$在加法、乘法下构成环. 若环$R$满足乘法交换律: $xy=yx, \forall x,y \in R$, 称为交换环. 若环$R$中存在乘法单位元, 即存在$1\in R$, $\forall x \in R$, $1x=x=x1$, 称为单位环. 
+\end{dfn}
+\par 仅包含一个元素的环称为平凡环. 
+
+
+\begin{dfn} \textbf{零因子} Zero Divisor \\
+设$R$是环, $a\in R$. 若存在$x\in R$, $x\neq 0$, $ax=0$, 称$a$是$R$的左零因子; 若存在$y\in R$, $y\neq 0$, $ya=0$, 称$a$是$R$的右零因子. 左零因子和右零因子统称为零因子. 
+\end{dfn}
+
+\begin{dfn} \textbf{整环} Integral Domain \\
+若$R$为非平凡的交换单位环, 且不存在非零的零因子, 称$R$为整环. 
+\end{dfn}
+
+\begin{dfn} \textbf{可逆元，单位群} Invertible Element, Unit Group \\
+设$R$是单位环, $u\in R$. 若存在$v\in R$, $vu=uv=1$, 称$v$是$u$的乘法逆元, $u$是一个可逆元. $R$的可逆元集合在乘法下构成群, 称为$R$的单位群$R^\times$. 
+\end{dfn}
+
+\begin{dfn} \textbf{子环} Subring\\
+设$R$是环, $S$是$R$的非空子集, 若$S$在$R$上的加法和乘法下也构成环, 则称$S$是环$R$的子环.
+\end{dfn}
+
+\par 环$R$的非空子集$S$是子环当且仅当$\forall x,y \in S: x-y\in S, xy\in S$. 
+
+\par 单位环$R$的子环$S$不一定有乘法单位元(如$\mathbb{Z}$的子环$2\mathbb{Z}$); 即使有乘法单位元, 也不一定与$R$的乘法单位元相同(如$\mathbb{Z}\times \mathbb{Z}$的子环$\mathbb{Z}\times \{0\}$ 有乘法单位元$(1,0)$).
+
+
+\begin{dfn} \textbf{环的同态与同构} Homomorphism, Isomorphism\\
+设$L,K$是环, 函数$\sigma:L\to K$满足$\sigma(a+b)=\sigma(a)+\sigma(b)$, $\sigma(ab)=\sigma(a)\sigma(b)$对任意$a,b\in L$成立, 则称$\sigma$为环$L$到$K$的同态; 当$\sigma$为双射, 称为环$L$到$K$的同构.
+
+若$L,K$是单位环, 环同态$\sigma: L\to K$满足$\sigma(1_L)=1_K$, 称$\sigma$为单位环$L$到$K$的同态; 当$\sigma$为双射, 称为单位环$L$到$K$的同构.
+\end{dfn}
+设$L,K$是环, $\sigma:L\to K$是环同态, 容易验证$\sigma(0_L)=0_K$; 对$x\in L$, $\sigma(-x)=-\sigma(x)$.
+
+环同构、单位环同构关系满足自反性、对称性、传递性，因而是等价关系. 
+
+设$L,K$是环, $\sigma:L\to K$满足$\forall x\in G: \sigma(x)=0_K$, 称$\sigma$为零同态. 
+
+\begin{dfn} \textbf{理想} Ideal\\
+设$R$是环, $I\subseteq R$在$R$上的加法下构成子群, 对任意$r\in R$, $a\in I$, 有$ra \in I$, $ar \in I$, 称$I$是$R$的一个理想.   
+\end{dfn}
+仅包含0的理想称为零理想. 
+
+\begin{pro} \textbf{理想的交集是理想}\\
+设$R$是环, $\{J_i\}_{i\in I}$是$R$的理想, 其中$I$为指标集, 则$J=\bigcap_{i\in I} J_i$是$R$的理想.  
+\end{pro}
+
+\begin{pro} \textbf{生成理想}\\
+设$R$是环, $S \subseteq R$, 则
+\begin{displaymath}
+    J=\bigcap \{I\vert S\subseteq I \subseteq R, I\text{是}R\text{的理想}\}
+\end{displaymath}
+称为$S$生成的理想, 记作$(S)$. 
+\end{pro}
+
+\begin{pro} \textbf{商环} Quotient Ring\\
+设$R$是环, $I$是$R$的理想, 在左陪集的集合$R/I=\{x+I\vert x\in R\}$上定义加法和乘法运算:
+\begin{align}
+(x+I)+(y+I)&=x+y+I\\
+(x+I)(y+I)&=xy+I
+\end{align}
+则$R/I$构成环, 称为$R$对$I$的商环. 若$R$是交换环, 则$R/I$也是交换环. 若$R$是单位环, 则$R/I$也是单位环. 
+\end{pro}
+\begin{proof}
+$R/I$是加法下的商群, 且是交换群. 为验证乘法的良定义性, 设$z+I=x+I$, $w+I=y+I$, 则存在$j,k \in I$, $z=x+j$, $w=y+k$, 此时有$zw=(x+j)(y+k)=xy+jy+xk+jk$. 由$I$是理想, $jy+xk+jk\in I$, 因此$zw\in xy+I$, $zw+I=xy+I$. 容易验证乘法结合律和乘法对加法的分配律. 当$R$是交换环, $R/I$也满足乘法交换律. 当$1$是$R$的乘法单位元, $1+I$是$R/I$的乘法单位元. 
+\end{proof}
+
+映射$\sigma: R\to R/I$, $x \mapsto x+I$是满的环同态, 称为$R$到$R/I$的典范同态. 当$R$是单位环, $\sigma$为单位环同态. 
+
+\begin{dfn} \textbf{极大理想, 素理想} Maximal Ideal, Prime Ideal\\
+设$R$是非平凡的交换单位环, $I\neq R$是$R$的理想. 
+\begin{itemize}
+\item 若$R$的理想$J$满足$I\subseteq J\subseteq R$, 则$J=I$或$J=R$, 称$I$是$R$的极大理想.
+\item 设$a,b\in R$, $ab\in I \Rightarrow a\in I \lor b\in I$, 称$I$是$R$的素理想.
+\end{itemize}
+\end{dfn}
+
+\begin{pro} \textbf{极大理想、素理想的商环}\\
+设$R$是非平凡的交换单位环, $M$是$R$的理想, 
+\begin{enumerate}
+    \item $M$为素理想当且仅当$R/M$是整环. 
+    \item $M$为极大理想当且仅当$R/M$是域.
+\end{enumerate} 
+\end{pro}
+\begin{proof}
+(1)注意到$ab\in M \iff ab+M=M \iff (a+M)(b+M)=M$. 必要性: 若$M$为素理想, $(a+M)(b+M)=M$, 则$a\in M\lor b\in M$, $a+M=M\lor b+M=M$, 故$R/M$是整环. 充分性: 设$R/M$是整环, 则$ab\in M \Rightarrow a+M=M \lor b+M=M$, $a\in M\lor b\in M$, 故$M$是素理想.
+
+(2)必要性: 当$a+M\neq M$时, $a\notin M$, 由$M$为极大理想, $(M\cup \{a\})=R$, 故存在$r\in R, m\in M$, $1=m+ra$, $1-ra\in M$. 因此$(r+M)(a+M)=ra+M=1+M$, 故$R/M$是域. 充分性: 设$N$为$R$的理想, $M\subset N \subseteq R$, 往证$N=R$. 取$a\in N-M$, 则由$R/M$是域, 存在$r\in R$, $ra+M=(a+M)(r+M)=1+M$; 故存在$m\in M$, $1=m+ra\in N$, 故$N=R$. 
+\end{proof}
+
+\begin{col} \textbf{极大理想是素理想}\\
+设$R$是非平凡的交换单位环, $M$是$R$的极大理想, 则$M$是$R$的素理想. 
+\end{col}
+
+\section{整环}
+
+
+
+\begin{dfn} \textbf{整除} Divisibility \\
+设$R$是整环, $a,b\in R$, 若存在$x\in R$, 满足$ax=b$, 称$a$整除$b$, $a$是$b$的一个因子, 记作$a|b$. 
+\end{dfn}
+
+\begin{dfn} \textbf{相伴} Associatedness\\
+设$R$是整环, $a,b\in R$, 若$a|b$且$b|a$, 称$a,b$相伴, 记作$a\sim b$. 
+\end{dfn}
+可以验证相伴关系满足自反性、对称性；又由于整除关系满足传递性, 相伴关系也满足传递性. 因此相伴关系是$R$上的等价关系. 
+
+设$R$是整环, $a,b,c\in R$, 若$a$是$c$的因子, $a\sim b$, 则$b$也是$c$的因子. 
+
+\begin{pro}\textbf{相伴的等价定义}\\
+设$R$是整环, $a,b\in R$, 则$a\sim b\iff \exists u\in R^\times: a=ub$. 
+\end{pro}
+\begin{proof}
+充分性: $a=ub \Rightarrow b|a$, $b=u^{-1}a \Rightarrow a|b$. 必要性: 设$a=ub$, $b=va$, 则$a=uva$, $a=0$或$uv=1$. 若$a=0$, $b=0$, 取$u=1$即可; 否则$u\in R^\times$. 
+\end{proof}
+
+\begin{dfn} \textbf{公因子, 最大公因子} Common Divisor, Greatest Common Divisor \\
+设$R$是整环, $n\ge 2$为正整数, $a_1,\dots,a_n\in R$, 若$d\in R$ 满足$\forall i=1,\dots,n: d|a_i$, 称$d$是$a_1,\dots,a_n$的一个公因子. 
+
+若$d$是$a_1,\dots,a_n$的一个公因子, 且$a_1,\dots,a_n$的任意公因子$e$, 满足$e|d$, 称$d$是$a_1,\dots,a_n$的一个最大公因子. 
+\end{dfn}
+
+若$d$为$a_1,\dots,a_n$的最大公因子, 则$e$是$a_1,\dots,a_n$的最大公因子当且仅当$d\sim e$. 因此若最大公因子存在, 则在相伴等价类意义下唯一. 
+
+\begin{dfn} \textbf{不可约元} Irreducible element\\
+设$R$是整环, 非零元素$a\in R$, $a\notin R^\times$, 若对任意$b,c\in R$, $a=bc \Rightarrow b\in R^\times \lor c\in R^\times$, 称$a$为一个不可约元. 
+\end{dfn}
+
+\begin{dfn} \textbf{素元} Prime element\\
+设$R$是整环, 非零元素$a\in R$, $a\notin R^\times$, 若对任意$b,c\in R$, $a\vert bc \Rightarrow a\vert b \lor a\vert c$, 称$a$为一个素元. 
+\end{dfn}
+
+\begin{pro} \textbf{素元是不可约元}\\
+设$R$是整环, $a\in R$是素元, 则$a$为不可约元.
+\end{pro}
+\begin{proof}
+设$a=bc$, 由$a$为素元, $a|b \lor a|c$. 不妨设$a|b$, 则存在$u\in R$, $b=au$, 因此$a=auc$, 而$a\neq 0$, 故$1=uc$, $c\in R^\times$. 
+\end{proof}
+
+\begin{pro} \textbf{素元的生成理想是素理想}\\
+设$R$是整环, 非零元素$a\in R$, 则$a$是素元当且仅当$(a)$为$R$的素理想.
+\end{pro}
+\begin{proof}
+必要性: 当$a$是素元, 由$a\notin R^\times$知$(a)\neq R$. $bc \in (a) \Rightarrow a|bc \Rightarrow a|b \lor a|c \Rightarrow b\in (a) \lor c \in (a)$. 充分性: 当$(a)$为素理想, 由$(a)\neq R$知$a\notin R^\times$. $a|bc \Rightarrow bc \in (a) \Rightarrow b \in (a) \lor c \in (a) \Rightarrow a|b \lor a|c$.
+\end{proof}
+
+
+\begin{pro} \textbf{整环的分式域} Field of Fractions \\
+设$R$是整环, 考虑$R\times (R-\{0\})$上的等价关系$\sim$: $(a,b)\sim(c,d)\iff ad=bc$. 对任意$(a,b)\in R\times (R-\{0\})$, $(a,b)$所在的等价类记作$\frac{a}{b}$; 所有等价类构成的集合记为$F$. 在$F$上定义加法、乘法如下:
+\begin{align}
+    &\frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}\\
+    &\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}
+\end{align}
+则$F$在加法、乘法下构成域, 称为$R$的分式域. 
+\end{pro}
+\begin{proof}
+首先验证$\sim$是等价关系, 自反性、对称性显然. 为验证传递性, 设$(a,b)\sim(c,d)$, $(c,d)\sim(e,f)$, 则$ad=bc$, $cf=de$, $adf=bcf=bde$, 由整环上乘法消去律成立, $af=be$, 即$(a,b)\sim(e,f)$. 
+\par 其次, 验证$F$上加法、乘法的良定义性. 设$\frac{a}{b}=\frac{a'}{b'}$, 则有
+\begin{align}
+    &\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}=\frac{a'd+b'c}{b'd}=\frac{a'}{b'}+\frac{c}{d}\\
+    &\frac{a}{b}\frac{c}{d}=\frac{ac}{bd}=\frac{a'c}{b'd}=\frac{a'}{b'}\frac{c}{d}
+\end{align}
+注意当$b,d\neq 0$时$bd\neq 0$. 类似结论对运算的第二项同样成立. 
+\par 最后, 验证$F$在加法、乘法下构成域. 容易验证加法交换律, $\frac{0}{1}$是加法单位元, $\frac{-a}{b}$是$\frac{a}{b}$的加法逆元. 验证加法结合律如下:
+\begin{equation}
+    \left(\frac{a}{b}+\frac{c}{d}\right)+\frac{e}{f}=\frac{ad+bc}{bd}+\frac{e}{f}=\frac{adf+bcf+bde}{bdf}=\frac{a}{b}+\frac{cf+de}{df}=\frac{a}{b}+\left(\frac{c}{d}+\frac{e}{f}\right)
+\end{equation}
+因此$F$在加法下构成交换群. 容易验证乘法满足交换律、结合律; $\frac{1}{1}$是乘法单位元（注意$\frac{0}{1}\neq \frac{1}{1}$）; 当$a\neq 0$, $\frac{b}{a}$是$\frac{a}{b}$的乘法逆元. 验证乘法对加法的分配律如下:
+\begin{equation}
+    \left(\frac{a}{b}+\frac{c}{d}\right)\frac{e}{f}=\frac{ad+bc}{bd}\cdot \frac{e}{f}=\frac{ade+bce}{bdf}=\frac{ae}{bf}+\frac{ce}{df}=\frac{a}{b}\cdot\frac{e}{f}+\frac{c}{d}\cdot\frac{e}{f}
+\end{equation}
+因此$F$在加法、乘法下构成域. 
+\end{proof}
+
+\par 映射$\sigma:R\to F$, $a\to \frac{a}{1}$是单位环$R$到$F$的单同态. 因此$R$可视为$F$的子环. 
+
+\section{唯一因子分解整环}
+
+\begin{pro} \textbf{UFD上不可约元等价于素元}\\
+设$R$是唯一因子分解整环, $a\in R$, 则$a$为不可约元当且仅当$a$为素元.
+\end{pro}
+\begin{proof}
+充分性对任意整环成立, 下证必要性: 
+\end{proof}
+
+\section{主理想整环}
+
+\begin{pro} \textbf{PID是UFD}\\
+
+\end{pro}
+
+\begin{pro} \textbf{PID上非零素理想是极大理想}\\
+设$R$为主理想整环, $I\neq \{0\}$为$R$的素理想, 则$I$为$R$的极大理想.  
+\end{pro}
+\begin{proof}
+设$I=(a)$, 则$a\neq 0$, $a$是素元, 故也是不可约元. 反设存在$R$的理想$J$满足$I\subset J \subset R$, $J=(b)$, 则$a\in (b)$, $b|a$, 存在$r\in R$, $a=rb$. 由$a$为不可约元, $r\in R^\times \lor b\in R^\times$. 若$r\in R^\times$, 则$a\sim b$, 与$(a) \subset (b)$矛盾. 若$b\in R^\times$, 则$(b)=R$, 同样矛盾. 
+\end{proof}
+
+\section{Euclid整环}
+
+\begin{dfn} \textbf{Euclid整环} Euclidean Domain\\
+设$R$是整环, 若存在函数$f:R-\{0\} \to \mathbb{N}$满足: 当$a,b\in R$, $b\neq 0$, 存在$q,r\in R$, $a=bq+r$, 且$r=0$或$f(r)<f(b)$, 称$R$为Euclid整环, $f$称为$R$上的Euclid函数. 
+\end{dfn}
+上述定义中的运算$(a,b)\mapsto (q,r)$称为带余除法. 
+
+\begin{algorithm}[ht!]
+\SetKwInOut{KIN}{输入}
+\SetKwInOut{KOUT}{输出}
+\caption{最大公因子的Euclid算法} 
+\label{alg:gcd_Euclid}
+\KIN{Euclid整环$R$中的非零元素$a,b$}
+\KOUT{$x,y,d\in R$, $d$为$a,b$的最大公因子, $ax+by=d$.}
+$n\leftarrow 0$\;
+$r_0\leftarrow a$, $r_1\leftarrow b$\;
+$x_0\leftarrow 1$, $y_0\leftarrow 0$, $x_1\leftarrow 0$, $y_1\leftarrow 1$\;
+\While{$r_{n+1}\neq 0$}{
+$n \leftarrow n+1$\;
+作带余除法$r_{n-1}=q_nr_n+r_{n+1}$, 满足$f(r_{n+1})<f(r_{n})$或$ r_{n+1}=0$\;
+$x_{n+1} \leftarrow x_{n-1}-q_nx_n$, $y_{n+1} \leftarrow y_{n-1}-q_ny_n$\; 
+}
+\Return $x_n,y_n,r_n$.
+\end{algorithm}
+
+Euclid算法使用带余除法求最大公因子(算法\ref{alg:gcd_Euclid}). 为证明算法的正确性, 注意到带余除法步骤中$d$是$r_{i-1},r_{i}$的最大公因子当且仅当$d$是$r_i,r_{i+1}$的最大公因子. 而根据无穷递降原理, $f(r_i)$不可能无限地严格递减, 必存在$r_{N+1}=0$. 此时$r_N$是$r_N,r_{N+1}$的最大公因子, 故也是$a=r_0, b=r_1$的最大公因子. 对$n$归纳可以验证$x_na+y_nb=r_n$对$n=0,1,\cdots,N$成立.  
+
+
+\section{环的例子}
+
+
+\section*{阅读材料}
+
+\section*{问题}
+\newcounter{probrng} 
+\stepcounter{probrng}
+\par \textbf{\theprobrng .} 设$R$为交换单位环, $S\subseteq R$, 证明$S$生成的理想
+\begin{equation}
+    (S)=\left\{\left.\sum_{i=1}^n r_is_i\right\vert n\in \mathbb{N}; \forall i: r_i\in R, s_i\in S\right\}
+\end{equation}
+
+\section*{解答}
+\newcounter{solrng} 
+\stepcounter{solrng}
+\par \textbf{\thesolrng .} 记等式右边的集合为$T$, 显然$T\subseteq (S)$. 可以验证$T$是$R$的理想, 从而$(S) \subseteq T$. 

@@ -1,0 +1,235 @@
+
+\par \emph{Numbers measure size, groups measure symmetry.} 
+\par \rightline{——M. A. Armstrong}
+
+\section{基本概念}
+
+\begin{dfn} \textbf{半群, 单位半群, 群, 交换群} Semigroup, Monoid, Group, Commutative Group\\
+设集合$G$上定义了二元运算$(x,y)\mapsto xy$并称之为乘法, 考虑如下性质: 
+\begin{enumerate}
+    \item 结合律: $(xy)z=x(yz), \forall x,y,z \in G$.
+    \item 单位元存在: 存在$e\in G$, $\forall x \in G$, $ex=x=xe$.
+    \item 逆元存在: $\forall x\in G$, 存在$x^{-1}\in G$, $x^{-1}x=e=xx^{-1}$.
+    \item 交换律: $xy=yx, \forall x,y \in G$.
+\end{enumerate}
+若满足(1), 称$G$在该运算下构成半群. 若满足(1)(2), 称$G$为单位半群. 若满足(1)-(3), 称$G$为群. 若满足(1)-(4), 称$G$为交换群或Abel群. 
+\end{dfn}
+仅包含单位元一个元素的群$\{e\}$称为平凡群. 设$G$是群, 若$G$是有限集, 称$G$为有限群, 并称$\vert G\vert$为群$G$的阶; 否则称$G$为无限群. 
+
+\begin{pro}
+\textbf{单位元与逆元的唯一性}\\
+设$G$是群, 则有
+\begin{enumerate}
+    \item 设$e,e'\in G$为单位元，则$e=e'$.
+    \item 设$x \in G$, $y,z\in G$为$x$的逆，则$y=z$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+    (1) $e=ee'=e'$. (2) $y=y(xz)=(yx)z=z$.
+\end{proof}
+
+\begin{pro}
+\textbf{广义结合律}\\
+设$G$是群, $x_1,\dots,x_n\in G$, 则连乘积$x_1\dots x_n$的结果不随运算顺序改变。
+\end{pro}
+\begin{proof}
+    对$n$用数学归纳法。假设命题对$n-1$及更少项的连乘积成立，考虑$x_1\dots x_n$两种加括号方式的最后一步乘法，它们可表为 $(x_1\dots x_r)$ $(x_{r+1}\dots x_n)$ 和 $(x_1\dots x_s)$ $(x_{s+1}\dots x_n)$。不妨设$r<s$, 由于
+    \begin{equation}
+        (x_1\dots x_r)[(x_{r+1}\dots x_s)(x_{s+1}\dots x_n)]=[(x_1\dots x_r)(x_{r+1}\dots x_s)](x_{s+1}\dots x_n)
+    \end{equation}
+    命题对$n$项的连乘积成立。
+\end{proof}
+
+\begin{pro}
+\textbf{乘积的逆}\\
+设$G$是群, $x_1,\dots,x_n\in G$, 则
+\begin{equation}
+    (x_1\dots x_n)^{-1}=x_n^{-1}\dots x_1^{-1}
+\end{equation}
+\end{pro}
+
+\begin{dfn} \textbf{群中元素的幂}\\
+设$G$是群, $x\in G$, 定义$x$的整数次幂如下:
+$x^0=e$; 设$n$为正整数, $x^n=x^{n-1}x$; $x^{-n}=(x^n)^{-1}$.
+\end{dfn}
+
+\begin{pro} \textbf{群中元素幂的性质}\\
+设$G$是群, $x,y\in G$, $m,n\in \mathbb{Z}$, 
+\begin{enumerate}
+\item $x^{m+n}=x^m\cdot x^n$.
+\item $x^{mn}=(x^m)^n$.
+\item 若$G$是交换群, $(xy)^n = x^ny^n$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+类似命题\ref{pro:natural_power}, 对$n$归纳可证$m,n\in \mathbb{N}$的情形. 以下考虑幂次包含负整数的情形. 首先有$(x^n)^{-1}=(x^{-1})^n$. 
+(1) 若$m-n\ge 0$, 由$x^m=x^{m-n}x^n$, $x^{m-n}=x^m (x^{n})^{-1}=x^mx^{-n}$; 若$m-n<0$, 由$x^n=x^{n-m}x^m$, $x^{m-n}=(x^{n-m})^{-1}=(x^nx^{-m})^{-1}=x^mx^{-n}$. $x^{-m-n}=(x^{m+n})^{-1}=(x^nx^m)^{-1}=x^{-m}x^{-n}$. 
+(2) $(x^m)^{-n}=((x^m)^n)^{-1}=(x^{mn})^{-1}=x^{-mn}=x^{m(-n)}$.
+$(x^{-m})^{-n}=((x^{-m})^n)^{-1}=((x^{-1})^{mn})^{-1}=((x^{mn})^{-1})^{-1}=x^{mn}=x^{(-m)(-n)}$.
+(3) $(xy)^{-n}=((xy)^n)^{-1}=((yx)^n)^{-1}=(y^nx^n)^{-1}=x^{-n}y^{-n}$.
+\end{proof}
+
+\par 若$G$是单位半群, 可定义其中元素的自然数次幂, 且上述性质(1)(2)仍成立. 
+
+\begin{dfn} \textbf{群中元素的阶}\\
+设$G$是群， $x\in G$，若存在正整数$n$使得$x^n=e$，则称满足上式的最小正整数为$x$的阶；否则称$x$的阶为无穷.
+\end{dfn}
+
+\begin{dfn} \textbf{子群} Subgroup\\
+设$G$是群, $H$是$G$的非空子集, 若$H$在$G$上定义的二元运算下也构成群, 则称$H$是$G$的子群, 记作$H\le G$.
+\end{dfn}
+设$H\le G$, $e_He_H=e_H=e_He_G$. 两边同乘$e_H$在$G$中的逆元, 得$e_H=e_G$. 因此$H$的单位元与$G$的单位元相同. 对$x\in H$, 由逆元的唯一性, $x$在$H$中的逆元也与在$G$中的逆元相同. 
+
+验证$H\le G$需要检验如下三个条件：(1) $\forall x,y\in H, xy \in H$; (2) $e\in H$; (3) $\forall x\in H, x^{-1} \in H$. 这可归纳为如下结论：
+
+\begin{pro}
+\textbf{子群的判定}\\
+设$H$是群$G$的非空子集，则$H$是$G$的子群当且仅当$\forall x,y \in H, xy^{-1} \in H$.
+\end{pro}
+
+\begin{pro}
+\textbf{子群的交}\\
+设$H, K$是群$G$的子群，则$H\cap K$是$G$的子群.
+\end{pro}
+\begin{proof}
+    由$e\in H\cap K$知$H\cap K$非空. 设$x,y\in H\cap K$，则$xy^{-1}\in H\cap K$.
+\end{proof}
+
+\begin{dfn} \textbf{生成子群}\\
+设$G$是群，$X$是$G$的非空子集，形如\begin{equation}
+    x_1^{m_1}\dots x_k^{m_k}, x_1,\dots,x_k\in X, m_1,\dots,m_k\in \mathbb{Z}
+\end{equation}
+的元素称为$X$的元素的字（$x_1,\dots,x_k$不必互不相同）；它们构成的$G$的子群称为$X$生成的子群. 若$X$生成的子群为$G$本身，称$X$是$G$的一组生成元.
+\end{dfn}
+$\{x_1,\dots,x_k\}$生成的子群也记作$\langle x_1,\dots,x_k \rangle$.
+
+\begin{dfn} \textbf{子群的陪集, 指数} Coset, Index\\
+设$G$是群, $H$是$G$的子群, $x\in G$, 称$xH=\{xh\vert h \in H\}$为$H$的一个左陪集, $Hx=\{hx\vert h \in H\}$为$H$的一个右陪集. 
+\end{dfn}
+
+\begin{pro} \textbf{左、右陪集个数相等}\\
+设$G$是群, $H$是$G$的子群, $C_l = \{xH\vert x\in G\}$, $C_r = \{Hx\vert x\in G\}$, 则 $\operatorname{card} C_l = \operatorname{card} C_r$. 称$\operatorname{card} C_l$为$H$的指数, 记作$[G:H]$. 
+\end{pro}
+\begin{proof}
+考虑映射$f: C_l \to C_r$: $f(xH)=Hx^{-1}$. 由 $xH=yH \iff y^{-1}x\in H \iff x^{-1}y \in H \iff Hx^{-1}=Hy^{-1}$, $f$是良定义的, 且是单射. 又对任意$x\in G$, $f(x^{-1}H)=Hx$, 故$f$是满射. 因此$f$是双射, 得证. 
+\end{proof}
+
+\begin{thm}\textbf{Lagrange定理}\\
+设$G$是群, $H$是$G$的子群, 则
+\begin{equation}
+    \operatorname{card}G=[G:H] \operatorname{card}H
+\end{equation}
+特别地, 当$G$为有限群, $|G|=[G:H]|H|$, $|H|$整除$|G|$.
+\end{thm}
+\begin{proof}
+在$G$上定义二元关系$\sim$: $x\sim y \iff y^{-1}x\in H$, 则$\sim$是等价关系, 且$x$所在的等价类恰为$xH$. 因此$\{xH\vert x\in G\}$构成$G$的划分. 又由于$h\mapsto xh$是$H$到$xH$的双射, 命题得证.  
+\end{proof}
+
+\begin{dfn} \textbf{正规子群} Normal Subgroup\\
+设$G$是群, $H$是$G$的子群, 若对任意$x\in G$, $xH=Hx$, 称$H$为$G$的正规子群, 记作$H\unlhd G$. 
+\end{dfn}
+交换群的子群是正规子群. 
+
+\begin{pro}\textbf{正规子群的等价条件}\\
+设$G$是群, $H$是$G$的子群, 则$H$是正规子群当且仅当$\forall x\in G \forall h \in H:x^{-1}hx\in H$. 
+\end{pro}
+\begin{proof}
+充分性: 对$x\in G$, 任取$h\in H$, 则存在$h'\in H$, $x^{-1}hx=h'$, $hx = xh'\in xH$, 故$Hx\subseteq xH$. 用$x^{-1}$代换$x$得$xhx^{-1}\in H$, 同理可得$xH\subseteq Hx$. 故$xH=Hx$. 必要性: 设$x\in G$, $h\in H$, 由$Hx=xH$, 存在$h'\in H$, $hx=xh'$, 故$x^{-1}hx=h'\in H$. 
+\end{proof}
+
+\begin{pro} \textbf{商群} Quotient Group\\
+设$G$是群, $H$是$G$的正规子群, 在左陪集的集合$G/H=\{xH\vert x\in G\}$上定义乘法运算:
+\begin{equation}
+    (xH)(yH) = xyH, \forall x,y \in G
+\end{equation}
+则$G/H$构成群, 称为$G$对$H$的商群. 若$G$是交换群, 则$G/H$是交换群. 
+\end{pro}
+\begin{proof}
+为证乘法的良定义性, 若$zH=xH$, $wH=yH$, 设$z=xh$, $w=yh'$, $h,h'\in H$, 则$zw=xhyh' = xy(y^{-1}hy)h'\in xyH$, 故$zwH=xyH$. 在此基础上, $G/H$上的乘法结合律、交换律分别由$G$的乘法结合律、交换律导出; $eH=H$是乘法单位元; $x^{-1}H$是$xH$的乘法逆元. 
+\end{proof}
+
+\begin{dfn} \textbf{群的同态与同构} Group Homomorphism, Isomorphism, Automorphism\\
+设$G,H$是群, 函数$\phi: G\to H$ 满足$\phi(ab)=\phi(a)\phi(b)$对任意$a,b\in G$成立, 则称$\phi$为群$G$到$H$的同态. 
+
+若群同态$\phi:G\to H$为双射, 称$G$与$H$同构, 记作$G\cong H$, $\phi$称为$G$到$H$的一个同构. 群$G$到自身的同构称为自同构.
+\end{dfn}
+设$\phi: G\to H$是群同态, $\phi(e_G) = \phi(e_G\cdot e_G)=\phi(e_G)\phi(e_G)$, 故$\phi(e_G)=e_H$. 对$\forall x\in G$, $e_H=\phi(e_G)=\phi(x\cdot x^{-1})=\phi(x)\phi(x^{-1})$, 故$\phi(x)^{-1}=\phi(x^{-1})$.
+
+\par 群的同构关系满足自反性、对称性、传递性，因而是等价关系. 
+
+\par 设$G,H$是群, $\phi:G\to H$满足$\forall x\in G: \phi(x)=e_H$, 称$\phi$为零同态. 
+
+\par 同构、自同构的定义同样适用于环的同态、域的同态. 
+
+\begin{dfn} \textbf{同态的核与像} Kernel, Image\\
+设$\phi: G\to H$是群同态, $H$的单位元的原像$\phi^{-1}(e_H)$称为$\phi$的核$\mathrm{ker}\phi$, $G$的像称为$\phi$的像$\mathrm{im}\phi$.
+\end{dfn}
+核与像的定义同样适用于环的同态、域的同态、线性空间的线性映射等. 
+
+\section{群的例子}
+
+\subsection{循环群}
+\begin{dfn}
+\textbf{循环群}\\
+设$G$是群，若存在$x\in G$使得$G=\langle x \rangle$，称$G$是循环群.
+\end{dfn}
+
+\begin{pro}
+\textbf{循环群的子群}\\
+循环群的子群是循环群.
+\end{pro}
+\begin{proof}
+设$G$是循环群，$H\le G$，首先证明$G=\mathbb{Z}$的情形. 若$H=\{0\}$已成立，否则$H$存在非零整数，进而$H$存在正整数. 设$d$是$H$中最小的正整数，断言$d$生成$H$. 事实上，对$m \in H$，做带余除法$m=qd+r, q\in \mathbb{Z}, 0\le r<d$, 则$r=m-qd \in H$, 因此必有$r=0$, $m=qd$.
+\par 考虑一般情形，设$G=\langle x\rangle$, 则$H$的元素均可表为$x^k, k\in \mathbb{Z}$. 不妨设$H$不是平凡群，令$S=\{k\in \mathbb{Z} \vert x^k \in H\}$, 则$S$是$\mathbb{Z}$的非平凡子群. 因此存在正整数$d$, $S=\{nd\vert n \in \mathbb{Z}\}$, $H=\langle x^d \rangle$. 
+\end{proof}
+
+\subsection{二面体群}
+
+\begin{dfn}
+\textbf{二面体群} Dihedral Group\\
+二面体群$D_n$是$2n$阶群，由元素$\{r^k,r^ks\vert k=0,1,\dots,n-1\}$构成，满足$r^n=e$, $s^2=e$, $sr=r^{-1}s$.
+\end{dfn}
+由此有$sr^k=r^{-k}s$, $(r^as)r^b=r^{a-b}s$. 特别地，$(r^ks)^{-1}=r^ks$.
+
+\par 二面体群是正$n$边形平板的旋转对称群，其中$r$代表以过正$n$边形中心的垂线为轴旋转$2\pi/n$，$s$代表翻转.
+
+\begin{dfn}
+\textbf{无限二面体群} Infinite Dihedral Group\\
+无限二面体群$D_\infty$由元素$\{r^k,r^ks\vert k\in \mathbb{Z}\}$构成，满足$s^2=e$, $sr=r^{-1}s$.
+\end{dfn}
+\par 无限二面体群是$\mathbb{Z}$到自身保持距离的映射构成的群，其中$r$代表$x\mapsto x+1$, $s$代表$x\mapsto -x$.
+
+\section*{文献注记}
+
+\section*{问题}
+\newcounter{probgrp} 
+\stepcounter{probgrp}
+\par \textbf{\theprobgrp .} \cite{GS} 设$G$是群，$x,y\in G$, 证明$xy$与$yx$有相同的阶. 
+
+\stepcounter{probgrp}
+\par \textbf{\theprobgrp .} \cite{GS} 设$G$是偶数阶群，证明$G$中阶为2的元素个数为奇数.
+
+\stepcounter{probgrp}
+\par \textbf{\theprobgrp .} 设$G$是群, $H\le G$, $[G:H]=2$. 证明: $H\unlhd G$. 
+
+\stepcounter{probgrp}
+\par \textbf{\theprobgrp .} 设$\phi:G\to H$是群同态, 证明$\phi$是单同态当且仅当$\mathrm{ker}\phi = \{e_G\}$. 
+
+\section*{解答}
+\newcounter{solgrp} 
+\stepcounter{solgrp}
+\par \textbf{\thesolgrp .} 设$k$是正整数，我们证明$(xy)^k=e$当且仅当$(yx)^k=e$. 事实上
+\begin{equation}
+    (xy)^k=e \iff x(yx)^{k-1}y=e \iff x(yx)^{k}=x \iff (yx)^{k}=e
+\end{equation}
+
+\stepcounter{solgrp}
+\par \textbf{\thesolgrp .} 定义$G$上的二元关系$\sim$：$x\sim y \iff x=y$ 或 $x=y^{-1}$，则$\sim$是等价关系. $G$在$\sim$下划分为等价类：若$x\neq x^{-1}$，则$x$所在的等价类恰为$\{x,x^{-1}\}$；否则为$\{x\}$. 因此满足$x\neq x^{-1}$的元素有偶数个；满足$x=x^{-1}$的元素也有偶数个，除去单位元$e$，知阶为2的元素有奇数个.
+
+\stepcounter{solgrp}
+\par \textbf{\thesolgrp .} 往证$\forall x\in G: xH=Hx$. 当$x\in H$, $xH=H=Hx$. 否则, $xH\neq H$, 由左陪集的集合构成$G$的划分及$[G:H]=2$, $G=H \cup xH$, $xH = G-H$. 同理有$Hx = G-H$. 故$xH=Hx$. 得证. 
+
+\stepcounter{solgrp}
+\par \textbf{\thesolgrp .} 由$\phi(e_G)=e_H$, 必要性显然. 充分性: 设$x,y\in G$, $\phi(x)=\phi(y)$, 则$\phi(xy^{-1})=\phi(x)\phi(y)^{-1}=e_H$, 故$xy^{-1}=e_G$, $x=y$.
+
+

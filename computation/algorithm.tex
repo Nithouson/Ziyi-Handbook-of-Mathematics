@@ -1,0 +1,13 @@
+\section*{问题}
+\newcounter{probalg} 
+
+\stepcounter{probalg}
+\par \textbf{\theprobalg .} (\textbf{Josephus问题}) 设$k\in \mathbb{N}$, 将前$n$个自然数$0,1,\cdots,n-1$按顺时针方向从小到大排列在一个圆上, 从0开始按顺时针方向数, 每次数到第$k$个数划去, 直至剩下一个数为止, 记作$g(n,k)$, 并令$g(1,k)=0$. 证明:
+\par (1) 当$n\ge 2$时, $g(n,k)=(g(n-1,k)+k) \mod n$. 
+\par (2) $g(n,2)=2(n-2^{\lfloor \log_2 n\rfloor})$.
+
+
+\section*{解答}
+\newcounter{solalg} 
+\stepcounter{solalg}
+\par \textbf{\thesolalg .} (1) 对$n$的情形, 移去第一个数$(k-1)\mod n$后, 等价于$n-1$的情形作用于$k\mod n, (k+1)\mod n, \cdots, (k-2)\mod n$. (2) 对$n$归纳, $n=1$时成立. 对$n\ge 2$, 假设$n-1$的情形成立, 考虑$n$的情形. 令$l=\lfloor \log_2 n\rfloor$, $m=n-2^l$, 则$0\le m<2^l$. (i) 若$m=0$, 则$\log_2 (n-1)=l-1$, $g(n-1,2)=2^l-2$, 由(1)得$g(n,2)=0$. (ii) 若$m>0$, 则$\log_2 (n-1)=l$, $g(n-1,2)=2m-2$, 由(1)及$2m<2^l+m=n$知$g(n,2)=2m$. 

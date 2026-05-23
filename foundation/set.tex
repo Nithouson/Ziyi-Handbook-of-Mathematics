@@ -1,0 +1,1133 @@
+
+\par \emph{道生一，一生二，二生三，三生万物.} 
+\par \rightline{——《老子》}
+
+\par \emph{汤问棘曰:``上下四方有极乎?''\\ 棘曰:``无极之外, 复无极也.''}
+\par \rightline{——《庄子·逍遥游》}
+
+\section{Zermelo-Fraenkel公理系统}
+
+\par ZFC公理系统由Zermelo-Fraenkel系统的八条公理和选择公理构成. 
+
+\par 公理集合论不定义“集合”，而是界定允许对集合进行的操作. 同样不定义“属于”，元素$x$属于集合$A$记作$x\in A$, 此时称$A$包含$x$.
+
+\begin{dfn} \textbf{子集} Subset\\
+设$A,B$是集合, 若$\forall x \in A: x \in B$, 称$A$是$B$的子集, 记作$A\subseteq B$. 
+\end{dfn}
+
+\begin{axi} \textbf{外延公理} Axiom of Extension\\
+设$A,B$是集合，则$A=B$当且仅当$A\subseteq B$且$B\subseteq A$. 
+\end{axi}
+\par 外延公理用自然语言表述为，两个集合相等当且仅当它们包含相同的元素. 这意味着集合完全由它们包含的元素（外延）确定. 
+
+\par 给定全集$E$, $\subseteq$是$\mathcal{P}(E)$上的偏序关系. 事实上, 外延公理表明$\subseteq$是反对称的，而根据定义$\subseteq$是自反的、传递的. 同理，$=$是$\mathcal{P}(E)$上的等价关系. 事实上, 外延公理表明集合间的相等关系$=$是自反的、对称的，而$\subseteq$的传递性蕴含$=$的传递性.
+
+\begin{dfn} \textbf{真子集}\\
+设$A,B$是集合，若$A\subseteq B$且$A\neq B$，称$A$是$B$的真子集，记作$A\subset B$. 
+\end{dfn}
+
+\begin{axi} \textbf{分类公理模式} Axiom of Specification\\
+设$A$是集合，$S(x)$是条件，则$A$中$S(x)$的所有元素构成集合$B$，记作$B=\{x\in A\vert S(x)\}$. 
+\end{axi}
+其中条件$S(x)$指含自由变元$x$的语句. 语句由逻辑运算符($\land, \lor, \lnot, \Rightarrow, \Leftrightarrow, \forall, \exists$)连接原子语句（属于、相等）得到. 
+
+\begin{col}\textbf{空集存在}\\
+设至少存在一个集合，则存在不包含任何元素的集合，称为空集$\varnothing$.
+\end{col}
+\begin{proof}
+    设$A$是集合，令$\varnothing=\{x\in A\vert x\neq x\}$. 
+\end{proof} 
+
+\begin{col}\textbf{不存在包含一切的集合}\\
+设$A$是集合，则存在$B \notin A$.
+\end{col}
+\begin{proof}
+    令$B=\{x\in A\vert x\notin x\}$, 用反证法，假设$B\in A$，则$B\notin B\Rightarrow B\in B$，$B\in B\Rightarrow B\notin B$，均导致矛盾. 故$B\notin A$. 
+\end{proof}
+若分类公理模式不加入$x\in A$的限定，允许定义集合$B=\{x\vert x\notin x\}$，类似的推理将导致Russell悖论.
+
+\begin{axi} \textbf{无序对公理} Axiom of Pairing\\
+设$a,b$是集合，存在集合$A$满足$a\in A$且 $b \in A$. 
+\end{axi}
+无序对公理的一个等价叙述是：设$a,b$是集合，存在一个集合恰好包含$a, b$, 称为$a,b$的无序对(unordered pair), 记作$\{a,b\}$. 事实上，设$a,b \in A$, 基于分类公理模式可令$\{a,b\}=\{x\in A\vert x=a \lor x=b\}$. 设$a$是集合，无序对公理还表明存在集合$\{a,a\}=\{a\}$，称为$a$的单件(singleton).
+
+\begin{axi} \textbf{并集公理} Axiom of Unions\\
+设$\mathcal{C}$是集合的集合(或称集族)，则存在集合$U$，满足对任意$x$，若存在$X\in \mathcal{C}$，$x\in X$，则$x\in U$. 
+\end{axi}
+并集公理也断言存在一个集合恰好由属于$\mathcal{C}$中至少一个集合的元素构成，称为$\mathcal{C}$中集合的并集，记作$\bigcup_{X\in \mathcal{C}}X$. 对$\mathcal{C}=\{A,B\}$的情形，并集记作$A\cup B=\{x|x\in A \lor x\in B\}$.
+
+\begin{axi} \textbf{幂集公理} Axiom of Powers\\
+设$E$是集合，则存在集族$\mathcal{P}$，满足对任意$X\subseteq E$，$x\in \mathcal{P}$. 
+\end{axi}
+幂集公理也断言存在一个集合恰好由$E$的全部子集构成，称为$E$的幂集，记作$\mathcal{P}(E)=\{X\vert X\subseteq E\}$.
+
+\begin{axi} \textbf{无穷公理} Axiom of Infinity\\
+存在集合$A$, 满足$\varnothing \in A$, 且$\forall x\in A : x\cup \{x\} \in A$.
+\end{axi}
+$x\cup \{x\}$称为$x$的后继(sucessor), 记作$x^{+}$.
+
+\begin{axi} \textbf{替换公理模式} Axiom of Substitution\\
+设$A$是集合，$S(a,b)$是条件，若对$\forall a\in A$, 存在集合$\{b\vert S(a,b)\}$, 则存在定义域为$A$的函数$F$满足$\forall a\in A: F(a)=\{b\vert S(a,b)\}$. 
+\end{axi}
+
+\begin{axi} \textbf{正则性公理} Axiom of Regularity\\
+设$A$是非空集合, 存在$a\in A$且$a\cap A=\varnothing$. 
+\end{axi}
+
+\begin{col}\textbf{集合不能包含自身}\\
+设$A, B$是集合，则$A\notin A$，且$A\notin B\lor B\notin A$.
+\label{col:self_inclusion}
+\end{col}
+\begin{proof}
+不妨设$A$非空, 由无序对公理, 存在$\{A\}$和$\{A,B\}$. 若$A\in A$, 或$A\in B\land B\in A$, 与正则性公理矛盾. 
+\end{proof}
+
+\section{集合的运算}
+
+\begin{pro} \textbf{交集} Intersection\\
+设$\mathcal{C}$是非空集族，则存在集合$V$，满足$x\in V$当且仅当对任意$X\in \mathcal{C}$，$x\in X$. 
+\end{pro}
+\begin{proof}
+    设$A\in \mathcal{C}$，令$V=\{x\in A\vert \forall X\in \mathcal{C}: x\in X\}$.
+\end{proof}
+$\mathcal{C}$中集合的交集记作$\bigcap_{X\in \mathcal{C}}X$. 对$\mathcal{C}=\{A,B\}$的情形，并集记作$A\cap B=\{x|x\in A \land x\in B\}$. 若$A\cap B=\varnothing$，称$A, B$不相交(disjoint). 
+\par $\mathcal{C}$非空的条件是必要的. 若$\mathcal{C}=\varnothing$, 命题中的条件对任意$x$都成立, 因此$\bigcap_{X\in \mathcal{C}}X$不是集合. 
+
+\begin{dfn} \textbf{集合的划分} Partition\\
+设$X$是集合，若$\mathcal{C}\subseteq \mathcal{P}(X)$，满足
+\begin{enumerate}
+    \item $\varnothing \notin \mathcal{C}$;
+    \item $\forall A,B \in \mathcal{C}, A\cap B=\varnothing$;
+    \item $\bigcup_{A\in \mathcal{C}} A=X$.
+\end{enumerate}
+则称$\mathcal{C}$是$X$的一个划分.
+\end{dfn}
+
+\begin{pro}\textbf{并、交运算基本规律}\\
+设$A,B,C$是集合，则有
+\begin{enumerate}
+    \item $A \cup \varnothing = A$, $A \cap \varnothing = \varnothing$;
+    \item 幂等性：$A\cup A=A$, $A\cap A=A$;
+    \item 交换律：$A\cup B=B\cup A$, $A\cap B=B\cap A$;
+    \item 结合律：$(A\cup B)\cup C=A\cup (B\cup C)$, $(A\cap B)\cap C=A\cap (B\cap C)$;
+    \item 分配律：$A\cap(B\cup C)=(A\cap B)\cup (A\cap C)$; $A\cup(B\cap C)=(A\cup B)\cap (A\cup C)$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+    利用与、或逻辑运算的基本规律证明.
+\end{proof}
+无序对可以推广到无序三元组(triple)以至任意有限元组. 事实上$\{a,b,c\} = \{a\} \cup \{b\} \cup \{c\}$，并运算的结合律保证上述记号没有歧义. 
+
+\begin{pro} \textbf{并、交运算与子集的关系}\\
+设$A,B$是集合，则以下三个命题等价：
+\begin{enumerate}
+    \item $A\subseteq B$;
+    \item $A\cup B=B$;
+    \item $A\cap B=A$.
+\end{enumerate}
+\end{pro}
+
+\begin{dfn} \textbf{差集、补集} Difference, Compliment \\
+设$A,B$是集合，集合$A-B=\{x\in A\vert x\notin B\}$称为$A$与$B$的差集. 假定论及的所有集合都是全集$E$的子集，则$E-A$称为$A$的补集，记作$A'$.
+\end{dfn}
+由定义有$A-B=A\cap B'$.
+
+\begin{pro} \textbf{补运算的基本规律}\\
+设$A,B$是集合, $E$是全集, $\mathcal{C}\in \mathcal{P}(E)$, 则有：
+\begin{enumerate}
+    \item $(A')'=A$;
+    \item $\varnothing'=E$, $E'=\varnothing$;
+    \item $A\cup A'=E$, $A\cap A'=\varnothing$;
+
+    \item $A\subseteq B\Leftrightarrow B' \subseteq A'$;
+    \item De Morgan律: $(\bigcup_{X\in \mathcal{C}}X)'=\bigcap_{X\in \mathcal{C}}X'$, $(\bigcap_{X\in \mathcal{C}}X)'=\bigcup_{X\in \mathcal{C}}X'$.
+\end{enumerate}
+\end{pro}
+
+\begin{dfn} \textbf{对称差} Symmetric Difference\\
+设$A,B$是集合，集合$A\oplus B=(A-B)\cup (B-A)$称为$A$与$B$的对称差.
+\end{dfn}
+
+\begin{pro}\textbf{对称差运算基本规律}\\
+设$A,B,C$是集合，则有
+\begin{enumerate}
+    \item $A\oplus A=\varnothing$, $A\oplus \varnothing=A$;
+    \item 交换律：$A\oplus B=B\oplus A$;
+    \item 结合律：$(A\oplus B)\oplus C=A\oplus (B\oplus C)$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+    只证(3), 两边都等于$(A-B-C)\cup (B-C-A)\cup(C-A-B)\cup(A\cap B\cap C)$.
+\end{proof}
+
+\begin{pro}\textbf{幂集运算基本规律}\\
+设$E,F$是集合, $\mathcal{C}$是集族，则有
+\begin{enumerate}
+    \item $E\subseteq F \Rightarrow \mathcal{P}(E)\subseteq \mathcal{P}(F)$;
+    \item $\bigcap_{X\in \mathcal{C}} \mathcal{P}(X)=\mathcal{P}(\bigcap_{X\in \mathcal{C}} X)$; $\bigcup_{X\in \mathcal{C}} \mathcal{P}(X)\subseteq \mathcal{P}(\bigcup_{X\in \mathcal{C}} X)$，等号成立当且仅当$(\bigcup_{X\in \mathcal{C}} X) \in \mathcal{C}$. 
+    \item $\bigcup_{X\in \mathcal{P}(E)} X =E$, $\bigcap_{X\in \mathcal{P}(E)} X =\varnothing$;
+    \item $\mathcal{C}\subseteq \mathcal{P}(\bigcup_{X\in \mathcal{C}} X)$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+\par (1)略. 
+\par (2) $A\in \bigcap_{X\in \mathcal{C}} \mathcal{P}(X)$  $\Leftrightarrow \forall X\in \mathcal{C}, A\in  \mathcal{P}(X)$  $\Leftrightarrow \forall X\in \mathcal{C}, A\subseteq X$ $\Leftrightarrow A \subseteq \bigcap_{X\in \mathcal{C}} X$ $\Leftrightarrow A \in \mathcal{P}(\bigcap_{X\in \mathcal{C}} X)$. 
+$A\in \bigcup_{X\in \mathcal{C}} \mathcal{P}(X)$  $\Leftrightarrow \exists X_0\in \mathcal{C}, A\subseteq X_0$  $\Rightarrow A \subseteq \bigcup_{X\in \mathcal{C}} X$ $\Leftrightarrow A \in \mathcal{P}(\bigcup_{X\in \mathcal{C}} X)$. 若等号成立, 取$A=\bigcup_{X\in \mathcal{C}} X$, 知$\exists X_0 \in \mathcal{C}, \bigcup_{X\in \mathcal{C}} X\subseteq X_0$, 此时只能有$X_0=\bigcup_{X\in \mathcal{C}} X$; 反之亦可推出等号成立.
+\par (3) 一方面$E\in \mathcal{P}(E)$, 故$E\subseteq \bigcup_{X\in \mathcal{P}(E)} X$; 另一方面若$x\in \bigcup_{X\in \mathcal{P}(E)}$, 则$\Rightarrow \exists X\subseteq E, x\in X$, 故$x\in E$. 由$\varnothing \in \mathcal{P}(E)$知$\bigcap_{X\in \mathcal{P}(E)} X =\varnothing$.
+\par (4) 设$X_0\in \mathcal{C}$, 则$X_0\subseteq \bigcup_{X\in \mathcal{C}} X$, $X_0 \in \mathcal{P}(\bigcup_{X\in \mathcal{C}} X)$.
+\end{proof}
+
+\begin{dfn} \textbf{有序对} Ordered Pair\\
+$a,b$的有序对定义为$(a,b)=\{\{a\},\{a,b\}\}$, 其中$a,b$分别称为第一、第二坐标. 
+\end{dfn}
+上述定义称为有序对的Kuratowski定义. 
+
+\begin{pro}\textbf{有序对相等}\\
+设$(a,b)=(x,y)$，则$a=x$且$b=y$.
+\end{pro}
+\begin{proof}
+    若$a=b$, 则$(a,b)$是单件$\{\{a\}\}$, 因此$(x,y)$也是单件, 从而必有$\{x\}=\{x,y\}\Rightarrow y\in \{x\}\Rightarrow y=x$. 由$\{x\}\in \{\{a\}\}$知$x=a$. 否则, 设$a\neq b$, 则$(a,b),(x,y)$各含一个单件$\{a\},\{x\}$, 故$a=x$; 各含一个无序对$\{a,b\},\{x,y\}$, 故$\{a,b\}=\{x,y\}$, $b\in \{x,y\}$. $b=x$与$a\neq b$矛盾, 故必有$b=y$. 
+\end{proof}
+
+\par 对于有限集$A$，可采用类似的方式用$\mathcal{P}(A)$的一个子集定义$A$中元素的一个排序. 上述定义的一个不必要后果是$\{a,b\}\subseteq (a,b)$, 也有观点不采用上述定义, 而是将有序对作为原始概念定义. 
+
+\begin{dfn} \textbf{笛卡尔积} Cartesian Product \\
+集合$A,B$的笛卡尔积定义为$A\times B=\{x\in  \mathcal{P}(\mathcal{P}(A\cup B))\vert \exists a\in A\exists b\in B: x=(a,b)\}$. 
+\end{dfn}
+在笛卡尔积存在性成立的前提下，$A\times B$的定义可简写为$\{(a,b)\vert a\in A, b\in B\}$. 
+
+\begin{pro}\textbf{有序对的集合是笛卡尔积的子集}\\
+设$R$是有序对构成的集合，则存在集合$A,B$, 使得$R \subseteq A\times B$.
+\end{pro}
+\begin{proof}
+令$A=\{x \vert \exists y: (x,y)\in R\}$, $B=\{y \vert \exists x: (x,y)\in R\}$. 上述集合的存在性由$A\cup B\subseteq \bigcup_{(a,b)\in R} \bigcup_{X\in (a,b)} X$保证. 
+\end{proof}
+如上定义的$A,B$分别称为$R$对第一、第二坐标的投影.
+
+\begin{pro}\textbf{笛卡尔积运算基本规律}\\
+设$A,B,X,Y$是集合, 则有
+\begin{enumerate}
+\item $A\times B=\varnothing \Leftrightarrow A=\varnothing \lor B=\varnothing$
+\item $A\subseteq X \land B\subseteq Y\Rightarrow A\times B \subseteq X\times Y$; 当$A\times B\neq \varnothing$, 逆命题也成立. 
+\item $(A\cup B)\times X=(A\times X) \cup (B \times X)$
+\item $(A\cap B)\times (X \cap Y)=(A\times X) \cap (B\times Y)$
+\item $(A-B)\times X=(A\times X)-(B\times X)$
+\end{enumerate}
+\end{pro}
+此外有$(A\times X)\cup (B\times Y)\subseteq (A\cup B)\times (X\cup Y)$, $(A-B)\times (X-Y)\subseteq (A\times X)- (B\times Y)$, 但等式一般不成立. 
+
+\begin{dfn} \textbf{多重笛卡尔积}\\
+设$\{X_i\}_{i\in I}$是一族集合, 其笛卡尔积定义为$\{\{x_i\}_{i\in I}\in (\bigcup_{i\in I} X_i)^I\vert \forall i\in I: x_i\in X_i\}$. 
+\end{dfn}
+当所有$X_i$为同一集合$X$, 上述笛卡尔积即为$I$到$X$函数的集合$X^I$. 
+
+\begin{pro}\textbf{有限个集合笛卡尔积非空的充要条件}\\
+设$\{X_i\}_{i=1}^n$是一族集合, 则其多重笛卡尔积非空当且仅当每个$X_i$均非空. 
+\end{pro}
+\begin{proof}
+必要性显然, 对$n$用数学归纳法证明充分性. $n=1$时显然. 设存在函数$f: \{1,\dots,n\} \to \bigcup_{i=1}^n X_i$, 满足$\forall i\in \{1,\dots,n\}, f(i)\in X_i$. 取$u\in X_{n+1}$, 则$f$的延拓$f':\{1,\dots,n+1\}\to \bigcup_{i=1}^{n+1} X_i$, $f'(n+1)=u$满足要求. 
+\end{proof}
+对无限个集合的笛卡尔积, 上述命题的必要性仍成立, 充分性即为选择公理. 
+
+\begin{axi} \textbf{选择公理} Axiom of Choice\\
+设$\{X_i\}_{i\in I}$是一族非空集合, 且指标集$I$非空, 则存在定义域为$I$的函数$f$, 满足$\forall i\in I$, $f(i)\in X_i$.
+\end{axi}
+选择公理可等价表述为: 一族（至少一个）非空集合的多重笛卡尔积非空.
+
+\section{关系}
+
+\begin{dfn} \textbf{关系} Relation\\
+若集合$R$中每个元素都是有序对，称$R$为关系. 此时$(x,y)\in R$简记为$xRy$; $R$对第一、第二坐标的投影分别称为定义域和值域，记作$\mathrm{dom}R$和$\mathrm{ran}R$. 当$R\subseteq X\times Y$, 称$R$为$X$到$Y$的关系；若$X=Y$, 称$R$为$X$上的关系. 
+\end{dfn}
+
+\begin{dfn} \textbf{关系的逆与复合} \\
+设$R$为$X$到$Y$的关系, $S$为$Y$到$Z$的关系. $R$的逆关系$R^{-1}$定义为$\{(y,x)\in Y\times X\vert (x,y)\in R\}$. $R,S$的复合关系$S\circ R$定义为$\{(x,z)\in X\times Z\vert \exists y\in Y: (x,y)\in R \land (y,z)\in S\}$.
+\end{dfn}
+
+\begin{pro}\textbf{关系复合的基本规律}\\
+设$R,S,T$为关系, 则有
+\begin{enumerate}
+\item $(S\circ R)^{-1}=R^{-1}\circ S^{-1}$
+\item 结合律：$(T\circ S)\circ R= T\circ (S\circ R)$
+\end{enumerate}
+\end{pro}
+\begin{proof}
+(1)$(z,x)\in R^{-1}\circ S^{-1} $
+$\Leftrightarrow \exists y: (z,y)\in S^{-1}\land (y,x)\in R^{-1}$
+$\Leftrightarrow \exists y: (y,z)\in S \land (x,y)\in R$
+$\Leftrightarrow (x,z)\in S\circ R$
+$\Leftrightarrow (z,x)\in (S\circ R)^{-1}$. 
+\par (2) 两边都等于$\{(x,w)\vert \exists y\exists z: (x,y)\in R \land (y,z)\in S \land (z,w)\in T\}$. 
+\end{proof}
+
+\begin{dfn} \textbf{关系的类型}\\
+设$R$是$X$上的关系，$I=\{(x,x)\vert x\in X\}$是$X$上的相等关系, 
+\begin{enumerate}
+    \item 自反性：$\forall x\in X: xRx$, 即$I\subseteq R$. 
+    \item 反自反性：$\forall x\in X: \lnot xRx$, 即$I\cap R=\varnothing$.
+    \item 对称性：$\forall x,y\in X: xRy\Rightarrow yRx$, 即$R\subseteq R^{-1}$. 
+    \item 反对称性：$\forall x,y\in X: xRy\land yRx\Rightarrow x=y$, 即$R\cap  R^{-1}\subseteq I$.
+    \item 禁对称性：$\forall x,y\in X: \lnot(xRy\land yRx)$, 即$R\cap  R^{-1}=\varnothing$.
+    \item 传递性：$\forall x,y,z\in X: xRy \land yRz\Rightarrow xRz$, 即$R\circ R \subseteq R$.
+\end{enumerate}
+\end{dfn}
+注意到$R\subseteq R^{-1}\Rightarrow R=R^{-1}$. 
+
+\begin{dfn} \textbf{等价关系} Equivalence Relation\\
+若集合$X$上的关系$R$满足自反性、对称性、传递性，称$R$为等价关系. 此时对$x\in X$, $\{y\in X\vert xRy\}$称为$x$关于$R$的等价类, 等价类的集合$X/R=\{\{y\in X\vert xRy\}\vert x\in X\}$称为$X$关于$R$的商集. 
+\end{dfn}
+$X$上最小的等价关系是相等关系$\{(x,x)\vert x\in X\}$; 最大的等价关系是$X\times X$.
+
+\begin{pro}\textbf{等价关系与集合划分的对应}\\
+\begin{enumerate}
+\item 设$R$是集合$X$上的等价关系, 则商集$X/R$构成$X$的划分; 
+\item 设$\mathcal{C}$是集合$X$的划分, 则$R=\{(x,y)\vert \exists A\in \mathcal{C}: x\in A \land y \in A\}$是$X$上的等价关系, 称为$\mathcal{C}$导出的等价关系. 
+\end{enumerate}
+\end{pro}
+\begin{proof}
+(1)显然每个等价类非空，且由于$X$中每个元素都有等价类，知所有等价类的并为$X$, 只需证任两个不同的等价类不相交. 反设$x,y\in X$的等价类的交集非空, 取交集中的元素$z$, 则由$xRz, yRz$知$xRy$, 知$x,y$的等价类相同. (2)只证传递性，设$xRy,yRz$, 则存在$A,B\in \mathcal{C}$, $x,y\in A$, $y,z\in B$, 由$y\in A\cap B$及划分的定义必有$A=B$, 故$xRz$.
+\end{proof}
+上述命题事实上给出了$X$上的等价关系与集合划分间的一个双射，商集与导出等价关系互为逆映射.
+
+\section{函数}
+
+\begin{dfn} \textbf{函数} Function\\
+设$f$是$X$到$Y$的关系，若$\mathrm{dom}f=X$, 且对任意$x\in X$, 满足$(x,y)\in f$的$y\in Y$唯一, 称$f$是$X$到$Y$的函数，记作$f: X\to Y$; $(x,y)\in f$记作$f(x)=y$或$x\mapsto y$. $X$到$Y$的函数的集合是$\mathcal{P}(X\times Y)$的子集，记作$Y^X$.
+\end{dfn}
+上述$y$的唯一性可表达为$\forall x\in X \forall y\in Y\forall z\in Y: (x,y)\in f \land (x,z) \in f \Rightarrow y=z$. 这保证了$f(x)$没有歧义. 
+\par 函数有时称为映射(mapping). 上述定义的函数(有序对的集合)有时称为函数的图像(graph). 
+\par 设$x: I\to X$, 对$i\in I$, 有时记$x(i)$为$x_i$, 并将此函数记作$\{x_i\}_{i\in I}$. 此时$I$称为指标集(index set), 值域$\{x_i\vert i\in I\}$称为索引集(indexed set). 
+\par 定义在笛卡尔积上的函数称为二元函数, $f((a,b))$简记为$f(a,b)$; 这一术语和记号可推广到$n$元组的情形. $X$到自身的函数有时称为$X$上的运算; 相应地, $X\times X$到$X$的函数称为$X$上的二元运算. 
+
+\begin{dfn} \textbf{嵌入映射，恒等映射} Inclusion Map, Identity Map\\
+设$X\subseteq Y$, 嵌入映射$f:X\to Y$定义为$f(x)=x$. 当$X=Y$时，$f$称为恒等映射, 记为${\mathrm{id}}_{X}$. 
+\end{dfn}
+
+\begin{dfn} \textbf{单射，满射，双射}\\
+设$f:X\to Y$, 
+\begin{enumerate}
+    \item 若$\forall x_1,x_2 \in X$, $f(x_1)=f(x_2)\Rightarrow x_1=x_2$, 称$f$是单射.
+    \item 若$\mathrm{ran}f=Y$, 称$f$是满射.
+    \item 若$f$同时是单射和满射，称$f$是双射.
+\end{enumerate} 
+\end{dfn}
+
+\begin{dfn} \textbf{像，原像} \\
+设$f:X\to Y$. 对$A\subseteq X$, $f(A)=\{y\in Y\vert \exists x\in A: f(x)=y\}$称为$A$的像. 对$B\subseteq Y$, $f^{-1}(B)=\{x\in X\vert f(x)\in B\}$称为$B$的原像.
+\end{dfn}
+利用替换公理模式, 像的定义可简写为$f(A)=\{f(x)\vert x\in A\}$. 事实上，像定义了函数$f:\mathcal{P}(X)\to \mathcal{P}(Y)$; 原像定义了函数$f^{-1}:\mathcal{P}(Y)\to \mathcal{P}(X)$. 
+
+
+\begin{pro}\textbf{像与原像的性质}\\
+设$f:X\to Y$为函数, $A, A'$、$\{A_i\}_{i\in I}$是$X$的子集, $B, B'$、$\{B_i\}_{i\in I}$是$Y$的子集, 则有
+\begin{enumerate}
+\item $f(\bigcup_{i \in I}A_i)=\bigcup_{i \in I}f(A_i)$.
+\item $f(\bigcap_{i \in I}A_i)\subseteq \bigcap_{i \in I}f(A_i)$; 当$f$是单射, $f(\bigcap_{i \in I}A_i)=\bigcap_{i \in I}f(A_i)$.
+\item $f(A)-f(A')\subseteq f(A-A')$; 当$f$是单射, $f(A)-f(A')=f(A-A')$.
+\item $f^{-1}(\bigcup_{i \in I}B_i)=\bigcup_{i \in I}f^{-1}(B_i)$, $f^{-1}(\bigcap_{i \in I}B_i)=\bigcap_{i \in I}f^{-1}(B_i)$.
+\item $f^{-1}(B-B')=f^{-1}(B)-f^{-1}(B')$.
+\item $f(f^{-1}(B))\subseteq B$; 当$f$是满射, $f(f^{-1}(B))=B$.
+\item $A\subseteq f^{-1}(f(A))$; 当$f$是单射, $A=f^{-1}(f(A))$.
+
+\end{enumerate}
+\end{pro}
+
+\begin{dfn} \textbf{函数的逆} Inverse\\
+设$f:X \to Y$是双射, 对$\forall y\in Y$, 存在唯一$x\in X$满足$f(x)=y$, 由此定义函数 $f^{-1}:Y\to X$, $f^{-1}(y)=x$, $f^{-1}$称为$f$的逆. 
+\end{dfn}
+\par 当$f:X \to Y$是双射, 对$f^{-1}:Y\to X$, 有$(f^{-1})^{-1}=f$. 注意到对$V\subseteq Y$, $f^{-1}(V)$表示$f$下$V$的原像和$f^{-1}$下$V$的像是一致的, 不产生歧义. 
+\par 当$f:X \to Y$是单射, $f:X\to \operatorname{ran}f$是双射, 可定义逆$f^{-1}:\operatorname{ran}f\to X$. 
+
+\begin{dfn} \textbf{函数的复合} Composite\\
+设$f:X \to Y$, $g: Y\to Z$, $f$与$g$的复合$g\circ f: X\to Z$定义为$g\circ f(x)=g(f(x))$. 
+\end{dfn}
+
+\begin{pro} \textbf{复合函数为单射、满射的条件}\\
+设$f:X \to Y$, $g: Y\to Z$, 则
+\begin{enumerate}
+    \item 若$f,g$均为单射, 则$g\circ f$为单射.
+    \item 若$f,g$均为满射, 则$g\circ f$为满射.
+    \item 若$g\circ f$为单射, 则$f$为单射.
+    \item 若$g\circ f$为满射, 则$g$为满射.
+\end{enumerate}
+\label{pro:comp_bij}
+\end{pro}
+\begin{proof}
+(1) $\forall x_1,x_2\in X$, $g(f(x_1))=g(f(x_2))\Rightarrow f(x_1)=f(x_2)\Rightarrow x_1=x_2$. 
+(2) $\forall z\in Z$, $\exists y\in Y$, $g(y)=z$; $\exists x\in X$, $f(x)=y$; 故有$g(f(x))=z$. (3)$\forall x_1,x_2 \in X$, 若$f(x_1)=f(x_2)$, 有$g(f(x_1))=g(f(x_2))$, 由$g\circ f$为单射, $x_1=x_2$, 故$f$是单射. (4)$\forall z \in Z$, $\exists x\in X, g(f(x))=z$, 故$g$是满射.
+\end{proof}
+函数复合是关系复合的特例, 故也满足结合律；且当$f,g$为双射时$g\circ f$也为双射, 其逆$(g\circ f)^{-1}=f^{-1}\circ g^{-1}$. 若考虑函数$g^{-1}:\mathcal{P}(Z)\to \mathcal{P}(Y)$和$f^{-1}:\mathcal{P}(Y)\to \mathcal{P}(X)$, 此式的成立不依赖双射的条件.
+
+\begin{pro} \textbf{函数逆的等价描述}\\
+设函数$f:X\to Y$, $f$是双射当且仅当存在函数$g:Y\to X$, 满足$g\circ f={\mathrm{id}}_{X}$, $f\circ g={\mathrm{id}}_{Y}$. 此时有$g=f^{-1}$. 
+\label{pro:func_inverse}
+\end{pro}
+\begin{proof} 只证充分性, 由命题(\ref{pro:comp_bij})知$f$为双射. $\forall y \in Y$, 设$f^{-1}(y)=x$, 有$g(y)=g(f(x))=x$. 故$g=f^{-1}$. 
+\end{proof}
+
+\begin{dfn} \textbf{函数的限制、延拓} Restriction, Extension\\
+设$f:Y\to Z$, $X\subseteq Y$, $g:X \to Z$, $\forall x\in X: g(x)=f(x)$，则$g$称为$f$在$X$上的限制，记作$f|_X$; $f$称为$g$在$Y$上的延拓. 
+\end{dfn}
+函数的延拓是集合子集关系的特例.
+
+\begin{dfn} \textbf{投影映射} Projection Map\\
+设$X,Y$是集合, 映射$f_1:X\times Y\to X$, $f_1(x,y)=x$称为$X\times Y$到第一坐标的投影映射; $f_2:X\times Y\to Y$, $f_2(x,y)=y$称为$X\times Y$到第二坐标的投影映射.
+\end{dfn}
+
+\begin{dfn} \textbf{子集的特征函数} Characteristic Function\\
+设$A\subseteq X$, $A$的特征函数$\chi_A:X\to \{0,1\}$定义为：当$x\in A$时$\chi_A(x)=1$, 否则$\chi_A(x)=0$.
+\end{dfn}
+
+\section{自然数}
+
+\begin{pro} \textbf{自然数} Natural Numbers\\
+若集合$A$满足$\varnothing \in A \land (\forall x\in A : x^+ \in A)$, 称$A$为后继集. 存在唯一的后继集$\mathbb{N}$，使得对任意后继集$X$有$\mathbb{N}\subseteq X$. 定义$\mathbb{N}$为自然数集; $\mathbb{N}$的元素称为自然数. 
+\label{pro:natural_numbers}
+\end{pro}
+\begin{proof}
+根据无穷公理，存在一个后继集$A$. 令$\mathbb{N}=\bigcap\{X\subseteq A\vert X\text{为后继集}\}$, 可以验证$\mathbb{N}$也为后继集. 设$B$是任一后继集, 则$A\cap B$也为后继集, 因此$\mathbb{N}\subseteq A\cap B \subseteq B$. 显然$\mathbb{N}$是唯一的. 
+\end{proof}
+\par 在上述定义下, 自然数$0=\varnothing$; $1=0^+=\{0\}$; $2=1^+=\{0, 1\}$; $\dots$; $n+1=n^+=\{0,1,\dots,n\}$. 
+\par 对于函数$\{x_i\}_{i\in I}$, 若$I$是自然数或自然数集$\mathbb{N}$, 称$\{x_i\}$为序列(sequence). 
+
+\begin{dfn}\textbf{Peano系统}\\
+设$M$是集合, $f:M\to M$是单射, $e\in M$, $e \notin \operatorname{ran}f$, 且$\forall A\subseteq M: ((e\in A\land \forall x\in A: f(x) \in A) \Rightarrow A=M)$, 则称三元组$(M,f,e)$为一个Peano系统. 
+\end{dfn}
+\par 上述定义中的条件也称为Peano公理. 事实上, 自然数的运算和序关系可以只由Peano公理导出，不依赖具体的集合论模型。
+
+\par 定义的最后一个条件称为数学归纳法原理(principle of mathematical induction). 对命题$\forall x\in M: P(x)$, 只需证$P(e)$以及$ \forall x\in M: P(x)\Rightarrow P(f(x))$. 事实上, 令$A=\{x\in M: P(x)\}$, 数学归纳法原理表明$A=M$. 这一过程称为数学归纳法.
+
+\begin{pro}\textbf{自然数满足Peano公理}\\
+在自然数集上定义运算$++:n\mapsto n^+$, 则$(\mathbb{N}, ++, \varnothing)$是Peano系统. 
+\label{pro:ispeano}
+\end{pro}
+\begin{proof}
+$\mathbb{N}$是后继集表明$\varnothing \in \mathbb{N}$, 且$\forall n\in \mathbb{N}: ++n \in \mathbb{N}$. 由$n\in n^+$, $n^+\neq \varnothing$. 若$\mathbb{N}$的子集$S$是后继集, 则$\mathbb{N}\subseteq S$, 因此$\mathbb{N}=S$. 
+\end{proof}
+\par 为证明$++$是单射, 先证明两个引理.
+
+\begin{lem}\textbf{自然数不是其元素的子集}\\
+$\forall n\in \mathbb{N} \forall x \in n: \lnot (n\subseteq x)$.
+\label{lem:notsubset}
+\end{lem}
+\begin{proof}
+记$S=\{n\in \mathbb{N} \vert \forall x \in n: \lnot (n\subseteq x)\}$, 有$0\in S$. 设$n\in S$, 对$x\in n^+$, 有$x=n$或$x\in n$. 当$x=n$, 则由$n\subseteq n$知$n\notin n$, 因此$\lnot (n^+ \subseteq n)$; 当$x\in n$, 有$\lnot(n\subseteq x)$, 而$n \subseteq n^+$, 故亦有$\lnot(n^+\subseteq x)$. 因此$n^+\in S$. 
+\end{proof} 
+
+\begin{lem}\textbf{自然数是传递集}\\
+$\forall n\in \mathbb{N}: x \in n\Rightarrow x\subseteq n$.
+\label{lem:transitive}
+\end{lem}
+\begin{proof}
+同样记$S=\{n\in \mathbb{N} \vert x \in n\Rightarrow x\subseteq n\}$, 有$0\in S$. 设$n\in S$, 对$x\in n^+$, 有$x=n$或$x\in n$. 当$x=n$, 有$n\subseteq n^+$; 当$x\in n$, 有$x\subseteq n \subseteq n^+$. 因此$n^+\in S$. 
+\end{proof}
+
+\par 若集合$A$满足$x\in A\Rightarrow x\subseteq A$, 称$A$为传递集(transitive). 
+
+\par 上述引理表明自然数是传递集. 此外, 结合引理\ref{lem:notsubset}, 引理\ref{lem:transitive}, 有$\forall n\in \mathbb{N}: n\notin n$. 我们回到命题\ref{pro:ispeano} 的证明. 
+\begin{proof}
+\par 设$m,n\in \mathbb{N}$, $m^+=n^+$, 则由$n\in n^+$知$n\in m^+$, 从而$n=m$或$n\in m$; 同理可得$n=m$或$m\in n$. 若$m\neq n$, 有$n\in m \land m\in n$. 由引理\ref{lem:transitive}, $m\subseteq n$, 从而$n\in n$, 矛盾. 
+\end{proof} 
+
+\begin{thm}\textbf{递归定理} Recursion Theorem\\
+设$a\in X$, $f:X\to X$, 存在唯一的函数$u: \mathbb{N} \to X$, 满足
+\begin{enumerate}
+    \item $u(0)=a$;
+    \item $\forall n\in \mathbb{N}: u(++n)=f(u(n))$.
+\end{enumerate} 
+\end{thm}
+\begin{proof} 先证唯一性. 用数学归纳法, 设$v: \mathbb{N} \to X$也满足条件, 则$u(0)=v(0)$; $\forall n \in \mathbb{N}: u(n)=v(n)\Rightarrow u(++n)=v(++n)$. 因此$u=v$. 
+\par 以下证存在性. 令$\mathcal{C}=\{A\in \mathbb{N}\times X\vert (0,a)\in A \land ((n,x)\in A\Rightarrow (++n, f(x))\in A)\}$, 则$\mathbb{N}\times X\in \mathcal{C}$, 因此$\mathcal{C}$非空. 令$u=\bigcap_{A\in \mathcal{C}} A$, 只需证$u$是函数. 用数学归纳法证明$\forall n\in \mathbb{N}$, 存在唯一$x\in X$满足$(n,x)\in u$. 
+\par 已知$(0,a)\in u$. 设$(0,y)\in u$, 反设$y\neq a$, 则$u-\{(0,y)\}\in \mathcal{C}$仍成立(因为$n^+\neq 0$), 与$u$的定义矛盾, 因此$y=a$. 
+\par 设$(n,x)\in u$, 且$(n,y)\in u\Rightarrow y=x$, 则$(++n, f(x))\in u$. 设$(++n, y)\in u$, 反设$y\neq f(x)$. 考虑集合$u-\{(++n,y)\}$, 若存在$(m,x')\in u$, $(++m, f(x'))=(++n,y)$, 则$m=n$, $x'=x$, 这推出$y=f(x)$. 因此有$u-\{(++n,y)\}\in \mathcal{C}$, 与$u$的定义矛盾, 因此$y=f(x)$. 
+\end{proof}
+\par 若定理中的$f:\mathbb{N}\times X\to X$, 条件2改为$\forall n\in\mathbb{N}: u(++n)=f(n,u(n))$, 定理仍然成立. 
+\par 递归定理的应用称为递归定义(definition by induction). 
+
+\begin{col}\textbf{Peano系统的等价性}\\
+设$(M,f,e)$是Peano系统, 存在双射$u: \mathbb{N}\to M$, 满足$u(0)=e$, $\forall n\in \mathbb{N}: u(++n)=f(u(n))$. 
+\end{col}
+\begin{proof}
+由递归定理, 存在函数$u: \mathbb{N}\to M$满足条件. 由于$u(0)=e$, 且对$m\in M$, $u(n)=m\Rightarrow u(++n)=f(m)$, 由$(M,f,e)$上的数学归纳法知$u$为满射. 以下用数学归纳法证明$u$为单射. 对$n\in \mathbb{N}$, 当$n\neq 0$, 存在$r\in \mathbb{N}$, $n=++r$. 因此$u(n)=f(u(r))\neq e$, 故$u(n)=u(0)\Rightarrow n=0$. 设对$k\in \mathbb{N}$, $u(n)=u(k)\Rightarrow n=k$; 当$u(n)=u(++k)$, 显然$n\neq 0$, 设$n=++r$, 则$f(u(r))=f(u(k))$, 由$f$为单射知$u(r)=u(k)$, $r=k$, $n=++k$. 命题得证. 
+\end{proof}
+
+\begin{dfn}\textbf{自然数的加法} Addition\\
+由递归定理, 对任意$m\in \mathbb{N}$, 存在函数$s_m: \mathbb{N} \to  \mathbb{N}$, 满足$s_m(0)=m$; $\forall n\in \mathbb{N}: s_m(++n)=++s_m(n)$. 定义$\mathbb{N}$上的二元运算$+$: $m+n=s_m(n)$. 
+\end{dfn}
+根据定义, $\forall m,n \in \mathbb{N}$, $m+0=m$; $m+(++n)=++(m+n)$.
+
+\begin{dfn}\textbf{自然数的乘法} Multiplication\\
+由递归定理, 对任意$m\in \mathbb{N}$, 存在函数$p_m: \mathbb{N} \to  \mathbb{N}$, 满足$p_m(0)=0$; $\forall n\in \mathbb{N}: p_m(++n)=p_m(n)+m$. 定义$\mathbb{N}$上的二元运算$\times$: $m\times n=p_m(n)$. 
+\end{dfn}
+$m\times n$也写作$m\cdot n$或$mn$. 根据定义, $\forall m,n \in \mathbb{N}$, $m\cdot  0=0$; $m(++n)=mn+m$. 
+
+\begin{pro}\textbf{自然数加法、乘法的性质}\\
+设$m,n,k\in \mathbb{N}$,
+\begin{enumerate}
+    \item 加法结合律: $(m+n)+k=m+(n+k)$.
+    \item 加法交换律: $m+n=n+m$.
+    \item 乘法对加法的分配律: $k(m+n)=km+kn$.
+    \item 乘法结合律: $m(nk)=(mn)k$.
+    \item 乘法交换律: $mn=nm$. 
+\end{enumerate}
+\end{pro}
+\begin{proof}
+\par (1)对$k$用数学归纳法. 当$k=0$时, 对任意$m,n\in \mathbb{N}$, $(m+n)+0=m+n=m+(n+0)$. 设$\forall m,n\in \mathbb{N}$, $(m+n)+k=m+(n+k)$, 则$(m+n)+(++k)=++((m+n)+k)=++(m+(n+k))=m+(++(n+k))=m+(n+(++k))$. 
+\par (2)先证明两个引理. 
+\par 引理1: $\forall n\in \mathbb{N}: 0+n=n$. 用数学归纳法, $0+0=0$; 设$0+n=n$, 则$0+(++n)=++(0+n)=++n$. 引理得证. 
+\par 引理2: $\forall m,n\in \mathbb{N}: (++m)+n=++(m+n)$. 对$n$用数学归纳法, $\forall m\in \mathbb{N}$, $(++m)+0=++m=++(m+0)$; 设命题对$n$成立, 则$\forall m\in \mathbb{N}$, $(++m)+(++n)=++((++m)+n)=++(++(m+n))=++(m+(++n))$. 引理得证. 
+\par 回到原题. 对$n$用数学归纳法, $\forall m\in \mathbb{N}$, $m+0=m=0+m$; 设命题对$n$成立, 则$\forall m\in \mathbb{N}$, $m+(++n)=++(m+n)=++(n+m)=(++n)+m$. 
+\par (3)对$n$用数学归纳法. 当$n=0$时, 对任意$k,m \in \mathbb{N}$, $k(m+0)=km=km+0=km+k\cdot 0$. 设$\forall k,m\in \mathbb{N}$, $k(m+n)=km+kn$, 则$k(m+(++n))=k(++(m+n))=k(m+n)+k=km+kn+k=km+k(++n)$. 
+\par (4)对$k$用数学归纳法. 当$k=0$时, 对任意$m,n\in \mathbb{N}$, $m\cdot(n\cdot 0)=m\cdot0=0=(mn)\cdot 0$. 设$\forall m,n\in \mathbb{N}$, $(mn)k=m(nk)$, 则$(mn)(++k)=(mn)k+mn=m(nk)+mn=m(nk+n)=m(n(++k))$. 
+\par (5)先证明两个引理. 
+\par 引理1: $\forall n\in \mathbb{N}: 0\cdot n=0$. 用数学归纳法, $0\cdot 0=0$; 设$0\cdot n=0$, 则$0\cdot (++n)=0\cdot n+0=0+0=0$. 引理得证. 
+\par 引理2: $\forall m,n\in \mathbb{N}: (++m)n=mn+n$. 对$n$用数学归纳法, $\forall m\in \mathbb{N}$, $(++m)\cdot 0=0=m\cdot 0+0$; 设命题对$n$成立, 则$\forall m\in \mathbb{N}$, $(++m)(++n)=(++m)n+(++m)=mn+n+(++m)=mn+(++(n+m))=mn+(++n)+m=mn+m+(++n)=m(++n)+(++n)$. 引理得证. 
+\par 回到原题. 对$n$用数学归纳法, $\forall m\in \mathbb{N}$, $m\cdot 0=0=0\cdot m$; 设命题对$n$成立, 则$\forall m\in \mathbb{N}$, $m(++n)=mn+m=nm+m=(++n)m$. 
+\end{proof}
+\par 由于$n+1=n+(++0)=++(n+0)=++n$, $++n$可记为$n+1$. 此外有$n\cdot 1=n(++0)=n\cdot 0+n=0+n=n$. 
+
+\begin{dfn}\textbf{自然数的幂运算} Power\\
+由递归定理, 对任意$m\in \mathbb{N}$, 存在函数$e_m: \mathbb{N} \to  \mathbb{N}$, 满足$e_m(0)=1$; $\forall n\in \mathbb{N}: e_m(n+1)=e_m(n)\cdot m$. 定义$\mathbb{N}$上的二元运算: $m^n=e_m(n)$. 
+\end{dfn}
+根据定义, $\forall m,n \in \mathbb{N}$, $m^0=1$; $m^{n+1}=m^n\cdot m$. 
+
+\begin{pro}\textbf{自然数幂运算的性质}\\
+设$a, m,n\in \mathbb{N}$,
+\begin{enumerate}
+    \item $a^{m+n}=a^m\cdot a^n$.
+    \item $a^{mn}=(a^m)^n$. 
+\end{enumerate}
+\label{pro:natural_power}
+\end{pro}
+\begin{proof}
+(1) 对$n$用数学归纳法, $\forall a, m\in \mathbb{N}$, $a^{m+0}=a^m=a^m\cdot 1 =a^m\cdot a^0$; 设命题对$n$成立, 则$\forall a, m\in \mathbb{N}$, $a^{m+n+1}=a^{m+n}\cdot a= a^m \cdot a^n\cdot a=a^m \cdot (a^n\cdot a)=a^m \cdot a^{n+1}$.
+(2) 对$n$用数学归纳法, $\forall a, m\in \mathbb{N}$, $a^{m\cdot 0}=a^0=1=(a^m)^0$. 设命题对$n$成立, 则$\forall a, m\in \mathbb{N}$, $a^{m(n+1)}=a^{mn+m} = a^{mn} \cdot a^m=(a^m)^n \cdot a^m=(a^m)^{n+1}$.
+\end{proof}
+
+\begin{dfn}\textbf{自然数的高阶运算} Hyperoperation\\
+递归定义自然数集上的二元运算序列$H_n(a,b)$如下:
+\begin{align}
+    &H_0(a,b)=b+1\\
+    &H_1(a,0)=a\\
+    &H_2(a,0)=0\\
+    &H_n(a,0)=1, n\ge 3\\
+    &H_n(a,b)=H_{n-1}(a,H_n(a,b-1)), n\ge 1, b>0
+\end{align}
+其中$H_0(a,b)=b+1$为后继运算; $H_1(a,b)=a+b$为加法运算; $H_2(a,b)=ab$为乘法运算; $H_3(a,b)=a^b$为幂运算. $H_n(a,b)$有时记作$a[n]b$. 当$n\ge 3$, $H_n(a,b)$也可用Knuth箭头符号\index{Knuth箭头符号}记为$a\uparrow^{n-2}b$.  
+\end{dfn}
+
+\begin{dfn}\textbf{自然数的序} Order\\
+定义$\mathbb{N}$上的小于关系$<$如下: 对$m,n \in \mathbb{N}$, $m<n \iff m\in n$. 
+\end{dfn}
+基于小于关系$<$的定义, 可定义大于关系: $m>n \iff n<m$; 小于等于关系: $m\le n \iff m<n \lor m=n$; 大于等于关系: $m\ge n \iff m>n \lor m=n$. 
+
+\begin{pro}\textbf{自然数序关系的加法定义}\\
+设$m, n\in \mathbb{N}$, 证明$m\le n$当且仅当存在$k\in \mathbb{N}$, $n=m+k$. 
+\label{pro:natural_order_add}
+\end{pro}
+\begin{proof}
+\par 充分性: 若$k=0$, 则$m=n$. 否则, 用数学归纳法可证明$\forall k\neq 0: m\in m+k$. 事实上, $k=1$时显然. 若$m\in m+k$, 则由$m+k \subseteq m+k+1$, $m\in m+k+1$. 由此得到$m\in n$, 即$m<n$.
+\par 必要性: 对$n$归纳证明$\forall m\in \mathbb{N}\forall n\in \mathbb{N}: (\exists k\in \mathbb{N}: (m=n+k \land k\neq 0) \lor \exists k\in \mathbb{N}: n=m+k)$. 当$n=0$时, 若$m\neq 0$, 有$m=n+m$; 否则有$n=m+0$. 设命题对$n$成立. (a)若$\exists k\neq 0: m=n+k$, 则存在$l\in \mathbb{N}$, $k=l+1$, 因此$m=n+l+1=(n+1)+l$, 若$l\neq 0$已满足要求; 否则$m=n+1$, 有$n+1=m+0$. (b) 若$\exists k: n=m+k$, 则$n+1=m+(k+1)$. 
+\par 回到原题, 若$\exists k\neq 0: m=n+k$, 则由充分性的证明知$n\in m$. 而由$m\le n$及自然数是传递集, 有$m\subseteq n$, 从而$n\in n$, 矛盾. 故存在$k$满足$n=m+k$.
+\end{proof} 
+\par 基于以上命题, $m<n\iff \exists k\in \mathbb{N}: n=m+k\land k\neq 0$. 注意到上述等价定义不依赖自然数的集合论模型. 
+
+\begin{pro}\textbf{自然数序关系的三歧性}\\
+设$m, n, k\in \mathbb{N}$是任意自然数, $m<n$, $m=n$, $m>n$三个命题中恰有一个成立. 
+\end{pro}
+\begin{proof}
+由命题\ref{pro:natural_order_add} 必要性的证明, $\forall m, n\in \mathbb{N}: m>n \lor m\le n$. 因此三个命题至少有一个成立. 为证明三个命题至多一个成立, 不妨设$m>n$, 则存在$k\neq 0$, $m=n+k$. 若$m\le n$, 则存在$n=m+l$, 从而$l+k=0$, 矛盾.
+\end{proof}
+三歧性给出小于关系的另一种等价表述: $m<n\iff m\subset n$. 事实上, 由自然数是传递集, $m\in n$ 推出$m\subseteq n$, 而由三歧性$m=n$不成立; 另一方面, $m\subset n \land n\in m$与引理\ref{lem:notsubset}矛盾, 故必有$m\in n$. 同理有$m\le n\iff m\subseteq n$.
+\par 自然数的小于、大于关系满足反自反性、禁对称性、传递性; 小于等于、大于等于关系是全序关系. 
+
+\begin{pro}\textbf{自然数运算的保序性}\\
+设$m,n,k \in \mathbb{N}$,
+\begin{enumerate}
+    \item 若$m<n$, 则$m+k<n+k$.
+    \item 若$m<n$且$k\neq 0$, 则$mk<nk$. 
+\end{enumerate}
+\label{pro:natural_preserve_order}
+\end{pro}
+\begin{proof}
+(1) 当$m<n$, 存在$l\neq 0$, $n=m+l$, 则$n+k=m+k+l$, 故$m+k<n+k$. 
+\par (2) 对$k$用数学归纳法, $k=1$时命题显然成立. 若$mk<nk$, 则由(1)有$m(k+1)=mk+m<mk+n<nk+n=n(k+1)$.
+\end{proof}
+上述命题对小于等于关系也成立, 此时(2)不需要$k\neq 0$的条件.
+
+\begin{pro}\textbf{自然数集是良序集}\\
+设$\mathbb{N}$是自然数集, 非空集合$E\subseteq \mathbb{N}$, 存在$k\in E$, $\forall m\in E: k\le m$.
+\end{pro}
+\begin{proof}
+用反证法，设$\forall k\in E\exists m\in E: m<k$, 往证$E=\varnothing$. 用数学归纳法证明$\forall n\in \mathbb{N}: m<n\Rightarrow m\notin E$. 显然命题对0成立. 设命题对$n$成立, 对$m<n+1$, 有$m\le n$, 从而$m<n$或$m=n$, 只需考虑后者. 若$n\in E$, 存在$l\in E$且$l<n$, 与归纳假设矛盾, 故$n\notin E$. 这完成了归纳证明. 特别地, $\forall n\in \mathbb{N}$, 由命题在$n+1$的情形知 $n\notin E$, 从而$E=\varnothing$. 
+\end{proof}
+\par 上述命题表明自然数在$\le$关系下构成良序集, 因此超限归纳法(定理\ref{thm:transinduct})适用, 这也称为第二数学归纳法. 
+
+\section{基数}
+
+\begin{dfn} \textbf{集合的势}\\
+设$X, Y$是集合, 若存在双射$f:X\to Y$, 则称$X,Y$等势, 记作$X\sim Y$; 若$X$与$Y$的一个子集等势, 则$X\precsim Y$; 若$X\precsim Y$且$\lnot (X\sim Y)$, 则$X\prec Y$, 称$X$的势比$Y$小. 
+\end{dfn}
+\par 给定全集$E$, 等势是$\mathcal{P}(E)$上的等价关系; $\precsim$满足自反性、传递性. 
+
+\begin{thm}\textbf{Schröder-Bernstein定理}\\
+设$X, Y$是集合, 若$X\precsim Y$, $Y\precsim X$, 则$X\sim Y$. 
+\end{thm}
+\begin{proof}
+设$f:X\to Y$, $g:Y\to X$是单射, 不妨设$X\cap Y=\varnothing$. 对任意$x\in X$, 考虑序列$x, g^{-1}(x), f^{-1}g^{-1}(x), g^{-1}f^{-1}g^{-1}(x),\dots$, 可能情形有三: (1)存在$k\ge 0$, $(f^{-1}g^{-1})^k (x)\notin g(Y)$, 即序列终止于$X$的元素; (2)存在$k\ge 0$, $(g^{-1}f^{-1})^k g^{-1}(x)\notin f(X)$, 即序列终止于$Y$的元素; (3)序列永不终止. 以上三种情形给出$X$的划分: $X=X_X\cup X_Y\cup X_\infty$. 同理, $Y$也有划分$Y=Y_X\cup Y_Y\cup Y_\infty$. 定义函数$h:X\to Y$: 对$x\in X_X\cup X_\infty$, $h(x)=f(x)$; 对$x\in X_Y$, $h(x)=g^{-1}(x)$, 则$h|_{X_X}:X_X\to Y_X$, $h|_{X_Y}:X_Y\to Y_Y$, $h|_{X_\infty}:X_\infty\to Y_\infty$均为双射, 故$h:X\to Y$为双射.
+\end{proof}
+
+\begin{pro}\textbf{集合的比较定理} Comparability Theorem for
+Sets\\
+设$X,Y$是集合, 则$X\precsim Y$或$Y\precsim X$.
+\end{pro}
+\begin{proof}
+    由良序定理及良序集的比较定理即得. 
+\end{proof}
+
+\begin{dfn} \textbf{有限集与无限集} Finite/Infinite Sets\\
+设$X$是集合, 若存在$n\in \mathbb{N}$, $X\sim n$, 称$X$是有限集, 此时$n$称为$X$的元素个数, 记作$|X|$; 否则, 称$X$是无限集.
+\end{dfn}
+
+\begin{pro} \textbf{有限集与其真子集不等势}\\
+设$X$是有限集, $A\subset X$, 则$A\sim X$不成立. 
+\label{pro:finset_subset}
+\end{pro}
+\begin{proof}
+首先对$X=n, n\in \mathbb{N}$的情形证明. 用数学归纳法, $n=0$的情形显然. 设命题对$n$成立, 反设存在双射$f: n^+\to A$, $A\subset n^+$. 若$n \notin A$, 则$f(n)\in n$, 集合$n$的像$f(n^+ - \{n\})=A-\{f(n)\}$是$n$的真子集, 与归纳假设矛盾. 若$n\in A$, 不妨令$f(n)=n$ (若$f(n)=i, i\neq n$, 取$j=f^{-1}(n)$, 则$j\neq n$, 定义$g:n^+\to A$, $g(n)=n$, $g(j)=i$, $g(k)=f(k), k\neq j,n$), 则$n \sim A-\{n\}$, 由归纳假设$n = A-\{n\}$, $A=n^+$, 与$A\subset n^+$矛盾. 
+\par 一般地, 设$f: X\to n$是双射, $A\subset X$, 则$f(A)\subset n$. 若$A\sim X$, 则$n\sim X\sim A\sim f(A)$, 矛盾. 
+\end{proof}
+
+上述命题推出对$m,n\in \mathbb{N}$, $m\neq n$, $m\sim n$不成立, 因此有限集的元素个数唯一. 
+
+\begin{pro} \textbf{自然数集是无限集}\\
+自然数集$\mathbb{N}$是无限集. 
+\end{pro}
+\begin{proof}
+\par 函数$f:\mathbb{N} \to  \mathbb{N}-\{0\}$, $f(n)=n^+$是双射. 由命题(\ref{pro:finset_subset})知$\mathbb{N}$是无限集. 
+\end{proof}
+
+\begin{pro} \textbf{自然数集是最小无限集}\\
+设$X$是集合, 则$X$是无限集当且仅当$\mathbb{N}\precsim X$.
+\label{pro:mininfset}
+\end{pro}
+\begin{proof}
+\par 必要性: 由选择公理, 存在函数$f:\mathcal{P}(X)-\{\varnothing\}\to X$, 满足对非空集合$A\subseteq X$, $f(A)\in A$. 记$\mathcal{C}=\{A\subseteq X\vert A\text{是有限集}\}$, 则$\forall A\in \mathcal{C}$, $X-A\neq \varnothing$. 定义函数$g:\mathcal{C}\to \mathcal{C}$, $g(A)=A\cup \{f(X-A)\}$. 对$g$使用递归定理, 知存在函数$U:\mathbb{N} \to  \mathcal{C}$, 满足$U(0)=\varnothing$, $U(n+1)=g(U(n))$. 再令$v:\mathbb{N} \to  X$, $v(n)=f(X-U(n))$, 往证$v$是单射. 事实上, 对$m,n\in \mathbb{N}$, 不妨设$m<n$, 则$v(n)\notin U(n)$; 另一方面, 存在$k>0$, $n=m+k$, 又由$v(m)\in U(m+1)$, 容易归纳证明$v(m)\in U(m+k), \forall k>0$. 因此有$v(m)\in U(n)$, $v(n)\neq v(m)$.
+\par 充分性: 若$\mathbb{N}\precsim X$, 且存在$n\in \mathbb{N}$, $X\sim n$, 则$\mathbb{N}\precsim n$. 又显然有$n\precsim \mathbb{N}$, 由Schröder-Bernstein定理, $\mathbb{N}\sim n$, 与$\mathbb{N}$是无限集矛盾. 
+\end{proof}
+
+\begin{col} \textbf{无限集有等势真子集}\\
+设$X$是无限集, 则存在$A\subset X$, $A\sim X$.
+\end{col}
+\begin{proof}
+设$v: \mathbb{N} \to  X$是单射, 定义$X$上的函数$g$: 对$x\in X$, 若存在$n\in \mathbb{N}$, $v(n)=x$, 则$g(x)=v(n+1)$; 否则$g(x)=x$. 由此定义的$g$为$X$到$X-\{v(0)\}$的双射. 
+\end{proof}
+
+\begin{col} \textbf{有限集子集的元素个数}\\
+设$X$是有限集, $A\precsim X$, 则$|A|\le |X|$; 等号成立当且仅当$A\sim X$.
+\end{col}
+\begin{proof}
+\par 由$X$是有限集, $X\prec \mathbb{N}$, 故$A\precsim \mathbb{N}$. 若$A\sim \mathbb{N}$, 则$\mathbb{N}\precsim X$, 与$X$是有限集矛盾. 故$A$是有限集. 记$A\sim m$, $X\sim n$, 则$m \precsim n$. 断言$m\le n$. 若不然, 有$n\subset m$, $m \precsim n$意味着存在$m$到其真子集的双射, 矛盾. 等号成立的充要条件是显然的. 
+\end{proof}
+
+\begin{pro} \textbf{集合运算下的元素个数}\\
+设$X,Y$是有限集, 
+\begin{enumerate}
+    \item $|X\cup Y|\le |X|+|Y|$, 等号成立当且仅当$X\cap Y=\varnothing$. 
+    \item $|X\times Y|= |X|\times |Y|$.
+    \item $|Y^X|=|Y|^{|X|}$.
+    \item $|\mathcal{P}(X)|=2^{|X|}$.
+\end{enumerate}
+\label{pro:setsize}
+\end{pro}
+\begin{proof}
+\par (1) 先证明一个引理: $\forall m,n\in \mathbb{N}$, $a\mapsto a+m$是$n$到$m+n$与$m$的差集的双射. 对$n$归纳即得. 
+\par 回到原题, 设$f:X\to m$, $g:Y\to n$是双射, 定义函数$h:X\cup Y\to m+n$如下: $h(x)=f(x), x\in X$; $h(y)=g(y)+m, y\in Y-X$, 则$h$是单射, 故$|X\cup Y|\le m+n$. 等号成立当且仅当$h$是满射, 亦即$Y-X=Y$. 
+\par (2) 首先对$m,n\in \mathbb{N}$证明$|m\times n|= mn$. 对$n$归纳, $n=0$时$|m\times n| = |\varnothing|= 0$. $n=1$时$m\times n$到第一坐标的投影映射是双射, 故$|m\times n| = m$. 设对$n$的情形命题成立, 则由(1)及$(m\times n)\cap (m \times \{n\})=\varnothing$, 知$|m\times n^+|=|(m\times n)\cup (m \times \{n\})|=m(n+1)$. 一般地, 设$f:X\to m$, $g:Y\to n$是双射, 则$h:X\times Y\to m\times n$, $h(x,y)=(f(x),g(y)), x\in X, y\in Y$是双射, 故$X\times Y\sim m\times n \sim mn$.
+\par (3) 首先对$m,n\in \mathbb{N}$证明$|n^m|= n^m$. 对$m$归纳, $m=0$时$|n^0| = |\{\varnothing\}|= 1$. 设命题对$m$成立, 由$f\mapsto (f\vert_n, f(n))$是$n^{m+1}$到$n^m \times n$的双射, 由(2)得$|n^{m+1}|=n^m\cdot n=n^{m+1}$. 一般地, 设$f:X\to m$, $g:Y\to n$是双射, 则$h:Y^X\to n^m$, $\phi\mapsto g\circ \phi \circ f^{-1}$是双射, 故$Y^X\sim n^m$.
+\par (4) $X$的子集$A$到特征函数$\chi_A$的映射是$\mathcal{P}(X)$到${\{0,1\}}^X$的双射, 由(3)即得. 
+\end{proof}
+
+\begin{col} \textbf{有限个有限集的并集是有限集}\\
+设$\{X_i\}_{i=1}^n$是有限集, 则
+\begin{equation}
+    \left\vert \bigcup_{i=1}^n X_i\right\vert \le \sum_{i=1}^n \vert X_i\vert 
+\end{equation}
+等号成立当且仅当$X_i \cap X_j=\varnothing, \forall 1\le i<j \le n$.
+\end{col}
+
+\begin{dfn} \textbf{可数集} Countable Sets\\
+设$X$是集合, 若$X\precsim \mathbb{N}$, 称$X$为可数集, 否则称$X$为不可数集.
+\end{dfn}
+可数集或者是有限集, 或者$X\sim \mathbb{N}$, 此时称$X$为可数无限集. 由$\precsim$的传递性, 可数集的子集是可数集. 
+
+\begin{pro} \textbf{有限个可数集的并是可数集}\\
+设$n\in \mathbb{N}$, $\forall i\in n: X_i$是可数集, 则$\bigcup_{i\in n} X_i$是可数集. 
+\end{pro}
+\begin{proof}
+取$A_i=\{kn+i\vert k\in \mathbb{N}\}$, 则$\bigcup_{i\in n} A_i=\mathbb{N}$, 且$\forall i\in n: A_i\sim \mathbb{N}$. 对任意$i\in n$, 有$X_i\precsim A_i$. 因此$\bigcup_{i\in n} X_i \precsim \bigcup_{i\in n} A_i = \mathbb{N}$. 
+\end{proof}
+
+\begin{pro} \textbf{可数个可数集的并是可数集}\\
+设$\forall n\in \mathbb{N}: X_n$是可数集, 则$\bigcup_{n\in \mathbb{N}} X_n$是可数集. 
+\end{pro}
+\begin{proof}
+取$A_0=\{0\}\cup \{2i+1\vert i\in \mathbb{N}\}$; $\forall n\in \mathbb{N}-\{0\}$, $A_n=\{2^n(2i+1)\vert i\in \mathbb{N}\}$, 则$\bigcup_{n\in \mathbb{N}} A_n=\mathbb{N}$, 且$\forall n\in \mathbb{N}: A_n\sim \mathbb{N}$. 对任意$n\in \mathbb{N}$, 有$X_n\precsim A_n$. 因此$\bigcup_{n\in \mathbb{N}} X_n \precsim \bigcup_{n\in \mathbb{N}} A_n = \mathbb{N}$. 
+\end{proof}
+由于$X\times Y=\bigcup_{y\in Y} X\times \{y\}$, 上述命题也推出两个可数集的笛卡尔积是可数集. 
+
+\begin{thm} \textbf{Cantor定理}\\
+设$X$是集合, 则$X\prec \mathcal{P}(X)$. 
+\end{thm}
+\begin{proof}
+由于$x\mapsto \{x\}$是$X$到$\mathcal{P}(X)$的单射, $X\precsim \mathcal{P}(X)$. 只需证$X\sim \mathcal{P}(X)$不成立. 反设存在双射$f:X\to \mathcal{P}(X)$, 考虑集合$A=\{x\in X\vert x\notin f(x)\}$, 并取$a=f^{-1}(A)$. 若$a\in A$, 则$a\notin f(a)=A$; 若$a\notin A$, 则$a\in A$; 矛盾. 故假设的$f$不存在. 
+\end{proof}
+上述定理表明对任意集合$X$有$X\prec 2^{X}$. 因此$2^\mathbb{N}$是不可数集. 
+
+\begin{dfn} \textbf{基数} Cardinal Numbers\\
+设$a$是序数, 且对任意序数$b$有$a\sim b\Rightarrow a\le b$, 称$a$是基数. 
+\end{dfn}
+\par 由命题\ref{pro:finset_subset}, 自然数是基数. 由推论\ref{col:inford_nat}, 自然数集$\mathbb{N}$是基数, 也记作$\aleph_0$. 
+
+\begin{pro} \textbf{集合的基数}\\
+设$A$是集合, 存在唯一的基数$a$使得$A\sim a$, 记作$a=\operatorname{card}A$. 
+\end{pro}
+\begin{proof}
+由良序定理, 存在$A$上的序关系使$A$成为良序集; 又由计数定理, 存在序数$\alpha=\operatorname{ord}A$, 则亦有$A\sim \alpha$. 同理, 存在序数$\gamma= \operatorname{ord}\mathcal{P}(A)$. 对任意序数$\beta \sim A$, 有$\beta \prec \gamma$; 若$\beta \ge \gamma$, 则$\gamma \precsim \beta$, 矛盾. 故必有$\beta<\gamma$, 亦即$\beta\in \gamma$. 因此集合$X=\{\beta\vert \beta\sim A\}=\{\beta\in \gamma\vert \beta\sim A\}$存在且非空($\alpha\in X$). 由序数的集合为良序集, $X$存在最小元$a$, 满足$a\sim X$且$a$是基数. 唯一性由基数的定义显然. 
+\end{proof}
+容易验证对集合$A,B$, $\operatorname{card}A=\operatorname{card}B \iff A\sim B$; 对基数沿用序数的序关系, 则 $\operatorname{card}A<\operatorname{card}B \iff A\prec B$.
+
+\begin{col} \textbf{不存在所有基数的集合}\\
+不存在所有基数的集合. 
+\end{col}
+\begin{proof}
+设$\mathcal{C}$是所有基数的集合, 则$a =\operatorname{card}\left(\bigcup_{C\in \mathcal{C}}C\right)$是基数, 且是所有基数的上界. 但$2^a$是基数且$a<2^a$, 这导致矛盾. 
+\end{proof}
+\par 假定所有基数的集合存在, 上述矛盾称为Cantor悖论.
+
+\begin{dfn} \textbf{基数的加法}\\
+设$a,b$是基数, 取不相交的集合$A,B$, 使得$a=\operatorname{card}A$, $b=\operatorname{card}B$. 定义基数$a,b$的和$a+b=\operatorname{card}(A\cup B)$. 
+\end{dfn}
+若$A\cap B$非空, 令$\Tilde{A}=\{(a, 0)\vert a\in A\}$, $\Tilde{B}=\{(b, 1)\vert b\in B\}$, 则$\Tilde{A}\sim A, \Tilde{B}\sim B$且不相交. 可以验证基数的和不依赖集合$A,B$的选取.
+
+\begin{pro}\textbf{基数加法的性质}\\
+设$a,b,c$是基数, 则有
+\begin{enumerate}
+\item 交换律: $a+b=b+a$;
+\item 结合律: $(a+b)+c = a+(b+c)$.
+\end{enumerate}
+\end{pro}
+
+\begin{dfn} \textbf{基数和的推广}\\
+设$\{a_i\}_{i\in I}$是一族基数, 取两两不相交的一族集合$\{A_i\}_{i\in I}$, 使得$a_i=\operatorname{card} A_i$. 定义$\sum_{i\in I} a_i=\operatorname{card}\left(\bigcup_{i\in I} A_i\right)$. 
+\end{dfn}
+\par 若$\{A_i\}_{i\in I}$不满足两两不相交的条件, 令$\Tilde{A}_i=\{(a,i)\vert a\in A_i\}$, 则$\{\Tilde{A}_i\}_{i\in I}$两两不相交. 可以验证上述定义不依赖$A_i$的选取. 
+
+\begin{dfn} \textbf{基数的乘法}\\
+设$a,b$是基数, 任取集合$A,B$, 使得$a=\operatorname{card}A$, $b=\operatorname{card}B$. 定义基数$a,b$的积$ab=\operatorname{card}(A\times B)$. 
+\end{dfn}
+可以验证基数的积不依赖集合$A,B$的选取. 
+
+\begin{pro}\textbf{基数乘法的性质}\\
+设$a,b,c$是基数, 则有
+\begin{enumerate}
+\item 交换律: $ab=ba$;
+\item 结合律: $(ab)c=a(bc)$;
+\item 分配律: $a(b+c)=ab+ac$.
+\end{enumerate}
+\end{pro}
+
+\begin{dfn} \textbf{基数的幂运算}\\
+设$a,b$是基数, 任取集合$A,B$, 使得$a=\operatorname{card}A$, $b=\operatorname{card}B$. 定义$a^b=\operatorname{card}(A^B)$. 
+\end{dfn}
+可以验证基数的幂运算不依赖集合$A,B$的选取. 
+
+\begin{pro}\textbf{基数幂的性质}\\
+设$a,b,c$是基数, 则有
+\begin{enumerate}
+\item $a^{b+c}=a^ba^c$;
+\item $(ab)^c=a^cb^c$;
+\item $a^{bc}=(a^b)^c$.
+\end{enumerate}
+\end{pro}
+
+\begin{pro}\textbf{无限基数的运算规律}\\
+设$a,b$是基数, 满足$a\le b$且$b$无限, 则有
+\begin{enumerate}
+\item $a+b=b$;
+\item 当$a\ge 1$, 有$a\cdot b=b$;
+\item 当$a\ge 1$有限, 有$b^a=b$;
+\item 当$a>1$, 有$a^b=2^b$.
+\end{enumerate}
+\end{pro}
+\begin{proof}
+(1) 首先考虑$a$有限的情形. 取不相交的集合$A,B$, 使得$f: A\to a$是双射, $B\sim b$, 不妨设$\mathbb{N}\subseteq B$. 定义$A\cup B$到$B$的双射$h$如下: 对$x\in A$, $h(x)=f(x)$; 对$x\in \mathbb{N}$, $h(x)=x+a$; 对$x\in B-\mathbb{N}$, $h(x)=x$. 故$A\cup B\sim B$.
+\par 对于$a$无限的情形, 我们证明$b+b=b$, 则由$a+b\le b+b=b$和显然的$b\le a+b$, 结论成立. 取$B\sim b$, 令$\mathcal{F}=\{f\in X^{X\times 2}\vert X\subseteq B, f\text{是双射}\}$, 由于$B$的可数无限子集$X$满足$X\times 2 \sim X$, $\mathcal{F}$非空. $\mathcal{F}$在函数的延拓关系下构成偏序集, 且任意链存在上界, 由Zorn引理, $\mathcal{F}$存在极大元$f$. 记$\operatorname{ran}f=X$, 则$B-X$必为有限集. 若不然, 存在可数集$Y\subseteq B-X$和双射$g:Y\times 2\to Y$, $f\cup g\in \mathcal{F}$是$f$的延拓, 与$f$为极大元矛盾. 因此由$\operatorname{card}X+\operatorname{card}X=\operatorname{card}X$及$b=\operatorname{card}X+\operatorname{card}(B-X)=\operatorname{card}X$, 命题得证. 
+\par (2) 我们证明$b\cdot b=b$, 则由$a\cdot b\le b\cdot b=b$和显然的$b\le a\cdot b$, 结论成立. 取$B\sim b$, 令$\mathcal{F}=\{f\in X^{X\times X}\vert X\subseteq B, f\text{是双射}\}$, 由于$B$的可数无限子集$X$满足$X\times X \sim X$, $\mathcal{F}$非空. 与(1)同理, 由Zorn引理$\mathcal{F}$存在延拓关系下的极大元$f$. 记$\operatorname{ran}f=X$, 断言$\operatorname{card}X=b$, 从而命题成立. 若不然, 设$\operatorname{card}X<b$, 则由$b=\operatorname{card}(B-X)+\operatorname{card}X$, $\operatorname{card}(B-X)$, $\operatorname{card}X$中至少一个无限, 由(1)知$b$与其中较大的一个相等, 故$b=\operatorname{card}(B-X)$, $\operatorname{card}X<\operatorname{card}(B-X)$. 取$Y\subseteq B-X$, 使得$Y\sim X$, 则$X\times Y$, $Y\times X$, $Y\times Y$均与$X\times X$等势, 从而与$Y$等势; 故存在双射$g:(X\times Y) \cup (Y\times X) \cup (Y\times Y) \to Y$, $f\cup g\in \mathcal{F}$是$f$的延拓, 与$f$为极大元矛盾.
+\par (3) 由$b\cdot b=b$, 对$a$归纳即得. 
+\par (4) 一方面显然有$2^b\le a^b$. 另一方面, 取$A\sim a, B\sim b$, 任意函数$f:B\to A$是$\mathcal{P}(B\times A)$的元素, 这给出$A^B$到$2^{B\times A}$的单射, 因此$a^b\le 2^{a\cdot b}=2^b$. 
+\end{proof}
+
+\begin{pro}\textbf{最小的不可数基数}\\
+设$\Omega$为可数序数构成的集合, $\Omega$为最小的不可数基数, 记作$\aleph_1$. $\aleph_0$与$\aleph_1$之间不存在其它基数. 
+\end{pro}
+\begin{proof}
+由于$2^w$是不可数序数, $\Omega=\{\alpha\in 2^w\vert \alpha\text{是可数序数}\}$, 因此$\Omega$存在. 我们证明$\Omega=\bigcup_{c\in \Omega} c$, 从而$\Omega$是序数. 事实上, 对任意$c\in \Omega$, $c$的元素也为可数序数, 故$\bigcup_{c\in \Omega} c \subseteq \Omega$; 对$\alpha\in \Omega$, $\alpha^+\in \Omega$也为可数序数, 故由$\alpha\in \alpha^+$, $\Omega \subseteq \bigcup_{c\in \Omega} c$. 
+\par 由序数不是自身的元素, $\Omega$不可数. 设$\beta$是不可数序数, 由$\beta \notin \Omega$知$\Omega \le \beta$, 因此$\Omega$是最小的不可数序数; 特别地, 当$\beta\sim \Omega$, $\Omega \le \beta$推出$\Omega$是基数. 设基数$\kappa$满足$\aleph_0\le \kappa <\aleph_1$, 则由$\kappa \in \aleph_1$知$\kappa$可数, 从而$\aleph_0=\kappa$. 
+\end{proof}
+上述命题表明$\aleph_1\le 2^{\aleph_0}$. 连续统假设(Continuum Hypothesis)断言$\aleph_1= 2^{\aleph_0}$, (等价地, $\aleph_0$与$2^{\aleph_0}$之间不存在其它基数). 已经证明, 连续统假设与ZFC公理系统独立. 
+
+\section*{阅读材料}
+\par 集合论的基本知识, 包括自然数和基数, 属于信息科学中“离散数学”的教学内容, 相关教材如\cite{DMA}. 但此类教材有时为便于理解牺牲数学上的严格性. 
+\par Paul Halmos的\cite{NST}是集合论的经典入门教材, 反映了“非集合论方向的数学工作者应了解的集合论知识”. 
+\par Richard E. Schwarz的两部图像小说\cite{GI}和\cite{RBN}融数学知识与现代艺术为一炉, 生动有趣地介绍了无穷集合论和自然数的高阶运算. 
+
+\section*{问题}
+\newcounter{probset} 
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 设$A,B,C$是集合, 证明$A\cap (B \cup C)=(A\cap B) \cup C$当且仅当$C\subseteq A$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{AnT1} 设$A,B,C,D$是集合, $A\subseteq C$, $B\subseteq D$. 证明$A\cup B\subseteq C\cup D$, $A\cap B\subseteq C\cap D$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{AnT1} 设$A$是非空集合, 证明$A$没有非空真子集当且仅当$A$是单件. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 证明替换公理模式蕴含分离公理模式. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{AnT1} \textbf{万有分类公理}(axiom of universal specification)断言对任意条件$S(x)$, 存在集合$\{x\vert S(x)\}$. 该公理因导致Russell悖论不能使用. 证明万有分类公理成立等价于存在集合$\Omega$, $\forall x: x\in \Omega$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} (1)设$\{A_k\}_{k\in K}$是一族集合, $K=\bigcup_{j\in J} I_j$, 证明
+\begin{equation}
+    \bigcup_{k\in K} A_k = \bigcup_{j\in J} \bigcup_{i\in I_j} A_i
+\end{equation}
+(2) 再设$J\neq \varnothing$; $\forall j\in J$, $I_j\neq \varnothing$, 证明
+\begin{equation}
+    \bigcap_{k\in K} A_k = \bigcap_{j\in J} \bigcap_{i\in I_j} A_i
+\end{equation}
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 设$\{A_i\}_{i\in I}$, $\{B_j\}_{j\in J}$分别是一族集合, $I,J$非空, 证明
+\begin{align}
+    \left(\bigcup_{i\in I}A_i\right)\cap \left(\bigcup_{j\in J}B_j\right) &= \bigcup_{(i,j)\in I\times J} (A_i\cap B_j)\\
+    \left(\bigcap_{i\in I}A_i\right)\cup \left(\bigcap_{j\in J}B_j\right) &= \bigcap_{(i,j)\in I\times J} (A_i\cup B_j)\\
+    \left(\bigcup_{i\in I}A_i\right)\times \left(\bigcup_{j\in J}B_j\right) &= \bigcup_{(i,j)\in I\times J} (A_i\times B_j)\\
+    \left(\bigcap_{i\in I}A_i\right)\times \left(\bigcap_{j\in J}B_j\right) &= \bigcap_{(i,j)\in I\times J} (A_i\times B_j)
+\end{align}
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{CMM} 设$X$是集合, 在$\mathcal{P}(X)$上定义加法为集合对称差: $A+B=A\oplus B$; 乘法为集合的交: $AB=A\cap B$. 证明$\mathcal{P}(X)$构成交换单位环. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{AnT1} 考虑有序对的另一种定义: $(a,b)=\{a,\{a,b\}\}$. 在该定义下证明: 
+\par (1)$(a,b)=(x,y)\Rightarrow a=x\land b=y$.
+\par (2)设$A,B$是集合, 笛卡尔积$A\times B=\{(a,b)\vert a\in A\land b\in B\}$存在.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 证明以下命题与选择公理等价:
+\par (1) 设$\mathcal{C}$是非空集合的非空集族, 存在定义域为$\mathcal{C}$的函数$f$, 满足$\forall X\in \mathcal{C}$, $f(X)\in X$.
+\par (2) 设$X$是非空集合, 存在函数$f:\mathcal{P}(X)-\{\varnothing\}\to X$, 满足$\forall A\subseteq X, A\neq \varnothing$, $f(A)\in A$. 
+\par (3) 设$R$是非空关系, 存在函数$f\subseteq R$, 其定义域为$\text{dom} R$. 
+\par (4) 设$\mathcal{C}$是两两不交的非空集合的非空集族, 存在集合$A$, 满足$\forall X\in \mathcal{C}$, $A\cap X$是单件. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 举例说明关系的自反性、对称性、传递性中的任两个无法推出第三个.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$R, S$为集合$X$上的关系, 证明当$R,S$均满足如下性质时, $R\cap S$也满足该性质: (1)自反性; (2)对称性; (3)反对称性; (4)传递性; (5)等价关系; (6)偏序关系. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$A\subseteq X$, $B\subseteq Y$, 则$f:A\to B$称为$X$到$Y$的一个\textbf{偏函数}. 证明$X$到$Y$的所有偏函数构成一个集合. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{AnT1} 设函数$f:X\to Y$, 证明$f=f\circ \mathrm{id}_X=\mathrm{id}_Y\circ f$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{AnT1} 设函数$f, \Tilde{f}:X\to Y$, $g, \Tilde{g}: Y\to Z$. 
+\par (1)设$g$是单射, 则$g\circ f=g\circ \Tilde{f}\Rightarrow f=\Tilde{f}$.
+\par (2)设$f$是满射, 则$g\circ f=\Tilde{g}\circ f\Rightarrow g=\Tilde{g}$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{函数的左逆和右逆}) 设$X, Y$是非空集合, 函数$f:X \to Y$, $g:Y \to X$. 若$g \circ f=\mathrm{id}_X$, 称$g$为$f$的左逆; 若$f \circ h=\mathrm{id}_Y$, 称$h$为$f$的右逆. 证明:
+\par (1) $f$有左逆当且仅当$f$是单射;
+\par (2) $f$有右逆当且仅当$f$是满射;
+\par (3) 若$f$有左逆$g$及右逆$h$, 则$f$是双射, $g=h=f^{-1}$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{有限集上单射等价于满射}) 设$X, Y$是有限集, $|X|=|Y|$, 函数$f: X\to Y$. 证明: $f$是单射当且仅当$f$是满射.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$X,Y$是非空集合, 证明: 存在$X$到$Y$的单射, 当且仅当存在$Y$到$X$的满射. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$n\in \mathbb{N}$, 证明$n\neq ++n$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$n\in \mathbb{N}$, $n\neq 0$, 证明存在唯一的$m\in \mathbb{N}$, $n=++m$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$m,n\in \mathbb{N}$, 证明
+\par (1) $m+n=0\Rightarrow m=n=0$.
+\par (2) $mn=0 \Rightarrow m=0\lor n=0$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$m,n\in \mathbb{N}$, 证明
+\par (1) 加法消去律: $m+k=n+k\Rightarrow m=n$. 
+\par (2) 乘法消去律: 设$k\neq 0$, $mk=nk \Rightarrow m=n$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$m,n\in \mathbb{N}$, 证明$m<n\iff m+1\le n$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 证明自然数集$\mathbb{N}$是传递集. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$a,n$是正整数, 证明(1) $a\uparrow^n 1=a$; (2) $2\uparrow^n 2=4$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 设$a,b\in \mathbb{N}$, $a\ge 2$, $n$是正整数. 证明(1) $a\uparrow^n b$对$b$严格单调递增; (2)当$b\ge 2$, 且$a,b$不同为2, $a\uparrow^n b$对$n$严格单调递增. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{RBN} 设$a, A, n \in \mathbb{Z}_+$，且满足$1<a<A\le a^{a-1}$，证明
+\begin{equation}
+    A\uparrow \uparrow n < a \uparrow \uparrow (n+1)
+\end{equation}
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{Conway箭头链符号}) 定义箭头链为正整数的有序$n$元组, 记作$a_1\rightarrow a_2\dots \rightarrow a_n$. 空箭头链的值为1; 只包含一个元素的箭头链$a$值为$a$; $a\rightarrow b=a^b$; $a\rightarrow b\rightarrow c=a\uparrow^c b$; 设$\#$代表一个箭头链, 则对任意正整数$a,b$, 
+\begin{align}
+    &\#\rightarrow 1 \rightarrow a=\#\rightarrow 1=\#\\
+    &\#\rightarrow (a+1) \rightarrow (b+1)=\#\rightarrow (\#\rightarrow a \rightarrow (b+1)) \rightarrow b
+\end{align}
+证明上述记号是良定义的, 即每个箭头链都等于一个唯一的正整数. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{BN} 记$f(n)=3\rightarrow 3\rightarrow n$, \textbf{Graham数}定义为$G=f^{64}(4)$, 这里的上标指函数迭代. 证明
+\begin{equation}
+    3\rightarrow 3\rightarrow 64\rightarrow 2 < G < 3\rightarrow 3\rightarrow 65\rightarrow 2 < 3\rightarrow 3\rightarrow 3\rightarrow 3
+\end{equation}
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} 用数学归纳法证明自然数集上的第二数学归纳法: 设$S\subseteq \mathbb{N}$, 若对任意$n\in \mathbb{N}$, 有$(\forall m<n: m\in S)\Rightarrow n\in S$, 则$S=\mathbb{N}$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{从$n$开始的数学归纳法}) 设$S\subseteq \mathbb{N}$, $n_0\in \mathbb{N}$.
+\par (1) 若$n_0\in S$, 且对任意$n\in \mathbb{N}$, 有$n\in S\Rightarrow n+1\in S$, 则$\forall n\ge n_0: n\in S$. 
+\par (2) 若对任意$n\ge n_0$, 有$(\forall n_0\le m<n: m\in S)\Rightarrow n\in S$, 则$\forall n\ge n_0: n\in S$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{反向归纳法}) 设$S\subseteq \mathbb{N}$, $n\in S$. 若对任意自然数$m$, 有$m+1\in S \Rightarrow m\in S$, 证明: $\forall m\le n: m\in S$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{无穷递降原理}) 证明不存在自然数序列$\{a_n\}$, 满足对任意$n\in \mathbb{N}$, $a_n>a_{n+1}$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 用无限集的定义证明自然数集$\mathbb{N}$是无限集. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 设$X$是可数集, 证明$X$的有限子集构成的集合是可数集.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 设$a,b,c,d$是基数, $a\le b$, $c\le d$. 证明: (1) $a+c\le b+d$; (2) $ac\le bd$; (3) $a^c\le b^c$; (4)当$c\ge 1$, $c^a\le c^b$. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 证明无限基数是极限序数. 
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} \cite{NST} 设$A$是无限集, $\operatorname{card}A=a$, 
+
+(1) 设$\mathcal{F}$为$A$到自身双射的集合, 证明: $\operatorname{card}\mathcal{F}=2^a$.
+
+(2) 设$\mathcal{C}$为$A$的可数无限子集的集合, 证明: $\operatorname{card}\mathcal{C}=a^{\aleph_0}$.
+
+\stepcounter{probset}
+\par \textbf{\theprobset .} (\textbf{Kőnig定理}) 设$\{a_i\}_{i\in I}$, $\{b_i\}_{i\in I}$分别是一族基数, $\forall i\in I: a_i < b_i$. 证明:
+\begin{equation}
+    \sum_{i\in I} a_i < \prod_{i\in I} b_i
+\end{equation}
+
+\section*{解答}
+\newcounter{solset} 
+\stepcounter{solset}
+\par \textbf{\thesolset .} 充分性：当$C\subseteq A$，有$A\cap C=C$. 故有
+\begin{equation*}
+    A\cap (B \cup C)=(A\cap B)\cup (A\cap C)=(A\cap B)\cup C.
+\end{equation*} 
+必要性：$C\subseteq (A\cap B)\cup C =  A\cap (B \cup C) \subseteq A$.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 证明略.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 充分性:设$A=\{a\}$, $B\subseteq A$非空, 则$x\in B\Rightarrow x=a$, 因此$B=\{a\}$. 此时$B=A$不是真子集. 必要性: 由$A$非空, 存在$a\in A$. 若$A-\{a\}$非空, 则$\{a\}\subset A$, 矛盾. 故$A=\{a\}$.  
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 设$A$是集合, $S(x)$是条件. 为证明$\{x\in A\vert S(x)\}$存在, 令$T(x,y)=(x=y\land S(x))$, 则$\forall x\in A$, $\{y\vert T(x,y)\}$为空集或单件. 由替换公理模式, 存在集合$\bigcup_{x\in A} \{y\vert T(x,y)\}=\bigcup_{x\in A, S(x)} \{x\}=\{x\in A\vert S(x)\}$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 必要性: 令$\Omega=\{x\vert x=x\}$. 充分性: 假定$\Omega$存在, 由分类公理模式, 存在集合$\{x\in \Omega\vert S(x)\}=\{x\vert S(x)\}$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 证明略. 
+\par \emph{注}: 本题给出了集合并、交运算结合律的一种推广. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 只证第二式左边包含右边. 设$x\in \bigcap_{(i,j)\in I\times J} (A_i\cup B_j)$，若$x\in \bigcap_{i\in I} A_i$已成立, 否则存在$i_0\in I$, $x\notin A_{i_0}$. 此时对任意$j\in J$, 有$x\in A_{i_0}\cup B_j$, 知$x\in B_j$, 因此有$x\in \bigcap_{j\in J} B_j$. 
+\par \emph{注}: 本题前两式中令$\{B_j\}_{j\in J}=\{B\}$, 得到
+\begin{align}
+    \left(\bigcup_{i\in I}A_i\right)\cap B &= \bigcup_{i\in I} (A_i\cap B)\\
+    \left(\bigcap_{i\in I}A_i\right)\cup B &= \bigcap_{i\in I} (A_i\cup B)
+\end{align}
+这是集合并、交运算分配律的一种推广. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 由于对称差满足交换律、结合律, $\varnothing$是单位元, 任一集合是自身的逆元, 故$\mathcal{P}(X)$在对称差下构成交换群. 集合的交满足交换律、结合律, $X$是单位元. 可以验证$A\cap (B\oplus C)=(A\cap B)\oplus (A\cap C)$, 从而分配律成立, 命题得证. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1)由推论\ref{col:self_inclusion}, $a\neq \{a,b\}$, $x\neq \{x,y\}$. 设$(a,b)=(x,y)$, 则$a=x$或$a=\{x,y\}$. (i)若$a=x$, 则$\{a,b\}\neq x$, 故$\{a,b\}=\{x,y\}$, 此时不论$b=a$或$b\neq a$, 均有$b=y$. (ii)若$a=\{x,y\}$, 则$\{a,b\}=x$, 有$a\in x\land x\in a$, 与推论\ref{col:self_inclusion}矛盾. (2)$A\times B=\{x\in\mathcal{P}(A\cup \mathcal{P}(A\cup B)\vert \exists a\in A\exists b\in B: x=(a,b)\}$.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 记选择公理为(C),
+\par (C)$\to$(1): 令$\mathcal{C}$为自身的指标集, 指标到集合的映射为恒同映射. 
+\par (1)$\to$(2): 令$\mathcal{C}=\mathcal{P}(X)-\{\varnothing\}$即得. 
+\par (2)$\to$(C): 令$E=\bigcup_{i\in I} X_i$, 则$E$非空, 故存在$\mathcal{P}(E)-\{\varnothing\}$上的函数$f$, 对非空集合$A\subseteq E$, $f(A)\in A$. 令$g:I\to E$, $g(i)=f(X_i)$, 则$g(i)\in X_i$. 
+\par (C)$\to$(3): 设$X_a=\{b\vert (a,b)\in R\}, a\in \text{dom}R$, 则$X_a$非空, 故存在函数$f: \text{dom}R\to \text{ran}R$, $f(a)\in X_a$, 此时有$f\subseteq R$. 
+\par (3)$\to$(4): 定义关系$R=\{(X,a)\in \mathcal{C} \times \left(\bigcup_{X\in \mathcal{C}} X\right)\vert a\in X\}$, 则$R$非空, 故存在函数$f:\mathcal{C} \to \left(\bigcup_{X\in \mathcal{C}} X\right)$, $\forall X\in \mathcal{C}$, $(X,f(X))\in R$, 从而$f(X)\in X$. 令$A=\{f(X)\vert X\in \mathcal{C}\}$, 则$\forall X\in \mathcal{C}$, $f(X)\in A\cap X$. 若存在$X'\neq X$, $f(X')\in A\cap X$, 则$f(X')\in X\cap X'$, 与$\mathcal{C}$中集合两两不交矛盾, 故$A\cap X=\{f(X)\}$是单件. 
+\par (4)$\to$(1): 对$X\in \mathcal{C}$, 令$f:\mathcal{C}\to (\mathcal{C}\times \left(\bigcup_{X\in \mathcal{C}} X\right)$, $f(X)=\{(X,a)\vert a\in X\}$, 则$f(X)$非空; 再令$\mathcal{C}'= \{f(X)\vert X\in \mathcal{C}\}$, 则$\mathcal{C}'$非空, 且其元素两两不交. 故存在集合$A$, $\forall f(X)\in \mathcal{C}'$, $A\cap f(X)$是单件. 定义$\mathcal{C}$上的函数$g$, $g(X)$为$A\cap f(X)$包含的唯一元素的第二分量, 即$A\cap f(X)=\{(X, g(X))\}$, 则$g(X)\in X$. 
+\par 综上, (C)与(1)-(4)均等价.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 考虑$\mathbb{Z}$上的如下关系:
+(1)小于等于关系 (不满足对称性);
+(2)差的绝对值小于等于2 (不满足传递性);
+(3)乘积是非零平方数 (不满足自反性).
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 证明略. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 所求集合为$\{f\in \mathcal{P}(X\times Y)\vert \forall x\in X\forall y\in Y\forall z\in Y: (x,y)\in f \land (x,z)\in f\Rightarrow y=z\}$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 证明略. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1) $\forall x\in X$, $g(f(x))=g(\Tilde{f}(x))$, 由$g$是单射, $f(x)=\Tilde{f}(x)$. (2) $\forall y\in Y$, 存在$x\in X$, $y=f(x)$; 因此$g(y)=g(f(x))=\Tilde{g}(f(x))=\Tilde{g}(y)$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1) 必要性由命题\ref{pro:comp_bij} 即得, 下证充分性:设$f$为单射, 则$f:X\to \operatorname{ran}f$存在逆$f^{-1}:\operatorname{ran}f\to X$. 由$X$非空, 存在$a\in X$. 定义$g:Y\to X$如下: 
+\begin{equation*}
+g(y)=
+\begin{cases}
+f^{-1}(y),& y\in f(X)\\
+a, & y\notin f(X)
+\end{cases}
+\end{equation*}
+则$g\circ f=\mathrm{id}_X$.
+\par (2) 必要性由命题\ref{pro:comp_bij} 即得, 下证充分性: 当$f$为满射, $\forall y\in Y$, $f^{-1}(y)$非空. 由选择公理, 存在函数$h:Y\to X$, 满足$\forall y \in Y: h(y)\in f^{-1}(y)$, 则$f\circ h=\mathrm{id}_Y$.
+\par (3) 由(1)(2)得$f$是双射.  $g=g\circ(f\circ h)=(g\circ f)\circ h=h$. 又由命题\ref{pro:func_inverse} 知$g=f^{-1}$. 
+\par \emph{注:} 由于左逆是满射, 右逆是单射, 本结果的一个推论是: 设$X,Y$是非空集合, 存在单射$f:X\to Y$当且仅当存在满射$g:Y\to X$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 记$|X|=|Y|=n$, 有$\bigcup_{y\in Y} f^{-1}(y)=X$. 对$y_1\neq y_2$, $f^{-1}(y_1)\cap f^{-1}(y_2)=\varnothing$, 因此$\sum_{y\in Y} |f^{-1}(y)|=n$. 若$f$是单射, $\forall y\in Y: |f^{-1}(y)|\le 1$; 若$f$是满射, $\forall y\in Y: |f^{-1}(y)|\ge 1$; 二者均推出$\forall y\in Y: |f^{-1}(y)|=1$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 必要性: 设$f: X\to Y$是单射, 任取$x_0\in X$. 定义$g: Y\to X$如下: 若$y\in f(X)$, $g(y)=f^{-1}(y)$; 否则$g(y)=x_0$. 充分性: 设$g: Y\to X$是满射, 则$\forall x\in X$, $g^{-1}(x)$非空且两两不交. 由选择公理, 可定义函数$f: X\to Y$, 对每个$x\in X$, 取$f(x)\in g^{-1}(x)$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .}  用数学归纳法. 首先$0\neq ++0$. 假定$n\neq ++n$, 若$++n=++(++n)$, 则与$++$为单射矛盾. 故$++n \neq ++(++n)$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 唯一性由$++$是单射显然. 为证存在性, 用数学归纳法证明$\forall n\in \mathbb{N}: n=0\lor \exists m\in \mathbb{N}:n=++m$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1) \cite{AnT1} 反证法, 不妨设$m\neq 0$, 往证$m+n\neq 0$, 从而导出矛盾. 对$n$归纳, $n=0$的情形显然. 设$m+n\neq 0$, 则$m+(++n)=++(m+n)\neq 0$. (2) 设$m\neq 0$, 则存在自然数$k$, $m=k+1$, 从而$(k+1)n=kn+n=0$. 由(1)知$n=0$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1) 对$k$用数学归纳法. $k=0$时显然成立. 假设结论对$k$成立, 若$m+(++k)=n+(++k)$, 则$++(m+k)=m+(++k)=n+(++k)=++(n+k)$, 由$++$是单射, $m+k=n+k$, 因此$n=k$. (2) 由命题\ref{pro:natural_preserve_order}(2)即得. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 必要性: 由条件, 存在自然数$k\neq 0$, $n=m+k$, 则存在$l\in \mathbb{N}$, $k=l+1$. 因此$n=m+1+l$, 故$m+1\le n$. 充分性: 由条件, 存在自然数$l$, $n=m+(l+1)$. 由$l+1\neq 0$, $m<n$. 
+\par \emph{注:} 分$m,n\ge 0$, $m<0\le n$, $m,n<0$三种情况讨论, 可证明命题对$m,n\in \mathbb{Z}$也成立. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 用数学归纳法证明$\forall n\in \mathbb{N}: x\in n\Rightarrow x\in \mathbb{N}$. 命题对$\varnothing$自然成立. 设命题对$n\in \mathbb{N}$成立, 则若$x\in n^+$, 有$x=n$或$x\in n$; 两者都导出$x\in \mathbb{N}$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1)对$n$归纳, $a\uparrow 1=a$; $a\uparrow^n 1=a\uparrow^{n-1}(a\uparrow^n 0)=a\uparrow^{n-1} 1$. 
+\par (2) $a\uparrow^n 2=a\uparrow^{n-1}(a\uparrow^n 1)=a\uparrow^{n-1}a$. 特别地, 当$a=2$有$2\uparrow^n 2=2\uparrow^{n-1}2=\dots=2\uparrow 2=2^2=4$.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1)先证一个引理: 设$a,b\in \mathbb{N}$, $a\ge 2$, $n$是正整数, 则$a\uparrow^n b>b$. $n=1$时有$a^b\ge 2^b>b$. 设命题对$n$成立, 考虑$n+1$的情形. 对$b$归纳, $b=0$时成立; 设对$b$成立, 则$a\uparrow^{n+1}(b+1)=a\uparrow^n(a\uparrow^{n+1}b)> a\uparrow^{n+1}b \ge b+1$. 引理得证. 
+\par 回到原题, $n=1$是显然的. 当$n\ge 2$, $a\uparrow^n (b+1)=a\uparrow^{n-1}(a\uparrow^nb)>a\uparrow^n b$.
+\par (2)我们改进(1)中的引理: 设$a,b,n\in \mathbb{N}_+$, $a\ge 3$或$a=2, b\ge 2$, 则$a\uparrow^n b>b+1$. 容易验证$n=1$的情形成立. 设命题对$n$成立, 考虑$n+1$的情形. 对$b$归纳, $a\ge 3, b=1$时成立; 下设$a\ge 2$, 当$b=2$, $a\uparrow^{n+1}2=a\uparrow^n a\ge a\uparrow^n 2>3$. 
+设对$b$成立, 则$a\uparrow^{n+1}(b+1)=a\uparrow^n(a\uparrow^{n+1}b)> a\uparrow^n (b+1) > b+2$. 引理得证. 
+
+\par 回到原题, 由引理及(1)的结论, $a\uparrow^{n+1} b = a\uparrow^n (a\uparrow^{n+1} (b-1)) > a\uparrow^n b$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} \cite{RBN} 先证一个引理：设$k \in \mathbb{N}_+$，在题设条件下有
+\begin{equation}
+    a A\uparrow \uparrow k \le a^{a A\uparrow \uparrow (k-1)}
+\end{equation}
+事实上，
+\begin{align}
+    a A\uparrow \uparrow k &= a A^{A\uparrow \uparrow (k-1)} \le a (a^{a-1})^{A\uparrow \uparrow (k-1)}\notag = a (a^{A\uparrow \uparrow (k-1)})^{a-1}\notag \\
+    & \le a^{A\uparrow \uparrow (k-1)} (a^{A\uparrow \uparrow (k-1)})^{a-1}=a^{a A\uparrow \uparrow (k-1)}
+\end{align}
+故有
+\begin{align}
+    A\uparrow \uparrow n &< a A\uparrow \uparrow n \le a^{aA\uparrow \uparrow (n-1)}\le (a\uparrow \uparrow 2) ^{aA\uparrow \uparrow (n-2)}\le \dots \notag \\
+    &\le (a\uparrow \uparrow (n-1)) ^{aA} \le (a\uparrow \uparrow (n-1)) ^{a^a} = a\uparrow \uparrow (n+1)
+\end{align}
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 容易验证定义中的规则不冲突, 故唯一性成立. 下证存在性. 对箭头链中的元素个数$n$归纳, $n\le 3$已成立, 假定长度为$n$的箭头链有定义, 下证长度为$n+1$的箭头链$\#\rightarrow m\rightarrow k$(其中$\#$为长度为$n-1$的箭头链)有定义. $k=1$时显然成立, 假设对$k$成立, 考虑$k+1$的情形. 此时当$m=1$命题同样成立, 假设对$m$成立, 考虑$m+1$的情形:
+\begin{equation}
+    \#\rightarrow (m+1) \rightarrow (k+1)=\#\rightarrow(\#\rightarrow m \rightarrow (k+1))\rightarrow k
+\end{equation}
+由归纳假设, 上式有定义. 因此命题得证. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 先证一个引理: $3\rightarrow 3 \rightarrow n \rightarrow 2=f^n(1)$. $n=1$时显然成立; $3\rightarrow 3 \rightarrow (n+1) \rightarrow 2 = 3\rightarrow 3 \rightarrow (3\rightarrow 3 \rightarrow n \rightarrow 2) = f\circ f^n(1)=f^{n+1}(1)$. 引理得证. 
+\par 由引理, $3\rightarrow 3 \rightarrow 64 \rightarrow 2=f^{64}(1)$; $3\rightarrow 3 \rightarrow 65 \rightarrow 2=f^{65}(1)=f^{64}(f(1))=f^{64}(27)$. 由$f(n+1)=3\uparrow^{n+1} 3 = 3\uparrow^n (3\uparrow^n 3)>3\uparrow^n 3=f(n)$, $f$严格单调递增, 因此$f^{64}(1)<f^{64}(4)<f^{64}(27)$. 
+\par 断言$f(n)>n$对任意正整数$n$成立. 对$n$归纳, $n=1$时显然. 设$3\uparrow^n 3>n$, 则$3\uparrow^{n+1} 3=3\uparrow^n (3\uparrow^n 3)>3\uparrow^n n>n+1$. $3\rightarrow 3 \rightarrow 3 \rightarrow 3=3\rightarrow 3 \rightarrow (3\rightarrow 3 \rightarrow 2 \rightarrow 3) \rightarrow 2$; 而$3\rightarrow 3 \rightarrow 2 \rightarrow 3= 3\rightarrow 3 \rightarrow 27 \rightarrow 2 = f^{27}(1)$. 因此$3\rightarrow 3 \rightarrow 3 \rightarrow 3=f^{f^{27}(1)}(1)>f^{65}(1)=3\rightarrow 3 \rightarrow 65 \rightarrow 2$.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 记$T=\{n\in \mathbb{N} \vert \forall m < n: m\in S\}$. 用数学归纳法证明$T=\mathbb{N}$, 从而$\forall n\in \mathbb{N}$, 由$n+1\in T$知$n\in S$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1) 不妨设$n_0\neq 0$, 则存在$n'\in \mathbb{N}$, $n'+1=n_0$, 用数学归纳法证明$\forall n\in \mathbb{N}: n<n_0 \lor n\in S$. 显然$0<n_0$. 设命题对$n$成立, (a)若$n\in S$, 则$n+1\in S$; (b)若$n<n_0$, 则$n\le n'$; 若$n=n'$, 则$n+1=n_0\in S$; 否则$n+1\le n'<n_0$. (2) 令$S'=S\cup \{n\in\mathbb{N}\vert n<n_0\}$, 用第二数学归纳法, 对任意$n\in \mathbb{N}$, 设$\forall m<n: m\in S'$, 往证$n\in S'$. $n<n_0$的情形显然; 若$n\ge n_0$, 则$\forall n_0\le m<n: m\in S$, 由条件知$n\in S$. 因此$S'=\mathbb{N}$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 对$n$用数学归纳法, 0的情形显然, $n+1$的情形由$n+1\in S\Rightarrow n\in S$及$n$的情形得出. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 对$k$用数学归纳法, 证明$\forall n\in \mathbb{N}\forall k\in \mathbb{N}: a_n\ge k$. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .}
+设$f:\mathbb{N} \to  n$是双射, 则集合$n^+$的像$f(n\cup \{n\})\subseteq n$, $f$在$n^+$上的限制是$n^+$与其真子集的双射, 矛盾. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 若$X$是有限集, 由命题\ref{pro:setsize}, 结论成立. 因此不妨设$X$是可数无穷集, 由$X\sim \mathbb{N}$, 只需证明$P=\{A\subseteq w\vert A\text{是有限集}\}$是可数集. 事实上, 定义函数$f:P\to \mathbb{N}$, 对$A\in P$, $f(A)=\sum_{a\in A} 2^a$, 则$f$是双射. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 证明略. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 设无限序数$\beta=\alpha^+$, 则$\alpha$也是无限序数. 由$\operatorname{card}\alpha + 1=\operatorname{card}\alpha$, $\alpha\sim\beta$, 故无限的后继序数不是基数. 
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} (1) 一方面, $A$到自身映射的集合基数为$a^a=2^a$, 故$\operatorname{card} \mathcal{F} \le 2^a$. 另一方面, 由$2a=a$, 存在双射$f: A\to A\times\{0,1\}$, 记$K(a)=\{f^{-1}(a,0), f^{-1}(a,1)\}$, 则$\{K(a)\vert a\in A\}$为$A$的集合划分, 且每个部分恰包含$A$中的两个元素. 定义单射$g: 2^A\to F$如下: 对$S\subseteq A$, $g(S)$定义如下: 若$a\in S$, $g(S)$将$K(a)$对换; 若$a\notin S$, $g(S)$在$K(a)$上为恒等映射. 故$2^a\le \operatorname{card} \mathcal{F}$. 命题得证. 
+
+(2) 先证一个引理: 设$X$为$\mathbb{N}$到$A$单射的集合, 则$\operatorname{card} X = a^{\aleph_0}$. $\operatorname{card} X \le a^{\aleph_0}$是显然的. 另一方面, 令$Y$为$\mathbb{N}$到$A\times \mathbb{N}$单射的集合, $Z=\{f\in Y\vert \forall n\in \mathbb{N}: f(n)\in A\times \{n\}\}$, 则每个$f(n)$的第一坐标可从$A$中任取, $\operatorname{card}Z=a^{\aleph_0}\le \operatorname{card} Y$. 又由$a \cdot \aleph_0 = a$, $\operatorname{card} Y=\operatorname{card} X$. 引理得证. 
+\par 设$W$为$\mathbb{N}$到自身双射的集合, 则$\mathcal{C}\times W$与$X$一一对应, $\operatorname{card}\mathcal{C} \cdot 2^{\aleph_0} = a^{\aleph_0}$. 由无限基数的乘法规律, $\operatorname{card}\mathcal{C}=a^{\aleph_0}$.
+
+\stepcounter{solset}
+\par \textbf{\thesolset .} 取两两不交的集合$A_i, i\in I$, 使得$\operatorname{card} A_i=a_i$; 取集合$B_i, i\in I$, 使得$\operatorname{card} B_i=b_i$. 记$S=\bigcup_{i\in I} A_i$, $T=\prod_{i\in I} B_i$, 往证$S \prec T$. 若不然, 存在满射$f: S\to T$. 对任意的$i\in I$, 令$C_i = \{f(x)(i)\vert x\in A_i\}$, 则$\operatorname{card} C_i \le a_i < b_i$, $C_i \subset B_i$. 又由选择公理, 存在$y \in T$, $\forall i\in I: y(i) \in B_i-C_i$. 而$f$为满射, 存在$t\in I$, $x^* \in A_t$, $f(x^*)=y$. 此时有$y(t)=f(x^*)(t)\in C_t$, 与$y$的选取矛盾. 
+
+\emph{注}: 令$A_i=\varnothing, i\in I$, 即得选择公理. 因此Kőnig定理与选择公理等价.  

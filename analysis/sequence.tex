@@ -1,0 +1,634 @@
+
+\par 本章关注数列$\{a_n\}_{n\in \mathbb{N}}$(以下简记为$\{a_n\}$), 主要讨论实数列, 亦即函数$f: \mathbb{N}\to \mathbb{R}$. $\mathbb{R}$在距离$d(x,y)=|x-y|$下形成度量空间, 由此可定义实数列的收敛性(定义\ref{def:seq_conv}). 
+\par $a_n=f(n)$称为数列的通项公式; $a_n=f(n,a_{n-1}, \dots,a_{n-k})$称为数列的($k$阶)递推公式. 
+
+\begin{dfn}\textbf{数列的单调性} Monotonicity\\
+设$\{a_n\}$为实数列, 若$\forall n\in \mathbb{N}: a_n\le a_{n+1}$, 称$\{a_n\}$单调递增; 若$\forall n\in \mathbb{N}: a_n<a_{n+1}$, 称$\{a_n\}$严格单调递增. 若$\forall n\in \mathbb{N}: a_n\ge a_{n+1}$, 称$\{a_n\}$单调递减; 若$\forall n\in \mathbb{N}: a_n>a_{n+1}$, 称$\{a_n\}$严格单调递减. 
+\end{dfn}
+(严格)单调递增数列和(严格)单调递减数列统称为(严格)单调数列. 
+
+\par $\{a_n\}$单调递增的一个等价定义为: $\forall m, n\in \mathbb{N}: m<n \Rightarrow a_m \le a_n$.
+
+\begin{dfn}\textbf{数列的有界性}\\
+设$\{a_n\}$为实数列, 若存在$M\in \mathbb{R}$, $\forall n\in \mathbb{N}: a_n\le M$, 称$\{a_n\}$有上界$M$; 若存在$L\in \mathbb{R}$, $\forall n\in \mathbb{N}: a_n\ge L$, 称$\{a_n\}$有下界$L$. 既有上界又有下界的数列称为有界数列. 
+\end{dfn}
+\par 数列有界当且仅当存在$M\ge 0$, $\forall n\in \mathbb{N}: |a_n|\le M$. 由绝对值的三角不等式和可乘性, 若$\{a_n\}, \{b_n\}$为有界数列, 则$\{a_n+b_n\}$, $\{a_nb_n\}$为有界数列. 
+
+\begin{dfn}\textbf{数列的子列} Subsequence\\
+设$\{a_n\}, \{b_n\}$为数列, 若存在严格单调递增的自然数序列$\{k_n\}$, 满足$b_n=a_{k_n}$, 称$\{b_n\}$是$\{a_n\}$的一个子列. 
+\end{dfn}
+
+\begin{dfn}\textbf{差分序列} Difference Sequence\\
+设$\{a_n\}$为复数列, $p$是自然数, $\{a_n\}$的$p$阶差分序列递归定义如下: $\Delta^0 a_n = a_n$, 
+\begin{equation}
+    \Delta^p a_n = \Delta^{p-1} (a_{n+1} - a_n)
+\end{equation}
+\end{dfn}
+
+
+\section{数列的极限}
+
+\begin{pro} \textbf{实数列极限的运算性质}\\
+设$\{a_n\},\{b_n\}$是$\mathbb{R}$上的收敛列, 则有
+\begin{enumerate}
+\item $\lim\limits_{n\to \infty} (a_n+b_n) = \lim\limits_{n\to \infty} a_n+ \lim\limits_{n\to \infty} b_n$
+\item $\lim\limits_{n\to \infty} (a_nb_n) = \left(\lim\limits_{n\to \infty} a_n\right) \left(\lim\limits_{n\to \infty} b_n\right)$
+\item 若$\forall n: b_n\neq 0$, 且$\lim\limits_{n\to \infty} b_n \neq 0$, 则$\lim\limits_{n\to \infty} \frac{a_n}{b_n} = \frac{\lim_{n\to \infty} a_n} {\lim_{n\to \infty} b_n}$
+\end{enumerate}
+\end{pro}
+\begin{proof}记$x=\lim\limits_{n\to \infty} a_n$, $y=\lim\limits_{n\to \infty} b_n$.
+\par (1) $\forall \varepsilon>0$, 存在$N_1$, $\forall n\ge N_1: |a_n-x|<\frac{\varepsilon}{2}$; 存在$N_2$, $\forall n\ge N_2: |b_n-y|<\frac{\varepsilon}{2}$. 令$N=\max\{N_1, N_2\}$, 则$\forall n\ge N$, $|a_n+b_n-x-y|\le |a_n-x|+|b_n-y|< \varepsilon$. 
+\par (2) 由于收敛列有界, 存在正实数$M$, $\forall n$, $|a_n|<M$. $\forall \varepsilon>0$, 存在$N_1$, $\forall n\ge N_1: |a_n-x|<\frac{\varepsilon}{2(|y|+1)}$; 存在$N_2$, $\forall n\ge N_2: |b_n-y|<\frac{\varepsilon}{2M}$. 令$N=\max\{N_1, N_2\}$, 则$\forall n\ge N$, 
+\begin{equation}
+    |a_nb_n-xy|=|a_n(b_n-y)+y(a_n-x)|\le |a_n||b_n-y|+|y||a_n-x|< \frac{\varepsilon}{2} + \frac{\varepsilon |y|}{2(|y|+1)}<\varepsilon
+\end{equation}
+\par (3) 由于(2)成立, 只需证$a_n\equiv 1$的情形. 存在$N$, $\forall n \ge N: |b_n-y|<\frac{|y|}{2}$, 即$|b_n|>\frac{|y|}{2}$. $\forall \varepsilon>0$, 存在$N'$, $\forall n\ge N': |b_n-y|<\frac{\varepsilon|y|^2}{2}$. 则$\forall n\ge \max\{N, N'\}$,
+\begin{equation}
+    \left|\frac{1}{b_n}-\frac{1}{y}\right|=\frac{|b_n-y|}{|y||b_n|} < \frac{\varepsilon|y|^2}{2} \cdot \frac{2}{|y|^2}=\varepsilon
+\end{equation}
+
+\end{proof}
+
+\begin{pro} \textbf{实数列极限的保序性}\\
+设$\mathbb{R}$上的收敛列$\{a_n\},\{b_n\}$满足$\forall n\in \mathbb{N}: a_n\ge b_n$, 则
+\begin{equation}
+    \lim\limits_{n\to \infty} a_n \ge \lim\limits_{n\to \infty} b_n
+\end{equation}
+\end{pro}
+\begin{proof}
+令$c_n = a_n-b_n \ge 0$, 则$\{c_n\}$也为$\mathbb{R}$上的收敛列, 只需证$\lim\limits_{n\to \infty} c_n \ge 0$. 反设$\lim\limits_{n\to \infty} c_n=-c$, $c>0$, 则存在$N\in \mathbb{N}$, $\forall n\ge N$, $|c_n - (-c)| < \frac{c}{2}$, $c_n<-\frac{c}{2}$, 矛盾. 
+\end{proof}
+
+\section{级数的收敛性}
+
+\begin{dfn}\textbf{数列的部分和与无穷和} Partial/Infinite sum\\
+设$\{a_n\}$为数列, 令$S_n=\sum_{k=0}^n a_k$, $\{S_n\}$称为$\{a_n\}$的部分和序列. 
+若$\{S_n\}$收敛, 称$\{a_n\}$的无穷和为
+\begin{equation}
+    \sum_{k=0}^{\infty} a_k= \lim\limits_{n\to \infty} \sum_{k=0}^n a_k
+\end{equation}
+\end{dfn}
+数列的无穷和也称为数项级数(numerical series). 
+
+\section{重要极限与求和}
+
+\begin{pro}\textbf{正整数幂的和} Faulhaber's formula \\
+\begin{equation}
+    \sum_{k=1}^n k^p = \sum_{j=0}^p \frac{(-1)^j}{p+1} \binom{p+1}{j} B_j n^{p+1-j}
+\end{equation}
+其中$B_j$是Bernoulli数. 
+\end{pro}
+\begin{proof}
+记$S_p(n)=\sum_{k=1}^n k^p$. 对$p$归纳, $p=0$时两边都等于$n$. 设命题对$0,1,\dots,p-1$成立. 由于
+\begin{equation}
+(n+1)^{p+1}-1=\sum_{j=1}^n ((j+1)^{p+1}-j^{p+1}) =\sum_{j=1}^n \sum_{r=0}^p \binom{p+1}{r} j^r =\sum_{r=0}^p \binom{p+1}{r} S_r(n)
+\end{equation}
+故有
+\begin{equation}
+    (p+1)S_p(n) = (n+1)^{p+1}-1-\sum_{r=0}^{p-1} \binom{p+1}{r} S_r(n)
+\end{equation}
+由归纳假设, 对$0\le r\le p-1$, $S_r(n)$是关于$n$的$r+1$次多项式, 且常数项为0. 因此$S_p(n)$是关于$n$的$p+1$次多项式, 且$p+1$次项系数为$\frac{1}{p+1}$, 常数项为0. 
+\par 设$S_p(n)=\sum_{j=0}^p a_j n^{p+1-j}$, 则$a_0=\frac{1}{p+1}$与公式一致. 我们有
+\begin{equation}
+    n^p=S_p(n)-S_p(n-1)=\sum_{j=0}^p a_j (n^{p+1-j}-(n-1)^{p+1-j})
+\end{equation}
+对$1\le r\le p$, 比较两边$n^{p-r}$的系数, 有
+\begin{equation}
+    0=\sum_{j=0}^r (-1)^{j} \binom{p+1-j}{p-r} a_j 
+\end{equation}
+对$0\le j\le p$, 令$a_j=\frac{(-1)^j}{p+1}\binom{p+1}{j} b_j$, 得
+\begin{equation}
+0=\sum_{j=0}^r \frac{1}{r-j+1} \binom{r}{j} b_j
+\end{equation}
+由$b_0=1$, $b_r=-\sum_{j=0}^{r-1}\frac{1}{r-j+1}\binom{r}{j}b_j$, $b_j$等于Bernoulli数$B_j$, $j=0,1,\dots, p$. 命题得证.  
+\end{proof}
+
+\begin{col}
+\begin{align}
+&\sum_{k=1}^n k = \frac{n(n+1)}{2}\\
+&\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}\\
+&\sum_{k=1}^n k^3 = \frac{n^2(n+1)^2}{4}
+\end{align}
+\end{col}
+
+\begin{pro}\textbf{等比级数}\\
+设$c\in \mathbb{R}, c\neq 1$, 
+\begin{equation}
+    \sum_{k=0}^n c^k=\frac{1-c^{n+1}}{1-c}
+\end{equation}
+上述部分和序列收敛当且仅当$|c|<1$, 此时有 
+\begin{equation}
+\sum_{k=0}^\infty c^k=\frac{1}{1-c}
+\end{equation}
+\end{pro}
+\begin{proof}
+记$S_n = \sum_{k=0}^n c^k$, 则$(1-c)S_n=1-c^{n+1}$. 
+\end{proof}
+若$c=1$, 显然有$\sum_{i=0}^n c^k=n+1$.
+
+\begin{col}\textbf{等差等比数列之积的求和}\\
+设$c\in \mathbb{R}, c\neq 1$, 
+\begin{equation}
+    \sum_{k=0}^n kc^k=\frac{c-(n+1)c^{n+1}+nc^{n+2}}{(1-c)^2}
+\end{equation}
+上述部分和序列收敛当且仅当$|c|<1$, 此时有 
+\begin{equation}
+\sum_{k=0}^\infty kc^k=\frac{c}{(1-c)^2}
+\end{equation}
+\end{col}
+
+\begin{pro}\textbf{正整数幂的倒数和}\\
+\end{pro}
+
+\begin{pro}\textbf{调和级数}\\
+记$H_n = \sum_{k=1}^n \frac{1}{k}$, 则极限
+\begin{equation}
+    \lim\limits_{n\to \infty} (H_n-\ln n)
+\end{equation}
+存在, 称为Euler–Mascheroni常数$\gamma$. 
+\end{pro}
+\begin{proof}
+
+\end{proof}
+$\gamma \approx 0.5772$. 尚未确定$\gamma$是否为无理数. 
+
+\begin{dfn}\textbf{自然对数的底}\\
+极限
+\begin{equation}
+    \lim\limits_{n\to \infty} \left(1+\frac{1}{n}\right)^n
+\end{equation}
+存在, 称为自然对数的底$e$. 
+\end{dfn}
+\begin{proof}
+记$a_n = \left(1+\frac{1}{n}\right)^n, n\ge 1$. 由二项式定理有
+\begin{align*}
+a_{n+1} &= 1+\sum_{i=1}^{n+1} \binom{n+1}{i} \frac{1}{(n+1)^{i}}\\
+&= 1+ \sum_{i=1}^{n} \frac{1}{i!}\prod_{j=0}^{i-1} \left(1-\frac{j}{n+1}\right)+\frac{1}{(n+1)^{n+1}}\\
+&>1+ \sum_{i=1}^{n} \frac{1}{i!}\prod_{j=0}^{i-1} \left(1-\frac{j}{n}\right)\\
+&=1+\sum_{i=1}^{n+1} \binom{n}{i} \frac{1}{n^{i}} = a_n
+\end{align*}
+故$\{a_n\}$严格单调递增. 另一方面, 
+\begin{equation}
+    a_n = 1+ \sum_{i=1}^{n} \frac{1}{i!}\prod_{j=0}^{i-1} \left(1-\frac{j}{n}\right) < 1+\sum_{i=1}^{n} \frac{1}{i!} < 2+\sum_{i=2}^{n} \frac{1}{(i-1)i} = 3-\frac{1}{n}<3
+\label{eq:inv_prog}
+\end{equation}
+故$\{a_n\}$有上界. 由单调收敛原理, $\{a_n\}$的极限存在. 
+\end{proof}
+
+\begin{pro}\textbf{阶乘倒数的无穷和}\\
+\begin{equation}
+    \sum_{n=0}^{\infty} \frac{1}{n!} = e
+\end{equation}
+\end{pro}
+\begin{proof}
+由式(\ref{eq:inv_prog})知上述级数收敛, 且
+\begin{equation}
+    \sum_{n=0}^{N} \frac{1}{n!}>\left(1+\frac{1}{N}\right)^N
+\end{equation}
+令$N\to \infty$知$\sum_{n=0}^{\infty} \frac{1}{n!} \ge  e$. 另一方面, 对任意给定的$K>0$, 当$N\ge K$, 
+\begin{equation}
+    e > \left(1+\frac{1}{N}\right)^N \ge 1+ \sum_{n=1}^{K} \frac{1}{n!}\prod_{j=0}^{n-1} \left(1-\frac{j}{N}\right)
+\end{equation}
+令$N\to \infty$知$e \ge \sum_{n=0}^{K}  \frac{1}{n!}$, 因此亦有$e \ge \sum_{n=0}^{\infty}  \frac{1}{n!}$.
+\end{proof}
+
+\begin{col}\textbf{$e$是无理数}\\
+$e$是无理数.
+\end{col}
+\begin{proof}
+反证法, 设$e=\frac{p}{q}$, $p,q \in \mathbb{Z}_+$. 则有
+\begin{equation}
+    q!e-\sum_{n=1}^q \frac{q!}{n!}=\sum_{n=q+1}^{\infty} \frac{q!}{n!}<\frac{1}{q+1}+\sum_{n=q+2}^{\infty} \frac{1}{(n-1)n}=\frac{2}{q+1}\le 1
+\end{equation}
+而等式左边为正整数, 矛盾. 
+\end{proof}
+
+\section{数列的例子}
+
+\subsection{等差数列和等比数列}
+
+\begin{dfn}\textbf{等差数列} Arithmetic progression\\
+设$\{a_n\}$为数列, 若存在$d\in \mathbb{R}$, 使得$\forall n\in \mathbb{N}$, 
+\begin{equation}
+    a_n=a_0+nd
+\end{equation}
+则$\{a_n\}$称为等差数列, $d$称为公差. 
+\end{dfn}
+
+
+\begin{dfn}\textbf{多边形数} Polygonal numbers\\
+设$\{a_n\}$成首项$a_1=1$, 公差为$m-2$的等差数列,称其前$n$项和
+\begin{equation}
+    \sum_{i=1}^n a_i = \frac{m-2}{2}n^2 + \frac{4-m}{2}n
+\end{equation}
+为第$n$个$m$边形数. 
+\end{dfn}
+\par 常见的多边形数包括三角形数(triangular number)$T_n=\frac{n(n+1)}{2}$, 平方数$S_n=n^2$, 五边形数(pentagonal number)$P_n = \frac{n(3n-1)}{2}=\frac{1}{3}T_{3n-1}$, 六边形数(hexagonal number)$H_n = n(2n-1)=T_{2n-1}$等. 容易看出, 第$n$个$m$边形数等于$n+(m-2)T_{n-1}$. 
+\par 此外还有中心六边形数(hex number) $a_n=3n(n-1)+1=6T_{n-1}+1$.
+
+\begin{dfn}\textbf{等比数列} Geometric progression\\
+设$\{a_n\}$为数列, 若存在非零实数$q$, 使得$\forall n\in \mathbb{N}$, 
+\begin{equation}
+    a_n=a_0q^n
+\end{equation}
+则$\{a_n\}$称为等比数列, $d$称为公比. 
+\end{dfn}
+
+\subsection{线性递推数列}
+
+\begin{dfn}\textbf{线性递推数列} Linear recurrence relation\\
+设$\{a_n\}$为复数列, 若存在正整数$k$,对任意$n\ge k$, 
+\begin{equation}
+    a_n = r_1(n) a_{n-1} + r_2(n) a_{n-2} +\dots+r_k(n) a_{n-k} +s(n)
+\end{equation}
+其中$r_1,\dots,r_k,s$是$n$的函数, 则称$\{a_n\}$满足线性递推关系. 特别地, 当$s(n)=0$, 称递推关系是齐次的; 当$r_1,\dots,r_k$均为常数, 称递推关系是常系数的.
+\end{dfn}
+线性递推数列由初始值$a_0, a_1,\dots, a_{k-1}$及其递推关系唯一确定. 
+
+\begin{thm}\textbf{线性齐次递推关系的通解}\\
+设$k$是正整数, 复数列$\{a_n\}$满足常系数线性齐次递推关系
+\begin{equation}
+    a_n + c_1 a_{n-1} + c_2 a_{n-2} + \dots + c_k a_{n-k}=0, \forall n\ge k
+\label{eq:lin_rec_rel}
+\end{equation}
+其中$c_i\in \mathbb{C}, i=1,\dots,k$; $c_k\neq 0$, 则$\{a_n\}$的一般生成函数形如
+\begin{equation}
+    \sum_{n=0}^\infty a_nx^n = \frac{p(x)}{1+c_1x+c_2x^2+\dots +c_kx^k}
+\end{equation}
+其中$\deg p(x) < k$. $\{a_n\}$的通项公式形如
+\begin{equation}
+    a_n= \sum_{i=1}^l p_i(n) r_i^n
+\end{equation}
+其中$r_i$是特征方程的$d_i$重根
+\begin{equation}
+    x^k + c_1 x^{k-1}  + \dots + c_{k-1} x + c_k = \prod_{i=1}^l (x-r_i)^{d_i}
+\end{equation}
+且$\deg p_i < d_i$. 
+\end{thm}
+
+\begin{proof}
+记$\{a_n\}$的一般生成函数为$f(x)$, $g(x)=1+c_1x+\dots+c_kx^k$, 则
+\begin{align*}
+    g(x)f(x) =& a_0 + (a_1+c_1a_0)x + (a_2+c_1a_1+c_2a_0)x^2 +\dots + (a_{k-1}+c_1a_{k-2}+\dots+c_{k-1}a_0)x^{k-1} \\
+    &+ \sum_{n=k}^\infty (a_{n}+c_1a_{n-1}+\dots+c_{k}a_{n-k})x^n
+\end{align*}
+记等式右边为$p(x)$, 则$\deg p(x) < k$, 第一部分得证. 由$c_k\neq 0$, $0$不是特征方程的根. 用$\frac{1}{x}$代换$x$得,
+\begin{equation}
+    g(x) = \prod_{i=1}^l (1-r_ix)^{d_i}
+\end{equation}
+由部分分式分解, 存在$A_{ij}\in \mathbb{C}$, $i=1,\dots,l$, $j=1,\dots, d_i$,
+\begin{equation}
+    f(x) = \sum_{i=1}^l \sum_{j=1}^{d_i} \frac{A_{ij}}{(1-r_ix)^j} 
+\end{equation}
+故有
+\begin{equation}
+    a_n = \sum_{i=1}^l \left(\sum_{j=1}^{d_i}A_{ij}\binom{n+j-1}{j-1}\right) r_i^n
+\end{equation}
+第二部分得证. 
+\end{proof}
+
+\par 对于线性非齐次递推关系
+\begin{equation}
+    a_n + c_1 a_{n-1} + c_2 a_{n-2} + \dots + c_k a_{n-k} + s(n) = 0, \forall n\ge k
+\label{eq:lin_rec_rel_n}
+\end{equation}
+若$h_n$是式\ref{eq:lin_rec_rel_n} 的解, $g_n$是对应的齐次递推关系(式\ref{eq:lin_rec_rel})的解, 则$g_n+h_n$也为式\ref{eq:lin_rec_rel_n} 的解. 因此线性非齐次递推关系的通解可由其特解和对应齐次递推关系的通解得到. 
+
+\begin{dfn}\textbf{Fibonacci数列} Fibonacci sequence\\
+设$f_0=0$, $f_1=1$, 当$n\ge 2$时, 有$f_n=f_{n-1}+f_{n-2}$, $\{f_n\}$称为Fibonacci数列. 
+\end{dfn}
+Fibonacci数列的通项公式为
+\begin{equation}
+    f_n = \frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^n - \frac{1}{\sqrt{5}}\left(\frac{1-\sqrt{5}}{2}\right)^n
+\end{equation}
+
+\section*{阅读材料}
+\par 等差数列、等比数列是高中数学内容, 高阶等差数列、线性递推数列属高中竞赛范围. 相关的初等水平读物包括\cite{SMI}. 
+
+\par 由N. J. A. Sloane创建的``整数序列在线百科全书''\cite{OEIS}是重要的在线资源. 
+
+\par \cite{BN}给出了多边形数等数列的直观几何图示, 书中还包括更多与几何体有关的数列. 
+
+\section*{问题}
+\newcounter{probseq} 
+
+\par \textbf{A组}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} (\textbf{差分的线性性}) 设$p$是自然数, 证明对任意复数列$\{f_n\}, \{g_n\}$, $c,d \in \mathbb{C}$, 
+\begin{equation}
+    \Delta^p (cf_n+dg_n)=c\Delta^p f_n + d \Delta^p g_n
+\end{equation}
+换言之, 全体复数列构成$\mathbb{C}$上的线性空间, $\Delta^p$ 是其到自身的线性映射. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} (\textbf{多项式数列的差分序列}) 设$f(x)$为$\mathbb{C}[x]$中的$p$次多项式, 定义序列$a_n=f(n), n\in \mathbb{N}$. 证明: (1) $\forall n: \Delta^{p+1} a_n=0$. (2) $\{a_n\}$有通项公式
+\begin{equation}
+    a_n = \sum_{k=0}^p (\Delta^k a_0) \binom{n}{k}
+\end{equation}
+\par (3)$\{a_n\}$有求和公式
+\begin{equation}
+    \sum_{i=0}^n a_i = \sum_{k=0}^p (\Delta^k a_0) \binom{n+1}{k+1}
+\end{equation}
+
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} (\textbf{最大值、最小值的极限}) 设$\{a_n\},\{b_n\}$是$\mathbb{R}$上的收敛列, 证明
+\begin{enumerate}
+\item $\lim\limits_{n\to \infty} \max \{a_n, b_n\} = \max \left\{\lim\limits_{n\to \infty} a_n, \lim\limits_{n\to \infty} b_n\right\}$
+\item $\lim\limits_{n\to \infty} \min \{a_n, b_n\} = \min \left\{\lim\limits_{n\to \infty} a_n, \lim\limits_{n\to \infty} b_n\right\}$
+\end{enumerate}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} (\textbf{交错调和级数}) (1)证明
+\begin{equation}
+    \sum_{k=1}^{2n} (-1)^{k-1} \frac{1}{k}=\sum_{i=1}^{n} \frac{1}{n+i}
+\end{equation}
+\par (2*)证明
+\begin{equation}
+    \sum_{k=1}^{\infty} (-1)^{k-1} \frac{1}{k}=\ln 2
+\end{equation}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设$k$是正整数, 证明
+\begin{equation}
+    \sum_{n=1}^{\infty} \frac{1}{n(n+1)\cdots(n+k)} = \frac{1}{k\cdot k!}
+\end{equation}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{BN} 证明三角形数$\{T_n\}$满足: $3T_n+T_{n-1}=T_{2n}$; $3T_n+T_{n+1}=T_{2n+1}$.
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{BN} 
+(1) 证明前$n$个三角形数之和
+\begin{equation}
+    \sum_{i=1}^{n}\frac{i(i+1)}{2}= \frac{n(n+1)(n+2)}{6}
+\end{equation}
+这称为\textbf{四面体数}(tetrahedral number).
+\par (2) 证明前$n$个中心六边形数之和
+\begin{equation}
+\sum_{i=0}^{n-1} (3i^2+3i+1)= n^3
+\end{equation}
+
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 对于数列$\{a_n\}_{n=1}^\infty$, 令$S_n=\sum_{i=1}^n a_i$. 证明$\{a_n\}$是等差数列当且仅当存在$a,b\in \mathbb{R}$, $S_n=an^2+bn$. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 设等差数列$\{a_n\}$满足$a_n=a+nd$, $a,d\in \mathbb{C}$. 证明$\{a_n\}$存在成等比数列的子列当且仅当$d=0, a\neq 0$ 或 $\frac{a}{d}\in \mathbb{Q}$. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设$\{f_n\}$是Fibonacci数列, 证明如下等式:
+\begin{align}
+    &\sum_{i=0}^n f_i = f_{n+2}-1\\
+    &\sum_{i=0}^n (-1)^i f_i = (-1)^n f_{n-1} - 1\\
+    &\sum_{i=0}^n f^2_i = f_nf_{n+1}
+\end{align}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设$\{f_n\}$是Fibonacci数列, 证明对$a\ge 0$, $b\ge 1$, 
+\begin{equation}
+    f_{a+b} = f_{a+1}f_{b} + f_{a}f_{b-1}
+    \label{eq:fibo_part}
+\end{equation}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设$\{f_n\}$是Fibonacci数列, $m,n$为正整数. 证明: (1)若$m|n$, 则$f_m|f_n$. (2)若$(m,n)=d$, 则$(f_m,f_n)=f_d$. 
+
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} (\textbf{Lucas数列}) Lucas数列${l_n}$定义为$l_0=2$, $l_1=1$, 当$n\ge 2$, $l_n=l_{n-1}+l_{n-2}$. 设$\{f_n\}$是Fibonacci数列, 证明: 
+\begin{align}
+    &l_n = f_{n-1} + f_{n+1}, n\ge 1\\
+    &\sum_{i=0}^n l_i^2 = l_nl_{n+1}+2, n\ge 0
+\end{align}
+
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设数列$\{a_n\}$满足$a_0=a$, 且对$n\ge 1$, $a_n=pa_{n-1}^2+qa_{n-1}+r$, 其中$p\neq 0$. 若$q(q-2)=4pr$, 证明$a_n=p^{2^{n}-1}(a+\frac{q}{2p})^{2^n}-\frac{q}{2p}$. 
+
+
+
+\par \textbf{B组}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 设正实数序列$\{a_n\}_{n=1}^{\infty}$满足
+\begin{equation}
+    \left(\sum_{i=1}^n a_i\right)^2=\sum_{i=1}^n a_i^3
+\end{equation}
+对任意正整数$n$成立. 证明$a_n=n$. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 证明
+\begin{equation}
+    \sum_{i=1}^\infty \frac{n}{1+n^2+n^4}=\frac{1}{2}
+\end{equation}
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设数列$\{a_n\}$, $\{b_n\}$满足
+\begin{equation}
+    b_n=\sum_{i=0}^m k_i a_{n+i}, \forall n\in \mathbb{N}
+\end{equation}
+其中$k_0>0$; $k_i\ge 0, 1\le i\le m$. 已知$\{b_n\}$为等差数列. 
+\par (1)若$\{a_{n+1}-a_{n}\}$是单调数列, 证明$\{a_n\}$为等差数列. 
+\par (2)若$\{a_{n+2}-a_{n}\}$是单调数列, 且$\sum_{i=0}^m (-1)^m k_i \neq 0$, 证明$\{a_n\}$为等差数列. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设数列$\{a_n\}$满足递推公式$a_n=pa_{n-1}-qa_{n-2}, n\ge 2$, 其中$q\neq 0$. 证明$\{a_{n+1}a_{n-1}-a_n^2\}$成等比数列. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设数列$\{a_n\}$满足递推公式$a_n=pa_{n-1}-a_{n-2}, n\ge 2$. 证明$a_{n+1}^2-pa_{n+1}a_n+a_n^2$是常数. 
+
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} 设实数序列$\{a_n\}$满足$a_1=a$, $a_2=b$, 当$n\ge 3$时有$a_n=\frac{a_{n-1}+a_{n-2}}{2}$. 证明：$\lim\limits_{n\to\infty} a_n=\frac{2b+a}{3}$. 
+
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 设正整数$n\ge 1$, $k\ge 2$, 证明$n^k$可唯一表示为$n$个连续正奇数的和. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 证明存在严格单调递增的正整数序列$\{a_n\}$, 使得对任意的$n\in \mathbb{N}$, $\sum_{i=0}^n a_i^2$是正整数的平方. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 设实数序列$\{a_n\}$满足对任意正整数$i,j$, 有$a_{i+j}\le a_i+a_j$. 证明
+\begin{equation}
+    a_n \le \sum_{k=1}^n \frac{a_k}{k}
+\end{equation}
+对$n\ge 1$恒成立. 
+
+\stepcounter{probseq}
+\par \textbf{\theprobseq .} \cite{SMI} 设$k$为正整数, 数列$\{a_n\}$满足$a_0=k+1$; 对任意自然数$n$, $a_{n+1}=a_n^2-ka_n+k$. 证明$\forall m,n\in \mathbb{N}: (a_m, a_n)=1$. 
+
+\section*{解答}
+\newcounter{solseq}
+
+\par \textbf{A组}
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} \cite{IC} 对$p$归纳, $p=0$时显然. 设命题对$p$成立, 则有
+\begin{align*}
+    \Delta^{p+1} (cf_n+dg_n)&=\Delta^{p}(c(f_{n+1}-f_n)+d(g_{n+1}-g_n)) \\
+    &=c\Delta^{p}(f_{n+1}-f_n)+d\Delta^{p}(g_{n+1}-g_n) = c\Delta^{p+1}f_n + d\Delta^{p+1} g_n
+\end{align*}
+
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} \cite{IC} (1) 对$p$归纳, $p=0$时$\{a_n\}$为常数列, $\Delta a_n=0$恒成立. 设命题对小于$p$的值成立, 考虑$f(x)$为$p$次多项式的情形. 由于$f(x+1)$与$f(x)$的$p$次项相等, $\operatorname{deg} (f(x+1)-f(x)) \le p-1$. 考虑$a_{n+1} - a_n=f(n+1)-f(n)$, 由归纳假设, $\Delta^{p+1} a_n=\Delta^p (a_{n+1} - a_n)=0$. 
+\par (2) 先证一个引理: 记$b_k(n)=\binom{n}{k}$, 则 $\Delta^k b_k(0)=1$; 对自然数$l\neq k$, $\Delta^l b_k(0)=0$. 注意到$\binom{n}{k}$是关于$n$的$k$次多项式, 由(1)得$\Delta^l b_k(0)=0$对$l>k$成立. 又由于$n<k$时, $b_k(n)=0$; $b_k(k)=1$, 得$\Delta^l b_k(0)=0$对$0\le l<k$成立; $\Delta^k b_k(0)=1$. 引理得证. 回到原题, 由于$\{a_n\}$可由$\{\Delta^n a_0\}_{n\in \mathbb{N}}$唯一确定, 只需证$\forall l\in \mathbb{N}$, 左右两边$l$阶差分序列的首项(第0项)相等. 当$l>p$, 由(1)知两边均为0; 当$0\le l<p$, 由差分的线性性及引理即证. 
+\par (3) 由(2)及二项式系数的性质即证. 
+\par \emph{注:} 对于前$n$个正整数的$p$次幂之和, (3)给出了Faulhaber公式之外的另一种求法.
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 只证(1). 记$x=\lim\limits_{n\to \infty} a_n$, $y=\lim\limits_{n\to \infty} b_n$, $c_n=\max \{a_n, b_n\}$. 分两种情况: (i)$x=y$. $\forall \varepsilon>0$, $\exists N$, $\forall n\ge N: |a_n-x|<\varepsilon \land |b_n-x|<\varepsilon$, 从而$|c_n-x|<\varepsilon$. (ii)$x\neq y$, 不妨设$x>y$, 则存在$N$, $\forall n\ge N: |a_n-x|<\frac{x-y}{2} \land |b_n-y|<\frac{x-y}{2}$, 从而$a_n > \frac{x+y}{2} > b_n$, $c_n=a_n$. 因此$c_n$与$a_n$只有有限项不同, $\lim\limits_{n\to \infty} c_n=x=\max \{x,y\}$.
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} (1) \begin{equation}
+\sum_{k=1}^{2n} (-1)^{k-1} \frac{1}{k}=\sum_{k=1}^{2n}\frac{1}{k} -2\sum_{k=1}^{n}\frac{1}{2k} = \sum_{k=n+1}^{2n}\frac{1}{k}
+\end{equation}
+\par (2)由交错级数判别法, $\sum_{k=1}^{\infty} (-1)^{k-1} \frac{1}{k}$存在. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 由于
+\begin{equation}
+    \frac{1}{n(n+1)\cdots (n+k)}=\frac{1}{k}\left(\frac{1}{n(n+1)\cdots (n+k-1)}-\frac{1}{(n+1)\cdots (n+k)}\right)
+\end{equation}
+当$m\to \infty$, 有
+\begin{equation}
+    \sum_{n=1}^m \frac{1}{n(n+1)\cdots (n+k)}=\frac{1}{k}\left(\frac{1}{k!}-\frac{1}{(m+1)\cdots (m+k)}\right) \to \frac{1}{k\cdot k!}
+\end{equation}
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 略. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 略. 
+
+
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 必要性: 令$a_n=a_1+(n-1)d$, 则$S_n=na_1+\frac{n(n-1)d}{2}$. 充分性: 对$n\ge 2$, $a_n=S_n-S_{n-1}=2an+b-a$, 又$a_1=S_1=a+b$.  
+\par \emph{注:} 容易看出, 若$S_n=an^2+bn+c$, $\{a_n\}$从第二项起成等差数列. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 设$d=0$, 则$\{a_n\}$为常数列, 存在等比子列当且仅当$a\neq 0$. 下设$d\neq 0$, 记$r=\frac{a}{d}$.
+\par 必要性: 存在自然数$m<n<k$, $a_n^2=a_ma_k$, 即
+\begin{equation*}
+    d^2((2n-m-k)r+n^2-mk)=0
+\end{equation*}
+由$d\neq 0$, $(2n-m-k)r+n^2-mk=0$. 又若$2n=m+k$, 则$n^2=mk$, 由均值不等式知$m=n=k$, 矛盾. 故$2n\neq m+k$, $r=\frac{n^2-mk}{m+k-2n}\in\mathbb{Q}$. 
+\par 充分性: 记$r=\frac{p}{q}, p\in \mathbb{Z}, q\in \mathbb{Z}_+$, 不妨令$p>0$. (事实上, 若$p\le 0$, 则存在$p+nq>0$, 将$a_n$改记为首项即可.) 为证$\{a+nd\}$存在等比子列, 只需证$\{\frac{q}{d}(a+nd)\}=\{p+nq\}$存在等比子列. 事实上, $\{p(q+1)^n\}$是一个子列, 因为$p(q+1)^n\equiv p\mod q$且$p(q+1)^n\ge p$.
+\par \emph{注:} 取正整数$m>1$满足$(m,q)=1$, 则存在正整数$r$满足$m^r\equiv 1 \mod q$, 此时$\{pm^{rn}\}$均为满足条件的子列. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} (1)对$n$归纳, 若命题对$n$成立, 则$\sum_{i=0}^{n+1} f_i = f_{n+2}+f_{n+1}-1=f_{n+3}-1$. (2) 对下标为奇数的项求和得
+\begin{equation}
+    \sum_{i=1}^n f_{2i-1} = 1+\sum_{i=0}^{2n-2} f_i = f_{2n}
+\end{equation}
+因此有
+\begin{align*}
+    \sum_{i=0}^{2n} (-1)^i f_i & = f_{2n+2} - 1 - 2f_{2n} = f_{2n-1}-1\\
+    \sum_{i=0}^{2n-1} (-1)^i f_i & = f_{2n+1} - 1 - 2f_{2n} = -f_{2n-2}-1
+\end{align*}
+(3)对$n$归纳, 若命题对$n$成立, 则$\sum_{i=0}^{n+1} f^2_i = f_nf_{n+1}+f_{n+1}^2=f_{n+1}f_{n+2}$.
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 对$a$归纳, $a=0$的情形显然, $a=1$即为递推公式. 设命题对$a$成立, 则有
+\begin{equation*}
+    f_{(a+1)+b}=f_{a+(b+1)}=f_{a+1}(f_{b}+f_{b-1})+f_af_b = f_{a+2}f_b+f_{a+1}f_{b-1}
+\end{equation*}
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} (1)设$n=km$, 对$k$归纳, $k=1$时显然. 假设$f_m|f_{(k-1)m}$, 则由式\ref{eq:fibo_part},
+\begin{equation*}
+    f_{km} = f_{m+1}f_{(k-1)m}+f_m f_{(k-1)m-1}
+\end{equation*}
+因此$f_m|f_{km}$. (2) 对$n$归纳可得引理: $(f_n,f_{n+1})=1$, $n\ge 1$. 回到原题, 不妨设$n>m$, 作带余除法$n=qm+r$, 其中$q\ge 1$, $0\le r<m$. 由式\ref{eq:fibo_part},
+\begin{equation*}
+    f_{n} = f_{r+1}f_{qm} + f_{r}f_{qm-1}
+\end{equation*}
+由$f_m|f_{qm}$, $(f_n,f_m)=(f_rf_{qm-1}, f_m)=(f_r,f_m)$. 后一个等号基于$(f_{m}, f_{qm-1}) | (f_{qm}, f_{qm-1})=1$. 由最大公约数的Euclid算法, 命题得证. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 第一式对$n=1,2$、第二式对$n=0$成立, 由数学归纳法即证.
+
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 令$b_n=a_n+\frac{q}{2p}$, 则
+\begin{equation}
+    b_n = pb_{n-1}^2+r-\frac{q^2-2q}{4p}= pb_{n-1}^2
+\end{equation}
+因此$b_n=pb_{n-1}^2=p^3b_{n-2}^4=\cdots=p^{2^n-1}b_0^{2^n}$, 代入$b_n=a_n+\frac{q}{2p}$即证. 
+
+\par \textbf{B组}
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} \cite{SMI} 显然$a_1=1$, $a_2=2$. 对$n\ge 2$, 有
+\begin{equation}
+    a_n^3=a_n^2+2a_n\sum_{i=1}^{n-1}a_i
+\end{equation}
+故$a_n^2=a_n+2\sum_{i=1}^{n-1}a_i$. 进而对$n\ge 3$, 有
+\begin{equation}
+    a_n^2-a_{n-1}^2=a_n+a_{n-1}
+\end{equation}
+由$a_n+a_{n-1}>0$, $a_n-a_{n-1}=1$. 因此对任意正整数$n$有$a_n=n$. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 由$n^4+n^2+1=(n^2+n+1)(n^2-n+1)$及$n^2-n+1=(n-1)^2+(n-1)+1$, 有
+\begin{equation}
+    \frac{n}{1+n^2+n^4}=\frac{1}{2}\left(\frac{1}{(n-1)^2+(n-1)+1}-\frac{1}{n^2+n+1}\right)
+\end{equation}
+因此
+\begin{equation}
+    \sum_{n=1}^N \frac{n}{1+n^2+n^4}=\frac{1}{2}\left(1-\frac{1}{n^2+n+1}\right)
+\end{equation}
+令$N\to\infty$即得证. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} (1)不妨设$\{a_{n+1}-a_{n}\}$单调递增. 对任意$n\ge 0$, 有
+\begin{equation*}
+    0 = (b_{n+2}-b_{n+1})-(b_{n+1}-b_{n})=\sum_{i=0}^m k_i((a_{n+i+2}-a_{n+i+1})-(a_{n+i+1}-a_{n+i}))\ge 0
+\end{equation*}
+由$k_0>0$, $a_{n+2}-a_{n+1}=a_{n+1}-a_{n}$恒成立, 命题得证. 
+\par (2) 不妨设$\{a_{n+2}-a_{n}\}$单调递增. 考虑$(b_{n+3}-b_{n+2})-(b_{n+1}-b_{n})$, 与(1)类似得到$a_{n+3}-a_{n+2}=a_{n+1}-a_{n}$恒成立.此时有
+\begin{align*}
+    0 = (b_{n+2}-b_{n+1})-(b_{n+1}-b_{n})&=\sum_{i=0}^m k_i((a_{n+i+2}-a_{n+i+1})-(a_{n+i+1}-a_{n+i}))\\
+    &=\left(\sum_{i=0}^m (-1)^m k_i\right)((a_{n+2}-a_{n+1})-(a_{n+1}-a_n))
+\end{align*}  
+由条件得$a_{n+2}-a_{n+1}=a_{n+1}-a_{n}$恒成立, 命题得证. 
+\par \emph{注}: 此题为2006年江苏省数学高考题的推广. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 对$n\ge 2$, $a_{n+1}a_{n-1}-a_n^2=qa_{n-1}^2 + pa_na_{n-1}-a_n^2=qa_{n-1}^2 - a_n(a_n-pa_{n-1})=-q(a_na_{n-2}-a_{n-1}^2)$
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 对$n\ge 1$, $(a_{n+1}^2-pa_{n+1}a_n+a_n^2)-(a_{n}^2-pa_na_{n-1}+a_{n-1}^2)=(pa_n-a_{n-1})^2-p(pa_n-a_{n-1})a_n+pa_na_{n-1}-a_{n-1}^2=0$.
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} $\{a_n\}$为线性递推数列, 通项公式为
+\begin{equation}
+    a_n=\frac{2b+a}{3}+\frac{4(b-a)}{3(-2)^n}
+\end{equation} 
+
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 设公差为2的等差数列最小数为$a$, 则前$n$项和为$(a+n-1)n=n^k$, 知$a=n^{k-1}-n+1$. 显然$a$是奇数. 
+\par \emph{注:} 特别地, 前$n$个正奇数之和等于$n^2$, 即
+\begin{equation}
+    \sum_{i=1}^n (2i-1) = n^2
+\end{equation}
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 取$a_0$为不小于3的正奇数, 则$a_0^2\ge 9$为正奇数的平方. 记$T_n=\sum_{i=0}^n a_i^2$, 设$T_n\ge 9$为正奇数的平方, 则$T_n\equiv 1 \mod 4$, 整数$t=\frac{T_n-1}{4}\ge 2$. 令$a_{n+1}=2t$, 则$T_{n+1}=(2t+1)^2$也为正奇数的平方, 且由$a_{n+1}^2=4t^2>4t+1=T_{n}\ge a_n^2$, $a_{n+1}>a_{n}$. 由此可归纳定义得到所求的$\{a_n\}$. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} \cite{SMI} 对$n$归纳, $n=1$的情形显然. 假设命题对$1,2,\dots,n$成立, $n$式相加得
+\begin{equation}
+    \sum_{k=1}^n a_k\le \sum_{k=1}^n \frac{(n+1-k)a_k}{k}
+\end{equation}
+因此有
+\begin{equation}
+    (n+1)\sum_{k=1}^n \frac{a_k}{k}\ge \sum_{k=1}^n (a_k+a_{n+1-k})\ge na_{n+1}
+\end{equation}
+两边同加$a_{n+1}$即得$n+1$的情形. 
+
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} \cite{SMI} 对$n$归纳可得$\forall n: a_n \equiv 1 \mod k$. 又有$a_{n+1} - k = a_n(a_n-k)=\cdots=\prod_{i=0}^n a_i$. 不妨$m>n$, 则$(a_m,a_n)=(a_{m-1}\cdots a_n a_{n-1}\cdots a_0+k, a_n)=(k, a_n)=1$. 

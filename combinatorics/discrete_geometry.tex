@@ -1,0 +1,36 @@
+
+\section*{问题}
+
+\newcounter{probdisgeo} 
+
+\stepcounter{probdisgeo}
+\par \textbf{\theprobdisgeo .} \cite{MaP} 设$P$是平面上$n$个点构成的集合，$P$中任意三点不共线; 过$P$中两点的直线共$\binom{n}{2}$条, 构成的集合记为$L$. 证明: (1) $L$中包含两两不平行的$n$条直线. (2) $L$中不一定包含两两不平行的$n+1$条直线.
+
+\stepcounter{probdisgeo}
+\par \textbf{\theprobdisgeo .} (\textbf{多边形的三角剖分数}) 对于平面上的凸$n+1$边形$P$, 设用$n-2$条不在$P$内部相交的对角线将$P$剖分为$n-1$个三角形的方法数$h_n$, 并记$h_1=1$. 证明$h_n$为Catalan数
+\begin{equation}
+    h_n = C_{n-1} = \frac{1}{n}\binom{2n-2}{n-1}
+\end{equation} 
+
+
+\stepcounter{probdisgeo}
+\par \textbf{\theprobdisgeo .} \cite{MaP} 证明任一凸多面体存在两个面的边数相等. 
+
+
+\section*{解答}
+
+\newcounter{soldisgeo} 
+
+\stepcounter{soldisgeo}
+\par \textbf{\thesoldisgeo .} \cite{MaP} (1) 取$P$中$y$坐标最小的一个点$O$, 不妨设其为平面直角坐标系的原点. 此时除至多一个点在$x$轴上外, 其余点均在$x$轴上方. 在$P-\{O\}$中取点$A$使$AO$与$x$轴正方向夹角最小, 取点$B$使$BO$与$x$轴负方向夹角最小, 则直线$AB$与过$O$的$n-1$条直线均相交, 这$n$条直线符合条件. (2) 记$A_k = (\cos \frac{2k\pi}{n}, \sin \frac{2k\pi}{n})$, 考虑点集$P=\{A_k \vert k=0,1,\dots,n-1\}$, 则过$A_k, A_l$的直线斜率为$-\cot \frac{\pi(k+l)}{n}$(与$y$轴平行的直线斜率视为无穷), 从而恰好有$n$个不同取值. 
+
+\stepcounter{soldisgeo}
+\par \textbf{\thesoldisgeo .} \cite{IC} 只需证当$n\ge 2$, 
+\begin{equation}
+    h_n = \sum_{k=1}^{n-1} h_kh_{n-k}
+\end{equation}
+当$n=2$时上式成立. $n\ge 3$时, 记多边形的顶点依次为$P_0,P_1,\dots, P_{n}$. 考虑$P_nP_0$所属的三角形, 其第三个顶点为$P_k$ ($k=1,\dots,{n-1}$), 则两侧化为凸$k+1$边形、凸$n-k+1$边形的三角剖分问题. 故上式得证. 
+
+
+\stepcounter{soldisgeo}
+\par \textbf{\thesoldisgeo .} 设多面体的面数为$f$, 则每个面的边数取值范围为$\{3,\cdots, f-1\}$, 共$f-3$个可能的值. 由鸽巢原理, 命题得证. 

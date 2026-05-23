@@ -1,0 +1,32 @@
+
+
+\section{重要不等式}
+
+\begin{thm}\textbf{Bernoulli不等式}\\
+设$n$为正整数, 对$i=1,\dots,n$, 实数$x_i$满足$x_i\ge -1$, , 且对任意$1\le i,j \le n$, 有$x_ix_j\ge 0$, 则有 
+\begin{equation}
+    \prod_{i=1}^n (1+x_i)\ge 1+\sum_{i=1}^n x_i
+\end{equation}
+\end{thm}
+\begin{proof}
+对$n$归纳, $n=1$时两边相等. 假设命题对$n$成立, 
+\begin{equation*}
+    \prod_{i=1}^{n+1} (1+x_i)\ge (1+\sum_{i=1}^n x_i)(1+x_{n+1})=1+\sum_{i=1}^{n+1} x_i+x_{n+1}\sum_{i=1}^{n} x_i\ge 1+\sum_{i=1}^{n+1} x_i
+\end{equation*}
+\end{proof}
+特别地, 对$x\ge -1$, 有$(1+x)^n\ge 1+nx$. 
+
+\section*{阅读材料}
+
+\section*{问题}
+\newcounter{probineq} 
+\par \textbf{B组}
+\stepcounter{probineq} 
+\par \textbf{\theprobineq .} \cite{SMI} 设$x\in \mathbb{R}$, 解方程$(x-[x])x=[x]^2$. 
+
+
+\section*{解答}
+\newcounter{solineq} 
+\par \textbf{B组}
+\stepcounter{solineq}
+\par \textbf{\thesolineq .} 若$x<0$, 则左边为负数, 右边为正数, 矛盾. 若$x\ge 2$,  有$[x]^2>[x]+1>x>x(x-[x])$, 矛盾. 若$0\le x<1$, 则$x=0$. 若$1\le x<2$, 则$x^2-x-1=0$, $x=\frac{1+\sqrt{5}}{2}$. 因此$x=0$或$x=\frac{1+\sqrt{5}}{2}$. 

@@ -1,0 +1,99 @@
+
+\section{组合博弈论}
+
+\begin{pro}\textbf{Nim游戏}\\
+设$k$是正整数, 给定自然数的$k$元组$(a_1,\dots, a_k)$. 两位玩家轮流进行如下操作: 选择使得$a_i>0$的$1\le i\le k$和$1<t\le a_i$, 将$a_i$变为$a_i-t$. 无法操作的玩家输掉游戏. 如上定义的Nim游戏为后方游戏当且仅当 $a_1 \operatorname{XOR} a_2 \operatorname{XOR} \cdots \operatorname{XOR} a_k=0$, 其中$\operatorname{XOR}$为二进制表示的按位异或运算. 
+\end{pro}
+\begin{proof}
+若$a_1 \operatorname{XOR} a_2 \operatorname{XOR} \cdots \operatorname{XOR} a_k=0$, 称该状态是平衡的. 游戏终止时必有$a_i=0, \forall 1\le i\le k$, 这一状态是平衡的, 且为后方游戏. 断言: (1)平衡状态经过一步操作必然变为不平衡状态; (2)对任意不平衡状态, 总存在一种操作方式将其变为平衡状态. 因此起始状态平衡的游戏为后方游戏, 不平衡的游戏为先方游戏.
+\par 事实上, $a \operatorname{XOR} b=0 \iff a=b$. 因此状态平衡时, $a_i$恰等于$a_1,\dots,a_{i-1},a_{i+1},\dots,a_k$的异或, 而将$a_i$变为$a_i-t$必然导致不平衡. 对不平衡状态, 令$u=a_1 \operatorname{XOR} a_2 \operatorname{XOR} \cdots \operatorname{XOR} a_k$, 设$u$的二进制表示为$\overline{b_lb_{l-1}\dots b_1b_0}$, 则存在$1\le i\le k$, $a_i$的二进制表示中$b_l$对应位为1. 令$v=u \operatorname{XOR} a_i$. $v$的二进制表示中$b_l$对应位为0, 而更高位均与$a_i$相同, 因此$v<a_i$. 又由于$v$恰好为$a_1,\dots,a_{i-1},a_{i+1},\dots,a_k$的异或, 将$a_i$变为$v$即得平衡状态.  
+
+
+\end{proof}
+
+\section{多格骨牌}
+
+\subsection{矩形完美覆盖}
+
+\begin{pro}\textbf{$1\times q$骨牌覆盖矩形的充要条件}\\
+$m\times n$矩形能用$1\times q$骨牌完美覆盖的充分必要条件是$q\mid m \lor q\mid n$. 
+\end{pro}
+\begin{proof}
+充分性显然. 为证必要性, 设$m=kq+r$, $n=lq+s$, 其中$0\le r,s < q$. 不妨设$r\le s$, 反设$r>0$. 对$m\times n$矩形中的方格按如下方式标号: $a$行$b$列的方格($1\le a\le m, 1\le b \le n$)标为$b-a \mod q$, 则无论$1\times q$骨牌如何放置, 必定恰好盖住标号$0,1,\dots,q-1$的方格各1个. 因此$m\times n$矩形中标号$0,1,\dots,q-1$的方格数量相等. 前$kq$行中标号$0,1,\dots,q-1$的方格数量相等; 第$kq+1$至$kq+r$行中, 前$lq$列中标号$0,1,\dots,q-1$的方格数量相等; 因此后$s$列中标号$0,1,\dots,q-1$的方格数量相等. 但该区域中标号0的方格有$r$个, 这推出该区域至少有$rq>rs$个方格, 矛盾.  
+\end{proof}
+
+\par 上述结论推出$p\mid q$时, $p\times q$骨牌能完美覆盖$m\times n$矩形的充分必要条件是$p\mid m \land p\mid n \land (q\mid m \lor q\mid n)$. 
+
+\section*{问题}
+\newcounter{probrec} 
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} \cite{MaP} 设$m,n$为正整数, 考虑在矩阵$\mathbf{1}_{m\times n}$上的博弈: 两位玩家依次选择一个$1$, 设其下标为$[i,j]$, 并将下标$[s,t]$满足$s\ge i, t\ge j$的所有元素变成0. 将下标为$[1,1]$的1变为0的玩家输掉这局游戏. 证明除非$m=n=1$, 否则先手玩家有必胜策略. 
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} \cite{MaP} 设矩阵$A\in \mathbb{R}^{m\times n}$, 允许如下翻转操作: 将一行或一列所有元素变为其相反数. 证明总可以使用不超过$\lfloor \frac{m+n}{2}\rfloor$次操作, 使得每行、每列的元素之和都非负. 
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} \cite{MaP} 设非空集合$X$包含$n$个元素, $f:\mathcal{P}(X)\to \mathbb{R}$满足$f(\varnothing)=0$, 且
+\begin{equation}
+    \sum_{A\subseteq X} f(A)<0
+\end{equation}
+允许如下翻转操作: 选取$x\in X$, 对$X$的每个包含$x$的子集$A$, 将$f(A)$变为相反数. 证明总可以通过翻转操作使得$\sum_{A\subseteq X} f(A)>0$.
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} (\textbf{二格骨牌覆盖矩形的断层线}) 使用$1\times 2$骨牌完美覆盖$n\times n$矩形, 其中$n\ge 2$为偶数. 若矩形可被水平或垂直分为$a\times n, n-a \times n$两部分($a=1,\dots, n-1$)同时不切开任何骨牌, 称切割线为一条断层线. 
+\par (1) 设$n\le 6$, 证明任一覆盖方式必存在断层线. 
+\par (2*) 设$n=8$, 证明存在无断层线的覆盖方式. 
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} (\textbf{二格骨牌覆盖矩形的数量}) 使用$1\times 2$骨牌完美覆盖$m\times n$矩形, 旋转、翻转后一致的不同覆盖视为不同, 记覆盖的数量为$F(m,n)$, 并令$F(m,0)=1$. 证明:
+\par (1) $F(2,n)=f_{n+1}$, 其中$\{f_n\}$为Fibonacci数列. 
+\par (2) $F(3,2)=3$; 当$n\ge 4$为偶数时, $F(3,n)=4F(3,n-2)-F(3,n-4)$. 
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} \cite{IC} 设$n\ge 3$为奇数, 考虑去掉中心单位立方体的$n\times n\times n$立方体, 证明其可用$1\times 1\times 2$长方体完美覆盖当且仅当$n\equiv 1 \mod 4$. 
+
+\stepcounter{probrec}
+\par \textbf{\theprobrec .} (\textbf{Hanoi塔}) 设有$k\ge 3$个桩, 其中一个桩上套着$n$个自上而下依次增大的圆盘. 每步可将某个桩最上层的一个圆盘移到另一个桩的最上层, 且不能将较大的圆盘置于较小圆盘之上. 设将$n$个圆盘全部移到另一个桩上所需的最少次数为$f_k(n)$. 证明: (1) $f_3(n)=2^n-1$; (2) $f_4(n)\le \min_{1\le l\le n}\{2f_4(n-l)+2^{l}-1\}$.
+
+\section*{解答}
+\newcounter{solrec} 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} \cite{MaP} 由Zermelo定理, 先后手中必有一方有必胜策略. 用反证法, 假设初始局面为后方胜, 则任意一步可达的局面都为先方胜. 设先方第一步将$[m,n]$元素变为0, 则不论后方如何应对, 其行动后的局面都由初始局面一步可达, 因而为先方胜, 这与初始局面为后方胜矛盾. 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} \cite{MaP} 注意到一系列操作的结果不依赖操作的次序, 并且一行或一列翻转两次相当于不翻转, 因此操作可能达到的状态数为$2^{m+n}$. 考虑如下策略: 若存在一行或一列和为负, 则将其翻转. 由于每次翻转使矩阵的元素总和严格增加, 而状态数有限, 这一流程必然在有限步内终止, 此时每行每列和非负. 进一步, 注意到翻转特定行/列等价于对翻转其它所有行/列, 故所需操作次数不超过$\lfloor \frac{m+n}{2}\rfloor$. 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} \cite{MaP} 注意到一系列操作的结果不依赖操作的次序, 且对每个$x\in X$只需考虑翻转或不翻转两种情形. 对$S\subseteq X$, 设$f(A,S)$为对$S$中每个元素依次翻转后$f(A)$的值, $g(S)=\sum_{A\subseteq X} f(A,S)$, 则有
+\begin{equation}
+    \sum_{S\subseteq X} g(S)=\sum_{S\subseteq X}\sum_{A\subseteq X} f(A,S)=\sum_{A\subseteq X} \sum_{S\subseteq X} f(A,S)=0
+\end{equation}
+事实上, 当$A\neq \varnothing$, 任取$a\in A$, 则对任意$T\subseteq X-\{a\}$, $f(A,T)+f(A,T\cup \{a\})=0$, 因此$\sum_{S\subseteq X} f(A,S)=0$; 而$f(\varnothing, S)$恒为0. 由$g(\varnothing)<0$, 必存在$S\subseteq X$, $g(S)>0$. 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} (1) \cite{IC} 设第$i$行横向放置的骨牌数为$r_i$, 第$i,i+1$行纵向放置的骨牌数为$c_{i,i+1}$, 则有
+\begin{align*}
+    &2r_1 + c_{1,2}=n\\
+    &2r_2 + c_{1,2} + c_{2,3}=n\\
+    &\dots\\
+    &2r_{n-1} + c_{n-2,n-1} + c_{n-1,n} = n\\
+    & 2r_n + c_{n-1,n} = n
+\end{align*}
+故对任意$i=1,\dots, n-1$, $2\mid c_{i,i+1}$. 假设无断层线, 则任一$c_{i,i+1}>0$, 从而$c_{i,i+1}\ge 2$. 因此纵向放置的骨牌数至少为$2n-2$. 同理, 横向放置的骨牌数也至少为$2n-2$. 故$4n-4\le  \frac{n^2}{2}$, 推出$ | n-4 | \ge 2\sqrt{2}$, $n\ge 8$. 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} (1) \cite{IC} 显然$F(2,1)=1$, $F(2,2)=2$. 当$n\ge 3$, 考虑$2\times n$矩形左上角方格: 若被纵向骨牌覆盖, 则其余方格恰有$F(2,n-1)$种覆盖; 若被横向骨牌覆盖, 则其余方格恰有$F(2,n-2)$种覆盖. 故$F(2,n)=F(2,n-1)+F(2,n-2)$. (2) 记$h(n)$为$3\times n$矩形无纵向断层线的覆盖数, 则$h(2)=3$; 对偶数$n\ge 4$, $h(n)=2$. 因此对正偶数$n$, 
+\begin{align*}
+    F(3,n)&=h(2)F(3,n-2)+h(4)F(3,n-4)+\dots+h(n-2)F(3,2)+h(n)F(3,0)\\
+    &=3F(3,n-2)+2F(3,n-4)+\dots+2F(3,2)+2F(3,0)
+\end{align*}
+因此有$F(3,n)-F(3,n-2)=2F(3,n-2)+2F(3,n-4)+\dots+2F(3,0)$, $(F(3,n)-F(3,n-2))-(F(3,n-2)-F(3,n-4))=2F(3,n-2)$, 命题得证. 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} 必要性: 设$n=2m+1$, 记单位立方块的坐标为$(i,j,k)$, $0\le i,j,k\le 2m$. 将满足$2|i+j+k$的单位立方块染黑色, 其余染白色, 则黑色块恰好比白色块多1个. 由于$1\times 1\times 2$块恰好覆盖一个黑色块和一个白色块, 去掉的中心块必须为黑色, 即$2|m$, 从而$n=4l+1$. 充分性: 除中间层外, 两个$2l\times n \times n$层显然可覆盖; 中间层上下两个$1\times 2l \times n$面显然可覆盖; 剩余两个$1\times 1\times 2l$的长条, 亦可覆盖. 
+
+\stepcounter{solrec}
+\par \textbf{\thesolrec .} (1) 记三个桩为A, B, C, 其中A为起始位置, B为目标位置. 显然$f_3(1)=1$. 当$n\ge 2$, 考虑将最大圆盘从A移到B的一步, 此时其余$n-1$个圆盘必然都在C. 移动前的过程等价于$n-1$个圆盘从A移到C; 移动后的过程等价于$n-1$个圆盘从C移到B, 所需的最少步数均为$f_3(n-1)$. 故$f_3(n)=2f_3(n-1)+1$, 由归纳法即证. 这一证明同时给出了移动圆盘的递归算法. (2) 记四个桩为A, B, C, D, 其中A为起始位置, B为目标位置. 任取$1\le l\le n$, 先用$f_4(n-l)$步将$n-l$个较小圆盘从A移动到C; 再用$f_3(l)=2^l-1$步将$l$个较大圆盘从A移动到B (注意此时C无法使用, 相当于3个桩的情形); 最后用$f_4(n-l)$步将$n-l$个较小圆盘从C移动到B. 
+\par \emph{注}: $k=4$的情形也称为Reve问题, 本题给出的$f_4(n)$的上界见\cite{OEIS} A007664. 相应移动圆盘的算法称为Frame-Stewart算法. 

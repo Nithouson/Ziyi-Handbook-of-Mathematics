@@ -1,0 +1,32 @@
+
+\section{完备度量空间}
+
+\begin{dfn} \textbf{Cauchy列} Cauchy Sequences\\
+设$(M,d)$是度量空间, $\{x_n\}$是$M$中元素构成的序列. 若对任意正实数$\varepsilon$, 存在自然数$N$, 使得$\forall m,n\ge N: d(x_m,x_n)<\varepsilon$, 则称$\{x_n\}$为$(M,d)$中的Cauchy列. 
+\end{dfn}
+
+
+\begin{dfn}\textbf{收敛列} Convergent Sequence\\
+设$(M,d)$是度量空间, $\{x_n\}$是$M$中元素构成的序列. 若存在$x\in M$, 满足对任意正实数$\varepsilon$, 存在自然数$N$, 使得$\forall n\ge N: d(x_n,x)<\varepsilon$, 称$\{x_n\}$在$(M,d)$中收敛, $x$称为$\{x_n\}$的极限, 记作$\lim\limits_{n\to \infty} x_n =x$或$x_n \to x$.
+\label{def:seq_conv}
+\end{dfn}
+\par 上述两个定义中的“任意正实数”可以等价地替换为“任意正有理数”, 这一替换在定义实数集时是必要的. 
+\par 容易看出, 改变序列的有限多项不影响序列是否为Cauchy列、是否为收敛列, 以及收敛时的极限. 
+
+\begin{pro}\textbf{极限的唯一性} Uniqueness of Limits\\
+设$\{x_n\}$是度量空间$(M,d)$中的收敛列, 则$\{x_n\}$的极限唯一. 
+\end{pro}
+\begin{proof}
+设$x,x'$均为$\{x_n\}$的极限, 断言$x=x'$. 若不然, 记$\varepsilon = d(x,x')>0$, 则存在自然数$N_1$, $\forall n\ge N_1: d(x_n,x)<\frac{\varepsilon}{2}$; 存在自然数$N_2$, $\forall n\ge N_2: d(x_n,x')<\frac{\varepsilon}{2}$. 取$N=\max\{N_1, N_2\}$, 则$d(x,x')\le d(x,x_N)+d(x_N, x')<\varepsilon$, 矛盾. 
+\end{proof}
+
+\begin{pro}\textbf{收敛列是Cauchy列}\\
+设$\{x_n\}$是度量空间$(M,d)$中的收敛列, 则$\{x_n\}$也为$(M,d)$中的Cauchy列.
+\end{pro}
+\begin{proof}
+设$\lim\limits_{n\to \infty} x_n =x$, 对任意$\varepsilon>0$, 存在自然数$N$, $\forall n\ge N: d(x_n,x)<\frac{\varepsilon}{2}$, 因此$\forall n,m \ge N$, $d(x_n,x_m)\le d(x_n,x)+d(x,x_m)<\varepsilon$. 
+\end{proof}
+
+\begin{dfn}\textbf{完备度量空间} Complete Metric Space\\
+设$(M,d)$是度量空间, 若$(M,d)$中的任一Cauchy列都在$(M,d)$中收敛, 称$(M,d)$为完备度量空间. 
+\end{dfn}

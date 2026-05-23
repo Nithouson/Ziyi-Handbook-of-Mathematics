@@ -1,0 +1,24 @@
+
+\section{拓扑空间}
+
+\begin{dfn} \textbf{邻域, 内点} Neighborhood, Interior point\\
+设$X$是拓扑空间, $x\in A\subseteq X$, 若存在开集$U$, 满足$x\in U\subseteq A$, 称$A$为$x$的一个邻域, $x$为$A$的一个内点. $A$的内点构成的集合称为$A$的内部, 记作$\mathring{A}$. 
+\end{dfn}
+
+\begin{dfn} \textbf{聚点, 闭包} Accumulation Point, Closure\\
+设$X$是拓扑空间, $x\in X$, $A\subseteq X$, 若对$x$的任一邻域$U$, $U\cap (A-\{x\})\neq \varnothing$, 称$x$为$A$的一个聚点. $A$的聚点构成的集合称为$A$的导集, 记作$A'$; $\bar{A}=A\cup A'$称为$A$的闭包. 
+\end{dfn}
+
+\section{度量空间}
+
+\begin{dfn} \textbf{度量空间} Metric Space\\
+设$M$是集合, $d: M\times M \to \mathbb{R}$满足对任意$x,y,z\in M$, 
+\begin{enumerate}
+\item 非负性: $d(x,y)\ge 0$, 等号成立当且仅当$x=y$;
+\item 对称性: $d(x,y)=d(y,x)$;
+\item 三角不等式: $d(x,z)\le d(x,y)+d(y,z)$.
+\end{enumerate}
+则称$d$为$M$上的距离, $(M,d)$是度量空间. 
+\end{dfn}
+
+

@@ -1,0 +1,153 @@
+
+
+\section{一般概念}
+
+\section{指数、对数和幂函数}
+
+\par 由于$\mathbb{R}-\{0\}$构成乘法群, 任意非零实数的整数次幂有定义. 在此基础上, 本节定义任意正实数的实数次幂. 
+
+\begin{dfn} \textbf{非负实数的$n$次方根}\\
+设实数$x\ge 0$, $n$为正整数, 定义$x$的$n$次方根
+\begin{equation}
+    x^{\frac{1}{n}}=\sup \{y\in \mathbb{R}\vert y\ge 0 \land y^n \le x\}
+\end{equation}
+当$n=2$时, $x^{\frac{1}{2}}$也记作$\sqrt{x}$. 
+\end{dfn}
+\par 设$E=\{y\in \mathbb{R}\vert y\ge 0 \land y^n \le x\}$, 则$0\in E$, $E$非空. 设$y\in E$, 若$x\le 1$, 则由$y>1 \Rightarrow y^n>1$, 必有$y\le 1$; 若$x > 1$, 则由$y>x \Rightarrow y^n>x$, 必有$y\le x$. 故$E$有上界, $x^{\frac{1}{n}}$的存在性由确界存在定理保证.
+
+\begin{lem} \textbf{$n$次方根与$n$次幂的关系}\\
+设$x,y$为非负实数, $n$为正整数, 则
+\begin{equation}
+    y = x^{\frac{1}{n}} \iff y^n = x
+\end{equation}
+\end{lem}
+\begin{proof} 记$E=\{z\in \mathbb{R}\vert z\ge 0 \land z^n\le x\}$. 
+\par 充分性: 设$y^n=x$, 由$y\in E$, $y\le x^{\frac{1}{n}}$. 另一方面, 对$z\in E$, 有$z\le y$ (否则$z^n>y^n=x$), 因此$y$为$E$的上界, $y\ge x^{\frac{1}{n}}$. 命题得证. 
+\par 必要性: 先证两个引理: (a) 对给定的$y\ge 0$和正整数$n$, 存在正实数$M_n$, $\forall 0<\varepsilon<1$, $(y+\varepsilon)^n \le y^n+M_n \varepsilon$. 对$n$归纳, $n=1$时取$M_1=1$即成立. 设命题对$n$成立, 则有
+\begin{align}
+    (y+\varepsilon)^{n+1}&\le (y^n+M_n\varepsilon)(y+\varepsilon)\notag\\
+    &=y^{n+1} + (M_ny+y^n)\varepsilon + M_n \varepsilon^2\notag\\
+    &< y^{n+1} + (M_ny+M_n+y^n)\varepsilon
+\end{align}
+取$M_{n+1}=M_ny+M_n+y^n$即可.  (b) 对给定的$y>0$和正整数$n$, 存在正实数$L_n$, $\forall 0<\varepsilon<\min\{1,y\}$, $(y-\varepsilon)^n \ge y^n-L_n \varepsilon$. 对$n$归纳, $n=1$时取$L_1=1$即成立. 设命题对$n$成立, 则有
+\begin{align}
+    (y-\varepsilon)^{n+1}&\ge (y^n-L_n\varepsilon)(y-\varepsilon)\notag\\
+    &=y^{n+1} - (L_ny+y^n)\varepsilon + L_n \varepsilon^2\notag\\
+    &> y^{n+1} - (L_ny+y^n)\varepsilon
+\end{align}
+取$L_{n+1}=L_ny+y^n$即可. 
+\par 回到原题. 反设$y^n\neq x$. 若$y^n<x$, 取$\varepsilon=\min\{\frac{1}{2}, \frac{x-y^n}{M_n}\}$, 则$(y+\varepsilon)^n\le y^n +  x-y^n = x$, 与$y$是$E$的上界矛盾. 若$y^n>x$, 则$y>0$, 取$\varepsilon=\min\{\frac{1}{2}, \frac{y^n-x}{L_n}\}$, 则$(y-\varepsilon)^n\ge  y^n -  (y^n-x) = x$, 从而$y-\varepsilon$也为$E$的上界, 与$y$为$E$的上确界矛盾. 
+\end{proof} 
+
+\begin{dfn} \textbf{正实数的有理数次幂}\\
+设实数$x>0$, $m,n\in \mathbb{Z}$, $n>0$, 定义$x$的$\frac{m}{n}$次方根
+\begin{equation}
+    x^{\frac{m}{n}}=\left(x^{\frac{1}{n}}\right)^m
+\end{equation}
+\end{dfn}
+\par 可以验证, 对整数$m,m'$和正整数$n,n'$, 若$\frac{m}{n}=\frac{m'}{n'}$, 则$x^{\frac{m}{n}}=x^{\frac{m'}{n'}}$. 事实上, 若$m=0$, 则$m'=0$, 两边都为1. 若$m>0$, 则$m'>0$, 由于
+\begin{equation}
+    ((x^{\frac{1}{n}})^{\frac{1}{m}})^{mn}=(((x^{\frac{1}{n}})^{\frac{1}{m}})^m)^n=(x^{\frac{1}{n}})^n=x
+\end{equation}
+有$(x^{\frac{1}{n}})^{\frac{1}{m}}=x^{\frac{1}{mn}}$. 因此$(x^{\frac{1}{n}})^{\frac{1}{m'}}=x^{\frac{1}{nm'}}=x^{\frac{1}{mn'}}=(x^{\frac{1}{n'}})^{\frac{1}{m}}$. 令$y=x^{\frac{1}{mn'}}$, 则$y^{m}=x^{\frac{1}{n'}}$, $y^{m'}=x^{\frac{1}{n}}$. 因此有$(x^{\frac{1}{n}})^m=(y^{m'})^m=(y^m)^{m'}=(x^{\frac{1}{n'}})^{m'}$. 若$m<0$, 则$m'<0$, 由$m>0$的情形知$(x^{\frac{1}{n}})^{-m}=(x^{\frac{1}{n'}})^{-m'}$, 因此其乘法逆元$(x^{\frac{1}{n}})^{m}=(x^{\frac{1}{n'}})^{m'}$. 
+
+\par 由于$(x^{\frac{m}{n}})^n=(x^{\frac{1}{n}})^{nm}=x^m$, 有$x^{\frac{m}{n}} = (x^m)^{\frac{1}{n}}$. 
+
+\par 当$x>0$, $n$为正整数, 有$x^{\frac{1}{n}}>0$ (若$x^{\frac{1}{n}}=0$, 则$x=0^n=0$). 因此对任意整数$m$, $x^{\frac{m}{n}}>0$.
+
+\begin{pro} \textbf{正实数有理次幂的运算性质}\\
+设$x,y$为正实数, $p,q\in \mathbb{Q}$, 
+\begin{enumerate}
+\item $x^{p+q}=x^p\cdot x^q$.
+\item $x^{pq}=(x^p)^q$.
+\item $(xy)^p = x^py^p$.
+\end{enumerate}
+\end{pro}
+\begin{proof} 设$p=\frac{a}{b}$, $q=\frac{c}{d}$, 其中$a,c$为整数, $b,d$为正整数. 
+\par (1) 由于$x^{\frac{1}{bd}}=(x^{\frac{1}{b}})^{\frac{1}{d}}$, 
+\begin{equation}
+    x^{p+q}=(x^{\frac{1}{bd}})^{ad+bc}=((x^{\frac{1}{b}})^{\frac{1}{d}})^{ad} ((x^{\frac{1}{d}})^{\frac{1}{b}})^{bc}=(x^{\frac{1}{b}})^{a} (x^{\frac{1}{d}})^{c} = x^px^q
+\end{equation}
+\par (2) 
+\begin{equation}
+    x^{\frac{ac}{bd}}=(x^{\frac{1}{bd}})^{ac}=((x^{\frac{1}{b}})^{\frac{1}{d}})^{ac} = (x^{\frac{1}{b}})^{\frac{ac}{d}}=((x^{\frac{1}{b}})^{ac})^{\frac{1}{d}} = ((x^{\frac{a}{b}})^{c})^{\frac{1}{d}} = (x^{\frac{a}{b}})^{\frac{c}{d}}
+\end{equation}
+\par (3) 由于$(x^{\frac{1}{b}}y^{\frac{1}{b}})^b = (x^{\frac{1}{b}})^b (y^{\frac{1}{b}})^b = xy$, $x^{\frac{1}{b}}y^{\frac{1}{b}} = (xy)^{\frac{1}{b}}$. 因此$(xy)^{\frac{a}{b}}=(x^{\frac{1}{b}}y^{\frac{1}{b}})^a=x^{\frac{a}{b}}y^{\frac{a}{b}}$. 
+\end{proof}
+\par 由(1)得$x^{-p}$为$x^p$的乘法逆元. 
+
+\begin{pro} \textbf{正实数有理次幂的保序性}\\
+设$x,y$为正实数, $p,q\in \mathbb{Q}$, 
+\begin{enumerate}
+\item 若$x>y$, $p>0$, 则$x^p>y^p$. 
+\item 若$p>q$, 则$x>1\Rightarrow x^p>x^q$; $x<1\Rightarrow x^p<x^q$. 
+\end{enumerate}
+\end{pro}
+\begin{proof} 设$p=\frac{a}{b}$, $q=\frac{c}{d}$, 其中$a,c$为整数, $b,d$为正整数. 
+\par (1)由非负实数$n$次方根的定义知$x^{\frac{1}{b}}\ge y^{\frac{1}{b}}$. 若$x^{\frac{1}{b}}=y^{\frac{1}{b}}$, 则$x=(x^{\frac{1}{b}})^b = (y^{\frac{1}{b}})^b = y$, 矛盾, 故$x^{\frac{1}{b}}> y^{\frac{1}{b}}$. 由$p>0$知$a>0$, 根据正整数次幂的保序性, $x^{\frac{a}{b}}> y^{\frac{a}{b}}$.
+\par (2) $p-q=\frac{ad-bc}{bd}$, 由$p>q$知$ad-bc>0$. 若$x>1$, 则$x^{\frac{1}{bd}}>1$ (若不然, $x^{\frac{1}{bd}}\le 1$ 推出$x=(x^{\frac{1}{bd}})^{bd}\le 1$), 因此$x^{p-q}=x^{\frac{ad-bc}{bd}}>1$, $x^p>x^q$. 类似地, 若$x<1$, 则$x^{\frac{1}{bd}}<1$, 因此$x^{p-q}=x^{\frac{ad-bc}{bd}}<1$, $x^p<x^q$.
+\end{proof}
+
+\section{三角函数}
+
+\section*{问题}
+\newcounter{probefun} 
+
+\stepcounter{probefun} 
+\par \textbf{\theprobefun .} \cite{AnT1} 设$x\in \mathbb{R}$, 证明$|x|=\sqrt{x^2}$.  
+
+\stepcounter{probefun} 
+\par \textbf{\theprobefun .} \cite{SMI} 设$n$为正整数, 证明 
+\begin{equation}
+    \cos\frac{\pi}{2^{n+1}}=\frac{1}{2}\sqrt{2+\sqrt{\cdots+\sqrt{2+\sqrt{2}}}}
+\end{equation}
+其中右边的根号有$n$个. 
+
+\stepcounter{probefun} 
+\par \textbf{\theprobefun .} \cite{SMI} 设$x\in \mathbb{R}$, 
+\begin{equation}
+    \sum_{k=1}^n \frac{1}{2^k}\tan \frac{x}{2^k} =  \frac{1}{2^n}\cot \frac{x}{2^n}-\cot x
+\end{equation}
+
+
+\stepcounter{probefun}
+\par \textbf{\theprobefun .} \cite{SMI} 设$r,\theta\in \mathbb{R}$, $|r|<1$, 证明
+\begin{equation}
+    \sum_{n=0}^\infty r^n\cos n\theta=\frac{1-r\cos\theta}{1+r^2-2r\cos\theta}
+\end{equation}
+
+
+
+\section*{解答}
+\newcounter{solefun} 
+
+\stepcounter{solefun}
+\par \textbf{\thesolefun .} 若$x>0$, 则$(x^2)^{\frac{1}{2}}=x=|x|$; 若$x<0$, 则$((-x)^2)^{\frac{1}{2}}=-x=|x|$. $\sqrt{0^2}=\sqrt{0}=0$.
+
+\stepcounter{solefun}
+\par \textbf{\thesolefun .} 当$n=1$时, $\cos\frac{\pi}{4}=\frac{\sqrt{2}}{2}$. 由于
+\begin{equation}
+    \cos\frac{\pi}{2^{n+2}}=\frac{1}{2}\sqrt{2+2\cos\frac{\pi}{2^{n+1}}}
+\end{equation}
+对$n$用数学归纳法即证. 
+
+\stepcounter{solefun}
+\par \textbf{\thesolefun .} 对$x\in \mathbb{R}$, 有 
+\begin{equation}
+    2\cot 2x=\frac{2\cos 2x}{\sin 2x} = \frac{\cos^2x-\sin^2x}{\sin x\cos x}= \cot x-\tan x
+\end{equation}
+因此
+\begin{align}
+    \sum_{k=1}^n \frac{1}{2^k}\tan \frac{x}{2^k}& = \sum_{k=1}^n \left(\frac{1}{2^k}\cot \frac{x}{2^k}- \frac{1}{2^{k-1}}\cot \frac{x}{2^{k-1}}\right)\notag \\
+    &= \frac{1}{2^n}\cot \frac{x}{2^n}-\cot x 
+\end{align}
+
+
+\stepcounter{solefun}
+\par \textbf{\thesolefun .} 令$z=re^{i\theta}$, 则
+\begin{align}
+\sum_{k=0}^n r^k \cos k\theta &= \operatorname{Re}\sum_{k=0}^n z^k=\operatorname{Re} \frac{1-z^{n+1}}{1-z}\notag\\
+&=\operatorname{Re} \frac{1-r^{n+1} \cos (n+1)\theta -ir^{n+1}\sin (n+1)\theta}{1-r\cos \theta -ir\sin \theta}\notag\\
+&=\frac{1+r^{n+2}\cos n\theta-r^{n+1}\cos (n+1)\theta-r\cos\theta}{1+r^2-2r\cos\theta}
+\end{align}
+令$n\to \infty$即得证. 

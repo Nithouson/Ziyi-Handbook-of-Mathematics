@@ -1,0 +1,89 @@
+
+\section{Ramsey理论}
+
+\begin{thm} \textbf{图上的Ramsey定理}\\
+给定正整数$n_1,\dots, n_l\ge 2$, 其中$l$是正整数, 存在正整数$r$, 当完全图$K_r$的每条边被染为$l$种颜色$c_1,\dots,c_l$之一时, 必存在$1\le m\le l$, 使得染色结果包含$c_m$色的$K_{n_m}$. 称满足条件的最小$r$为Ramsey数$R(n_1,\dots, n_l)$. 
+\end{thm}
+\begin{proof}
+注意到条件与$n_m$的次序无关, 且$R(2,n_2,\dots,n_l)=R(n_2,\dots,n_l)$. 对$l$归纳, $l=1$时显然有$R(n)=n$. 考虑$l$的情形, 以$n_1,\dots,n_l$包含2的情形为归纳基础, 往证当$n_1,\dots,n_l\ge 3$时, 
+\begin{equation}
+    R(n_1,\dots,n_l) \le 2+\sum_{m=1}^n (R(n_1,\dots, n_{m-1},n_m-1,n_{m+1},\dots,n_l)-1)
+\label{eq:ramsey_thm}
+\end{equation}
+记上式右边为$r$, 任取$K_r$中的一个节点$v$, 考虑其关联的$r-1$条边中各色边的数量, 由反证法可得, 存在一种颜色$c_m$的边数至少为$R(n_1,\dots, n_{m-1},n_m-1,n_{m+1},\dots,n_l)$. 考虑这些边关联的节点构成的完全子图, 则或者存在$k\neq m$, 染色结果包含$c_k$色$K_{n_k}$; 或者染色结果包含$c_m$色$K_{n_m-1}$, 加上节点$v$即得$c_m$色$K_{n_m}$. 基于上述不等式, 对$n_1+ \dots+n_l$归纳即证. 
+\end{proof}
+
+\begin{col} $\mathbf{R(m,n)}$\textbf{的上界}\\
+当$m,n\ge 2$, Ramsey数
+\begin{equation}
+    R(m,n)\le \binom{m+n-2}{m-1}
+\end{equation}
+\label{col:ramsey_ub}
+\end{col}
+\begin{proof}
+由Ramsey定理的证明过程知
+\begin{equation}
+    R(m,n) \le R(m,n-1)+R(m-1,n)
+\end{equation}
+对$m,n\ge 3$成立. 对$m+n$归纳即证. 
+\end{proof}
+
+\begin{pro} $\mathbf{R(3,3)}$\\
+Ramsey数$R(3,3)=6$. 
+\end{pro}
+\begin{proof} 一方面, 由推论\ref{col:ramsey_ub} 知$R(3,3)\le 6$. 另一方面, 将$K_5$中一个长为5的圈染为一种颜色，补图染为另一种颜色，则不存在同色$K_3$, 故$R(3,3)\ge 6$. 
+\end{proof}
+
+\section*{文献注记}
+
+\par Ramsey数的已知上下界可在Stanisław Radziszowski的动态综述\footnote{Stanisław Radziszowski. Small Ramsey Numbers. The Electronic Journal of Combinatorics. doi: 10.37236/21}中找到. 
+
+\section*{问题}
+\newcounter{probgraph} 
+
+\textbf{A组}
+
+\stepcounter{probgraph}
+\par \textbf{\theprobgraph .} \cite{CGT} 设$n$阶简单图任一顶点的度不小于$\lfloor \frac{n}{2}\rfloor$, 证明任意两顶点或者有边相连, 或者有公共邻居; 且$\lfloor \frac{n}{2}\rfloor$不可改进. 
+
+\stepcounter{probgraph}
+\par \textbf{\theprobgraph .} \cite{IC} 记Ramsey数$R(3,3,\dots,3)$ ($n$个3) 为$r_3(n)$. 证明: (1) 
+\begin{equation}
+    r_3(n) \le 1+\sum_{k=0}^n \frac{n!}{k!}
+\end{equation}
+(2*) $r_3(3)=17$.
+
+\stepcounter{probgraph}
+\par \textbf{\theprobgraph .} \cite{BN} 设圆周上有$n$个点, 两两相连得到$\binom{n}{2}$条弦, 假设不存在三条弦共点, 证明圆的内部被分为$1+\binom{n}{2}+\binom{n}{4}$个区域. 
+
+\textbf{B组}
+
+\stepcounter{probgraph}
+\par \textbf{\theprobgraph .} \cite{MaP} 设$G=(V,E)$为$lk+1$阶无向图, 存在$E$的一个划分$\{E_1, \dots, E_{l+1}\}$, 满足去掉任一$E_i, 1\le i\le l+1$时, $G$都是连通图. 
+\par (1) 证明$|E|\ge (l+1)k$.
+\par (2) 当$l=1,2$, 证明(1)中的下界不可改进. 
+
+
+\section*{解答}
+\newcounter{solgraph} 
+
+\textbf{A组}
+
+\stepcounter{solgraph}
+\par \textbf{\thesolgraph .} 记$G=(V,E)$, 任取$v_1,v_2\in V$, 设$(v_1,v_2)\notin E$, 则$N(v_1)\cup N(v_2)\subseteq V-\{v_1,v_2\}$, 故$|N(v_1)\cup N(v_2)|\le n-2$. 若$N(v_1)\cap N(v_2)=\varnothing$, 则左边等于$|N(v_1)|+|N(v_2)|\ge 2\lfloor \frac{n}{2}\rfloor\ge n-1$, 矛盾. 另一方面, 令$t=\lfloor \frac{n}{2}\rfloor$, 两个顶点集合不相交的完全图$K_{t}$, $K_{n-t}$构成的图中顶点度不小于$t-1$, 但题中结论不成立.
+
+\stepcounter{solgraph}
+\par \textbf{\thesolgraph .} 由式\ref{eq:ramsey_thm}知$r_3(n)\le 2+n(r_3(n-1)-1)$. 令$q_1=r_3(1)-1=2$, $q_n = nq_{n-1}+1$, 则$r_3(n) \le q_n+1$. 递推即得$q_n = \sum_{k=0}^n \frac{n!}{k!}$. 
+
+\stepcounter{solgraph}
+\par \textbf{\thesolgraph .} 将题中图形视为平面图, 则顶点数$V=n+\binom{n}{4}$; 边数满足
+\begin{equation}
+    2E=n(n+1)+4\binom{n}{4}
+\end{equation}
+故$E=2\binom{n}{4}+\frac{n(n+1)}{2}$. 由平面图的Euler公式, $F=E-V+1=\binom{n}{4}+\binom{n}{2}+1$.
+\par \emph{注:} 本解答来自Richard K. Guy. The Strong Law of Small Numbers. The American Mathematical Monthly, 95(8): 697-712, 1988. 
+
+\textbf{B组}
+
+\stepcounter{solgraph}
+\par \textbf{\thesolgraph .} (1) 对$1\le i\le l+1$, $|E|-|E_i|\ge lk$, 求和即得$|E|\ge (l+1)k$. (2) $l=1$时任取$G$的两棵生成树作为$E_1,E_2$即可. $l=2$时构造如下: 设顶点编号为$0,1,\dots, 2k$, 令$E_1=\{(0,i)|i=1,\dots, k\}$, $E_2=\{(0,k+i)|i=k+1,\dots, 2k\}$,  $E_3=\{(i,k+i)|i=1,\dots, k\}$. 
