@@ -34,13 +34,14 @@
 证明: 
 (1) $\forall n\in \mathbb{N}$,  $\mathcal{P}_{n}$是有限集. 
 (2) $\forall n\in \mathbb{N}$,  $\mathcal{P}_{n}\subseteq \mathcal{P}_{n+1}$. 
-(3) $\mathbb{Q}^c$是$\mathbb{C}$的子域. 
-(4) $z\in \mathbb{Q}^c \Rightarrow \bar{z} \in \mathbb{Q}^c$. 
-(5) $\mathbb{Q}^c$对开平方封闭. 设$\mathbb{C}$的子域$K$对开平方封闭, 则$\mathbb{Q}^c \subseteq K$. 
-(6) $\mathcal{P}=\mathbb{Q}^c$.
-(7) (\textbf{倍立方问题}) $\sqrt[3]{2}\notin \mathcal{P}$. 
-(8) (\textbf{三等分角问题}) $e^{\frac{2\pi \mathrm{i}}{9}}\notin \mathcal{P}$. 
-(9) (\textbf{化圆为方问题}) $\sqrt{\pi}\notin \mathcal{P}$.
+(3) $\forall n\in \mathbb{N}$, $z\in \mathcal{P}_n \Rightarrow \bar{z}\in \mathcal{P}_n$.
+(4) $\mathbb{Q}^c$是$\mathbb{C}$的子域. 
+(5) $z\in \mathbb{Q}^c \Rightarrow \bar{z} \in \mathbb{Q}^c$. 
+(6) $\mathbb{Q}^c$对开平方封闭. 设$\mathbb{C}$的子域$K$对开平方封闭, 则$\mathbb{Q}^c \subseteq K$. 
+(7) $\mathcal{P}=\mathbb{Q}^c$.
+(8) (\textbf{倍立方问题}) $\sqrt[3]{2}\notin \mathcal{P}$. 
+(9) (\textbf{三等分角问题}) $e^{\frac{2\pi \mathrm{i}}{9}}\notin \mathcal{P}$. 
+(10) (\textbf{化圆为方问题}) $\sqrt{\pi}\notin \mathcal{P}$.
 
 \stepcounter{probplg}
 \par \textbf{\theprobplg .} \textbf{(有刻度直尺三等分角)} 如图\ref{fig:plg_trisection_Angle}, 给定$\angle AOB$, 其中$A,B$位于以$O$为圆心、$r$为半径的圆上. 过$A$的直线交圆$O$于$D$, 交直线$BO$于$C$, 满足$CD=r$. 证明: $\angle ACB = \frac{1}{3} \angle AOB$. 
@@ -58,20 +59,22 @@
 \stepcounter{solplg}
 \par \textbf{\thesolplg .} (1) 对$n$归纳证明$\mathcal{L}_n$, $\mathcal{C}_n$, $\mathcal{P}_n$都是有限集. (2) 对$n$归纳证明$\mathcal{L}_n\subseteq \mathcal{L}_{n+1}$, $\mathcal{C}_n\subseteq \mathcal{C}_{n+1}$, $\mathcal{P}_n\subseteq \mathcal{P}_{n+1}$. 
 
-(3) 对$x,y\in \mathbb{Q}^c$, 设$\mathbb{C}$的子域$K_1,\dots,K_n$; $L_1,\dots, L_m$满足
+(3) 对$n$归纳. $n=0$时显然成立. 设命题对$n-1$成立, 则$L(z_1,z_2)\in \mathcal{L}_n \Rightarrow L(\bar{z}_1,\bar{z}_2)\in \mathcal{L}_n$, $C(z_1,|z_2-z_3|)\in \mathcal{C}_n \Rightarrow C(\bar{z}_1,|\bar{z}_2-\bar{z}_3|)\in \mathcal{C}_n$. 当$z\in \mathcal{P}_n$, $z$为$\mathcal{P}_{n-1}$中特定点确定的$\mathcal{L}_n$中直线和/或$\mathcal{C}_n$中圆的交点，$\bar{z}$为其共轭点确定的$\mathcal{L}_n$中直线和/或$\mathcal{C}_n$中圆的交点，故$\bar{z}\in \mathcal{P}_n$. 
+
+(4) 对$x,y\in \mathbb{Q}^c$, 设$\mathbb{C}$的子域$K_1,\dots,K_n$; $L_1,\dots, L_m$满足
 \begin{align*}
 \mathbb{Q}&=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n\\
 \mathbb{Q}&=L_0 \subseteq L_1 \subseteq \cdots \subseteq L_m
 \end{align*}
 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$; $[L_j:L_{j-1}]=2$, $j=1,\dots,m$; $x\in K_n$, $y\in L_m$. 由素数次扩张是单扩张, 可设$K_i=K_{i-1}(\alpha_i)$, $i=1,\dots,n$; $L_j=L_{j-1}(\beta_j)$, $j=1,\dots,m$. 对$j=1,\dots,m$, 令$K_{n+j}=K_{n+j-1}(\beta_j)$, 则$x,y\in K_{n+m}$. 对$j=1,\dots,m$, 由于$\beta_j$在$L_{j-1}$上的极小多项式次数为2, 而$L_{j-1} \subseteq K_{n+j-1}$, 因此$\beta_j$在$K_{n+j-1}$上的极小多项式次数至多为2, $[K_{n+j},K_{n+j-1}]\le 2$. 因此$K_{n+m}$中的元素都是可构造数, 从而$x-y, xy$是可构造数; 当$y\neq 0$, $y^{-1}$也是可构造数. 命题得证. 
 
-(4) 设$\mathbb{C}$的子域$K_1,\dots,K_n$满足$\mathbb{Q}=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, $z\in K_n$, 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$. 因此有$\mathbb{Q}=K_0 \subseteq \bar{K}_1 \subseteq \cdots \subseteq \bar{K}_n$, $\bar{z}\in \bar{K}_n$, 其中$\bar{K}_i = \{\bar{x} \vert x\in K_i\}$. 由$K_i$为$\mathbb{C}$的子域, $\bar{K}_i$也为$\mathbb{C}$的子域. 事实上, 设$x,y \in \bar{K}_i$, 则$\bar{x},\bar{y}\in K_i$, $\overline{x-y}=\bar{x}-\bar{y} \in K_i$, $\overline{xy}=\bar{x}\bar{y} \in K_i$; 从而$x-y, xy\in \bar{K}_i$. 当$y\neq 0$, $0 \neq \bar{y}\in K_i$, $\overline{y^{-1}}=(\bar{y})^{-1}\in K_i$, $y^{-1}\in \bar{K}_i$. 最后证明$[\bar{K}_i:\bar{K}_{i-1}]=[K_i:K_{i-1}]=2$. 事实上, 设$z_{i,1},z_{i,2}$是$K_{i-1}$上线性空间$K_i$的一个基, 则$\bar{z}_{i,1},\bar{z}_{i,2}$是$\bar{K}_{i-1}$上线性空间$\bar{K}_i$的一个基. 
+(5) 设$\mathbb{C}$的子域$K_1,\dots,K_n$满足$\mathbb{Q}=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, $z\in K_n$, 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$. 因此有$\mathbb{Q}=K_0 \subseteq \bar{K}_1 \subseteq \cdots \subseteq \bar{K}_n$, $\bar{z}\in \bar{K}_n$, 其中$\bar{K}_i = \{\bar{x} \vert x\in K_i\}$. 由$K_i$为$\mathbb{C}$的子域, $\bar{K}_i$也为$\mathbb{C}$的子域. 事实上, 设$x,y \in \bar{K}_i$, 则$\bar{x},\bar{y}\in K_i$, $\overline{x-y}=\bar{x}-\bar{y} \in K_i$, $\overline{xy}=\bar{x}\bar{y} \in K_i$; 从而$x-y, xy\in \bar{K}_i$. 当$y\neq 0$, $0 \neq \bar{y}\in K_i$, $\overline{y^{-1}}=(\bar{y})^{-1}\in K_i$, $y^{-1}\in \bar{K}_i$. 最后证明$[\bar{K}_i:\bar{K}_{i-1}]=[K_i:K_{i-1}]=2$. 事实上, 设$z_{i,1},z_{i,2}$是$K_{i-1}$上线性空间$K_i$的一个基, 则$\bar{z}_{i,1},\bar{z}_{i,2}$是$\bar{K}_{i-1}$上线性空间$\bar{K}_i$的一个基. 
 
-(5) 设$z\in \mathbb{Q}^c$，则存在$\mathbb{C}$的子域$K_1,\dots,K_n$满足$\mathbb{Q}=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, $z\in K_n$, 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$. 设$r\in \mathbb{C}$是$x^2 - z$的一个零点, 令$K_{n+1}=K_n (r)$，则$[K_{n+1}: K_n] \le 2$, 故$r\in \mathbb{Q}^c$. 
+(6) 设$z\in \mathbb{Q}^c$，则存在$\mathbb{C}$的子域$K_1,\dots,K_n$满足$\mathbb{Q}=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, $z\in K_n$, 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$. 设$r\in \mathbb{C}$是$x^2 - z$的一个零点, 令$K_{n+1}=K_n (r)$，则$[K_{n+1}: K_n] \le 2$, 故$r\in \mathbb{Q}^c$. 
 
 设$\mathbb{C}$的子域$K$对开平方封闭, 对$n$归纳证明: 若$\mathbb{C}$的子域$K_1,\dots,K_n$满足$\mathbb{Q}=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, $z\in K_n$, 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$, 则$K_n \subseteq K$. 当$n=0$时, $\mathbb{Q}\subseteq K$显然成立. 设命题对$n-1$成立, 不妨设$[K_n:K_{n-1}]=2$（否则$K_n=K_{n-1}$），由素数次扩张是单扩张, 可设$K_n=K_{n-1}(\alpha)$. 设$\alpha$在$K_{n-1}$上的极小多项式为$x^2 + bx + c$, $b,c \in K_{n-1} \subseteq K$, 则由一元二次方程的求根公式及$K$对开平方封闭, 知$\alpha\in K$. 因此$K_n \subseteq K$. 得证.
 
-(6) 
+(7) 
 
 
 \stepcounter{solplg}
