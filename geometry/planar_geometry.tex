@@ -13,10 +13,10 @@
 \newcounter{probplg} 
 
 \stepcounter{probplg}
-\par \textbf{\theprobplg .} \textbf{(尺规作图的限度)} 设$z_1,z_2\in \mathbb{C}$, $r$是正实数, 记$L(z_1,z_2)=\{z\in \mathbb{C}\vert \exists t\in \mathbb{R}: z=z_1+t(z_2-z_1)\}$; $C(z_1,r)=\{z\in \mathbb{C} : |z-z_1|=r\}$. 定义$\mathcal{P}_0=\{0,1\}$, $\mathcal{L}_0=\mathcal{C}_0=\varnothing$, 
+\par \textbf{\theprobplg .} \textbf{(尺规作图的限度)} 设$z_1,z_2\in \mathbb{C}$, $r$是非负实数, 记$L(z_1,z_2)=\{z\in \mathbb{C}\vert \exists t\in \mathbb{R}: z=z_1+t(z_2-z_1)\}$; $C(z_1,r)=\{z\in \mathbb{C} : |z-z_1|=r\}$. 定义$\mathcal{P}_0=\{0,1\}$, $\mathcal{L}_0=\mathcal{C}_0=\varnothing$, 
 \begin{align*}
-\mathcal{L}_{n+1} & = \{L(z_1,z_2)\vert z_1, z_2\in \mathcal{P}_n\}\\
-\mathcal{C}_{n+1} & = \{C(z_1,|z_2-z_3|)\vert z_1, z_2, z_3\in \mathcal{P}_n\}\\
+\mathcal{L}_{n+1} & = \{L(z_1,z_2)\vert z_1, z_2\in \mathcal{P}_n \land z_1\neq z_2\}\\
+\mathcal{C}_{n+1} & = \{C(z_1,|z_2-z_3|)\vert z_1, z_2, z_3\in \mathcal{P}_n \land  z_2\neq z_3\}\\
 \mathcal{P}_{n+1} &  = \{z\in \mathbb{C} \vert \exists L_1,L_2\in \mathcal{L}_{n+1}: L_1 \neq L_2 \land z\in L_1\cap L_2\}\\
 & \cup \{z\in \mathbb{C} \vert \exists C_1,C_2\in \mathcal{C}_{n+1}: C_1 \neq C_2 \land z\in C_1\cap C_2\} \\
 &  \cup \{z\in \mathbb{C} \vert \exists C\in \mathcal{C}_{n+1} \exists L\in \mathcal{L}_{n+1}: z\in C\cap L\}
@@ -74,8 +74,28 @@
 
 设$\mathbb{C}$的子域$K$对开平方封闭, 对$n$归纳证明: 若$\mathbb{C}$的子域$K_1,\dots,K_n$满足$\mathbb{Q}=K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n$, $z\in K_n$, 且$[K_i:K_{i-1}]=2$, $i=1,\dots,n$, 则$K_n \subseteq K$. 当$n=0$时, $\mathbb{Q}\subseteq K$显然成立. 设命题对$n-1$成立, 不妨设$[K_n:K_{n-1}]=2$（否则$K_n=K_{n-1}$），由素数次扩张是单扩张, 可设$K_n=K_{n-1}(\alpha)$. 设$\alpha$在$K_{n-1}$上的极小多项式为$x^2 + bx + c$, $b,c \in K_{n-1} \subseteq K$, 则由一元二次方程的求根公式及$K$对开平方封闭, 知$\alpha\in K$. 因此$K_n \subseteq K$. 得证.
 
-(7) 
-
+(7) 先证$\mathcal{P} \subseteq \mathbb{Q}^c$. 对$n$归纳证明$\mathcal{P}_n \subseteq \mathbb{Q}^c$. $n=0$显然成立. 设命题对$n$成立, 考虑$n+1$的情形, 对$z\in \mathcal{P}_{n+1}$，分三种情况：(a) $z$是不同直线$L(z_1, z_2), L(z_3, z_4)$的交点, $z_1,z_2,z_3,z_4 \in \mathbb{Q}^c$. 由(5), 其共轭也属于$\mathbb{Q}^c$. 存在$a,b\in \mathbb{R}$, $z=az_1+(1-a)z_2=bz_3+(1-b)z_4$. 此时有
+\begin{align*}
+    (z_1-z_2)a+(z_4-z_3)b &= z_4-z_2\\
+    (\bar{z}_1-\bar{z}_2)a+(\bar{z}_4-\bar{z}_3)b &= \bar{z}_4-\bar{z}_2
+\end{align*}
+上述关于$a,b$的线性方程组有唯一解，故$a$可由$z_1,z_2,z_3,z_4$及其共轭的加减乘除运算表出, $a\in \mathbb{Q}^c$, 从而$z\in \mathbb{Q}^c$. (b) $z$是直线$L(z_1, z_2)$与圆$C(z_3, |z_4-z_5|)$的交点, $z_1,z_2,z_3, z_4, z_5 \in \mathbb{Q}^c$. 令$r=|z_4-z_5|$, 则存在$a, \theta\in \mathbb{R}$, $z=az_1+(1-a)z_2=z_3+re^{\mathrm{i}\theta}$. 
+此时有
+\begin{align*}
+    (z_1-z_2)a+z_2-z_3 &= re^{\mathrm{i}\theta}\\
+    (\bar{z}_1-\bar{z}_2)a+\bar{z}_2-\bar{z}_3 &= re^{-\mathrm{i}\theta}
+\end{align*}
+两式相乘得
+\begin{equation*}
+    (a(z_1-z_2)+z_2-z_3)(a(\bar{z}_1-\bar{z}_2)+\bar{z}_2-\bar{z}_3) = r^2=(z_4-z_5)(\bar{z}_4-\bar{z}_5)
+\end{equation*}
+此为关于$a$的二次方程, 其系数均在$\mathbb{Q}^c$中. 由$\mathbb{Q}^c$对开平方封闭, $a\in \mathbb{Q}^c$, 从而$z\in \mathbb{Q}^c$. (c) $z$是不同圆$C(z_1, |z_2-z_3|)$与$C(z_4, |z_5-z_6|)$的交点, $z_1,z_2,z_3, z_4, z_5, z_6 \in \mathbb{Q}^c$. 令$r=|z_2-z_3|$, $s=|z_5-z_6|$, 则存在$\theta, \phi\in \mathbb{R}$, $z=z_1+re^{\mathrm{i}\theta}=z_4+se^{\mathrm{i}\phi}$.  
+此时有
+\begin{align*}
+    (z-z_1)(\bar{z}-\bar{z}_1)&= r^2\\
+    (z-z_4)(\bar{z}-\bar{z}_4) &= s^2
+\end{align*}
+消去$\bar{z}$得到关于$z$的二次方程, 其系数均在$\mathbb{Q}^c$中, 故$z\in \mathbb{Q}^c$. 
 
 \stepcounter{solplg}
 \par \textbf{\thesolplg .} $\angle AOB=\angle OAD +\angle ACB$. 由$OA=OD=CD$, $\angle OAD = \angle ODA = 2\angle ACB$.  
