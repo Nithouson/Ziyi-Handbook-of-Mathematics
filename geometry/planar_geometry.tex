@@ -5,9 +5,64 @@
 
 \section{尺规作图}
 
-尺规作图(ruler-and-compass construction)使用无刻度的直尺和圆规作出给定图形。允许的操作包括: 过两已知点作直线；以已知点为圆心，两已知点距离为半径作圆；取位于至多两个直线或圆上的一个点。
+尺规作图(ruler-and-compass construction)使用无刻度的直尺和圆规作出给定图形。允许的操作包括: 过两已知点作直线；以已知点为圆心，两已知点距离为半径作圆；取位于至多两个直线或圆上的一个点。每次作直线、作圆计为一步.
+
+\begin{pro}\textbf{作线段中垂线}(步数3)
+\par 如图\ref{fig:plg_rc_midpoint}, 给定线段$AB$, 以$A$为圆心、$AB$为半径作圆A，以$B$为圆心、$AB$为半径作圆B，两圆交于C、D，作直线CD交线段$AB$于$M$, 则$AM=BM$, 且$CD\perp AB$. 
+\end{pro}
+\begin{proof}
+由$AC=AD$, $BC=BD$, $\triangle ADC \cong \triangle BDC$, 故$\angle ACM = \angle BCM$. 又由$AC=BC$, $\triangle ACM \cong \triangle BCM$. 故$AM=BM$, $\angle AMC=\angle BMC=\frac{\pi}{2}$.
+\end{proof}
+
+\begin{pro}\textbf{作角平分线}(步数4)
+\par 如图\ref{fig:plg_rc_bisectangle}, 以A为圆心的圆交角的两边于B, C；以B为圆心、BC为半径作圆，以C为圆心、BC为半径作圆，两圆交于D, 则$\angle BAD = \angle CAD$. 
+\end{pro}
+\begin{proof}
+由$AB=AC$, $BD=BC=CD$, $\triangle BAD \cong \triangle CAD$. 
+\end{proof}
+
+\begin{figure}[h]
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=7.5cm]{fig/plg_rc_midpoint.png}
+\caption{尺规作线段中垂线}
+\label{fig:plg_rc_midpoint}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=7.5cm]{fig/plg_rc_bisectangle.png}
+\caption{尺规作角平分线}
+\label{fig:plg_rc_bisectangle}
+\end{minipage}
+\end{figure}
+
+
+\begin{pro}\textbf{过直线外一点作垂线}(步数3)
+\par 如图\ref{fig:plg_rc_perpendicular1}, 给定直线BC外一点A，以B为圆心、AB为半径作圆，以C为圆心、AB为半径作圆，两圆交于D, 则$AD \perp BC$. 
+\end{pro}
+
+\begin{pro}\textbf{过直线上一点作垂线}(步数3)
+\par 如图\ref{fig:plg_rc_perpendicular2}, 给定直线上一点A，任取直线外一点O, 以O为圆心、OA为半径作圆，交直线于另一点B; 直线BO交圆O于点C, 则$CA \perp AB$. 
+\end{pro}
+
+\begin{figure}[h]
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=8cm]{fig/plg_rc_perpendicular1.png}
+\caption{尺规作过直线外一点的垂线}
+\label{fig:plg_rc_perpendicular1}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=6cm]{fig/plg_rc_perpendicular2.png}
+\caption{尺规作过直线上一点的垂线}
+\label{fig:plg_rc_perpendicular2}
+\end{minipage}\hfill
+\end{figure}
 
 \section*{阅读材料}
+
+互动游戏Euclidea\cite{Euclidea}包含大量尺规作图问题，许多问题最少步数的作法很具挑战性。
 
 \section*{问题}
 \newcounter{probplg} 
@@ -44,13 +99,13 @@
 (10) (\textbf{化圆为方问题}) $\sqrt{\pi}\notin \mathcal{P}$.
 
 \stepcounter{probplg}
-\par \textbf{\theprobplg .} \textbf{(有刻度直尺三等分角)} 如图\ref{fig:plg_trisection_Angle}, 给定$\angle AOB$, 其中$A,B$位于以$O$为圆心、$r$为半径的圆上. 过$A$的直线交圆$O$于$D$, 交直线$BO$于$C$, 满足$CD=r$. 证明: $\angle ACB = \frac{1}{3} \angle AOB$. 
+\par \textbf{\theprobplg .} \textbf{(有刻度直尺三等分角)} 如图\ref{fig:plg_trisect_angle}, 给定$\angle AOB$, 其中$A,B$位于以$O$为圆心、$r$为半径的圆上. 过$A$的直线交圆$O$于$D$, 交直线$BO$于$C$, 满足$CD=r$. 证明: $\angle ACB = \frac{1}{3} \angle AOB$. 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=6cm]{fig/plg_trisection_angle.png}
-\label{fig:plg_trisection_Angle}
 \caption{有刻度直尺三等分角}
+\label{fig:plg_trisect_angle}
 \end{figure}
 
 \section*{解答}
@@ -93,7 +148,7 @@
 此时有
 \begin{align*}
     (z-z_1)(\bar{z}-\bar{z}_1)&= r^2\\
-    (z-z_4)(\bar{z}-\bar{z}_4) &= s^2
+    (z-z_4)(\bar{z}-\bar{z}_4)&= s^2
 \end{align*}
 消去$\bar{z}$得到关于$z$的二次方程, 其系数均在$\mathbb{Q}^c$中, 故$z\in \mathbb{Q}^c$. 
 
