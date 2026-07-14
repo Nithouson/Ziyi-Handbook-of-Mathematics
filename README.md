@@ -4,7 +4,7 @@ Ziyi Handbook of Mathematics (自怡数学手册) is:
 - A personal effort to integrate elementary, college, Olympic, recreational, and modern mathematics;
 - A systemization of what I have learned about mathematics.
 
-In the era of LLM, such a handbook might be easily generated with AI. However, this handbook is hand-written to reflect my own understanding of mathematics.
+In the era of LLM, such a handbook might be easily generated with AI. However, this handbook is hand-written to reflect my understanding of mathematics.
 
 Finishing this handbook is one of my lifelong projects. Currently I am working on (learning) field theory, mathematical logic, and enumerative combinatorics.
 
