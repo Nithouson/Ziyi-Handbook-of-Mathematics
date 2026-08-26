@@ -160,6 +160,42 @@ $m$为$K[x]$上的不可约元, 由$K[x]$是主理想整环, $(m)$为$K[x]$的�
 充分性: 设$\alpha_i$在$K$上的极小多项式为$p_i$, 则$[K(\alpha_1,\dots,\alpha_i): K(\alpha_1,\dots,\alpha_{i-1})]\le \deg p_i$. 由域扩张次数的性质即证. 必要性: $L$作为$K$上的线性空间, 设$\alpha_1,\dots,\alpha_n$为$L$的一个基, 则$L=K(\alpha_1,\dots,\alpha_n)$. 对每个$\alpha\in K$, $1,\alpha,\dots,\alpha^n$线性相关, 因此$\alpha$是代数元. 
 \end{proof}
 
+\section{Galois理论}
+
+\begin{dfn}\textbf{域扩张的自同构群}\\
+设$L/K$是域扩张, 若域$L$的自同构$\alpha$满足$\forall k\in K: \alpha(k)=k$, 称$\alpha$为域$L$的$K$-自同构. 域$L$的全体$K$-自同构在映射复合运算下构成群, 称为域扩张$L/K$的自同构群, 记作$\operatorname{Aut}(L/K)$. 
+\end{dfn}
+
+\begin{pro}\textbf{不变域} Fixed Field\\
+设$L/K$是域扩张, $H$是自同构群$\operatorname{Aut}(L/K)$的子群, 则
+\begin{equation*}
+    L^H = \{x \in L \vert \forall g\in H: g(x)=x\}
+\end{equation*}
+为$L$的子域, 称为$H$的不变域. 
+\end{pro}
+\begin{proof}
+由$K\subseteq L^H$, $1\in L^H$. 设$x,y\in L^H$, 对任意$g\in H$, 有$g(x+y) = g(x) + g(y) = x+y$; $g(-x) = -g(x)=-x$; $g(xy) = g(x)g(y) = xy$; 当$x\neq 0$, $g(x^{-1}) = g(x)^{-1} = x^{-1}$. 故$L^H$是$L$的子域. 
+\end{proof}
+
+\begin{pro}\textbf{自同构群与不变域的性质}\\
+设$L$的子域$M,N$满足$K\subseteq M \subseteq N\subseteq L$, $H \le G \le \operatorname{Aut}(L/K)$, 
+\begin{enumerate}
+\item $\operatorname{Aut}(L/N) \subseteq \operatorname{Aut}(L/M)$.
+\item $L^G \subseteq L^H$.
+\item $M\subseteq L^{\operatorname{Aut}(L/M)}$.
+\item $H\subseteq \operatorname{Aut}(L/L^H)$.
+\end{enumerate}
+\end{pro}
+
+
+\begin{dfn}\textbf{Galois扩张, Galois群}\\
+WIP
+
+设$L/K$是Galois扩张, 则$L/K$的自同构群称为Galois群, 记作$\operatorname{Gal}(L/K)$. 
+\end{dfn}
+
+
+
 \section{域的例子}
 
 \section*{阅读材料}

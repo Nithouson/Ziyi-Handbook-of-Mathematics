@@ -199,6 +199,66 @@ $\{x_1,\dots,x_k\}$生成的子群也记作$\langle x_1,\dots,x_k \rangle$.
 \end{dfn}
 \par 无限二面体群是$\mathbb{Z}$到自身保持距离的映射构成的群，其中$r$代表$x\mapsto x+1$, $s$代表$x\mapsto -x$.
 
+\subsection{对称群}
+
+\begin{dfn}\textbf{置换，对称群} Permutation, Symmetric Group\\
+集合$X$到自身的双射称为$X$的一个置换. 设$|X|=n$, $X$的全体置换在映射复合运算下构成群, 称为$n$元对称群$S_n$. 
+\end{dfn}
+
+设$X$为$n$元全序集, 则$X$与$\{1,2,\dots,n\}$存在保持序关系的双射. 故在对称群$S_n$的讨论中，不失一般性可设$X=\{1,2,\dots,n\}$. 此时$\sigma \mapsto (\sigma(1), \dots, \sigma(n))$给出$S_n$到$X$的全体全排列的双射, 故$|S_n|=n!$.
+
+\begin{dfn}\textbf{置换的支集} Support of Permutation\\
+设$\sigma \in S_n$, $\sigma$的支集定义为
+\begin{equation*}
+    \operatorname{supp} \sigma = \{1\le x\le n \vert \sigma(x)\neq x\}
+\end{equation*}
+\end{dfn}
+设$\sigma_1,\sigma_2\in S_n$, 若$\operatorname{supp}(\sigma_1) \cap \operatorname{supp}(\sigma_2) = \varnothing$, 称$\sigma_1,\sigma_2$是不相交的. 
+
+\begin{dfn}\textbf{置换的奇偶性} Parity of Permutation\\
+设$\sigma \in S_n$, $\sigma$的逆序数定义为
+\begin{equation*}
+    \tau(\sigma) = \vert \{(x,y) : 1\le x<y \le n \land \sigma(x)> \sigma(y)\} \vert
+\end{equation*}
+当$\tau(\sigma)$为奇数, 称$\sigma$为奇置换; 否则称$\sigma$为偶置换. 
+\end{dfn}
+
+\begin{dfn}\textbf{轮换，对换} Cycle, Transposition\\
+设$X=\{1,\dots,n\}$, 正整数$l\ge 2$, $i_1,\dots,i_l\in X$两两不同, $\sigma \in S_n$满足$\sigma(i_k) = i_{k+1}$, $k=1,\dots,l-1$; $\sigma(i_l)=i_1$; 且对任意$j \in X - \{i_1,\dots,i_l\}$, $\sigma(j)=j$, 则称$\sigma$为一个长度为$l$的轮换, 简记为$(i_1 i_2 \dots i_l)$. 当$l=2$时, 称$\sigma$为一个对换. 
+\end{dfn}
+
+\begin{pro}\textbf{置换表示为不相交轮换之积}\\
+设$\sigma\in S_n$非恒等映射, 存在$S_n$中两两不相交的轮换$\sigma_1,\dots,\sigma_m$, 满足分解式$\sigma=\sigma_m \cdots \sigma_1$. 进一步地, 上述分解在不考虑轮换次序的意义下唯一. 
+\end{pro}
+\begin{proof}
+记$X=\{1,\dots,n\}$, 在$X$上定义二元关系: $x\sim y \iff \exists k\in \mathbb{Z}: \sigma^k(x)=y$. 可以验证$\sim$是等价关系. 设导出的等价类为$O_1,\dots,O_m$. 
+
+存在性: 对$j=1,\dots, m$, 定义映射$\sigma_j: X\to X$如下:
+\begin{equation*}
+    \sigma_j(x) = \begin{cases}
+    \sigma(x), &x \in O_j\\
+    x, &x \notin O_j
+    \end{cases}
+\end{equation*}
+由于$O_1,\dots,O_m$两两不交, 且当$x\in O_j$, 亦有$\sigma(x) \in O_j$, 可以验证$\sigma = \sigma_m \cdots \sigma_1$. 若$\sigma_j$为恒等映射, $O_j$仅包含$\sigma$的一个不动点, 此时可以略去$\sigma_j$. 否则, 任取$x\in O_j$, 存在最小的正整数$l_j$, 使得$\sigma^{l_j}(x)=x$. 由$O_j$的定义, $O_j=\{x, \sigma(x), \dots, \sigma^{l_j-1}(x)\}$. 又由$\sigma$是双射, $x, \sigma(x), \dots, \sigma^{l_j-1}(x)$互不相同. 因此$\sigma_j$即为轮换$(x \sigma(x) \dots \sigma^{l_j-1}(x))$. 
+
+唯一性: 对$q=|\operatorname{supp} \sigma|$归纳证明: 
+
+当$q=0$时$\sigma=\mathrm{id}_X$ 
+\end{proof}
+
+\begin{pro}\textbf{置换表示为对换之积}\\
+设$\sigma\in S_n$, 存在$S_n$中的对换$\sigma_1, \dots\sigma_m$, 满足$\sigma = \sigma_m\cdots\sigma_1$. 且若$\sigma$为奇置换, $m$必为奇数; 若$\sigma$为偶置换, $m$必为偶数.
+\end{pro}
+\begin{proof}
+
+\end{proof}
+
+\begin{dfn} \textbf{交错群} Alternating Group\\
+设正整数$n\ge 2$, $n$元对称群$S_n$中的全体偶置换构成$S_n$的子群, 称为$n$元交错群$A_n$. 
+\end{dfn}
+
+
 \section*{文献注记}
 
 \section*{问题}

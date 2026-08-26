@@ -493,17 +493,15 @@ $\mathrm{left}[i] \leftarrow 1, i=1,\dots,n$\;
 \Return $P$.
 \end{algorithm}
 
-\begin{dfn}\textbf{排列的逆序数} Inversions\\
-设$a=(a_1,\dots,a_n)$为$\{1,2,\dots,n\}$的一个排列, 则$a$的逆序数$\sigma(a)$定义为
-\begin{equation}
-   \tau(a)= | \{(i,j) : 1\le i<j\le n,  a_i > a_j\} | 
-\end{equation}
-$(\tau_1,\dots, \tau_n)$称为$a$的逆序列, 其中
+\begin{dfn}\textbf{排列的逆序列}\\
+设$a=(a_1,\dots,a_n)$为$\{1,2,\dots,n\}$的一个排列, $(\tau_1,\dots, \tau_n)$称为$a$的逆序列, 其中
 \begin{equation}
    \tau_k= | \{(i,j) : 1\le i < j \le n,  a_i > a_j = k\} |, 1\le k\le n 
 \end{equation}
 为$a$中出现在$k$之前且大于$k$的元素个数. 
 \end{dfn}
+
+将排列$a$视为$\{1,2,\dots,n\}$的置换, 则其逆序数$\tau(a)$恰为$\sum_{k=1}^n \tau_k$. 
 
 \begin{pro}\textbf{逆序列与排列一一对应}\\
 设整数序列$(\tau_1,\dots, \tau_n)$满足$0\le \tau_k \le n-k$, 则存在唯一的$\{1,2,\dots,n\}$的排列, 其逆序列为$(\tau_1,\dots, \tau_n)$. 
@@ -650,16 +648,19 @@ $X$不能划分为少于$w$个链是显然的. 对$|X|$归纳证明$X$可划分�
 \end{equation}
 称$(x_1,\dots,x_k)$为$n$的一个分拆, 其计数称为$p(n,k)$. $p_n=\sum_{k=0}^n p(n,k)$称为整数的分拆数. 
 \end{dfn}
-容易看出$p(0,0)=1$; 当$n\ge 1$时 $p(n,0)=0$; 当$k>n$时, $p(n,k)=0$.
-
-$p_n$等于关于$r_1,\dots,r_n$的方程
+容易看出$p(0,0)=1$; 当$n\ge 1$时 $p(n,0)=0$; 当$k>n$时, $p(n,k)=0$. $p_n$等于关于$r_1,\dots,r_n$的方程
 \begin{equation}
     r_1+2r_2+\cdots+nr_n = n
     \label{eq:integer_partition}
 \end{equation}
-的非负整数解个数. 事实上, $r_i=|\{j\vert x_j=i\}, i=1,\dots,n$ 给出$n$的分拆到方程非负整数解的映射, 其逆映射如下: 令$k=\sum_{i=1}^n r_i$, $x_1,\dots, x_{k}$依次取$r_n$个$n$, $r_{n-1}$个$n-1$, ..., $r_1$个1. 
+的非负整数解个数. 事实上, $r_i=|\{j\vert x_j=i\}|, i=1,\dots,n$ 给出$n$的分拆到方程非负整数解的映射, 其逆映射如下: 令$k=\sum_{i=1}^n r_i$, $x_1,\dots, x_{k}$依次取$r_n$个$n$, $r_{n-1}$个$n-1$, ..., $r_1$个1. 
 
-\par 以左对齐的方式, 从上到下依次绘制$x_n$行$n$个圆点, $x_{n-1}$行$n-1$个圆点, ..., $x_1$行$1$个圆点, 这种图示称为分拆的Ferrers图. 
+$p_n$的一般生成函数为
+\begin{equation*}
+    \sum_{n=0}^\infty p_nx^n = \prod_{k=1}^\infty (1-x^k)^{-1}
+\end{equation*}
+
+\par 以左对齐的方式, 从上到下各行依次绘制$x_1,x_2,\dots,x_k$个圆点, 这种图示称为分拆的Ferrers图. 
 
 \begin{dfn} \textbf{对偶分拆} Conjugate Partition\\
 设$\lambda=(x_1,\dots,x_k)$为$n$的一个分拆, $l=x_1$, 则其对偶分拆$\lambda^*=(t_1,\dots,t_l)$, 
@@ -837,11 +838,17 @@ $p_n$等于关于$r_1,\dots,r_n$的方程
 \end{equation}
 
 \stepcounter{probenum}
-\par \textbf{\theprobenum .} \textbf{(有限集幂集的对称链划分)} 设$S_n=\{1,2,\dots,n\}$, $\mathcal{P}(S_n)$在集合包含关系下构成偏序集. 证明: (1) 存在$\mathcal{P}(S_n)$的链划分, 对每个链$A_1\subset A_2 \subset \dots A_k$, 满足$|A_1|+|A_k|=n$, 且$\forall 1\le i\le k-1: |A_{i+1}|-|A_{i}|=1$. (2) 对于满足(1)中条件的链划分, 当$1\le k\le n$, 长度为$k$的链的个数为
+\par \textbf{\theprobenum .} \textbf{(有限集幂集的对称链划分)} 设$S_n=\{1,2,\dots,n\}$, $\mathcal{P}(S_n)$在集合包含关系下构成偏序集. 证明: (1) 存在$\mathcal{P}(S_n)$的链划分, 对每个链$A_1\subset A_2 \subset \dots \subset A_k$, 满足$|A_1|+|A_k|=n$, 且$\forall 1\le i\le k-1: |A_{i+1}|-|A_{i}|=1$. (2) 对于满足(1)中条件的链划分, 当$1\le k\le n$, 长度为$k$的链的个数为
 \begin{displaymath}
     \binom{n}{\lfloor \frac{n-k+1}{2}\rfloor} - \binom{n}{\lceil \frac{n-k-1}{2}\rceil}
 \end{displaymath}
 长度为$n+1$的链个数为1. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明$n$的自对偶分拆数等于各部分为两两不同奇数的$n$的分拆数.
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明各部分为奇数的$n$的分拆数等于各部分两两不同的$n$的分拆数.
 
 \par \textbf{B组}
 
@@ -1058,7 +1065,7 @@ r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
 \end{equation*}
 
 \stepcounter{solenum}
-\par \textbf{\thesolenum .} \cite{IC} 对可重复排列$(a_1,\dots,a_n)$, 定义其周期$m$为最小的正整数$r$, 满足$(a_{1+r},\dots,a_{n+r})=(a_{1},\dots,a_{n})$, 则$m|n$. 容易验证等价的可重复排列有相等的周期, 因此周期也是可重复环排列的性质. 记所求可重复环排列数为$G(n,k)$, 周期为$n$的$n$元可重复排列数为$F(n,k)$, 则有
+\par \textbf{\thesolenum .} \cite{IC} 对可重复排列$(a_1,\dots,a_n)$, 定义周期$m$为最小的正整数$r$, 满足$(a_{1+r},\dots,a_{n+r})=(a_{1},\dots,a_{n})$, 则$m|n$. 容易验证等价的可重复排列有相等的周期, 因此周期也是可重复环排列的性质. 记所求可重复环排列数为$G(n,k)$, 周期为$n$的$n$元可重复排列数为$F(n,k)$, 则有
 \begin{equation}
     G(n,k)=\sum_{m|n} \frac{F(m,k)}{m}
 \end{equation}
@@ -1098,7 +1105,7 @@ r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
 \par \textbf{\thesolenum .} \cite{IC} 计算排在$a_1\cdots a_k$后面的子集个数, 其中首位大于$a_1$的子集有$\binom{n-a_1}{k}$个; 首位相等, 第二位大于$a_2$的子集有$\binom{n-a_2}{k-1}$个; $\cdots\cdots$ 前$k-1$位相等, 第$k$位大于$a_k$的子集有$\binom{n-a_k}{1}$个. 
 
 \stepcounter{solenum}
-\par \textbf{\thesolenum .} (1) \cite{IC} 对$n$归纳构造. $n=1$时, $\varnothing \subset \{1\}$是满足要求的一个链. 设所求的链划分对$n-1$存在, 对其中的每一个链$A_1\subset A_2 \subset \dots \subset A_k$, 构造一个新的链$A_1\subset A_2 \subset \dots \subset A_k \subset A_k\cup \{n\}$; 若$k\neq 1$, 额外构造一个新的链$A_1\cup \{n\} \subset A_2 \subset \dots \subset A_{k-1}\cup \{n\}$. 可以验证这些链构成$S_n$的划分, 且每个链最小元、最大元元素之和为$n$, 相邻元素大小相差1. 故所求的链划分对$n$存在. 
+\par \textbf{\thesolenum .} (1) \cite{IC} 对$n$归纳构造. $n=1$时, $\varnothing \subset \{1\}$是满足要求的一个链. 设所求的链划分对$n-1$存在, 对其中的每一个链$A_1\subset A_2 \subset \dots \subset A_k$, 构造一个新的链$A_1\subset A_2 \subset \dots \subset A_k \subset A_k\cup \{n\}$; 若$k\neq 1$, 额外构造一个新的链$A_1\cup \{n\} \subset A_2 \cup \{n\}\subset \dots \subset A_{k-1}\cup \{n\}$. 可以验证这些链构成$S_n$的划分, 且每个链最小元、最大元元素之和为$n$, 相邻元素大小相差1. 故所求的链划分对$n$存在. 
 \par \emph{注:} 上述链划分中的每个链恰好包含一个$\lfloor\frac{n}{2}\rfloor$元子集, 故链的个数为$\binom{n}{\lfloor\frac{n}{2}\rfloor}$. 根据Dilworth定理, 本题给出了Sperner定理(前半部分)的另一种证明. 
 \par (2) 设长度为$k$的链$A_1\subset A_2\subset \dots \subset A_k$, 记$|A_1|=a$, 则$|A_k|=n-a$, $k=n-2a+1$, 亦即$a=\frac{n-k+1}{2}$. 因此$n,k$不同奇偶. 进一步地, 当$a\ge 1$, $k\le n-1$, 链$\mathcal{C}$长度等于$k$当且仅当$\mathcal{C}$包含一个$a$元子集, 且不包含$a-1$元子集. 因此长度为$k$的链个数为
 \begin{displaymath}
@@ -1106,6 +1113,15 @@ r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
 \end{displaymath}
 当$a=0$, 长为$k=n+1$的链个数为$\binom{n}{0}=1$.
 
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 设$(x_1,\dots,x_k)$为$n$的一个自对偶分拆, 令$l=\max\{j\vert x_j\ge j\}$, 则由自对偶分拆的性质,
+\begin{equation*}
+    n = \sum_{j=1}^l (x_j - j + 1 + |\{m\vert x_m\ge j\}| - j) = \sum_{j=1}^l (2x_j - 2j + 1)
+\end{equation*}
+因此$(2x_1-1, 2x_2-3, \dots, 2x_l - 2l +1)$为$n$的两两不同奇数分拆. 可以验证这一映射是双射. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 设$(x_1,\dots,x_k)$为$n$的一个分拆, $x_1>\dots>x_k$. 每个$x_i$可唯一表示为$2^{a_i} b_i$, 其中$a_i$为非负整数, $b_i$是奇数. 将每个$x_i$拆成$2^{a_i}$个$b_i$，即得到各部分为奇数的分拆. 反过来, 设$n$的分拆包含$c_1$个$b_1$, $c_2$个$b_2$,..., $c_l$个$b_l$, 其中$b_1>b_2>\cdots>b_l$为奇数, 则每个$c_i$可唯一表示为2的不同方幂之和: $c_i=2^{a_{i1}} +\cdots+ 2^{a_{ir_i}}$, 其中$a_{i1}>a_{i2}>\cdots>a_{ir_i}\ge 0$. 将$c_i$个$b_i$合并为$2^{a_{i1}}b_i, \dots,2^{a_{ir_i}}b_i$, 则得到各部分两两不同的分拆. 上述两个过程互为逆映射. 
 
 \par \textbf{B组}
 \stepcounter{solenum}
