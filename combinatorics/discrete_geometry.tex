@@ -16,6 +16,9 @@
 \stepcounter{probdisgeo}
 \par \textbf{\theprobdisgeo .} \cite{MaP} 证明任一凸多面体存在两个面的边数相等. 
 
+\stepcounter{probdisgeo}
+\par \textbf{\theprobdisgeo .} (\textbf{超平面分割欧氏空间的区域数}) 设$k$为正整数, 考虑$\mathbb{R}^k$中的$n$个$k-1$维超平面，称它们处于常规位置, 如果对$1\le j\le k$, 任意$j$个超平面的交集为$k-j$维超平面；对$j>k$, 任意$j$个超平面的交集为空. 证明: $n$个处于常规位置的$k-1$维超平面将$\mathbb{R}^k$分割为$\sum_{i=0}^k \binom{n}{i}$个区域. 
+
 
 \section*{解答}
 
@@ -34,3 +37,10 @@
 
 \stepcounter{soldisgeo}
 \par \textbf{\thesoldisgeo .} 设多面体的面数为$f$, 则每个面的边数取值范围为$\{3,\cdots, f-1\}$, 共$f-3$个可能的值. 由鸽巢原理, 命题得证. 
+
+\stepcounter{soldisgeo}
+\par \textbf{\thesoldisgeo .} 设$n$个处于常规位置的$k-1$维超平面将$\mathbb{R}^k$分割为$R(n,k)$个区域. 当$k=1$, $R(n,1)=n+1$成立. 以下考虑$k\ge 2$. 对$n$归纳证明$R(n,k)=\sum_{i=0}^k \binom{n}{i}$. 当$n=0$, $R(0,k)=1$对任意$k$成立. 设命题对$n-1$个$k-1$维超平面$H_1,\dots,H_{n-1}$成立, 考虑加入第$n$个$k-1$维超平面$H_n$, 其与$H_1,\dots,H_{n-1}$分别交于一个$k-2$维超平面. 断言$H_n$中的这$n-1$个$k-2$维超平面也处于常规位置. 事实上, 其中$j$个$k-2$维超平面的交集恰好为相应$j$个$k-1$维超平面及$H_n$, 共$j+1$个$k-1$维超平面的交集. 因此$H_n$被这$n-1$个$k-2$维超平面分割为$R(n-1,k-1)$个区域, 每个区域将$\mathbb{R}^k$的一个区域一分为二. 故
+\begin{equation*}
+    R(n,k)=R(n-1,k)+R(n-1,k-1)
+\end{equation*}
+由归纳假设即得证.

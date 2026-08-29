@@ -747,11 +747,31 @@ $p_n$的一般生成函数为
 \end{equation}
 
 \stepcounter{probenum}
-\par \textbf{\theprobenum .} \cite{IC} 设$a=(a_1,\dots,a_{2n})$是$n$个1, $n$个-1的全排列, 且满足对任意$1\le k\le 2n$, 
+\par \textbf{\theprobenum .} (\textbf{对角线下的格路径数}) 平面格点的有限序列称为\textbf{格路径}，如果序列中的每个点$(x,y)$的下一个点是$(x+1,y)$或$(x,y+1)$. 证明:
+\par (1) 从$(0,0)$到$(p,q)$的格路径数为$\binom{p+q}{q}$. 
+\par (2) 当$p\ge q$时, 从$(0,0)$到$(p,q)$，且位于对角线$y=x$下方（可以接触但不能穿过对角线）的格路径数为$\frac{p-q+1}{p+1}\binom{p+q}{q}$. 特别地, 当$p=q$时, 位于对角线$y=x$下方的格路径数为Catalan数$C_p$. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} (\textbf{对角线下的HVD格路径数}) 平面格点的有限序列称为\textbf{HVD格路径}，如果序列中的每个点$(x,y)$的下一个点是$(x+1,y)$, $(x,y+1)$, 或$(x+1,y+1)$. 证明:
+\par (1) 从$(0,0)$到$(p,q)$的格路径数为
+\begin{equation}
+    \sum_{r=0}^{\min \{p,q\}} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
+\end{equation}
+\par (2) 当$p\ge q$时, 从$(0,0)$到$(p,q)$，且位于对角线$y=x$下方（可以接触但不能穿过对角线）的HVD格路径数为
+\begin{equation}
+    \sum_{r=0}^{q} \frac{p-q+1}{p-r+1} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
+\end{equation}
+特别地, 当$p=q$时, 位于对角线$y=x$下方的HVD格路径称为\textbf{Schröder路径}, 其计数称为\textbf{大Schröder数}$R(n)$:
+\begin{equation}
+    R(n) = \sum_{r=0}^{n} \frac{1}{n-r+1} \frac{(2n-r)!}{r!((n-r)!)^2}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 证明以下对象的计数结果为Catalan数$C_n$: 
+\par (1) $n$个1, $n$个-1的全排列$(a_1,\dots,a_{2n})$, 满足对任意$1\le k\le 2n$, 
 \begin{equation}
     \sum_{i=1}^{k} a_i \ge 0
 \end{equation}
-证明满足条件的$a$的个数为Catalan数$C_n$. 
 
 \stepcounter{probenum}
 \par \textbf{\theprobenum .} \cite{IC} 证明: 将$n$元集合划分为$k$个非空子集, 并将每个子集环排列的方法数为第一类Stirling数$s(n,k)$. 
@@ -967,7 +987,19 @@ $p_n$的一般生成函数为
 \end{equation*}
 
 \stepcounter{solenum}
-\par \textbf{\thesolenum .} \cite{IC} $n$个1, $n$个-1的全排列总数为$\binom{2n}{n}$. 设$A_n$为不满足题中条件的全排列集合, $B_n$为$n+1$个1, $n-1$个$-1$的全排列集合. 定义$A_n$到$B_n$的映射$f$如下: 对$a\in A_n$, 令$m = \min \{1\le k\le 2n \vert \sum_{i=1}^k a_i<0\}$, 则必有$a_m=-1$, $\sum_{i=1}^{m-1} a_i=0$, 故$m$是奇数, 且$a_1,\dots,a_m$中$-1$比1恰好多一个. 令$f(a)=(-a_1,\dots, -a_m, a_{m+1},\dots, a_{2n})$, 则$f(a)\in B_n$. 对$b=(b_1,\dots,b_{2n})\in B_n$, 取$m=\min \{1\le k\le 2n \vert \sum_{i=1}^k a_i>0\}$, 则$b\mapsto (-b_1,\dots, -b_m, b_{m+1},\dots, b_{2n})$是$f$的逆映射. 因此$|A_n|=|B_n|=\binom{2n}{n+1}$; 满足题中条件的全排列数为$\binom{2n}{n}-\binom{2n}{n+1} = \frac{1}{n+1}\binom{2n}{n}=C_n$. 
+\par \textbf{\thesolenum .} \cite{IC} 记格路径的水平移动$(+1,0)$为H, 垂直移动$(0, +1)$为V. (1) 每条$(0,0)$到$(p,q)$的格路径对应$p$个H, $q$个V的一个全排列. (2) 先求$(0,0)$到$(p,q)$且不位于$y=x$下方的格路径数, 这等价于$(0,-1)$到$(p,q-1)$且接触对角线$y=x$的格路径数. 对任意一条这样的路径, 取其位于对角线上的第一个点$(d,d)$, 将路径在$(d,d)$之前的部分关于$y=x$反射, 得到$(-1,0)$到$(p,q-1)$的一条格路径. 这一变换给出$(0,-1)$到$(p,q-1)$且接触对角线的格路径到$(-1,0)$到$(p,q-1)$的格路径的双射, 因此前者的计数为$\binom{p+q}{q-1}$. 由此得出$(0,0)$到$(p,q)$且位于$y=x$下方的格路径数为
+\begin{equation*}
+    \binom{p+q}{q}-\binom{p+q}{q-1}=\frac{p-q+1}{p+1}\binom{p+q}{q}
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 记格路径的水平移动$(+1,0)$为H, 垂直移动$(0, +1)$为V, 斜向移动$(+1, +1)$为D. 设斜向移动的步数为$r$. (1) 对给定的$0\le r\le \min\{p,q\}$, HVD格路径对应$r$个D, $p-r$个H, $q-r$个V的一个全排列. (2) 对于$(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径, 去掉$r$个D即得$(0,0)$到$(p-r,q-r)$的对角线$y=x$下方的格路径；反之，每条$(0,0)$到$(p-r,q-r)$的对角线$y=x$下方的格路径可通过在$p+q-2r+1$个位置添加$r$个D得到$(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径. 因此对给定的$0\le r\le q$, $(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径数为
+\begin{equation*}
+    \binom{p+q-r}{r} \frac{p-q+1}{p-r+1}\binom{p+q-2r}{p-r} = \frac{p-q+1}{p-r+1} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
+\end{equation*}
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1) 考虑从$(0,0)$到$(n,n)$的格路径, 将1与H对应, -1与V对应, 则满足条件的排列对应位于对角线$y=x$下方的格路径.
 
 \stepcounter{solenum}
 \par \textbf{\thesolenum .} \cite{IC} 称将有限集划分为$k$个子集并将每个子集环排列的一种方式称为$k$-环排列划分. 设$n$元子集的$k$-环排列划分数为$s^*(n,k)$, 容易验证$s^*(0,0)=1$; $k\ge 1$时$s^*(0,k)=0$; $n\ge 1$时$s^*(n,0)=0$. 设$n,k\ge 1$, 有
