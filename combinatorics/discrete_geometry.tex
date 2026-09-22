@@ -7,11 +7,10 @@
 \par \textbf{\theprobdisgeo .} \cite{MaP} 设$P$是平面上$n$个点构成的集合，$P$中任意三点不共线; 过$P$中两点的直线共$\binom{n}{2}$条, 构成的集合记为$L$. 证明: (1) $L$中包含两两不平行的$n$条直线. (2) $L$中不一定包含两两不平行的$n+1$条直线.
 
 \stepcounter{probdisgeo}
-\par \textbf{\theprobdisgeo .} (\textbf{多边形的三角剖分数}) 对于平面上的凸$n+1$边形$P$, 设用$n-2$条不在$P$内部相交的对角线将$P$剖分为$n-1$个三角形的方法数$h_n$, 并记$h_1=1$. 证明$h_n$为Catalan数
-\begin{equation}
-    h_n = C_{n-1} = \frac{1}{n}\binom{2n-2}{n-1}
-\end{equation} 
+\par \textbf{\theprobdisgeo .} (\textbf{多边形的三角剖分数}) 对于平面上的凸$n+1$边形$P$, 设用$n-2$条不在$P$内部相交的对角线将$P$剖分为$n-1$个三角形的方法数$h_n$, 并记$h_1=1$. 证明$h_n=C_{n-1}$, 其中$C_n$为Catalan数.
 
+\stepcounter{probdisgeo}
+\par \textbf{\theprobdisgeo .} \cite{IC} 给定圆周上不重合的$2n$个点, 证明用$n$条线段将它们两两相连, 且这些线段两两不相交的方法数为Catalan数$C_n$. 
 
 \stepcounter{probdisgeo}
 \par \textbf{\theprobdisgeo .} \cite{MaP} 证明任一凸多面体存在两个面的边数相等. 
@@ -34,6 +33,12 @@
 \end{equation}
 当$n=2$时上式成立. $n\ge 3$时, 记多边形的顶点依次为$P_0,P_1,\dots, P_{n}$. 考虑$P_nP_0$所属的三角形, 其第三个顶点为$P_k$ ($k=1,\dots,{n-1}$), 则两侧化为凸$k+1$边形、凸$n-k+1$边形的三角剖分问题. 故上式得证. 
 
+\stepcounter{soldisgeo}
+\par \textbf{\thesoldisgeo .} 设所求的方法数为$g_n$. 显然$g_1=1$. 只需证当$n\ge 2$, 
+\begin{equation}
+    g_n = \sum_{k=0}^{n-1} g_kg_{n-1-k}
+\end{equation}
+将$2n$个点按顺时针次序记为$a_1,\dots, a_{2n}$. 设$a_1$与$a_l$相连, 则其余点被分为$a_2,\dots,a_{l-1}$ 和 $a_{l+1},\dots,a_{2n}$两部分, 其余连线只能在每部分内部. 因此$l$必为偶数, 记$l=2k+2$. 又由于连线不相交的条件事实上等价于: 不存在$i_1<j_1<i_2<j_2$, 使得$a_{i1}, a_{i2}$相连, $a_{j1}, a_{j2}$相连. 因此圆弧上$2k$个点（$2n-2k-2$个点）的情形等价于圆上$2k$个点（$2n-2k-2$个点）的情形, 从而上述递推公式成立. 
 
 \stepcounter{soldisgeo}
 \par \textbf{\thesoldisgeo .} 设多面体的面数为$f$, 则每个面的边数取值范围为$\{3,\cdots, f-1\}$, 共$f-3$个可能的值. 由鸽巢原理, 命题得证. 

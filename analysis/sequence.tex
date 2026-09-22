@@ -322,6 +322,13 @@ Fibonacci数列的通项公式为
 换言之, 全体复数列构成$\mathbb{C}$上的线性空间, $\Delta^p$ 是其到自身的线性映射. 
 
 \stepcounter{probseq}
+\par \textbf{\theprobseq .} (\textbf{差分序列的通项公式}) 设$p$是自然数, $\{f_n\}$是复数列, 证明:
+\begin{equation}
+   \Delta^p f_n = \sum_{j=0}^p (-1)^{p-j} \binom{p}{j} f_{n+j} 
+\end{equation}
+
+
+\stepcounter{probseq}
 \par \textbf{\theprobseq .} (\textbf{多项式数列的差分序列}) 设$f(x)$为$\mathbb{C}[x]$中的$p$次多项式, 定义序列$a_n=f(n), n\in \mathbb{N}$. 证明: (1) $\forall n: \Delta^{p+1} a_n=0$. (2) $\{a_n\}$有通项公式
 \begin{equation}
     a_n = \sum_{k=0}^p (\Delta^k a_0) \binom{n}{k}
@@ -405,8 +412,7 @@ Fibonacci数列的通项公式为
 
 
 \stepcounter{probseq}
-\par \textbf{\theprobseq .} 设数列$\{a_n\}$满足$a_0=a$, 且对$n\ge 1$, $a_n=pa_{n-1}^2+qa_{n-1}+r$, 其中$p\neq 0$. 若$q(q-2)=4pr$, 证明$a_n=p^{2^{n}-1}(a+\frac{q}{2p})^{2^n}-\frac{q}{2p}$. 
-
+\par \textbf{\theprobseq .} 设数列$\{a_n\}$满足$a_0=a$, 且对$n\ge 1$, $a_n=pa_{n-1}^2+qa_{n-1}+r$, 其中$p\neq 0$. 若$q(q-2)=4pr$, 证明$$a_n=p^{2^{n}-1}\left(a+\frac{q}{2p}\right)^{2^n}-\frac{q}{2p}$$. 
 
 
 \par \textbf{B组}
@@ -471,6 +477,13 @@ Fibonacci数列的通项公式为
     &=c\Delta^{p}(f_{n+1}-f_n)+d\Delta^{p}(g_{n+1}-g_n) = c\Delta^{p+1}f_n + d\Delta^{p+1} g_n
 \end{align*}
 
+\stepcounter{solseq}
+\par \textbf{\thesolseq .} 对$p$归纳, $p=0$时成立. 设命题对$p$成立, 则有
+\begin{align*}
+    \Delta^{p+1} f_n &= \Delta^p (f_{n+1}- f_n)= \sum_{j=0}^p (-1)^{p-j}\binom{p}{j} (f_{n+1+j} - f_{n+j})\\
+    &= (-1)^{p+1}f_n + \sum_{j=1}^p (-1)^{p+1-j}\binom{p+1}{j} f_{n+j} + f_{n+p+1}\\
+    &= \sum_{j=0}^{p+1} (-1)^{p+1-j}\binom{p+1}{j} f_{n+j}
+\end{align*}
 
 \stepcounter{solseq}
 \par \textbf{\thesolseq .} \cite{IC} (1) 对$p$归纳, $p=0$时$\{a_n\}$为常数列, $\Delta a_n=0$恒成立. 设命题对小于$p$的值成立, 考虑$f(x)$为$p$次多项式的情形. 由于$f(x+1)$与$f(x)$的$p$次项相等, $\operatorname{deg} (f(x+1)-f(x)) \le p-1$. 考虑$a_{n+1} - a_n=f(n+1)-f(n)$, 由归纳假设, $\Delta^{p+1} a_n=\Delta^p (a_{n+1} - a_n)=0$. 

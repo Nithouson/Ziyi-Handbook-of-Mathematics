@@ -1,7 +1,20 @@
 
+\section{相异代表系}
 
+\begin{dfn}\textbf{相异代表系} System of Distinct Representatives\\
+设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集. 若$e_1,\dots,e_n\in X$满足$\forall i=1,\dots,n: e_i \in A_i$, 称$(e_1,\dots,e_n)$为$\mathcal{A}$的一个代表系; 若还满足$e_1,\dots,e_n$两两不同, 称$(e_1,\dots,e_n)$为$\mathcal{A}$的一个相异代表系.
+\end{dfn}
 
-\section{拉丁方}
+\begin{thm}\textbf{相异代表系的存在性}\\
+设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集, 则$\mathcal{A}$存在相异代表系当且仅当对任意的$1\le k\le n$及$i_1,\dots,i_k \in \{1,2,\dots,n\}$, 有$|A_{i_1} \cup \dots \cup A_{i_k}| \ge k$. 
+\end{thm}
+\begin{proof}
+必要性显然. 
+\end{proof}
+
+\section{典型问题}
+
+\subsection{拉丁方}
 
 \begin{dfn}\textbf{拉丁方} Latin Square\\
 设整数$n\ge 2$, 若矩阵$A\in \mathbb{Z}^{n\times n}$中, 整数$1,2,\dots,n$在每行、每列恰好出现一次, 则称$A$为一个$n$阶拉丁方. 
@@ -16,7 +29,7 @@
 称$A,B$相互正交. 
 \end{dfn}
 
-\section{幻方}
+\subsection{幻方}
 
 \begin{dfn}\textbf{幻方} Magic Square\\
 设整数$n\ge 2$, 若矩阵$A\in \mathbb{Z}^{n\times n}$中元素构成的集合为$\{1,2,\dots,n^2\}$, 且存在正整数$s_n$, 满足

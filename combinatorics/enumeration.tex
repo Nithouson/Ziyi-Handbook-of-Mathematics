@@ -240,7 +240,7 @@ Catalan数的前几项是$C_0=C_1=1$, $C_2=2$, $C_3=5$, $C_4=14$, $\cdot$.
     S(n,k)=kS(n-1,k)+S(n-1,k-1)
 \end{equation}
 \end{dfn}
-当$n\ge 1$时, 对$n$归纳可证明 $S(n,n)=1$, $k>n$时$S(n,k)=0$; $S(n,1)=1$; $S(n,2)=2^{n-1}-1$; $S(n,n-1)=\binom{n}{2}$.
+对$n$归纳可证明, 当$n\ge 1$时, $S(n,n)=1$, $k>n$时$S(n,k)=0$; $S(n,1)=1$; $S(n,2)=2^{n-1}-1$; $S(n,n-1)=\binom{n}{2}$. 当$n\ge 2$时, $S(n,n-2)=\binom{n}{3}+3\binom{n}{4}$.
 
 \begin{pro}\textbf{第二类Stirling数的通项公式}\\
 \begin{equation}
@@ -265,6 +265,31 @@ Bell数$B_n$满足
 \end{dfn}
 Bell数的前几项是$B_0=1$, $B_1=1$, $B_2=2$, $B_3=5$, $B_4=15$, $\cdots$. 
 
+\begin{dfn} \textbf{大Schröder数}\\
+大Schröder数$R_n$满足$R_0=1$; 对$n\ge 1$, 
+\begin{equation}
+    R_n = R_{n-1} + \sum_{k=0}^{n-1} R_kR_{n-1-k}
+\end{equation} 
+\end{dfn}
+
+\begin{pro}\textbf{大Schröder数的一般生成函数}\\
+\begin{equation}
+    \sum_{i=0}^n R_n x^n = \frac{1-x -  \sqrt{x^2-6x+1}}{2x}
+\end{equation}
+\end{pro}
+\begin{proof}
+设$f(x) = \sum_{n=0}^\infty R_n x^n$, 则\begin{equation*}
+    f(x) = 1 + xf(x) + xf^2(x)
+\end{equation*}
+解得
+\begin{equation*}
+    f(x) = \frac{1-x\pm \sqrt{x^2-6x+1}}{2x}
+\end{equation*}
+由$f(0)=1$舍去正根号的解即证. 
+\end{proof}
+
+
+大Schröder数的前几项是$R_0=1$, $R_1=2$, $R_2=6$, $R_3=22$, $R_4=90$, $\cdots$. 
 
 \begin{dfn} \textbf{Bernoulli数}\\
 Bernoulli数$B_n$满足$B_0=1$, 
@@ -752,26 +777,23 @@ $p_n$的一般生成函数为
 \par (2) 当$p\ge q$时, 从$(0,0)$到$(p,q)$，且位于对角线$y=x$下方（可以接触但不能穿过对角线）的格路径数为$\frac{p-q+1}{p+1}\binom{p+q}{q}$. 特别地, 当$p=q$时, 位于对角线$y=x$下方的格路径数为Catalan数$C_p$. 
 
 \stepcounter{probenum}
-\par \textbf{\theprobenum .} (\textbf{对角线下的HVD格路径数}) 平面格点的有限序列称为\textbf{HVD格路径}，如果序列中的每个点$(x,y)$的下一个点是$(x+1,y)$, $(x,y+1)$, 或$(x+1,y+1)$. 证明:
-\par (1) 从$(0,0)$到$(p,q)$的格路径数为
-\begin{equation}
-    \sum_{r=0}^{\min \{p,q\}} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
-\end{equation}
-\par (2) 当$p\ge q$时, 从$(0,0)$到$(p,q)$，且位于对角线$y=x$下方（可以接触但不能穿过对角线）的HVD格路径数为
-\begin{equation}
-    \sum_{r=0}^{q} \frac{p-q+1}{p-r+1} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
-\end{equation}
-特别地, 当$p=q$时, 位于对角线$y=x$下方的HVD格路径称为\textbf{Schröder路径}, 其计数称为\textbf{大Schröder数}$R(n)$:
-\begin{equation}
-    R(n) = \sum_{r=0}^{n} \frac{1}{n-r+1} \frac{(2n-r)!}{r!((n-r)!)^2}
-\end{equation}
-
-\stepcounter{probenum}
 \par \textbf{\theprobenum .} \cite{IC} 证明以下对象的计数结果为Catalan数$C_n$: 
-\par (1) $n$个1, $n$个-1的全排列$(a_1,\dots,a_{2n})$, 满足对任意$1\le k\le 2n$, 
-\begin{equation}
+\par (1) $n$个1, $n$个$-1$的全排列$(a_1,\dots,a_{2n})$, 满足对任意$1\le k\le 2n$, 
+\begin{equation*}
     \sum_{i=1}^{k} a_i \ge 0
-\end{equation}
+\end{equation*}
+\par (2) $1,2,\dots,2n$排列为$2\times n$矩阵
+\begin{equation*}
+    \left(\begin{matrix}
+        a_{11} & a_{12} & \cdots & a_{1n}\\
+        a_{21} & a_{22} & \cdots & a_{2n}\\
+    \end{matrix}\right)
+\end{equation*}
+满足
+\begin{align*}
+    &a_{i1} < a_{i2} < \cdots < a_{in}, i=1,2\\
+    &a_{1j} < a_{2j}, j=1,2,\dots,n
+\end{align*}
 
 \stepcounter{probenum}
 \par \textbf{\theprobenum .} \cite{IC} 证明: 将$n$元集合划分为$k$个非空子集, 并将每个子集环排列的方法数为第一类Stirling数$s(n,k)$. 
@@ -793,6 +815,36 @@ $p_n$的一般生成函数为
 \stepcounter{probenum}
 \par \textbf{\theprobenum .} 设$k$为正整数, $B_n$是Bernoulli数. 证明
 (1) $B_{2k+1}=0$. (2*) $B_{4k-2}\ge 0$, $B_{4k}\le 0$.
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} (\textbf{对角线下的HVD格路径数}) 平面格点的有限序列称为\textbf{HVD格路径}，如果序列中的每个点$(x,y)$的下一个点是$(x+1,y)$, $(x,y+1)$, 或$(x+1,y+1)$. 证明:
+\par (1) 从$(0,0)$到$(p,q)$的格路径数为
+\begin{equation}
+    \sum_{r=0}^{\min \{p,q\}} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
+\end{equation}
+\par (2) 当$p\ge q$时, 从$(0,0)$到$(p,q)$，且位于对角线$y=x$下方（可以接触但不能穿过对角线）的HVD格路径数为
+\begin{equation}
+    \sum_{r=0}^{q} \frac{p-q+1}{p-r+1} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
+\end{equation}
+特别地, 当$p=q=n$时, 位于对角线$y=x$下方的HVD格路径称为\textbf{Schröder路径}, 其计数为大Schröder数$R_n$. 由此得出大Schröder数的一个通项公式
+\begin{equation}
+    R_n = \sum_{r=0}^{n} \frac{1}{n-r+1} \frac{(2n-r)!}{r!((n-r)!)^2}
+\end{equation}
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} (\textbf{加括号方法的计数}) 设$a_1,\dots,a_n$代表$n$个符号，允许在连续的两个或以上符号两侧加括号，使括号及其间的符号合并为一个符号。将$a_1\cdots a_n$合并为一个符号的方法称为$a_1\cdots a_n$的一种加括号方法. 例如, $n=1$时有一种加括号方法$a_1$; $n=2$时有一种加括号方法$(a_1a_2)$; $n=3$时有3种加括号方法$(a_1a_2a_3),((a_1a_2)a_3),(a_1(a_2a_3))$. 证明:
+\par (1) 若要求每个括号恰好包含两个符号, 则$a_1\cdots a_n$的加括号方法数等于Catalan数$C_{n-1}$. 
+\par (2) $a_1\cdots a_n$的加括号方法数称为\textbf{小Schröder数}$s_n$. $s_n$的一般生成函数为
+\begin{equation}
+    \sum_{n=1}^\infty s_nx^n = \frac{1+x - \sqrt{x^2-6x+1}}{4}
+\end{equation}
+\par (3) 当$n\ge 2$, $s_n=\frac{1}{2}R_{n-1}$, 其中$R_n$为大Schröder数. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 证明: 小Schröder数满足递推公式
+\begin{equation}
+    (n+2)s_{n+2} -3(2n+1)s_{n+1} +(n-1)s_n = 0, n\ge 1
+\end{equation}
 
 \stepcounter{probenum}
 \par \textbf{\theprobenum .} \textbf{(Erdös-Szekeres定理)} 设$m,n$为正整数, $\{a_i\}, i=0,1,\dots, mn$是实数序列. 
@@ -993,13 +1045,7 @@ $p_n$的一般生成函数为
 \end{equation*}
 
 \stepcounter{solenum}
-\par \textbf{\thesolenum .} \cite{IC} 记格路径的水平移动$(+1,0)$为H, 垂直移动$(0, +1)$为V, 斜向移动$(+1, +1)$为D. 设斜向移动的步数为$r$. (1) 对给定的$0\le r\le \min\{p,q\}$, HVD格路径对应$r$个D, $p-r$个H, $q-r$个V的一个全排列. (2) 对于$(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径, 去掉$r$个D即得$(0,0)$到$(p-r,q-r)$的对角线$y=x$下方的格路径；反之，每条$(0,0)$到$(p-r,q-r)$的对角线$y=x$下方的格路径可通过在$p+q-2r+1$个位置添加$r$个D得到$(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径. 因此对给定的$0\le r\le q$, $(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径数为
-\begin{equation*}
-    \binom{p+q-r}{r} \frac{p-q+1}{p-r+1}\binom{p+q-2r}{p-r} = \frac{p-q+1}{p-r+1} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
-\end{equation*}
-
-\stepcounter{solenum}
-\par \textbf{\thesolenum .} (1) 考虑从$(0,0)$到$(n,n)$的格路径, 将1与H对应, -1与V对应, 则满足条件的排列对应位于对角线$y=x$下方的格路径.
+\par \textbf{\thesolenum .} (1) 考虑从$(0,0)$到$(n,n)$的格路径, 将1与H对应, -1与V对应, 则满足条件的排列对应位于对角线$y=x$下方的格路径. (2) 显然矩阵由两行元素的划分唯一确定. 对$1\le i\le 2n$, 若$i$位于第一行, 记$c_i=1$, 否则记$c_i=-1$, 则$(c_1,\dots,c_{2n})$是$n$个1, $n$个$-1$的全排列. 可以验证$\forall 1\le j\le n: a_{1j} < a_{2j}$当且仅当$\forall 1\le k\le 2n: \sum_{i=1}^k c_k \ge 0$. 
 
 \stepcounter{solenum}
 \par \textbf{\thesolenum .} \cite{IC} 称将有限集划分为$k$个子集并将每个子集环排列的一种方式称为$k$-环排列划分. 设$n$元子集的$k$-环排列划分数为$s^*(n,k)$, 容易验证$s^*(0,0)=1$; $k\ge 1$时$s^*(0,k)=0$; $n\ge 1$时$s^*(n,0)=0$. 设$n,k\ge 1$, 有
@@ -1057,6 +1103,59 @@ r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
     -\frac{r+1}{2}=\sum_{k=1}^{\lfloor \frac{r}{2}\rfloor} \binom{r+1}{2k-1} B_{2k-1}
 \end{equation}
 由于$B_1=-\frac{1}{2}$, 依次取$r=4,6,\cdots$即得$B_3=B_5=\cdots=0$. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 记格路径的水平移动$(+1,0)$为H, 垂直移动$(0, +1)$为V, 斜向移动$(+1, +1)$为D. 设斜向移动的步数为$r$. (1) 对给定的$0\le r\le \min\{p,q\}$, HVD格路径对应$r$个D, $p-r$个H, $q-r$个V的一个全排列. (2) 对于$(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径, 去掉$r$个D即得$(0,0)$到$(p-r,q-r)$的对角线$y=x$下方的格路径；反之，每条$(0,0)$到$(p-r,q-r)$的对角线$y=x$下方的格路径可通过在$p+q-2r+1$个位置添加$r$个D得到$(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径. 因此对给定的$0\le r\le q$, $(0,0)$到$(p,q)$的对角线$y=x$下方的HVD格路径数为
+\begin{equation*}
+    \binom{p+q-r}{r} \frac{p-q+1}{p-r+1}\binom{p+q-2r}{p-r} = \frac{p-q+1}{p-r+1} \frac{(p+q-r)!}{r!(p-r)!(q-r)!}
+\end{equation*}
+设$(0,0)$到$(n,n)$且位于对角线$y=x$下方的HVD格路径数为$R_n$. 当$n=0$, $R_0=1$, 即空路径. $n\ge 1$时, 路径的第一步有两种情形: (i) 若第一步为D, 剩余部分为$(1,1)$到$(n,n)$且位于对角线$y=x$下方的HVD格路径, 有$R_{n-1}$种; (ii) 若第一步为H, 到达$(1,0)$, 考虑路径第一次到达对角线$y=x$的位置$(k,k)$, $1\le k\le n$, 则$(k,k)$的前一步必为V.$(1,0)$到$(k,k-1)$的部分位于$y=x-1$下方, 有$R_{k-1}$种; $(k,k)$到$(n,n)$的部分有$R_{n-k}$种. 因此
+\begin{equation*}
+    R_n = R_{n-1} +\sum_{k=1}^{n} R_{k-1} R_{n-k} = R_{n-1} +\sum_{k=0}^{n-1} R_{k} R_{n-1-k}
+\end{equation*}
+故$R_n$即为大Schröder数. 
+
+
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} (1) 设所求的加括号方法数为$g_n$. $g_1=1$. 当$n\ge 2$, 考虑最后一次加括号时两个符号的分界处, 有 
+\begin{equation*}
+    g_n = \sum_{i=1}^{n-1} g_ig_{n-i} 
+\end{equation*}
+令$C_n=g_{n+1}$, $C_n$即为Catalan数. 
+(2) 设$f(x)=\sum_{k=1}^\infty s_kx^k$, 则
+\begin{equation*}
+    f(x) = x + f^2(x) \sum_{k=0}^\infty f^k(x) = x + \frac{f^2(x)}{1-f(x)}
+\end{equation*}
+亦即
+\begin{equation*}
+    2f^2(x) - (1+x)f(x) + x = 0
+\end{equation*}
+解得
+\begin{equation*}
+    f(x) = \frac{1+x\pm \sqrt{x^2-6x+1}}{4}
+\end{equation*}
+由$f(0)=0$舍去正根号的解, 即得证.  
+(3) $\left\{\frac{1}{2} R_{n-1}\right\}_{n\ge 1}$的一般生成函数为
+\begin{equation*}
+    \sum_{n=1}^\infty \frac{1}{2} R_{n-1} x^n = \frac{x}{2} \sum_{n=0}^\infty  R_n x^n =  \frac{1-x - \sqrt{x^2-6x+1}}{4}
+\end{equation*}
+这与小Schröder数的一般生成函数仅有$x$的一次项不同, 故$s_n = \frac{1}{2} R_{n-1}$对$n\ge 2$成立. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} \cite{IC} 小Schröder数的一般生成函数$f(x)=\sum_{k=1}^\infty s_kx^k$满足$2f^2(x) - (1+x)f(x) + x = 0$. 对$x$求导并整理得
+\begin{equation*}
+    f'(x) = \frac{f(x)-1}{4f(x)-x-1} = \frac{(x-3)f(x)-x+1}{x^2-6x+1}
+\end{equation*}
+代入$f(x),f'(x)$的表达式得
+\begin{equation*}
+    \sum_{n=1}^\infty (n-1)s_n x^{n+1} -3 \sum_{n=1}^\infty (2n-1) s_n x^n + \sum_{n=1}^\infty ns_n x^{n-1} = 1-x 
+\end{equation*}
+亦即
+\begin{equation*}
+    \sum_{n=1}^\infty (n-1)s_n x^{n+1} -3 \sum_{n=0}^\infty (2n+1) s_{n+1} x^{n+1} + \sum_{n=-1}^\infty (n+2)s_{n+2} x^{n+1} = 1-x 
+\end{equation*}
+对比二次及以上系数即证. 
 
 \stepcounter{solenum}
 \par \textbf{\thesolenum .} (1) 证一: 对$i=0,1,\dots, mn$, 令$f(i)$为以$a_i$为首项的单调递增子序列的最大项数. 若存在$f(i)\ge m+1$, 结论已成立. 否则$\forall i: 1\le f(i)\le m$. 由鸽笼原理, 存在$j\in \{1,\dots,m\}$, $|f^{-1}(j)|\ge n+1$, $f^{-1}(j)$中的元素按原序列顺序构成单调递减子序列. 事实上, 设$a_p,a_q\in f^{-1}(j)$, $p<q$. 若$a_p<a_q$, 则$f(p)\ge f(q)+1$, 与$f(p)=f(q)=j$矛盾. 
