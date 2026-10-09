@@ -2,14 +2,28 @@
 \section{相异代表系}
 
 \begin{dfn}\textbf{相异代表系} System of Distinct Representatives\\
-设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集. 若$e_1,\dots,e_n\in X$满足$\forall i=1,\dots,n: e_i \in A_i$, 称$(e_1,\dots,e_n)$为$\mathcal{A}$的一个代表系; 若还满足$e_1,\dots,e_n$两两不同, 称$(e_1,\dots,e_n)$为$\mathcal{A}$的一个相异代表系.
+设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集. 若$e_1,\dots,e_n\in X$满足$\forall i=1,\dots,n: e_i \in A_i$, 称$(e_1,\dots,e_n)$为$\mathcal{A}$的一个代表系, $e_i$是$A_i$的代表元; 若还满足$e_1,\dots,e_n$两两不同, 称$(e_1,\dots,e_n)$为$\mathcal{A}$的一个相异代表系.
 \end{dfn}
 
 \begin{thm}\textbf{相异代表系的存在性}\\
-设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集, 则$\mathcal{A}$存在相异代表系当且仅当对任意的$1\le k\le n$及$i_1,\dots,i_k \in \{1,2,\dots,n\}$, 有$|A_{i_1} \cup \dots \cup A_{i_k}| \ge k$. 
+设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集, 则$\mathcal{A}$存在相异代表系当且仅当对任意的$1\le k\le n$及两两不同的$i_1,\dots,i_k \in \{1,2,\dots,n\}$, 有$|A_{i_1} \cup \dots \cup A_{i_k}| \ge k$. 
+\label{thm:sdr_exists}
 \end{thm}
 \begin{proof}
-必要性显然. 
+必要性显然. 为证充分性, 对$n$归纳. $n=1$时$|A_1|\ge 1$, 从而存在相异代表系. 假设命题对$1,\dots,n-1$成立, 考虑$n$的情形. 分两种情况讨论:
+
+(i) 存在$1\le k < n$及两两不同的$i_1,\dots,i_k \in \{1,2,\dots,n\}$, $|A_{i_1} \cup \dots \cup A_{i_k}| = k$. 不妨设$(i_1,\dots,i_k) = (1,\dots,k)$, 并记$E=A_1\cup \dots \cup A_k$. $(A_1,\dots, A_k)$满足题设条件, 由归纳假设存在相异代表系$(e_1,\dots,e_k)$. 断言$(A_{k+1}-E,\dots, A_{n}-E)$也满足题设条件. 事实上, 对$1\le l\le n-k$, 任取两两不同的$j_1,\dots,j_l \in \{k+1,\dots, n\}$, 有
+\begin{align*}
+k+l &\le |E \cup A_{j_1} \cup \dots \cup A_{j_l}| = |E \cup (A_{j_1}-E) \cup \dots \cup (A_{j_l}-E)| \\
+& \le  k + |(A_{j_1}-E) \cup \dots \cup (A_{j_l}-E)|
+\end{align*}
+因此由归纳假设存在$(A_{k+1}-E,\dots, A_{n}-E)$的相异代表系$(e_{k+1},\dots,e_n)$. $(e_1,\dots, e_n)$即为$(A_1,\dots, A_n)$的相异代表系. 
+
+(ii) 对任意$1\le k < n$及两两不同的$i_1,\dots,i_k \in \{1,2,\dots,n\}$, $|A_{i_1} \cup \dots \cup A_{i_k}| \ge k+1$. 任取$f\in A_n$, 断言$(A_1-\{f\}, \dots, A_{n-1}-\{f\})$仍满足题设条件. 事实上, 对$1\le k\le n-1$和两两不同的$i_1,\dots,i_k \in \{1,\dots, n-1\}$, 有
+\begin{equation}
+    \left|\bigcup_{l=1}^k (A_{i_l} - \{f\}) \right|= \left| \bigcup_{l=1}^k A_{i_l} - \{f\} \right|\ge k + 1 - 1 = k
+\end{equation}
+因此$(A_1-\{f\}, \dots, A_{n-1}-\{f\})$存在相异代表系$(e_1,\dots,e_{n-1})$. $(e_1,\dots, e_{n-1}, f)$即为$(A_1,\dots, A_n)$的相异代表系. 
 \end{proof}
 
 \section{典型问题}
@@ -81,6 +95,10 @@ $c\leftarrow k$\;
 \newcounter{probdes} 
 
 \stepcounter{probdes}
+\par \textbf{\theprobdes .} \cite{IC} 设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集, $x\in A_1$. 已知$\mathcal{A}$存在相异代表系. 
+(1) 证明$\mathcal{A}$存在一个包含$x$的相异代表系. (2) 举例说明, 不一定存在$\mathcal{A}$的相异代表系使得$x$是$A_1$的代表元. (3) 若对任意$1\le k \le n$及两两不同的$i_1,\dots,i_k \in \{1,2,\dots,n\}$, $|A_{i_1} \cup \dots \cup A_{i_k}| \ge k+1$, 证明存在$\mathcal{A}$的相异代表系使得$x$是$A_1$的代表元.
+
+\stepcounter{probdes}
 \par \textbf{\theprobdes .} (\textbf{拉丁方的存在性}) 对任意$n\ge 2$, 构造一个$n$阶拉丁方. 
 
 
@@ -100,7 +118,7 @@ $c\leftarrow k$\;
 \par \textbf{\theprobdes .} (\textbf{偶数阶幻方的存在性}) (1)证明2阶幻方不存在; (2*)对偶数$n\ge 4$, $n$阶幻方均存在. 
 
 \stepcounter{probdes}
-\par \textbf{\theprobdes .} (\textbf{幻方体的存在性}) (1)当$n\le 4$, 证明$n$阶幻方体不存在; (2*)求使$n$阶幻方体存在的最小的$n$. 
+\par \textbf{\theprobdes .} (\textbf{幻方体的存在性}) (1)当$n\le 4$, 证明$n$阶幻方体不存在; (2*)构造一个5阶幻方体. 
 
 \stepcounter{probdes}
 \par \textbf{\theprobdes .} \cite{MaP} 设$k$为正整数, $n>k$, 已知矩阵$A\in \mathbb{R}^{n\times n}$每行前$k$大元素之和均等于$r$, 每列前$k$大元素之和均等于$c$. 证明: (1) 当$k\le 2$, $r=c$. (2) 当$k=3$时, 不一定有$r=c$. 
@@ -109,6 +127,8 @@ $c\leftarrow k$\;
 \section*{解答}
 
 \newcounter{soldes} 
+
+\stepcounter{soldes} (1) 任取一个相异代表系$(e_1,\dots,e_n)$. 若$x\in \{e_1,\dots,e_n\}$命题成立. 若不然, $(x,e_2,\dots,e_n)$也为一个相异代表系. (2) $n=2$, $A_1=\{x, y\}$, $A_2=\{x\}$. (3) 与定理\ref{thm:sdr_exists}中情形(ii)的证明同理. 
 
 \stepcounter{soldes}
 \par \textbf{\thesoldes .} 考虑如下构造,

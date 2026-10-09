@@ -696,6 +696,14 @@ $p_n$的一般生成函数为
 \end{dfn}
 容易验证对偶分拆是$n$的一个分拆. 对偶分拆的Ferrers图可由原分拆的Ferrers图以左上-右下对角线为轴反射得到. 自对偶分拆的Ferrers图关于左上-右下对角线轴对称. 
 
+\begin{dfn} \textbf{分拆的优超关系} Majorization\\
+设$\lambda=(x_1,\dots,x_k)$, $\mu=(y_1,\dots,y_l)$为$n$的分拆, 若对任意$m=1,2,\dots, \max(k,l)$, 
+\begin{equation}
+    \sum_{i=1}^{\min(m,k)} x_i \le \sum_{i=1}^{\min(m,l)} y_i
+\end{equation}
+称$\mu$优超$\lambda$, 记作$\lambda \le \mu$. 
+\end{dfn}
+容易验证优超是$n$的全体分拆上的偏序关系, 且有最大元$(n)$和最小元$(1,1,\dots,1)$. 
 
 \section*{文献注记}
 计数组合学占据了组合学入门课程的主要部分, 教材包括\cite{IC}, \cite{CGT}. Richard P. Stanley的两卷本著作\cite{EC1}是计数组合学的经典参考书. \cite{CFS}讨论了有限集的组合理论. 
@@ -805,6 +813,13 @@ $p_n$的一般生成函数为
     [x]_p &= \sum_{k=0}^p (-1)^{p-k} s(p,k) x^k
 \end{align}
 其中$s(p,k)$是第一类Stirling数, $S(p,k)$是第二类Stirling数, 从而Stirling数给出了两个基相互线性表出的系数. 
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n,k$为正整数, 证明
+\begin{equation}
+    k^n = \sum_{j=1}^k \binom{k}{j} j! S(n,j) 
+\end{equation}
+其中$S(n,j)$是第二类Stirling数. 
 
 \stepcounter{probenum}
 \par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明Bell数$B_n$满足
@@ -917,10 +932,16 @@ $p_n$的一般生成函数为
 长度为$n+1$的链个数为1. 
 
 \stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n\ge 3$为正整数, 构造$n$的一个自对偶分拆.
+
+\stepcounter{probenum}
 \par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明$n$的自对偶分拆数等于各部分为两两不同奇数的$n$的分拆数.
 
 \stepcounter{probenum}
 \par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, 证明各部分为奇数的$n$的分拆数等于各部分两两不同的$n$的分拆数.
+
+\stepcounter{probenum}
+\par \textbf{\theprobenum .} \cite{IC} 设$n$为正整数, $p_k(n)$为$n$的各部分不超过$k$的分拆数. 证明: (1) $p_2(n)= \lfloor \frac{n}{2}\rfloor+1$; (2) $p_3(n)= \left\lfloor \frac{(n+3)^2+6}{12}\right\rfloor$.
 
 \par \textbf{B组}
 
@@ -1073,6 +1094,9 @@ $p_n$的一般生成函数为
     &= \sum_{k=0}^p (-1)^{p-k} s(p,k) x^{k}
 \end{align*}
 最后一个等式用到$s(p,0)=0$, $s(p,p)=s(p-1,p-1)$.
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} 设$N$为$n$元有限集，$K$为$k$元有限集. 由命题\ref{pro:12fold-1}, 函数$f: N\to K$的计数为$k^n$. 另一方面, 按$f(N)$分类, 当$f(N)$为$K$的$j$元子集, 函数个数为$j!S(n,j)$, 而$K$的$j$元子集有$\binom{k}{j}$个. 
 
 \stepcounter{solenum}
 \par \textbf{\thesolenum .} \cite{IC} 由命题\ref{pro:12fold-3}的证明过程知, $B_n$为$n$元集合$X$的划分个数. 取$x\in X$, 考虑集合划分中$x$所在的子集$P$, 设$|P|=k+1$, $k=0,1,\dots,n-1$, 则$X-P$的划分个数为$B_{n-k-1}$. 因此
@@ -1245,6 +1269,9 @@ r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
 当$a=0$, 长为$k=n+1$的链个数为$\binom{n}{0}=1$.
 
 \stepcounter{solenum}
+\par \textbf{\thesolenum .} 设$k$为正整数, 当$n=2k+1$, 1个$k+1$、$k$个1构成自对偶分拆; 当$n=2k+2$, 1个$k+1$、1个2、$k-1$个1构成自对偶分拆. 
+
+\stepcounter{solenum}
 \par \textbf{\thesolenum .} 设$(x_1,\dots,x_k)$为$n$的一个自对偶分拆, 令$l=\max\{j\vert x_j\ge j\}$, 则由自对偶分拆的性质,
 \begin{equation*}
     n = \sum_{j=1}^l (x_j - j + 1 + |\{m\vert x_m\ge j\}| - j) = \sum_{j=1}^l (2x_j - 2j + 1)
@@ -1253,6 +1280,13 @@ r+1=\sum_{j=0}^{r} (-1)^j \binom{r+1}{j}B_j
 
 \stepcounter{solenum}
 \par \textbf{\thesolenum .} 设$(x_1,\dots,x_k)$为$n$的一个分拆, $x_1>\dots>x_k$. 每个$x_i$可唯一表示为$2^{a_i} b_i$, 其中$a_i$为非负整数, $b_i$是奇数. 将每个$x_i$拆成$2^{a_i}$个$b_i$，即得到各部分为奇数的分拆. 反过来, 设$n$的分拆包含$c_1$个$b_1$, $c_2$个$b_2$,..., $c_l$个$b_l$, 其中$b_1>b_2>\cdots>b_l$为奇数, 则每个$c_i$可唯一表示为2的不同方幂之和: $c_i=2^{a_{i1}} +\cdots+ 2^{a_{ir_i}}$, 其中$a_{i1}>a_{i2}>\cdots>a_{ir_i}\ge 0$. 将$c_i$个$b_i$合并为$2^{a_{i1}}b_i, \dots,2^{a_{ir_i}}b_i$, 则得到各部分两两不同的分拆. 上述两个过程互为逆映射. 
+
+\stepcounter{solenum}
+\par \textbf{\thesolenum .} (1) 略. (2) 设分拆中3的个数为$m$, 则由(1)的结论, 
+\begin{equation}
+    p_3(n) = \sum_{m=0}^{\lfloor \frac{n}{3} \rfloor} \left(\left\lfloor \frac{n-3m}{2} \right\rfloor +1\right)
+\end{equation}
+设$n=6q+r$, 对$r=0,1,\dots,5$逐一代入验证知结论成立. 
 
 \par \textbf{B组}
 \stepcounter{solenum}
