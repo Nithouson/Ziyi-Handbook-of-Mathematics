@@ -26,6 +26,39 @@ k+l &\le |E \cup A_{j_1} \cup \dots \cup A_{j_l}| = |E \cup (A_{j_1}-E) \cup \do
 因此$(A_1-\{f\}, \dots, A_{n-1}-\{f\})$存在相异代表系$(e_1,\dots,e_{n-1})$. $(e_1,\dots, e_{n-1}, f)$即为$(A_1,\dots, A_n)$的相异代表系. 
 \end{proof}
 
+\begin{col}\textbf{存在相异代表系的最大子集族}\\
+设$X$是有限集, $\mathcal{A}=(A_1,\dots, A_n)$是$X$的一列非空子集, $\mathcal{B} \subseteq \mathcal{A}$存在相异代表系, 则$|\mathcal{B}|$的最大值为
+\begin{equation}
+    \min\limits_{1\le k\le n} \min\limits_{i_1,\dots, i_k} \left(|A_{i_1} \cup \cdots \cup A_{i_k}| + n - k\right)
+\end{equation}
+其中$i_1,\dots, i_k\in\{1,\dots,n\}$两两不同. 
+\end{col}
+\begin{proof}
+断言$\mathcal{A}$有$t$元子集$\mathcal{B}$使得$\mathcal{B}$存在相异代表系, 当且仅当对任意$k\ge n-t$和任意两两不同的$i_1,\dots, i_k$, 有
+\begin{equation}
+    |A_{i_1} \cup \cdots \cup A_{i_k}| \ge k - (n-t)
+\end{equation}
+注意到$1\le k<n-t$时不等式是平凡的. 这一条件等价于
+\begin{equation}
+    |A_{i_1} \cup \cdots \cup A_{i_k}| + n - k \ge t
+\end{equation}
+从而$t$的最大值即为左侧的最小值. 
+
+为证明上述断言, 取一个$n-t$元子集$F$使得$F\cap Y = \varnothing$, 并记$A^\star_{i} = A_{i} \cup F$, $1\le i\le n$. 充分性: 若对任意$k\ge n-t$和任意两两不同的$i_1,\dots, i_k$, 有
+\begin{equation}
+    |A_{i_1} \cup \cdots \cup A_{i_k}| \ge k - (n-t)
+\end{equation}
+则
+\begin{equation}
+    \vert A^\star_{i_1} \cup \cdots \cup A^\star_{i_k}\vert = \vert A_{i_1} \cup \cdots \cup A_{i_k}\vert + |F| \ge k
+\end{equation}
+定理\ref{thm:sdr_exists} 中的条件对$1\le k<n-t$显然成立. 因此$(A^\star_1,\dots, A^\star_n)$有相异代表系. 而相异代表系中至多包含$n-t$个$F$中的元素, 去除相应的集合即得满足条件的子集$\mathcal{B}$. 必要性: 若$\mathcal{A}$的$t$元子集$\mathcal{B}$存在相异代表系, 不妨设$\mathcal{B}=(A_1,\dots, A_t)$, 其一个相异代表系为$(e_1,\dots,e_t)$, 并记$F=\{f_1,\dots,f_{n-t}\}$, 则$(e_1,\dots,e_t, f_1,\dots, f_{n-t})$为$(A^\star_1,\dots, A^\star_n)$的相异代表系. 因此对任意$k\ge n-t$和任意两两不同的$i_1,\dots, i_k$, 有
+\begin{equation}
+    k \le \vert A^\star_{i_1} \cup \cdots \cup A^\star_{i_k}\vert = \vert A_{i_1} \cup \cdots \cup A_{i_k}\vert + |F|
+\end{equation}
+从而结论成立. 
+\end{proof}
+
 \section{典型问题}
 
 \subsection{拉丁方}
@@ -99,6 +132,36 @@ $c\leftarrow k$\;
 (1) 证明$\mathcal{A}$存在一个包含$x$的相异代表系. (2) 举例说明, 不一定存在$\mathcal{A}$的相异代表系使得$x$是$A_1$的代表元. (3) 若对任意$1\le k \le n$及两两不同的$i_1,\dots,i_k \in \{1,2,\dots,n\}$, $|A_{i_1} \cup \dots \cup A_{i_k}| \ge k+1$, 证明存在$\mathcal{A}$的相异代表系使得$x$是$A_1$的代表元.
 
 \stepcounter{probdes}
+\par \textbf{\theprobdes .} (\textbf{稳定婚姻问题}) 设有$n$位男士$m_1,\dots,m_n$和$n$位女士$w_1,\dots,w_n$, 矩阵$A=(a_{ij})$每行为$1,\dots,n$的排列, $a_{ij}$表示对$w_i$而言, $m_j$在男士中的好感度排序; 矩阵$B=(b_{ij})$每列为$1,\dots,n$的排列, $b_{ij}$表示对$m_j$而言, $w_i$在女士中的好感度排序. 考虑将男士和女士配对为$n$对夫妇的方式, 若存在$w_i,m_j$, 使得$w_i$对$m_j$的好感超过其丈夫, $m_j$对$w_i$的好感超过其妻子, 称这个配对方式为不稳定婚姻; 否则称为稳定婚姻. 证明: (1) 对任意的好感度矩阵$A,B$, 延迟认可算法（算法\ref{alg:stable_marriage}, 又称Gale-Shapley算法）给出一个稳定婚姻. 
+
+\begin{algorithm}[ht!]
+\SetKwInOut{KIN}{输入}
+\SetKwInOut{KOUT}{输出}
+\caption{构造稳定婚姻的延迟认可算法} 
+\label{alg:stable_marriage}
+\KIN{正整数$n$, 好感度排序矩阵$A,B$}
+\KOUT{稳定婚姻配对}
+$H_i \leftarrow 0, 1\le i\le n$  ($H_i$表示$w_i$当前配对的男士编号, 0代表未配对)\;
+$R_{ij} \leftarrow 0, 1\le i,j\le n$  ($R_{ij}$表示$w_i$是否已被$m_j$拒绝)\;
+\While{$\exists i: H_i=0$} {
+\For{$i: H_i=0$} 
+{
+    $H_i \leftarrow \operatorname{\arg\min}\limits_{j: R_{ij}=0} a_{ij}$ (女士向未拒绝自己的男士中好感度排名最高者求婚)\; 
+}
+\For{$j:(\exists i: H_i=j)$}
+{
+    $i_0 \leftarrow \operatorname{\arg\min}\limits_{i: H_i=j} b_{ij}$ (男士从求婚者中选择好感度排名最高者)\; 
+    \For{$i: (H_i=j \land i\neq i_0)$}
+    {
+        $H_i \leftarrow 0$, $R_{ij} \leftarrow 1$ (拒绝其余的求婚者)\; 
+    }
+}
+}
+\Return $H_i, 1\le i\le n$.
+\end{algorithm}
+
+
+\stepcounter{probdes}
 \par \textbf{\theprobdes .} (\textbf{拉丁方的存在性}) 对任意$n\ge 2$, 构造一个$n$阶拉丁方. 
 
 
@@ -129,6 +192,11 @@ $c\leftarrow k$\;
 \newcounter{soldes} 
 
 \stepcounter{soldes} (1) 任取一个相异代表系$(e_1,\dots,e_n)$. 若$x\in \{e_1,\dots,e_n\}$命题成立. 若不然, $(x,e_2,\dots,e_n)$也为一个相异代表系. (2) $n=2$, $A_1=\{x, y\}$, $A_2=\{x\}$. (3) 与定理\ref{thm:sdr_exists}中情形(ii)的证明同理. 
+
+\stepcounter{soldes}
+\par \textbf{\thesoldes .} (1) 首先说明算法能够给出一种有效的配对. 每轮迭代结束时, 每位男士至多与一位女士配对, 因此若所有女士都已配对, 则配队结果是双射. 男士一旦配对不会回到未配对状态, 未配对的男士不曾拒绝过任何人, 因此若有未配对的女士, 必有未配对的男士作为可选求婚对象. 考虑女士求婚阶段结束后的$S=\sum_{i=1}^n a_{iH_i}$, 由于被拒绝的女士再次选择的男士排名必然低于上一位, $S$在每轮迭代严格单调递增, 因此算法在有限步内终止. 
+
+假设算法得到$m_i$与$w_j$配对, $m_k$与$w_l$配对; 再设$w_l$喜欢$m_i$超过$m_k$. 断言$m_i$不可能喜欢$w_l$超过$w_j$. 事实上, $w_l$在求婚$m_k$之前必然求婚过$m_i$, 但被$m_i$拒绝, 表明$m_i$喜欢另一位求婚者超过$w_l$; 而$m_i$对最终妻子$w_j$的好感度不低于过程中的任何一位求婚者. 这证明算法得出的配对是稳定婚姻. 
 
 \stepcounter{soldes}
 \par \textbf{\thesoldes .} 考虑如下构造,
